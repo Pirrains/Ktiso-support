@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTISO — Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 169, 97, 0.08), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 28px;
+  }
+
+  .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 14vw, 88px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    color: var(--cream);
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.4),
+      0 2px 12px rgba(201, 169, 97, 0.15),
+      0 8px 30px rgba(0,0,0,0.5);
+    margin-bottom: 6px;
+  }
+
+  .wordmark span {
+    color: var(--gold);
+  }
+
+  .tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 22px);
+    color: rgba(244, 239, 227, 0.65);
+    margin-bottom: 44px;
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 44px;
+  }
+
+  .help-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+
+  .help-copy {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(20px, 4.5vw, 26px);
+    line-height: 1.4;
+    color: var(--cream);
+    max-width: 420px;
+    margin: 0 auto 36px;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+
+  .contact-button:hover {
+    background: #DCC07E;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
+  }
+
+  .contact-button:active {
+    transform: translateY(0);
+  }
+
+  .contact-button svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .email-fallback {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(244, 239, 227, 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  .email-fallback a {
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
+  }
+
+  .email-fallback a:hover {
+    border-bottom-color: var(--terracotta);
+  }
+
+  footer {
+    margin-top: 64px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-button { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="eyebrow">Éducation financière</div>
+    <h1 class="wordmark">KTIS<span>O</span></h1>
+    <p class="tagline">Un point d'appui, pas un mur d'attente</p>
+
+    <div class="rule"></div>
+
+    <div class="help-label">Support</div>
+    <p class="help-copy">Une question sur l'application, un bug à signaler, une idée à partager — écrivez-nous directement.</p>
+
+    <a class="contact-button" href="mailto:ktiso@outlook.fr?subject=Support%20KTISO">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16v16H4z" opacity="0"></path>
+        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6Z"></path>
+        <path d="m22 6-10 7L2 6"></path>
+      </svg>
+      Contacter le support
+    </a>
+
+    <p class="email-fallback">ou écrivez à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a></p>
+
+    <footer>KTISO — Réponse sous 48h</footer>
+  </div>
+</body>
+</html>
