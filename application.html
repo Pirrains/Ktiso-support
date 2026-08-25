@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Notre application</title>
+<meta name="description" content="Découvrez comment l'application Ktiso vous fait progresser en éducation financière : budget, épargne, bourse, ETF, immobilier et crypto, étape par étape.">
+<meta property="og:title" content="Ktiso — Notre application">
+<meta property="og:description" content="Un parcours pensé pour progresser, pas pour scroller. Gratuit sur iPhone et iPad.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+ 
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 72px;
+  }
+ 
+  .frame { width: 100%; max-width: 600px; }
+ 
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 48px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+ 
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+ 
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+ 
+  header { text-align: center; margin-bottom: 0; }
+ 
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+ 
+  .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 10vw, 56px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+  }
+ 
+  .wordmark span { color: var(--gold); }
+ 
+  .subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 22px);
+    color: rgba(244, 239, 227, 0.65);
+  }
+ 
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+ 
+  section { margin-bottom: 8px; text-align: center; }
+ 
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+ 
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 400;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 440px;
+  }
+ 
+  section p {
+    font-family: 'DM Mono', monospace;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.75);
+    max-width: 420px;
+    margin: 0 auto 14px;
+  }
+ 
+  /* progression motif reused from the home hero */
+  .steps-inline {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    height: 22px;
+    margin: 22px auto 0;
+  }
+ 
+  .steps-inline span {
+    display: block;
+    width: 6px;
+    background: var(--gold);
+    border-radius: 1px;
+  }
+ 
+  .steps-inline span:nth-child(1) { height: 30%; opacity: 0.45; }
+  .steps-inline span:nth-child(2) { height: 55%; opacity: 0.65; }
+  .steps-inline span:nth-child(3) { height: 80%; opacity: 0.85; }
+  .steps-inline span:nth-child(4) { height: 100%; opacity: 1; }
+ 
+  /* module list */
+  ul.module-list {
+    list-style: none;
+    text-align: left;
+    max-width: 420px;
+    margin: 22px auto 0;
+  }
+ 
+  ul.module-list li {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.85);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+ 
+  ul.module-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+ 
+  ul.module-list li strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+ 
+  ul.module-list li span.detail {
+    display: block;
+    font-size: 13px;
+    color: rgba(244, 239, 227, 0.55);
+    margin-top: 2px;
+  }
+ 
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 36px 0 8px;
+  }
+ 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 17px 34px;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+ 
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+ 
+  .btn-primary:hover {
+    background: #DCC07E;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
+  }
+ 
+  .btn:active { transform: translateY(0); }
+ 
+  .btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+ 
+  .caption {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.35);
+  }
+ 
+  footer {
+    text-align: center;
+    margin-top: 64px;
+  }
+ 
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+ 
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+ 
+  .footer-nav a:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+  }
+ 
+  .footer-nav .sep {
+    color: rgba(244, 239, 227, 0.2);
+    margin: 0 10px;
+  }
+ 
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="application.html" class="active">Application</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+    </nav>
+ 
+    <header>
+      <div class="eyebrow">Notre application</div>
+      <h1 class="wordmark">KTIS<span>O</span></h1>
+      <p class="subtitle">Des outils pensés pour comprendre, pas pour deviner</p>
+    </header>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="section-label">Comment ça marche</div>
+      <h2>Une progression, pas une liste de vidéos</h2>
+      <p>L'application organise les sujets financiers en étapes courtes, à parcourir dans l'ordre ou à la carte. Chaque connexion reprend là où vous vous étiez arrêté.</p>
+      <p>Aucun compte bancaire à relier, aucun produit financier à acheter dans l'app : Ktiso reste un outil pédagogique.</p>
+      <div class="steps-inline" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="section-label">Ce que vous apprenez</div>
+      <h2>Les mêmes bases que celles enseignées dans une école de commerce, sans le jargon</h2>
+      <ul class="module-list">
+        <li><strong>Budget &amp; épargne</strong><span class="detail">Construire un budget, mettre de côté, poser les bases avant d'investir</span></li>
+        <li><strong>Bourse &amp; actions</strong><span class="detail">Comprendre un marché, lire une entreprise cotée, saisir les grands mécanismes</span></li>
+        <li><strong>ETF &amp; fonds indiciels</strong><span class="detail">Diversifier sans devoir choisir action par action</span></li>
+        <li><strong>Obligations</strong><span class="detail">Le fonctionnement de la dette et des taux, expliqué simplement</span></li>
+        <li><strong>Immobilier</strong><span class="detail">Les bases de l'investissement locatif et du financement</span></li>
+        <li><strong>Cryptoactifs</strong><span class="detail">Ce que c'est, comment ça fonctionne, avec les risques associés</span></li>
+        <li><strong>Économie</strong><span class="detail">Inflation, taux directeurs, cycles — pour comprendre l'actualité économique</span></li>
+      </ul>
+    </section>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="section-label">Pensé pour progresser</div>
+      <h2>Votre progression vous suit, d'une connexion à l'autre</h2>
+      <p>Un compte simple garde en mémoire les contenus déjà vus et vos préférences, pour reprendre exactement là où vous en étiez — sur iPhone comme sur iPad.</p>
+    </section>
+ 
+    <div class="cta-group">
+      <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"></path>
+          <path d="m7 10 5 5 5-5"></path>
+          <path d="M5 21h14"></path>
+        </svg>
+        Télécharger sur l'App Store
+      </a>
+    </div>
+    <p class="caption">Gratuit · iPhone &amp; iPad · Dès 16 ans</p>
+ 
+    <footer>
+      <div class="footer-nav">
+        <a href="home.html">Accueil</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="contenus.html">Contenus</a>
+        <span class="sep">·</span>
+        <a href="index.html">Support</a>
+        <span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+    </footer>
+  </div>
+</body>
+</html>
+ 
