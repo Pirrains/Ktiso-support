@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Contenus éducatifs</title>
+<meta name="description" content="Les sujets financiers expliqués par Ktiso : budget, épargne, bourse, ETF, immobilier, crypto et économie — sans jargon.">
+<meta property="og:title" content="Ktiso — Contenus éducatifs">
+<meta property="og:description" content="Des sujets financiers, expliqués sans jargon.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+ 
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 72px;
+  }
+ 
+  .frame { width: 100%; max-width: 620px; }
+ 
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 48px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+ 
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+ 
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+ 
+  header { text-align: center; }
+ 
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+ 
+  .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 10vw, 56px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+  }
+ 
+  .wordmark span { color: var(--gold); }
+ 
+  .subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 22px);
+    color: rgba(244, 239, 227, 0.65);
+  }
+ 
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+ 
+  .intro { text-align: center; margin-bottom: 8px; }
+ 
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+ 
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 400;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 460px;
+  }
+ 
+  .intro p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.75);
+    max-width: 440px;
+    margin: 0 auto;
+  }
+ 
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+ 
+  .theme-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    padding: 22px 20px;
+    border-radius: 2px;
+    text-align: left;
+  }
+ 
+  .theme-card .section-label { margin-bottom: 10px; }
+ 
+  .theme-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+ 
+  .theme-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(244, 239, 227, 0.7);
+    margin: 0;
+  }
+ 
+  .format-note {
+    text-align: center;
+    margin: 44px 0 8px;
+  }
+ 
+  .format-note p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.75);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+ 
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin: 36px 0 8px;
+  }
+ 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 17px 34px;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+ 
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+ 
+  .btn-primary:hover {
+    background: #DCC07E;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
+  }
+ 
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--line);
+  }
+ 
+  .btn-secondary:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+ 
+  .btn:active { transform: translateY(0); }
+ 
+  .btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+ 
+  footer {
+    text-align: center;
+    margin-top: 56px;
+  }
+ 
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+ 
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+ 
+  .footer-nav a:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+  }
+ 
+  .footer-nav .sep {
+    color: rgba(244, 239, 227, 0.2);
+    margin: 0 10px;
+  }
+ 
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="contenus.html" class="active">Contenus</a>
+    </nav>
+ 
+    <header>
+      <div class="eyebrow">Contenus éducatifs</div>
+      <h1 class="wordmark">KTIS<span>O</span></h1>
+      <p class="subtitle">Ce qu'on explique, simplement</p>
+    </header>
+ 
+    <div class="rule"></div>
+ 
+    <div class="intro">
+      <div class="section-label">Deux formats, un seul objectif</div>
+      <h2>Les mêmes sujets, dans l'app et sur Instagram</h2>
+      <p>Dans l'application, ces sujets sont organisés en leçons progressives. Sur Instagram, on en retrouve des versions courtes, en carrousel. Voici les grands thèmes abordés.</p>
+    </div>
+ 
+    <div class="rule"></div>
+ 
+    <div class="theme-grid">
+      <div class="theme-card">
+        <div class="section-label">Budget &amp; épargne</div>
+        <h3>Poser les bases</h3>
+        <p>Construire un budget qui tient dans la durée, avec des repères comme la règle du 50/30/20.</p>
+      </div>
+      <div class="theme-card">
+        <div class="section-label">Bourse &amp; actions</div>
+        <h3>Lire une entreprise cotée</h3>
+        <p>Comprendre comment fonctionne un marché actions et comment décrypter une entreprise.</p>
+      </div>
+      <div class="theme-card">
+        <div class="section-label">ETF &amp; fonds</div>
+        <h3>Diversifier simplement</h3>
+        <p>Le principe des fonds indiciels, pour investir sans devoir choisir titre par titre.</p>
+      </div>
+      <div class="theme-card">
+        <div class="section-label">Immobilier</div>
+        <h3>Les bases du secteur</h3>
+        <p>Investissement locatif, financement, et les notions clés pour s'y retrouver.</p>
+      </div>
+      <div class="theme-card">
+        <div class="section-label">Cryptoactifs</div>
+        <h3>Comprendre avant d'agir</h3>
+        <p>Ce que sont les cryptomonnaies, comment elles fonctionnent, et leurs risques.</p>
+      </div>
+      <div class="theme-card">
+        <div class="section-label">Économie</div>
+        <h3>Suivre l'actualité</h3>
+        <p>Taux directeurs, inflation, décisions de la BCE — pour comprendre ce qu'on lit dans la presse.</p>
+      </div>
+    </div>
+ 
+    <div class="format-note">
+      <p>Ces sujets évoluent régulièrement : nouveaux contenus sur Instagram, nouvelles leçons dans l'application.</p>
+    </div>
+ 
+    <div class="cta-group">
+      <a class="btn btn-primary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg>
+        Suivre sur Instagram
+      </a>
+      <a class="btn btn-secondary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+        Télécharger l'application
+      </a>
+    </div>
+ 
+    <footer>
+      <div class="footer-nav">
+        <a href="home.html">Accueil</a>
+        <span class="sep">·</span>
+        <a href="application.html">Application</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="index.html">Support</a>
+        <span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+    </footer>
+  </div>
+</body>
+</html>
+ 
