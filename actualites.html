@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ktiso — Actualités</title>
-<meta name="description" content="Les dernières nouvelles de Ktiso : disponibilité sur l'App Store, nouveautés à venir et actualité du projet.">
-<meta property="og:title" content="Ktiso — Actualités">
-<meta property="og:description" content="Le pouls du projet Ktiso.">
+<title>Ktiso — Actualités économiques</title>
+<meta name="description" content="Les dernières analyses et actualités économiques publiées par Ktiso : marchés, épargne, immobilier, crypto et économie.">
+<meta property="og:title" content="Ktiso — Actualités économiques">
+<meta property="og:description" content="Les derniers articles économiques de Ktiso.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +38,21 @@
  
   body {
     background:
-      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(91, 143, 168, 0.10), transparent),
-      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
-    display: flex;
-    justify-content: center;
-    padding: 0 24px 72px;
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(91, 143, 168, 0.10), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 55%, var(--green-deep) 100%);
+    overflow-x: hidden;
   }
  
-  .frame { width: 100%; max-width: 600px; }
+  a { color: inherit; }
+ 
+  .wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+ 
+  /* ============ NAV ============ */
  
   nav.topnav {
     display: flex;
@@ -53,10 +60,12 @@
     flex-wrap: wrap;
     gap: 4px 0;
     padding-top: 28px;
-    margin-bottom: 48px;
+    margin-bottom: 8px;
     font-size: 10.5px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    position: relative;
+    z-index: 5;
   }
  
   nav.topnav a {
@@ -81,7 +90,85 @@
     vertical-align: middle;
   }
  
-  header { text-align: center; margin-bottom: 0; }
+  /* ============ HERO ============ */
+ 
+  .hero {
+    position: relative;
+    min-height: 78vh;
+    min-height: 78svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6vh 24px 8vh;
+    overflow: hidden;
+  }
+ 
+  .coin-field {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+ 
+  .coin {
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    width: var(--size);
+    height: var(--size);
+    margin: calc(var(--size) / -2);
+    filter: blur(var(--blur, 0px));
+    animation: coinFloat var(--fdur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+ 
+  @keyframes coinFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+ 
+  .coin-shape {
+    position: absolute;
+    inset: 0;
+  }
+ 
+  .coin.edge-on .coin-shape {
+    transform: scaleX(0.17) rotate(6deg);
+  }
+ 
+  .coin-rim {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 210deg,
+      #7a7d80 0%, #eef1f3 12%, #4c4f52 25%, #d6d9db 38%,
+      #3a3d40 50%, #e4e7e9 63%, #6a6d70 75%, #f4f6f7 88%, #7a7d80 100%);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+  }
+ 
+  .coin-face {
+    position: absolute;
+    inset: 7%;
+    border-radius: 50%;
+    background:
+      linear-gradient(115deg, rgba(244,239,227,0.16) 0%, transparent 30%),
+      radial-gradient(circle at 30% 24%, rgba(244,239,227,0.42), rgba(244,239,227,0.06) 38%, rgba(15,26,20,0.4) 74%, rgba(8,13,10,0.6) 100%);
+    box-shadow:
+      inset 0 3px 10px rgba(0,0,0,0.55),
+      inset 0 -6px 16px rgba(0,0,0,0.4),
+      inset 0 0 0 1px rgba(244,239,227,0.14);
+  }
+ 
+  .coin.edge-on .coin-rim {
+    box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+  }
+ 
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
  
   .eyebrow {
     font-size: 11px;
@@ -89,35 +176,44 @@
     text-transform: uppercase;
     color: var(--zone);
     opacity: 0.9;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
  
   .wordmark {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 10vw, 56px);
+    font-size: clamp(36px, 8.4vw, 84px);
     letter-spacing: 0.04em;
     line-height: 0.9;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
-    margin-bottom: 10px;
+    color: var(--cream);
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.4),
+      0 2px 20px rgba(91, 143, 168, 0.18),
+      0 10px 40px rgba(0,0,0,0.5);
+    margin-bottom: 18px;
   }
  
-  .wordmark span { color: var(--gold); }
+  .wordmark span { color: var(--zone); }
  
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: clamp(18px, 4vw, 22px);
-    color: rgba(244, 239, 227, 0.65);
+    font-size: clamp(19px, 4.2vw, 25px);
+    color: rgba(244, 239, 227, 0.7);
+    max-width: 480px;
+    margin: 0 auto;
   }
+ 
+  /* ============ SHARED SECTION LAYOUT ============ */
  
   .rule {
     width: 64px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--zone), transparent);
-    margin: 40px auto;
+    margin: 0 auto;
   }
- 
-  .intro { text-align: center; margin-bottom: 8px; }
  
   .section-label {
     font-size: 12px;
@@ -133,76 +229,140 @@
     font-weight: 400;
     color: var(--cream);
     margin: 0 auto 16px;
-    max-width: 440px;
+    max-width: 460px;
   }
  
+  .intro { text-align: center; padding: 56px 0 40px; }
+ 
   .intro p {
-    font-family: 'DM Mono', monospace;
     font-size: 14.5px;
     line-height: 1.75;
     color: rgba(244, 239, 227, 0.75);
-    max-width: 420px;
-    margin: 0 auto 14px;
+    max-width: 440px;
+    margin: 0 auto;
   }
  
-  .update-list {
+  /* ============ ARTICLES ============ */
+ 
+  .article-section { padding: 0 0 80px; }
+ 
+  .article-grid {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 8px;
   }
  
-  .update-card {
+  .article-card {
+    display: block;
     border: 1px solid var(--line);
-    border-left: 2px solid var(--zone);
-    background: rgba(91, 143, 168, 0.05);
-    padding: 26px 24px;
     border-radius: 2px;
+    padding: 28px 26px;
     text-align: left;
+    text-decoration: none;
+    background: rgba(91, 143, 168, 0.035);
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
   }
  
-  .update-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+  .article-card:hover {
+    border-color: rgba(91, 143, 168, 0.5);
+    background: rgba(91, 143, 168, 0.06);
+    transform: translateY(-2px);
+  }
+ 
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+ 
+  .article-tag {
     color: var(--zone);
-    border: 1px solid var(--zone-line);
-    padding: 4px 10px;
-    border-radius: 20px;
+  }
+ 
+  .article-meta .dot-sep {
+    color: rgba(244, 239, 227, 0.25);
+  }
+ 
+  .article-date {
+    color: rgba(244, 239, 227, 0.4);
+  }
+ 
+  .article-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.35;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+ 
+  .article-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(244, 239, 227, 0.65);
     margin-bottom: 14px;
   }
  
-  .update-card h3 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: 19px;
-    color: var(--cream);
-    margin-bottom: 8px;
-    line-height: 1.3;
+  .article-read {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
   }
  
-  .update-card p {
+  .article-card.featured {
+    padding: 36px 30px;
+    background:
+      radial-gradient(ellipse 90% 100% at 100% 0%, rgba(91, 143, 168, 0.08), transparent 65%),
+      rgba(91, 143, 168, 0.04);
+  }
+ 
+  .article-card.featured h3 {
+    font-size: 24px;
+    max-width: 480px;
+  }
+ 
+  .placeholder-note {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.35);
+    max-width: 420px;
+    margin: 28px auto 0;
+  }
+ 
+  /* ============ CLOSING CTA ============ */
+ 
+  .social-section { padding: 0 0 90px; }
+ 
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+ 
+  .social-card .section-label { color: var(--gold); display: flex; justify-content: center; }
+ 
+  .social-card h2 { max-width: 400px; }
+ 
+  .social-card p {
     font-size: 13.5px;
-    line-height: 1.65;
-    color: rgba(244, 239, 227, 0.68);
-    margin: 0;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
   }
  
-  .update-card a.inline-link {
-    color: var(--zone);
-    text-decoration: none;
-    border-bottom: 1px solid var(--zone-line);
-  }
- 
-  .update-card a.inline-link:hover { border-bottom-color: var(--zone); }
- 
-  .cta-group {
+  .cta-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    margin: 36px 0 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
  
   .btn {
@@ -212,18 +372,16 @@
     gap: 10px;
     font-family: 'DM Mono', monospace;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 17px 34px;
+    padding: 15px 28px;
     border-radius: 2px;
-    width: 100%;
-    max-width: 320px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   }
  
-  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
  
   .btn-primary {
     background: var(--gold);
@@ -252,9 +410,11 @@
   .btn:active { transform: translateY(0); }
   .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
  
+  /* ============ FOOTER ============ */
+ 
   footer {
     text-align: center;
-    margin-top: 56px;
+    padding: 0 24px 56px;
   }
  
   .footer-nav {
@@ -283,85 +443,169 @@
     text-transform: uppercase;
     color: rgba(244, 239, 227, 0.3);
   }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    .coin { animation: none; }
+    .btn, .article-card { transition: none; }
+  }
 </style>
 </head>
 <body>
-  <div class="frame">
-    <nav class="topnav" aria-label="Navigation principale">
-      <a href="home.html">Accueil</a><span class="sep">·</span>
-      <a href="a-propos.html">À propos</a><span class="sep">·</span>
-      <a href="application.html">Application</a><span class="sep">·</span>
-      <a href="contenus.html">Contenus</a><span class="sep">·</span>
-      <a href="actualites.html" class="active">Actualités</a>
-    </nav>
  
-    <header>
-      <div class="eyebrow"><span class="zone-dot"></span>Actualités</div>
-      <h1 class="wordmark">KTIS<span>O</span></h1>
-      <p class="subtitle">Le pouls du projet</p>
-    </header>
+  <nav class="topnav" aria-label="Navigation principale">
+    <a href="home.html">Accueil</a><span class="sep">·</span>
+    <a href="a-propos.html">À propos</a><span class="sep">·</span>
+    <a href="application.html">Application</a><span class="sep">·</span>
+    <a href="contenus.html">Contenus</a><span class="sep">·</span>
+    <a href="actualites.html" class="active">Actualités</a>
+  </nav>
  
-    <div class="rule"></div>
- 
-    <div class="intro">
-      <div class="section-label">Quoi de neuf</div>
-      <h2>Nouveautés, annonces et mises à jour</h2>
-      <p>Cette page rassemble les évolutions de l'application et du projet Ktiso. Pour les nouveautés en temps réel, Instagram reste le canal le plus rapide.</p>
+  <header class="hero">
+    <div class="coin-field" aria-hidden="true">
+      <span class="coin" style="--top:5%; --left:10%; --size:100px; --blur:5px; --fdur:7s; --delay:0s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin" style="--top:10%; --left:80%; --size:78px; --blur:0px; --fdur:6.2s; --delay:0.6s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin edge-on" style="--top:2%; --left:47%; --size:64px; --blur:1px; --fdur:5.5s; --delay:1.1s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin" style="--top:86%; --left:15%; --size:64px; --blur:3px; --fdur:6.6s; --delay:0.3s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin" style="--top:79%; --left:70%; --size:92px; --blur:0px; --fdur:5.9s; --delay:1.6s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin edge-on" style="--top:90%; --left:90%; --size:56px; --blur:4px; --fdur:6.9s; --delay:0.9s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
+      <span class="coin" style="--top:83%; --left:40%; --size:46px; --blur:6px; --fdur:6.3s; --delay:1.4s;">
+        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
+      </span>
     </div>
  
-    <div class="rule"></div>
- 
-    <div class="update-list">
-      <div class="update-card">
-        <span class="update-tag">Disponible</span>
-        <h3>Ktiso est sur l'App Store</h3>
-        <p>L'application est disponible gratuitement sur iPhone et iPad, dès 16 ans. <a class="inline-link" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">Télécharger →</a></p>
-      </div>
- 
-      <div class="update-card">
-        <span class="update-tag">À venir</span>
-        <h3>De nouveaux contenus arrivent</h3>
-        <p>De nouvelles leçons s'ajoutent régulièrement à l'application, au fil des sujets couverts sur Instagram.</p>
-      </div>
- 
-      <div class="update-card">
-        <span class="update-tag">Communauté</span>
-        <h3>Suivez l'actualité en priorité sur Instagram</h3>
-        <p>Nouveautés, coulisses et rappels sont partagés en premier sur <a class="inline-link" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">@ktiso_off →</a></p>
-      </div>
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Actualités économiques</div>
+      <h1 class="wordmark">ACTUALIT<span>É</span>S</h1>
+      <p class="subtitle">Les marchés, l'épargne et l'économie, décryptés simplement</p>
     </div>
+  </header>
  
-    <div class="cta-group">
-      <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
-        Télécharger sur l'App Store
-      </a>
-      <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-        </svg>
-        Suivre sur Instagram
-      </a>
-    </div>
+  <main>
  
-    <footer>
-      <div class="footer-nav">
-        <a href="home.html">Accueil</a>
-        <span class="sep">·</span>
-        <a href="a-propos.html">À propos</a>
-        <span class="sep">·</span>
-        <a href="application.html">Application</a>
-        <span class="sep">·</span>
-        <a href="contenus.html">Contenus</a>
-        <span class="sep">·</span>
-        <a href="index.html">Support</a>
-        <span class="sep">·</span>
-        <a href="privacy.html">Confidentialité</a>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="intro">
+        <div class="section-label">Derniers articles</div>
+        <h2>Ce que Ktiso publie sur l'actualité économique</h2>
+        <p>Des analyses courtes sur les marchés, les taux, l'épargne et l'investissement — écrites pour être comprises sans formation en finance.</p>
       </div>
-      <div class="copyright">KTISO — Éducation financière</div>
-    </footer>
-  </div>
+    </section>
+ 
+    <section class="article-section wrap">
+      <div class="article-grid">
+ 
+        <a class="article-card featured" href="#">
+          <div class="article-meta">
+            <span class="article-tag">Économie</span>
+            <span class="dot-sep">·</span>
+            <span class="article-date">À la une</span>
+          </div>
+          <h3>Ce qu'il faut retenir de la dernière décision de taux de la BCE</h3>
+          <p>Pourquoi les banques centrales relèvent ou baissent leurs taux, et ce que ça change concrètement pour votre épargne et vos crédits.</p>
+          <span class="article-read">Lire l'article →</span>
+        </a>
+ 
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span class="article-tag">Bourse</span>
+            <span class="dot-sep">·</span>
+            <span class="article-date">Marchés</span>
+          </div>
+          <h3>3 choses à comprendre avant d'investir dans un premier ETF</h3>
+          <p>Frais, diversification, horizon de placement : les bases avant de passer un premier ordre.</p>
+          <span class="article-read">Lire l'article →</span>
+        </a>
+ 
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span class="article-tag">Budget</span>
+            <span class="dot-sep">·</span>
+            <span class="article-date">Épargne</span>
+          </div>
+          <h3>Inflation : ce qu'elle change vraiment pour votre pouvoir d'achat</h3>
+          <p>Comment elle se calcule, pourquoi elle touche chacun différemment, et comment ajuster son budget en conséquence.</p>
+          <span class="article-read">Lire l'article →</span>
+        </a>
+ 
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span class="article-tag">Immobilier</span>
+            <span class="dot-sep">·</span>
+            <span class="article-date">Marché</span>
+          </div>
+          <h3>Acheter ou louer : comment poser le calcul correctement</h3>
+          <p>Les variables qui pèsent vraiment dans la décision — au-delà du taux d'intérêt affiché.</p>
+          <span class="article-read">Lire l'article →</span>
+        </a>
+ 
+        <a class="article-card" href="#">
+          <div class="article-meta">
+            <span class="article-tag">Cryptoactifs</span>
+            <span class="dot-sep">·</span>
+            <span class="article-date">Décryptage</span>
+          </div>
+          <h3>Volatilité crypto : comment la lire sans paniquer ni s'emballer</h3>
+          <p>Ce que racontent vraiment les grandes variations de prix, et les questions à se poser avant d'y toucher.</p>
+          <span class="article-read">Lire l'article →</span>
+        </a>
+ 
+      </div>
+ 
+      <p class="placeholder-note">Ces articles sont des exemples de mise en page. Ils seront remplacés par les vraies publications de Ktiso au fil de leur sortie.</p>
+    </section>
+ 
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+  </footer>
+ 
 </body>
 </html>
  
