@@ -19,8 +19,12 @@
     --green-deep: #0F1A14;
     --terracotta: #C1654A;
     --lime: #A8C66C;
+    --yellow: #E8B347;
+    --yellow-deep: #A67D2E;
+    --blue: #5B8FA8;
     --cream: #F4EFE3;
     --line: rgba(201, 169, 97, 0.22);
+    --zone: var(--yellow);
   }
  
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +37,7 @@
  
   body {
     background:
-      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(232, 179, 71, 0.10), transparent),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
     display: flex;
     justify-content: center;
@@ -64,8 +68,17 @@
   }
  
   nav.topnav a:hover { color: var(--terracotta); }
-  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+ 
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
  
   header { text-align: center; }
  
@@ -109,7 +122,7 @@
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--zone);
     margin-bottom: 14px;
   }
  
@@ -282,13 +295,14 @@
   <div class="frame">
     <nav class="topnav" aria-label="Navigation principale">
       <a href="home.html">Accueil</a><span class="sep">·</span>
-      <a href="application.html">Application</a><span class="sep">·</span>
       <a href="a-propos.html">À propos</a><span class="sep">·</span>
-      <a href="contenus.html" class="active">Contenus</a>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html" class="active">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a>
     </nav>
  
     <header>
-      <div class="eyebrow">Contenus éducatifs</div>
+      <div class="eyebrow"><span class="zone-dot"></span>Contenus éducatifs</div>
       <h1 class="wordmark">KTIS<span>O</span></h1>
       <p class="subtitle">Ce qu'on explique, simplement</p>
     </header>
@@ -361,6 +375,8 @@
         <a href="application.html">Application</a>
         <span class="sep">·</span>
         <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="actualites.html">Actualités</a>
         <span class="sep">·</span>
         <a href="index.html">Support</a>
         <span class="sep">·</span>
