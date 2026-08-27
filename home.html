@@ -75,26 +75,27 @@
     cursor: pointer;
     white-space: nowrap;
     text-decoration: none;
+    will-change: left, top, transform, font-size;
   }
  
   #brandFixed span { color: var(--gold); }
  
   #compactLinks {
     position: fixed;
-    left: 50%;
+    right: 24px;
+    left: auto;
     top: 118px;
-    transform: translateX(-50%);
     z-index: 41;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 4px 0;
     font-size: 10.5px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     opacity: 0;
     pointer-events: none;
-    max-width: 92vw;
+    max-width: 68vw;
   }
  
   #compactLinks a {
@@ -597,7 +598,7 @@
   @media (max-width: 640px) {
     .value-cols { grid-template-columns: 1fr; gap: 32px; }
     .bento-grid { grid-template-columns: 1fr; grid-template-areas: "main" "b1" "b2" "b3"; }
-    #compactLinks { font-size: 9.5px; }
+    #compactLinks { font-size: 9.5px; max-width: 62vw; }
     #compactLinks a { padding: 4px 6px; }
   }
  
@@ -785,7 +786,7 @@
       var backdrop = document.getElementById('navBackdrop');
       var spacer = document.getElementById('heroLogoSpace');
  
-      var heroFontPx, heroTopPx, navFontPx, navTopPx, linksTopPx, triggerDistance;
+      var heroFontPx, heroTopPx, navFontPx, navTopPx, navLeftPx, heroLeftPx, triggerDistance;
       var ticking = false;
  
       function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
@@ -794,6 +795,8 @@
         // Reset to CSS defaults to read the natural hero font-size and height.
         brand.style.fontSize = '';
         brand.style.top = '';
+        brand.style.left = '';
+        brand.style.transform = '';
         spacer.style.minHeight = '';
  
         var cs = window.getComputedStyle(brand);
@@ -809,11 +812,12 @@
         var spacerRect = spacer.getBoundingClientRect();
         var spacerCenterDoc = spacerRect.top + scrollY + spacerRect.height / 2;
         heroTopPx = spacerCenterDoc - brandHeight / 2;
+        heroLeftPx = window.innerWidth / 2;
  
         var small = window.innerWidth < 480;
         navFontPx = small ? 22 : 27;
         navTopPx = small ? 20 : 26;
-        linksTopPx = navTopPx + navFontPx + (small ? 10 : 14);
+        navLeftPx = small ? 20 : 28;
         triggerDistance = Math.max(window.innerHeight * 0.62, 380);
         render();
       }
@@ -825,13 +829,17 @@
  
         var fontSize = heroFontPx + (navFontPx - heroFontPx) * e;
         var top = heroTopPx + (navTopPx - heroTopPx) * e;
+        var left = heroLeftPx + (navLeftPx - heroLeftPx) * e;
+        var translatePercent = -50 + 50 * e; // -50% (centered) -> 0% (left-aligned)
         brand.style.fontSize = fontSize + 'px';
         brand.style.top = top + 'px';
+        brand.style.left = left + 'px';
+        brand.style.transform = 'translateX(' + translatePercent + '%)';
  
         var linksOpacity = Math.max(0, Math.min(1, (p - 0.72) / 0.28));
         links.style.opacity = linksOpacity;
         links.style.pointerEvents = linksOpacity > 0.5 ? 'auto' : 'none';
-        links.style.top = linksTopPx + 'px';
+        links.style.top = navTopPx + 'px';
  
         var bgOpacity = Math.max(0, Math.min(1, (p - 0.08) / 0.3));
         backdrop.style.opacity = bgOpacity;
