@@ -80,33 +80,116 @@
     vertical-align: middle;
   }
  
-  header { text-align: center; }
+  header {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    z-index: 0;
+    overflow: hidden;
+    min-height: 72vh;
+    min-height: 72svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7vh 24px 6vh;
+  }
+ 
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+  }
+ 
+  .wall-left, .wall-right {
+    opacity: 0;
+    animation: wallIn 1.4s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+ 
+  .wall-right { animation-delay: 0.15s; }
+ 
+  @keyframes wallIn { to { opacity: 1; } }
+ 
+  .wall-tier { stroke: rgba(232, 179, 71, 0.32); stroke-width: 1.2; fill: none; }
+  .wall-edge { stroke: rgba(201, 169, 97, 0.45); stroke-width: 1.5; fill: none; }
+  .spines { opacity: 1; }
+  .spine { fill: rgba(232, 208, 156, 0.26); }
+ 
+  .ceiling {
+    opacity: 0;
+    animation: ceilingIn 1.6s ease-out 0.3s forwards;
+  }
+ 
+  @keyframes ceilingIn { to { opacity: 1; } }
+ 
+  .ceiling-arc { stroke: rgba(201, 169, 97, 0.3); stroke-width: 1.5; fill: none; }
+  .ceiling-rib { stroke: rgba(201, 169, 97, 0.16); stroke-width: 1; fill: none; }
+  .skylight { fill: url(#skylightGrad); }
+ 
+  .floor-line {
+    stroke: rgba(201, 169, 97, 0.14);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0;
+    animation: ceilingIn 1.6s ease-out 0.5s forwards;
+  }
+ 
+  .hero-motes circle {
+    fill: var(--zone);
+    opacity: 0;
+    animation: moteDrift 6s ease-in-out infinite;
+  }
+ 
+  @keyframes moteDrift {
+    0%, 100% { opacity: 0.15; transform: translateY(0); }
+    50% { opacity: 0.5; transform: translateY(-16px); }
+  }
+ 
+  .hero-content { position: relative; z-index: 2; }
  
   .eyebrow {
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.85;
-    margin-bottom: 24px;
+    color: var(--zone);
+    opacity: 0.9;
+    margin-bottom: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
  
   .wordmark {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 10vw, 56px);
+    font-size: clamp(56px, 13vw, 132px);
     letter-spacing: 0.04em;
-    line-height: 0.9;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
-    margin-bottom: 10px;
+    line-height: 0.95;
+    color: var(--cream);
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.4),
+      0 2px 20px rgba(232, 179, 71, 0.18),
+      0 10px 40px rgba(0,0,0,0.5);
+    margin-bottom: 18px;
   }
  
-  .wordmark span { color: var(--gold); }
+  .wordmark span { color: var(--zone); }
  
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: clamp(18px, 4vw, 22px);
-    color: rgba(244, 239, 227, 0.65);
+    font-size: clamp(18px, 4vw, 23px);
+    color: rgba(244, 239, 227, 0.68);
+    max-width: 420px;
+    margin: 0 auto;
   }
  
   .rule {
@@ -143,36 +226,63 @@
     margin: 0 auto;
   }
  
-  .theme-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 14px;
+  .parcours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     margin-bottom: 8px;
   }
  
-  .theme-card {
+  .parcours-card {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
-    padding: 22px 20px;
+    padding: 30px 28px;
     border-radius: 2px;
     text-align: left;
+    transition: border-color 0.25s ease, background 0.25s ease;
   }
  
-  .theme-card .section-label { margin-bottom: 10px; }
+  .parcours-card:hover {
+    border-color: rgba(232, 179, 71, 0.45);
+    background: rgba(232, 179, 71, 0.05);
+  }
  
-  .theme-card h3 {
+  .parcours-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--zone);
+    margin-bottom: 14px;
+  }
+ 
+  .parcours-card h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 19px;
+    font-size: 23px;
     font-weight: 400;
     color: var(--cream);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
  
-  .theme-card p {
+  .parcours-card p {
     font-size: 13.5px;
     line-height: 1.65;
     color: rgba(244, 239, 227, 0.7);
-    margin: 0;
+    margin: 0 0 18px;
+  }
+ 
+  .parcours-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+ 
+  .parcours-tag {
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    padding: 6px 13px;
+    border: 1px solid rgba(232, 179, 71, 0.35);
+    border-radius: 20px;
+    color: rgba(244, 239, 227, 0.8);
   }
  
   .format-note {
@@ -288,6 +398,13 @@
  
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
+    .wall-left, .wall-right, .ceiling, .floor-line, .hero-motes circle {
+      animation: none !important;
+      transform: none !important;
+    }
+    .wall-left, .wall-right, .ceiling { opacity: 1; }
+    .floor-line { opacity: 1; }
+    .hero-motes circle { opacity: 0.3; }
   }
 </style>
 </head>
@@ -303,51 +420,647 @@
     </nav>
  
     <header>
-      <div class="eyebrow"><span class="zone-dot"></span>Contenus éducatifs</div>
-      <h1 class="wordmark">KTIS<span>O</span></h1>
-      <p class="subtitle">Ce qu'on explique, simplement</p>
+      <svg class="hero-bg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="wallGradLeft" x1="-60" y1="0" x2="380" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C9A961" stop-opacity="0.13"/>
+            <stop offset="100%" stop-color="#C9A961" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="wallGradRight" x1="620" y1="0" x2="1060" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C9A961" stop-opacity="0.02"/>
+            <stop offset="100%" stop-color="#C9A961" stop-opacity="0.13"/>
+          </linearGradient>
+          <linearGradient id="depthFadeLeft" x1="-60" y1="0" x2="500" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="white" stop-opacity="1"/>
+            <stop offset="72%" stop-color="white" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="depthFadeRight" x1="500" y1="0" x2="1060" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="28%" stop-color="white" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="white" stop-opacity="1"/>
+          </linearGradient>
+          <mask id="depthMaskLeft" maskUnits="userSpaceOnUse" x="-100" y="0" width="1100" height="1000">
+            <rect x="-100" y="0" width="1100" height="1000" fill="url(#depthFadeLeft)"></rect>
+          </mask>
+          <mask id="depthMaskRight" maskUnits="userSpaceOnUse" x="-100" y="0" width="1100" height="1000">
+            <rect x="-100" y="0" width="1100" height="1000" fill="url(#depthFadeRight)"></rect>
+          </mask>
+          <radialGradient id="skylightGrad" cx="50%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="#E8B347" stop-opacity="0.3"/>
+            <stop offset="60%" stop-color="#E8B347" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#E8B347" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="vFadeGrad" x1="0" y1="0" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="white" stop-opacity="0"/>
+            <stop offset="14%" stop-color="white" stop-opacity="1"/>
+            <stop offset="86%" stop-color="white" stop-opacity="1"/>
+            <stop offset="100%" stop-color="white" stop-opacity="0"/>
+          </linearGradient>
+          <mask id="sceneMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="1000">
+            <rect x="0" y="0" width="1000" height="1000" fill="url(#vFadeGrad)"></rect>
+          </mask>
+        </defs>
+ 
+        <g mask="url(#sceneMask)">
+ 
+        <g class="ceiling">
+          <path class="ceiling-arc" d="M -60,230 Q 500,90 1060,230"></path>
+          <path class="ceiling-rib" d="M -20,270 Q 500,155 1020,270"></path>
+          <path class="ceiling-rib" d="M 20,305 Q 500,210 980,305"></path>
+        </g>
+ 
+        <g class="wall-left" mask="url(#depthMaskLeft)">
+          <polygon class="wall-fill" points="-60,120 -60,880 380,530 380,230" fill="url(#wallGradLeft)"></polygon>
+          <line class="wall-edge" x1="-60" y1="120" x2="380" y2="230"></line>
+          <line class="wall-edge" x1="-60" y1="880" x2="380" y2="530"></line>
+          <g class="spines">
+            <rect class="spine" x="-60.0" y="140.61" width="5.33" height="82.37"></rect>
+            <rect class="spine" x="-54.05" y="148.48" width="5.54" height="78.32"></rect>
+            <rect class="spine" x="-49.42" y="150.49" width="5.06" height="77.3"></rect>
+            <rect class="spine" x="-44.63" y="137.29" width="4.54" height="97.3"></rect>
+            <rect class="spine" x="-38.83" y="139.1" width="5.14" height="86.9"></rect>
+            <rect class="spine" x="-33.15" y="152.39" width="5.08" height="77.81"></rect>
+            <rect class="spine" x="-28.61" y="159.95" width="4.67" height="71.71"></rect>
+            <rect class="spine" x="-24.01" y="150.88" width="5.11" height="84.55"></rect>
+            <rect class="spine" x="-18.53" y="150.51" width="5.32" height="73.06"></rect>
+            <rect class="spine" x="-13.54" y="148.62" width="5.17" height="88.7"></rect>
+            <rect class="spine" x="-8.87" y="159.27" width="5.03" height="76.02"></rect>
+            <rect class="spine" x="-5.28" y="151.41" width="4.65" height="71.13"></rect>
+            <rect class="spine" x="-0.31" y="154.57" width="4.96" height="80.97"></rect>
+            <rect class="spine" x="4.36" y="166.21" width="4.88" height="71.66"></rect>
+            <rect class="spine" x="8.46" y="153.94" width="4.75" height="76.93"></rect>
+            <rect class="spine" x="12.2" y="156.92" width="4.77" height="74.52"></rect>
+            <rect class="spine" x="15.62" y="151.59" width="4.63" height="78.01"></rect>
+            <rect class="spine" x="19.29" y="156.49" width="4.47" height="79.17"></rect>
+            <rect class="spine" x="22.89" y="149.47" width="4.31" height="85.98"></rect>
+            <rect class="spine" x="26.91" y="162.8" width="4.76" height="78.09"></rect>
+            <rect class="spine" x="31.43" y="154.86" width="3.86" height="85.02"></rect>
+            <rect class="spine" x="36.1" y="165.25" width="3.99" height="75.5"></rect>
+            <rect class="spine" x="39.55" y="162.69" width="4.57" height="74.63"></rect>
+            <rect class="spine" x="44.35" y="158.29" width="4.47" height="81.03"></rect>
+            <rect class="spine" x="48.23" y="156.27" width="4.55" height="85.86"></rect>
+            <rect class="spine" x="52.51" y="154.53" width="3.88" height="85.54"></rect>
+            <rect class="spine" x="56.5" y="178.16" width="4.02" height="62.67"></rect>
+            <rect class="spine" x="60.91" y="169.77" width="4.21" height="73.85"></rect>
+            <rect class="spine" x="64.4" y="172.36" width="4.56" height="71.77"></rect>
+            <rect class="spine" x="68.37" y="164.77" width="3.54" height="73.59"></rect>
+            <rect class="spine" x="71.52" y="176.65" width="3.83" height="67.34"></rect>
+            <rect class="spine" x="75.48" y="176.19" width="3.41" height="68.13"></rect>
+            <rect class="spine" x="79.03" y="176.99" width="4.21" height="60.12"></rect>
+            <rect class="spine" x="82.94" y="163.7" width="4.02" height="81.65"></rect>
+            <rect class="spine" x="86.7" y="167.7" width="4.21" height="77.53"></rect>
+            <rect class="spine" x="90.41" y="173.01" width="3.45" height="72.16"></rect>
+            <rect class="spine" x="94.56" y="165.5" width="3.36" height="76.49"></rect>
+            <rect class="spine" x="98.76" y="178.3" width="3.48" height="67.6"></rect>
+            <rect class="spine" x="101.85" y="176.4" width="4.0" height="70.93"></rect>
+            <rect class="spine" x="104.76" y="171.51" width="3.32" height="75.45"></rect>
+            <rect class="spine" x="108.86" y="175.63" width="3.43" height="65.71"></rect>
+            <rect class="spine" x="112.22" y="173.06" width="3.52" height="71.2"></rect>
+            <rect class="spine" x="115.95" y="180.03" width="3.9" height="60.13"></rect>
+            <rect class="spine" x="119.08" y="179.76" width="3.56" height="63.84"></rect>
+            <rect class="spine" x="122.48" y="175.67" width="3.5" height="73.31"></rect>
+            <rect class="spine" x="126.26" y="185.12" width="3.56" height="55.75"></rect>
+            <rect class="spine" x="128.81" y="180.38" width="3.52" height="58.72"></rect>
+            <rect class="spine" x="131.61" y="179.04" width="3.82" height="67.19"></rect>
+            <rect class="spine" x="134.93" y="177.04" width="3.05" height="71.37"></rect>
+            <rect class="spine" x="138.11" y="180.24" width="3.23" height="65.72"></rect>
+            <rect class="spine" x="-60.0" y="244.25" width="5.91" height="134.65"></rect>
+            <rect class="spine" x="-55.63" y="252.01" width="4.9" height="127.61"></rect>
+            <rect class="spine" x="-50.52" y="251.49" width="5.63" height="127.59"></rect>
+            <rect class="spine" x="-45.11" y="263.06" width="4.58" height="106.22"></rect>
+            <rect class="spine" x="-41.04" y="261.22" width="5.06" height="112.88"></rect>
+            <rect class="spine" x="-35.74" y="254.59" width="4.31" height="116.56"></rect>
+            <rect class="spine" x="-30.96" y="259.52" width="4.56" height="114.29"></rect>
+            <rect class="spine" x="-25.5" y="261.12" width="5.28" height="119.26"></rect>
+            <rect class="spine" x="-20.17" y="270.67" width="4.99" height="104.1"></rect>
+            <rect class="spine" x="-15.82" y="266.58" width="4.41" height="100.13"></rect>
+            <rect class="spine" x="-10.91" y="254.16" width="4.82" height="123.11"></rect>
+            <rect class="spine" x="-6.19" y="273.44" width="4.88" height="96.57"></rect>
+            <rect class="spine" x="-1.65" y="260.44" width="4.73" height="99.2"></rect>
+            <rect class="spine" x="3.11" y="254.79" width="4.88" height="121.02"></rect>
+            <rect class="spine" x="7.86" y="261.57" width="4.43" height="96.56"></rect>
+            <rect class="spine" x="11.75" y="253.34" width="4.94" height="117.93"></rect>
+            <rect class="spine" x="15.74" y="264.89" width="4.81" height="110.94"></rect>
+            <rect class="spine" x="20.13" y="261.81" width="4.51" height="112.43"></rect>
+            <rect class="spine" x="24.17" y="273.79" width="4.95" height="94.24"></rect>
+            <rect class="spine" x="28.74" y="261.67" width="4.82" height="104.36"></rect>
+            <rect class="spine" x="32.41" y="266.2" width="4.03" height="98.99"></rect>
+            <rect class="spine" x="36.08" y="251.9" width="3.98" height="114.51"></rect>
+            <rect class="spine" x="40.07" y="271.98" width="4.4" height="94.06"></rect>
+            <rect class="spine" x="43.34" y="253.67" width="3.84" height="113.56"></rect>
+            <rect class="spine" x="47.73" y="272.76" width="4.58" height="94.21"></rect>
+            <rect class="spine" x="51.28" y="262.65" width="4.09" height="108.87"></rect>
+            <rect class="spine" x="54.39" y="278.48" width="3.87" height="91.49"></rect>
+            <rect class="spine" x="58.59" y="274.35" width="3.65" height="94.25"></rect>
+            <rect class="spine" x="62.27" y="264.4" width="4.41" height="102.5"></rect>
+            <rect class="spine" x="66.11" y="254.33" width="3.74" height="110.31"></rect>
+            <rect class="spine" x="69.41" y="263.12" width="3.78" height="97.24"></rect>
+            <rect class="spine" x="73.34" y="265.23" width="3.67" height="93.11"></rect>
+            <rect class="spine" x="77.05" y="274.68" width="3.95" height="80.2"></rect>
+            <rect class="spine" x="80.06" y="272.75" width="4.36" height="92.38"></rect>
+            <rect class="spine" x="84.01" y="263.94" width="4.07" height="99.25"></rect>
+            <rect class="spine" x="87.03" y="273.01" width="3.86" height="90.07"></rect>
+            <rect class="spine" x="90.84" y="277.89" width="3.88" height="82.98"></rect>
+            <rect class="spine" x="94.56" y="270.84" width="3.71" height="91.08"></rect>
+            <rect class="spine" x="98.0" y="285.38" width="3.92" height="79.77"></rect>
+            <rect class="spine" x="101.06" y="269.8" width="3.61" height="78.27"></rect>
+            <rect class="spine" x="105.12" y="278.68" width="3.32" height="81.3"></rect>
+            <rect class="spine" x="109.25" y="263.78" width="3.74" height="93.98"></rect>
+            <rect class="spine" x="112.84" y="256.64" width="3.5" height="103.18"></rect>
+            <rect class="spine" x="116.59" y="262.79" width="3.89" height="96.12"></rect>
+            <rect class="spine" x="119.65" y="271.5" width="3.93" height="90.11"></rect>
+            <rect class="spine" x="123.52" y="267.81" width="3.59" height="94.83"></rect>
+            <rect class="spine" x="126.67" y="268.23" width="3.4" height="90.42"></rect>
+            <rect class="spine" x="130.04" y="259.23" width="3.86" height="99.05"></rect>
+            <rect class="spine" x="133.0" y="264.71" width="3.52" height="89.83"></rect>
+            <rect class="spine" x="136.39" y="264.74" width="3.22" height="93.55"></rect>
+            <rect class="spine" x="-60.0" y="414.29" width="5.62" height="111.32"></rect>
+            <rect class="spine" x="-55.19" y="408.51" width="5.86" height="121.75"></rect>
+            <rect class="spine" x="-50.57" y="402.74" width="5.65" height="122.86"></rect>
+            <rect class="spine" x="-45.16" y="421.23" width="4.39" height="105.79"></rect>
+            <rect class="spine" x="-40.36" y="400.26" width="5.09" height="126.99"></rect>
+            <rect class="spine" x="-35.33" y="402.44" width="4.99" height="117.97"></rect>
+            <rect class="spine" x="-30.79" y="396.79" width="4.81" height="125.72"></rect>
+            <rect class="spine" x="-25.49" y="414.81" width="5.15" height="102.8"></rect>
+            <rect class="spine" x="-20.73" y="399.97" width="4.49" height="123.53"></rect>
+            <rect class="spine" x="-15.15" y="412.22" width="5.1" height="95.14"></rect>
+            <rect class="spine" x="-10.86" y="397.21" width="4.95" height="119.64"></rect>
+            <rect class="spine" x="-6.41" y="419.35" width="4.08" height="95.1"></rect>
+            <rect class="spine" x="-2.03" y="397.79" width="4.22" height="115.64"></rect>
+            <rect class="spine" x="2.88" y="411.12" width="4.16" height="95.77"></rect>
+            <rect class="spine" x="6.94" y="415.89" width="4.43" height="91.07"></rect>
+            <rect class="spine" x="10.82" y="393.41" width="5.13" height="107.14"></rect>
+            <rect class="spine" x="14.49" y="407.23" width="5.14" height="104.08"></rect>
+            <rect class="spine" x="18.12" y="412.59" width="4.81" height="96.35"></rect>
+            <rect class="spine" x="21.59" y="401.49" width="4.09" height="90.15"></rect>
+            <rect class="spine" x="25.37" y="386.42" width="4.91" height="119.29"></rect>
+            <rect class="spine" x="28.97" y="393.74" width="4.53" height="111.87"></rect>
+            <rect class="spine" x="33.49" y="398.54" width="4.69" height="103.84"></rect>
+            <rect class="spine" x="36.88" y="412.25" width="4.12" height="87.01"></rect>
+            <rect class="spine" x="41.4" y="384.81" width="4.41" height="113.95"></rect>
+            <rect class="spine" x="44.83" y="383.06" width="4.63" height="116.27"></rect>
+            <rect class="spine" x="48.59" y="389.55" width="4.02" height="97.54"></rect>
+            <rect class="spine" x="51.88" y="396.68" width="4.7" height="85.22"></rect>
+            <rect class="spine" x="56.43" y="393.34" width="4.19" height="103.46"></rect>
+            <rect class="spine" x="59.55" y="382.26" width="4.08" height="107.15"></rect>
+            <rect class="spine" x="63.74" y="401.8" width="4.44" height="91.65"></rect>
+            <rect class="spine" x="67.8" y="403.82" width="4.43" height="87.73"></rect>
+            <rect class="spine" x="70.89" y="383.44" width="4.05" height="105.62"></rect>
+            <rect class="spine" x="74.14" y="385.78" width="4.02" height="100.29"></rect>
+            <rect class="spine" x="78.58" y="382.37" width="3.7" height="98.93"></rect>
+            <rect class="spine" x="82.49" y="392.11" width="4.3" height="97.23"></rect>
+            <rect class="spine" x="85.89" y="383.8" width="3.96" height="100.21"></rect>
+            <rect class="spine" x="89.88" y="388.37" width="3.53" height="90.94"></rect>
+            <rect class="spine" x="94.1" y="385.98" width="3.56" height="92.08"></rect>
+            <rect class="spine" x="97.52" y="388.12" width="3.97" height="91.64"></rect>
+            <rect class="spine" x="100.41" y="402.15" width="3.86" height="78.83"></rect>
+            <rect class="spine" x="104.21" y="390.3" width="3.3" height="83.4"></rect>
+            <rect class="spine" x="108.18" y="382.74" width="4.06" height="97.81"></rect>
+            <rect class="spine" x="112.05" y="378.31" width="3.31" height="100.7"></rect>
+            <rect class="spine" x="114.7" y="388.17" width="3.17" height="90.53"></rect>
+            <rect class="spine" x="117.96" y="394.04" width="3.47" height="79.41"></rect>
+            <rect class="spine" x="121.43" y="378.2" width="3.6" height="98.57"></rect>
+            <rect class="spine" x="124.95" y="384.89" width="3.77" height="85.86"></rect>
+            <rect class="spine" x="127.71" y="377.46" width="3.8" height="95.6"></rect>
+            <rect class="spine" x="131.22" y="376.67" width="3.13" height="96.93"></rect>
+            <rect class="spine" x="134.37" y="396.39" width="3.4" height="75.64"></rect>
+            <rect class="spine" x="-60.0" y="552.95" width="5.44" height="127.11"></rect>
+            <rect class="spine" x="-55.69" y="571.2" width="5.08" height="110.94"></rect>
+            <rect class="spine" x="-50.57" y="548.43" width="5.86" height="133.33"></rect>
+            <rect class="spine" x="-45.76" y="561.84" width="5.17" height="98.45"></rect>
+            <rect class="spine" x="-40.72" y="553.47" width="5.64" height="111.3"></rect>
+            <rect class="spine" x="-35.85" y="556.23" width="4.57" height="115.24"></rect>
+            <rect class="spine" x="-31.98" y="553.26" width="5.5" height="110.36"></rect>
+            <rect class="spine" x="-28.08" y="563.95" width="5.18" height="106.62"></rect>
+            <rect class="spine" x="-24.24" y="565.83" width="5.47" height="96.71"></rect>
+            <rect class="spine" x="-19.23" y="558.08" width="5.19" height="101.43"></rect>
+            <rect class="spine" x="-14.68" y="556.81" width="4.21" height="104.22"></rect>
+            <rect class="spine" x="-9.34" y="552.97" width="5.28" height="106.89"></rect>
+            <rect class="spine" x="-4.99" y="540.88" width="4.09" height="104.85"></rect>
+            <rect class="spine" x="-0.06" y="534.98" width="5.14" height="118.93"></rect>
+            <rect class="spine" x="5.13" y="530.49" width="4.21" height="120.69"></rect>
+            <rect class="spine" x="9.05" y="546.21" width="4.98" height="95.4"></rect>
+            <rect class="spine" x="13.98" y="527.3" width="4.15" height="122.15"></rect>
+            <rect class="spine" x="18.25" y="534.99" width="5.05" height="95.03"></rect>
+            <rect class="spine" x="22.83" y="530.67" width="4.78" height="100.34"></rect>
+            <rect class="spine" x="27.76" y="522.35" width="4.73" height="109.67"></rect>
+            <rect class="spine" x="31.06" y="533.48" width="4.07" height="93.59"></rect>
+            <rect class="spine" x="34.44" y="540.13" width="4.21" height="89.4"></rect>
+            <rect class="spine" x="39.23" y="528.85" width="4.07" height="98.34"></rect>
+            <rect class="spine" x="42.74" y="527.18" width="3.73" height="105.81"></rect>
+            <rect class="spine" x="47.51" y="521.08" width="3.98" height="108.0"></rect>
+            <rect class="spine" x="51.91" y="519.52" width="4.24" height="97.41"></rect>
+            <rect class="spine" x="55.53" y="519.66" width="4.72" height="100.25"></rect>
+            <rect class="spine" x="60.22" y="529.54" width="3.73" height="91.58"></rect>
+            <rect class="spine" x="64.85" y="522.22" width="4.12" height="96.69"></rect>
+            <rect class="spine" x="67.86" y="513.91" width="4.05" height="104.75"></rect>
+            <rect class="spine" x="72.1" y="534.52" width="4.17" height="81.83"></rect>
+            <rect class="spine" x="76.17" y="506.08" width="3.71" height="103.89"></rect>
+            <rect class="spine" x="79.47" y="512.27" width="3.38" height="97.2"></rect>
+            <rect class="spine" x="83.09" y="520.45" width="3.94" height="87.06"></rect>
+            <rect class="spine" x="86.29" y="498.88" width="4.36" height="106.03"></rect>
+            <rect class="spine" x="90.38" y="497.37" width="3.72" height="107.84"></rect>
+            <rect class="spine" x="93.52" y="501.65" width="3.45" height="105.05"></rect>
+            <rect class="spine" x="96.71" y="498.59" width="3.73" height="100.99"></rect>
+            <rect class="spine" x="99.93" y="504.9" width="3.73" height="89.24"></rect>
+            <rect class="spine" x="103.33" y="498.49" width="3.18" height="96.01"></rect>
+            <rect class="spine" x="106.11" y="501.82" width="3.53" height="96.12"></rect>
+            <rect class="spine" x="110.2" y="502.96" width="3.56" height="89.91"></rect>
+            <rect class="spine" x="113.38" y="504.64" width="3.72" height="85.84"></rect>
+            <rect class="spine" x="116.96" y="508.35" width="3.48" height="75.0"></rect>
+            <rect class="spine" x="120.89" y="496.52" width="3.39" height="83.38"></rect>
+            <rect class="spine" x="124.1" y="497.34" width="3.59" height="89.53"></rect>
+            <rect class="spine" x="126.78" y="488.78" width="3.72" height="90.95"></rect>
+            <rect class="spine" x="129.45" y="484.32" width="3.68" height="100.55"></rect>
+            <rect class="spine" x="132.75" y="492.27" width="3.82" height="93.56"></rect>
+            <rect class="spine" x="136.0" y="502.98" width="3.52" height="80.56"></rect>
+            <rect class="spine" x="-60.0" y="698.02" width="5.78" height="101.38"></rect>
+            <rect class="spine" x="-55.9" y="720.71" width="5.22" height="74.48"></rect>
+            <rect class="spine" x="-50.07" y="695.26" width="5.61" height="97.85"></rect>
+            <rect class="spine" x="-44.59" y="707.03" width="4.77" height="74.49"></rect>
+            <rect class="spine" x="-39.99" y="703.38" width="4.65" height="82.05"></rect>
+            <rect class="spine" x="-34.79" y="697.82" width="4.68" height="78.27"></rect>
+            <rect class="spine" x="-29.88" y="691.48" width="5.49" height="78.11"></rect>
+            <rect class="spine" x="-24.68" y="698.82" width="4.52" height="75.57"></rect>
+            <rect class="spine" x="-19.15" y="691.01" width="4.76" height="77.6"></rect>
+            <rect class="spine" x="-14.92" y="698.36" width="4.71" height="72.5"></rect>
+            <rect class="spine" x="-10.33" y="684.16" width="5.02" height="76.58"></rect>
+            <rect class="spine" x="-6.39" y="682.89" width="5.07" height="74.79"></rect>
+            <rect class="spine" x="-2.62" y="679.36" width="4.17" height="79.41"></rect>
+            <rect class="spine" x="1.59" y="672.43" width="4.3" height="80.65"></rect>
+            <rect class="spine" x="6.75" y="674.15" width="4.18" height="70.04"></rect>
+            <rect class="spine" x="10.75" y="678.76" width="3.93" height="70.88"></rect>
+            <rect class="spine" x="14.75" y="674.16" width="4.35" height="69.2"></rect>
+            <rect class="spine" x="19.9" y="672.92" width="3.96" height="67.06"></rect>
+            <rect class="spine" x="24.71" y="668.67" width="4.22" height="66.38"></rect>
+            <rect class="spine" x="28.71" y="659.14" width="3.98" height="77.8"></rect>
+            <rect class="spine" x="32.05" y="658.27" width="4.55" height="68.77"></rect>
+            <rect class="spine" x="36.13" y="646.73" width="4.33" height="86.8"></rect>
+            <rect class="spine" x="39.7" y="649.65" width="4.07" height="74.89"></rect>
+            <rect class="spine" x="44.09" y="642.99" width="3.91" height="82.64"></rect>
+            <rect class="spine" x="48.66" y="652.74" width="4.68" height="73.54"></rect>
+            <rect class="spine" x="52.55" y="637.77" width="3.68" height="86.13"></rect>
+            <rect class="spine" x="56.42" y="635.81" width="4.08" height="82.72"></rect>
+            <rect class="spine" x="59.55" y="634.54" width="4.25" height="84.78"></rect>
+            <rect class="spine" x="62.7" y="637.67" width="3.94" height="72.47"></rect>
+            <rect class="spine" x="66.25" y="643.87" width="3.89" height="69.38"></rect>
+            <rect class="spine" x="70.65" y="629.67" width="4.41" height="80.96"></rect>
+            <rect class="spine" x="73.84" y="635.72" width="3.84" height="62.39"></rect>
+            <rect class="spine" x="76.8" y="626.72" width="3.41" height="75.66"></rect>
+            <rect class="spine" x="80.31" y="628.61" width="4.44" height="66.44"></rect>
+            <rect class="spine" x="83.54" y="641.25" width="4.11" height="61.76"></rect>
+            <rect class="spine" x="87.12" y="622.48" width="3.71" height="73.72"></rect>
+            <rect class="spine" x="91.15" y="619.65" width="3.48" height="77.25"></rect>
+            <rect class="spine" x="95.0" y="619.38" width="3.82" height="73.23"></rect>
+            <rect class="spine" x="98.34" y="621.78" width="4.01" height="69.79"></rect>
+            <rect class="spine" x="101.34" y="631.44" width="3.26" height="58.64"></rect>
+            <rect class="spine" x="104.36" y="629.42" width="3.92" height="57.56"></rect>
+            <rect class="spine" x="108.43" y="615.64" width="3.18" height="59.0"></rect>
+            <rect class="spine" x="111.62" y="616.56" width="3.1" height="58.12"></rect>
+            <rect class="spine" x="115.58" y="613.92" width="3.82" height="66.14"></rect>
+            <rect class="spine" x="118.79" y="602.02" width="3.07" height="73.59"></rect>
+            <rect class="spine" x="122.15" y="600.1" width="3.57" height="74.54"></rect>
+            <rect class="spine" x="125.32" y="603.26" width="3.48" height="64.82"></rect>
+            <rect class="spine" x="128.72" y="605.19" width="3.29" height="64.67"></rect>
+            <rect class="spine" x="131.95" y="599.5" width="3.47" height="70.87"></rect>
+            <rect class="spine" x="134.93" y="609.88" width="3.62" height="55.98"></rect>
+          </g>
+          <line class="wall-tier" x1="-60" y1="234.0" x2="380" y2="275.0"></line>
+          <line class="wall-tier" x1="-60" y1="386.0" x2="380" y2="335.0"></line>
+          <line class="wall-tier" x1="-60" y1="538.0" x2="380" y2="395.0"></line>
+          <line class="wall-tier" x1="-60" y1="690.0" x2="380" y2="455.0"></line>
+          <line class="wall-tier" x1="-60" y1="804.0" x2="380" y2="500.0"></line>
+        </g>
+ 
+        <g class="wall-right" mask="url(#depthMaskRight)">
+          <polygon class="wall-fill" points="1060,120 1060,880 620,530 620,230" fill="url(#wallGradRight)"></polygon>
+          <line class="wall-edge" x1="1060" y1="120" x2="620" y2="230"></line>
+          <line class="wall-edge" x1="1060" y1="880" x2="620" y2="530"></line>
+          <g class="spines">
+            <rect class="spine" x="1054.67" y="140.61" width="5.33" height="82.37"></rect>
+            <rect class="spine" x="1048.51" y="148.48" width="5.54" height="78.32"></rect>
+            <rect class="spine" x="1044.3600000000001" y="150.49" width="5.06" height="77.3"></rect>
+            <rect class="spine" x="1040.0900000000001" y="137.29" width="4.54" height="97.3"></rect>
+            <rect class="spine" x="1033.6899999999998" y="139.1" width="5.14" height="86.9"></rect>
+            <rect class="spine" x="1028.0700000000002" y="152.39" width="5.08" height="77.81"></rect>
+            <rect class="spine" x="1023.9399999999999" y="159.95" width="4.67" height="71.71"></rect>
+            <rect class="spine" x="1018.9" y="150.88" width="5.11" height="84.55"></rect>
+            <rect class="spine" x="1013.2099999999999" y="150.51" width="5.32" height="73.06"></rect>
+            <rect class="spine" x="1008.37" y="148.62" width="5.17" height="88.7"></rect>
+            <rect class="spine" x="1003.84" y="159.27" width="5.03" height="76.02"></rect>
+            <rect class="spine" x="1000.63" y="151.41" width="4.65" height="71.13"></rect>
+            <rect class="spine" x="995.3499999999999" y="154.57" width="4.96" height="80.97"></rect>
+            <rect class="spine" x="990.76" y="166.21" width="4.88" height="71.66"></rect>
+            <rect class="spine" x="986.79" y="153.94" width="4.75" height="76.93"></rect>
+            <rect class="spine" x="983.03" y="156.92" width="4.77" height="74.52"></rect>
+            <rect class="spine" x="979.75" y="151.59" width="4.63" height="78.01"></rect>
+            <rect class="spine" x="976.24" y="156.49" width="4.47" height="79.17"></rect>
+            <rect class="spine" x="972.8000000000001" y="149.47" width="4.31" height="85.98"></rect>
+            <rect class="spine" x="968.33" y="162.8" width="4.76" height="78.09"></rect>
+            <rect class="spine" x="964.71" y="154.86" width="3.86" height="85.02"></rect>
+            <rect class="spine" x="959.91" y="165.25" width="3.99" height="75.5"></rect>
+            <rect class="spine" x="955.88" y="162.69" width="4.57" height="74.63"></rect>
+            <rect class="spine" x="951.18" y="158.29" width="4.47" height="81.03"></rect>
+            <rect class="spine" x="947.22" y="156.27" width="4.55" height="85.86"></rect>
+            <rect class="spine" x="943.61" y="154.53" width="3.88" height="85.54"></rect>
+            <rect class="spine" x="939.48" y="178.16" width="4.02" height="62.67"></rect>
+            <rect class="spine" x="934.88" y="169.77" width="4.21" height="73.85"></rect>
+            <rect class="spine" x="931.0400000000001" y="172.36" width="4.56" height="71.77"></rect>
+            <rect class="spine" x="928.09" y="164.77" width="3.54" height="73.59"></rect>
+            <rect class="spine" x="924.65" y="176.65" width="3.83" height="67.34"></rect>
+            <rect class="spine" x="921.11" y="176.19" width="3.41" height="68.13"></rect>
+            <rect class="spine" x="916.76" y="176.99" width="4.21" height="60.12"></rect>
+            <rect class="spine" x="913.04" y="163.7" width="4.02" height="81.65"></rect>
+            <rect class="spine" x="909.0899999999999" y="167.7" width="4.21" height="77.53"></rect>
+            <rect class="spine" x="906.14" y="173.01" width="3.45" height="72.16"></rect>
+            <rect class="spine" x="902.08" y="165.5" width="3.36" height="76.49"></rect>
+            <rect class="spine" x="897.76" y="178.3" width="3.48" height="67.6"></rect>
+            <rect class="spine" x="894.15" y="176.4" width="4.0" height="70.93"></rect>
+            <rect class="spine" x="891.92" y="171.51" width="3.32" height="75.45"></rect>
+            <rect class="spine" x="887.71" y="175.63" width="3.43" height="65.71"></rect>
+            <rect class="spine" x="884.26" y="173.06" width="3.52" height="71.2"></rect>
+            <rect class="spine" x="880.15" y="180.03" width="3.9" height="60.13"></rect>
+            <rect class="spine" x="877.36" y="179.76" width="3.56" height="63.84"></rect>
+            <rect class="spine" x="874.02" y="175.67" width="3.5" height="73.31"></rect>
+            <rect class="spine" x="870.1800000000001" y="185.12" width="3.56" height="55.75"></rect>
+            <rect class="spine" x="867.6700000000001" y="180.38" width="3.52" height="58.72"></rect>
+            <rect class="spine" x="864.5699999999999" y="179.04" width="3.82" height="67.19"></rect>
+            <rect class="spine" x="862.02" y="177.04" width="3.05" height="71.37"></rect>
+            <rect class="spine" x="858.66" y="180.24" width="3.23" height="65.72"></rect>
+            <rect class="spine" x="1054.09" y="244.25" width="5.91" height="134.65"></rect>
+            <rect class="spine" x="1050.73" y="252.01" width="4.9" height="127.61"></rect>
+            <rect class="spine" x="1044.8899999999999" y="251.49" width="5.63" height="127.59"></rect>
+            <rect class="spine" x="1040.53" y="263.06" width="4.58" height="106.22"></rect>
+            <rect class="spine" x="1035.98" y="261.22" width="5.06" height="112.88"></rect>
+            <rect class="spine" x="1031.43" y="254.59" width="4.31" height="116.56"></rect>
+            <rect class="spine" x="1026.4" y="259.52" width="4.56" height="114.29"></rect>
+            <rect class="spine" x="1020.22" y="261.12" width="5.28" height="119.26"></rect>
+            <rect class="spine" x="1015.18" y="270.67" width="4.99" height="104.1"></rect>
+            <rect class="spine" x="1011.4100000000001" y="266.58" width="4.41" height="100.13"></rect>
+            <rect class="spine" x="1006.0899999999999" y="254.16" width="4.82" height="123.11"></rect>
+            <rect class="spine" x="1001.3100000000001" y="273.44" width="4.88" height="96.57"></rect>
+            <rect class="spine" x="996.92" y="260.44" width="4.73" height="99.2"></rect>
+            <rect class="spine" x="992.01" y="254.79" width="4.88" height="121.02"></rect>
+            <rect class="spine" x="987.71" y="261.57" width="4.43" height="96.56"></rect>
+            <rect class="spine" x="983.31" y="253.34" width="4.94" height="117.93"></rect>
+            <rect class="spine" x="979.45" y="264.89" width="4.81" height="110.94"></rect>
+            <rect class="spine" x="975.36" y="261.81" width="4.51" height="112.43"></rect>
+            <rect class="spine" x="970.88" y="273.79" width="4.95" height="94.24"></rect>
+            <rect class="spine" x="966.4399999999999" y="261.67" width="4.82" height="104.36"></rect>
+            <rect class="spine" x="963.5600000000001" y="266.2" width="4.03" height="98.99"></rect>
+            <rect class="spine" x="959.9399999999999" y="251.9" width="3.98" height="114.51"></rect>
+            <rect class="spine" x="955.53" y="271.98" width="4.4" height="94.06"></rect>
+            <rect class="spine" x="952.8199999999999" y="253.67" width="3.84" height="113.56"></rect>
+            <rect class="spine" x="947.6899999999999" y="272.76" width="4.58" height="94.21"></rect>
+            <rect class="spine" x="944.63" y="262.65" width="4.09" height="108.87"></rect>
+            <rect class="spine" x="941.74" y="278.48" width="3.87" height="91.49"></rect>
+            <rect class="spine" x="937.76" y="274.35" width="3.65" height="94.25"></rect>
+            <rect class="spine" x="933.32" y="264.4" width="4.41" height="102.5"></rect>
+            <rect class="spine" x="930.15" y="254.33" width="3.74" height="110.31"></rect>
+            <rect class="spine" x="926.8100000000001" y="263.12" width="3.78" height="97.24"></rect>
+            <rect class="spine" x="922.99" y="265.23" width="3.67" height="93.11"></rect>
+            <rect class="spine" x="919.0" y="274.68" width="3.95" height="80.2"></rect>
+            <rect class="spine" x="915.58" y="272.75" width="4.36" height="92.38"></rect>
+            <rect class="spine" x="911.92" y="263.94" width="4.07" height="99.25"></rect>
+            <rect class="spine" x="909.11" y="273.01" width="3.86" height="90.07"></rect>
+            <rect class="spine" x="905.28" y="277.89" width="3.88" height="82.98"></rect>
+            <rect class="spine" x="901.73" y="270.84" width="3.71" height="91.08"></rect>
+            <rect class="spine" x="898.08" y="285.38" width="3.92" height="79.77"></rect>
+            <rect class="spine" x="895.33" y="269.8" width="3.61" height="78.27"></rect>
+            <rect class="spine" x="891.56" y="278.68" width="3.32" height="81.3"></rect>
+            <rect class="spine" x="887.01" y="263.78" width="3.74" height="93.98"></rect>
+            <rect class="spine" x="883.66" y="256.64" width="3.5" height="103.18"></rect>
+            <rect class="spine" x="879.52" y="262.79" width="3.89" height="96.12"></rect>
+            <rect class="spine" x="876.4200000000001" y="271.5" width="3.93" height="90.11"></rect>
+            <rect class="spine" x="872.89" y="267.81" width="3.59" height="94.83"></rect>
+            <rect class="spine" x="869.9300000000001" y="268.23" width="3.4" height="90.42"></rect>
+            <rect class="spine" x="866.1" y="259.23" width="3.86" height="99.05"></rect>
+            <rect class="spine" x="863.48" y="264.71" width="3.52" height="89.83"></rect>
+            <rect class="spine" x="860.39" y="264.74" width="3.22" height="93.55"></rect>
+            <rect class="spine" x="1054.38" y="414.29" width="5.62" height="111.32"></rect>
+            <rect class="spine" x="1049.3300000000002" y="408.51" width="5.86" height="121.75"></rect>
+            <rect class="spine" x="1044.9199999999998" y="402.74" width="5.65" height="122.86"></rect>
+            <rect class="spine" x="1040.77" y="421.23" width="4.39" height="105.79"></rect>
+            <rect class="spine" x="1035.27" y="400.26" width="5.09" height="126.99"></rect>
+            <rect class="spine" x="1030.34" y="402.44" width="4.99" height="117.97"></rect>
+            <rect class="spine" x="1025.98" y="396.79" width="4.81" height="125.72"></rect>
+            <rect class="spine" x="1020.34" y="414.81" width="5.15" height="102.8"></rect>
+            <rect class="spine" x="1016.24" y="399.97" width="4.49" height="123.53"></rect>
+            <rect class="spine" x="1010.05" y="412.22" width="5.1" height="95.14"></rect>
+            <rect class="spine" x="1005.91" y="397.21" width="4.95" height="119.64"></rect>
+            <rect class="spine" x="1002.3299999999999" y="419.35" width="4.08" height="95.1"></rect>
+            <rect class="spine" x="997.81" y="397.79" width="4.22" height="115.64"></rect>
+            <rect class="spine" x="992.96" y="411.12" width="4.16" height="95.77"></rect>
+            <rect class="spine" x="988.63" y="415.89" width="4.43" height="91.07"></rect>
+            <rect class="spine" x="984.05" y="393.41" width="5.13" height="107.14"></rect>
+            <rect class="spine" x="980.37" y="407.23" width="5.14" height="104.08"></rect>
+            <rect class="spine" x="977.07" y="412.59" width="4.81" height="96.35"></rect>
+            <rect class="spine" x="974.3199999999999" y="401.49" width="4.09" height="90.15"></rect>
+            <rect class="spine" x="969.72" y="386.42" width="4.91" height="119.29"></rect>
+            <rect class="spine" x="966.5" y="393.74" width="4.53" height="111.87"></rect>
+            <rect class="spine" x="961.8199999999999" y="398.54" width="4.69" height="103.84"></rect>
+            <rect class="spine" x="959.0" y="412.25" width="4.12" height="87.01"></rect>
+            <rect class="spine" x="954.19" y="384.81" width="4.41" height="113.95"></rect>
+            <rect class="spine" x="950.54" y="383.06" width="4.63" height="116.27"></rect>
+            <rect class="spine" x="947.39" y="389.55" width="4.02" height="97.54"></rect>
+            <rect class="spine" x="943.42" y="396.68" width="4.7" height="85.22"></rect>
+            <rect class="spine" x="939.38" y="393.34" width="4.19" height="103.46"></rect>
+            <rect class="spine" x="936.37" y="382.26" width="4.08" height="107.15"></rect>
+            <rect class="spine" x="931.8199999999999" y="401.8" width="4.44" height="91.65"></rect>
+            <rect class="spine" x="927.7700000000001" y="403.82" width="4.43" height="87.73"></rect>
+            <rect class="spine" x="925.0600000000001" y="383.44" width="4.05" height="105.62"></rect>
+            <rect class="spine" x="921.84" y="385.78" width="4.02" height="100.29"></rect>
+            <rect class="spine" x="917.7199999999999" y="382.37" width="3.7" height="98.93"></rect>
+            <rect class="spine" x="913.21" y="392.11" width="4.3" height="97.23"></rect>
+            <rect class="spine" x="910.15" y="383.8" width="3.96" height="100.21"></rect>
+            <rect class="spine" x="906.59" y="388.37" width="3.53" height="90.94"></rect>
+            <rect class="spine" x="902.34" y="385.98" width="3.56" height="92.08"></rect>
+            <rect class="spine" x="898.51" y="388.12" width="3.97" height="91.64"></rect>
+            <rect class="spine" x="895.73" y="402.15" width="3.86" height="78.83"></rect>
+            <rect class="spine" x="892.49" y="390.3" width="3.3" height="83.4"></rect>
+            <rect class="spine" x="887.76" y="382.74" width="4.06" height="97.81"></rect>
+            <rect class="spine" x="884.6400000000001" y="378.31" width="3.31" height="100.7"></rect>
+            <rect class="spine" x="882.13" y="388.17" width="3.17" height="90.53"></rect>
+            <rect class="spine" x="878.5699999999999" y="394.04" width="3.47" height="79.41"></rect>
+            <rect class="spine" x="874.9699999999999" y="378.2" width="3.6" height="98.57"></rect>
+            <rect class="spine" x="871.28" y="384.89" width="3.77" height="85.86"></rect>
+            <rect class="spine" x="868.49" y="377.46" width="3.8" height="95.6"></rect>
+            <rect class="spine" x="865.65" y="376.67" width="3.13" height="96.93"></rect>
+            <rect class="spine" x="862.23" y="396.39" width="3.4" height="75.64"></rect>
+            <rect class="spine" x="1054.56" y="552.95" width="5.44" height="127.11"></rect>
+            <rect class="spine" x="1050.6100000000001" y="571.2" width="5.08" height="110.94"></rect>
+            <rect class="spine" x="1044.71" y="548.43" width="5.86" height="133.33"></rect>
+            <rect class="spine" x="1040.59" y="561.84" width="5.17" height="98.45"></rect>
+            <rect class="spine" x="1035.08" y="553.47" width="5.64" height="111.3"></rect>
+            <rect class="spine" x="1031.28" y="556.23" width="4.57" height="115.24"></rect>
+            <rect class="spine" x="1026.48" y="553.26" width="5.5" height="110.36"></rect>
+            <rect class="spine" x="1022.9" y="563.95" width="5.18" height="106.62"></rect>
+            <rect class="spine" x="1018.77" y="565.83" width="5.47" height="96.71"></rect>
+            <rect class="spine" x="1014.04" y="558.08" width="5.19" height="101.43"></rect>
+            <rect class="spine" x="1010.4699999999999" y="556.81" width="4.21" height="104.22"></rect>
+            <rect class="spine" x="1004.0600000000001" y="552.97" width="5.28" height="106.89"></rect>
+            <rect class="spine" x="1000.9" y="540.88" width="4.09" height="104.85"></rect>
+            <rect class="spine" x="994.92" y="534.98" width="5.14" height="118.93"></rect>
+            <rect class="spine" x="990.66" y="530.49" width="4.21" height="120.69"></rect>
+            <rect class="spine" x="985.97" y="546.21" width="4.98" height="95.4"></rect>
+            <rect class="spine" x="981.87" y="527.3" width="4.15" height="122.15"></rect>
+            <rect class="spine" x="976.7" y="534.99" width="5.05" height="95.03"></rect>
+            <rect class="spine" x="972.39" y="530.67" width="4.78" height="100.34"></rect>
+            <rect class="spine" x="967.51" y="522.35" width="4.73" height="109.67"></rect>
+            <rect class="spine" x="964.87" y="533.48" width="4.07" height="93.59"></rect>
+            <rect class="spine" x="961.3499999999999" y="540.13" width="4.21" height="89.4"></rect>
+            <rect class="spine" x="956.6999999999999" y="528.85" width="4.07" height="98.34"></rect>
+            <rect class="spine" x="953.53" y="527.18" width="3.73" height="105.81"></rect>
+            <rect class="spine" x="948.51" y="521.08" width="3.98" height="108.0"></rect>
+            <rect class="spine" x="943.85" y="519.52" width="4.24" height="97.41"></rect>
+            <rect class="spine" x="939.75" y="519.66" width="4.72" height="100.25"></rect>
+            <rect class="spine" x="936.05" y="529.54" width="3.73" height="91.58"></rect>
+            <rect class="spine" x="931.03" y="522.22" width="4.12" height="96.69"></rect>
+            <rect class="spine" x="928.09" y="513.91" width="4.05" height="104.75"></rect>
+            <rect class="spine" x="923.73" y="534.52" width="4.17" height="81.83"></rect>
+            <rect class="spine" x="920.12" y="506.08" width="3.71" height="103.89"></rect>
+            <rect class="spine" x="917.15" y="512.27" width="3.38" height="97.2"></rect>
+            <rect class="spine" x="912.9699999999999" y="520.45" width="3.94" height="87.06"></rect>
+            <rect class="spine" x="909.35" y="498.88" width="4.36" height="106.03"></rect>
+            <rect class="spine" x="905.9" y="497.37" width="3.72" height="107.84"></rect>
+            <rect class="spine" x="903.03" y="501.65" width="3.45" height="105.05"></rect>
+            <rect class="spine" x="899.56" y="498.59" width="3.73" height="100.99"></rect>
+            <rect class="spine" x="896.3399999999999" y="504.9" width="3.73" height="89.24"></rect>
+            <rect class="spine" x="893.49" y="498.49" width="3.18" height="96.01"></rect>
+            <rect class="spine" x="890.36" y="501.82" width="3.53" height="96.12"></rect>
+            <rect class="spine" x="886.24" y="502.96" width="3.56" height="89.91"></rect>
+            <rect class="spine" x="882.9" y="504.64" width="3.72" height="85.84"></rect>
+            <rect class="spine" x="879.56" y="508.35" width="3.48" height="75.0"></rect>
+            <rect class="spine" x="875.72" y="496.52" width="3.39" height="83.38"></rect>
+            <rect class="spine" x="872.31" y="497.34" width="3.59" height="89.53"></rect>
+            <rect class="spine" x="869.5" y="488.78" width="3.72" height="90.95"></rect>
+            <rect class="spine" x="866.87" y="484.32" width="3.68" height="100.55"></rect>
+            <rect class="spine" x="863.43" y="492.27" width="3.82" height="93.56"></rect>
+            <rect class="spine" x="860.48" y="502.98" width="3.52" height="80.56"></rect>
+            <rect class="spine" x="1054.22" y="698.02" width="5.78" height="101.38"></rect>
+            <rect class="spine" x="1050.68" y="720.71" width="5.22" height="74.48"></rect>
+            <rect class="spine" x="1044.46" y="695.26" width="5.61" height="97.85"></rect>
+            <rect class="spine" x="1039.82" y="707.03" width="4.77" height="74.49"></rect>
+            <rect class="spine" x="1035.34" y="703.38" width="4.65" height="82.05"></rect>
+            <rect class="spine" x="1030.11" y="697.82" width="4.68" height="78.27"></rect>
+            <rect class="spine" x="1024.39" y="691.48" width="5.49" height="78.11"></rect>
+            <rect class="spine" x="1020.1600000000001" y="698.82" width="4.52" height="75.57"></rect>
+            <rect class="spine" x="1014.39" y="691.01" width="4.76" height="77.6"></rect>
+            <rect class="spine" x="1010.2099999999999" y="698.36" width="4.71" height="72.5"></rect>
+            <rect class="spine" x="1005.3100000000001" y="684.16" width="5.02" height="76.58"></rect>
+            <rect class="spine" x="1001.3199999999999" y="682.89" width="5.07" height="74.79"></rect>
+            <rect class="spine" x="998.45" y="679.36" width="4.17" height="79.41"></rect>
+            <rect class="spine" x="994.11" y="672.43" width="4.3" height="80.65"></rect>
+            <rect class="spine" x="989.07" y="674.15" width="4.18" height="70.04"></rect>
+            <rect class="spine" x="985.32" y="678.76" width="3.93" height="70.88"></rect>
+            <rect class="spine" x="980.9" y="674.16" width="4.35" height="69.2"></rect>
+            <rect class="spine" x="976.14" y="672.92" width="3.96" height="67.06"></rect>
+            <rect class="spine" x="971.0699999999999" y="668.67" width="4.22" height="66.38"></rect>
+            <rect class="spine" x="967.31" y="659.14" width="3.98" height="77.8"></rect>
+            <rect class="spine" x="963.4000000000001" y="658.27" width="4.55" height="68.77"></rect>
+            <rect class="spine" x="959.54" y="646.73" width="4.33" height="86.8"></rect>
+            <rect class="spine" x="956.2299999999999" y="649.65" width="4.07" height="74.89"></rect>
+            <rect class="spine" x="952.0" y="642.99" width="3.91" height="82.64"></rect>
+            <rect class="spine" x="946.6600000000001" y="652.74" width="4.68" height="73.54"></rect>
+            <rect class="spine" x="943.7700000000001" y="637.77" width="3.68" height="86.13"></rect>
+            <rect class="spine" x="939.5" y="635.81" width="4.08" height="82.72"></rect>
+            <rect class="spine" x="936.2" y="634.54" width="4.25" height="84.78"></rect>
+            <rect class="spine" x="933.3599999999999" y="637.67" width="3.94" height="72.47"></rect>
+            <rect class="spine" x="929.86" y="643.87" width="3.89" height="69.38"></rect>
+            <rect class="spine" x="924.94" y="629.67" width="4.41" height="80.96"></rect>
+            <rect class="spine" x="922.3199999999999" y="635.72" width="3.84" height="62.39"></rect>
+            <rect class="spine" x="919.7900000000001" y="626.72" width="3.41" height="75.66"></rect>
+            <rect class="spine" x="915.25" y="628.61" width="4.44" height="66.44"></rect>
+            <rect class="spine" x="912.35" y="641.25" width="4.11" height="61.76"></rect>
+            <rect class="spine" x="909.17" y="622.48" width="3.71" height="73.72"></rect>
+            <rect class="spine" x="905.37" y="619.65" width="3.48" height="77.25"></rect>
+            <rect class="spine" x="901.18" y="619.38" width="3.82" height="73.23"></rect>
+            <rect class="spine" x="897.65" y="621.78" width="4.01" height="69.79"></rect>
+            <rect class="spine" x="895.4" y="631.44" width="3.26" height="58.64"></rect>
+            <rect class="spine" x="891.72" y="629.42" width="3.92" height="57.56"></rect>
+            <rect class="spine" x="888.39" y="615.64" width="3.18" height="59.0"></rect>
+            <rect class="spine" x="885.28" y="616.56" width="3.1" height="58.12"></rect>
+            <rect class="spine" x="880.5999999999999" y="613.92" width="3.82" height="66.14"></rect>
+            <rect class="spine" x="878.14" y="602.02" width="3.07" height="73.59"></rect>
+            <rect class="spine" x="874.28" y="600.1" width="3.57" height="74.54"></rect>
+            <rect class="spine" x="871.2" y="603.26" width="3.48" height="64.82"></rect>
+            <rect class="spine" x="867.99" y="605.19" width="3.29" height="64.67"></rect>
+            <rect class="spine" x="864.5799999999999" y="599.5" width="3.47" height="70.87"></rect>
+            <rect class="spine" x="861.4499999999999" y="609.88" width="3.62" height="55.98"></rect>
+          </g>
+          <line class="wall-tier" x1="1060" y1="234.0" x2="620" y2="275.0"></line>
+          <line class="wall-tier" x1="1060" y1="386.0" x2="620" y2="335.0"></line>
+          <line class="wall-tier" x1="1060" y1="538.0" x2="620" y2="395.0"></line>
+          <line class="wall-tier" x1="1060" y1="690.0" x2="620" y2="455.0"></line>
+          <line class="wall-tier" x1="1060" y1="804.0" x2="620" y2="500.0"></line>
+        </g>
+ 
+        <g class="floor-group">
+          <line class="floor-line" x1="-60" y1="880" x2="500" y2="600"></line>
+          <line class="floor-line" x1="1060" y1="880" x2="500" y2="600"></line>
+          <line class="floor-line" x1="220" y1="880" x2="460" y2="600"></line>
+          <line class="floor-line" x1="780" y1="880" x2="540" y2="600"></line>
+        </g>
+ 
+        </g>
+ 
+        <g class="hero-motes">
+          <circle cx="380" cy="420" r="2.5"></circle>
+          <circle cx="640" cy="400" r="2"></circle>
+          <circle cx="470" cy="540" r="2.5"></circle>
+          <circle cx="590" cy="480" r="2"></circle>
+          <circle cx="430" cy="470" r="1.8"></circle>
+          <circle cx="560" cy="460" r="2.2"></circle>
+        </g>
+      </svg>
+ 
+      <div class="hero-content">
+        <div class="eyebrow"><span class="zone-dot"></span>Contenus éducatifs</div>
+        <h1 class="wordmark">L'<span>É</span>COLE</h1>
+        <p class="subtitle">Un lieu pour apprendre, pas pour défiler</p>
+      </div>
     </header>
  
     <div class="rule"></div>
  
     <div class="intro">
-      <div class="section-label">Deux formats, un seul objectif</div>
-      <h2>Les mêmes sujets, dans l'app et sur Instagram</h2>
-      <p>Dans l'application, ces sujets sont organisés en leçons progressives. Sur Instagram, on en retrouve des versions courtes, en carrousel. Voici les grands thèmes abordés.</p>
+      <div class="section-label">Votre parcours</div>
+      <h2>Trois directions, selon ce que vous cherchez</h2>
+      <p>Plutôt que six sujets isolés, la bibliothèque s'organise en parcours — comme des matières à l'école. Choisissez celui qui correspond à où vous en êtes.</p>
     </div>
  
     <div class="rule"></div>
  
-    <div class="theme-grid">
-      <div class="theme-card">
-        <div class="section-label">Budget &amp; épargne</div>
-        <h3>Poser les bases</h3>
-        <p>Construire un budget qui tient dans la durée, avec des repères comme la règle du 50/30/20.</p>
+    <div class="parcours-grid">
+      <div class="parcours-card">
+        <div class="parcours-num">Parcours 01</div>
+        <h3>Fondations</h3>
+        <p>Pour qui débute et veut poser des bases solides avant tout le reste : construire un budget qui tient, et comprendre les grands mécanismes économiques.</p>
+        <div class="parcours-tags">
+          <span class="parcours-tag">Budget &amp; épargne</span>
+          <span class="parcours-tag">Économie</span>
+        </div>
       </div>
-      <div class="theme-card">
-        <div class="section-label">Bourse &amp; actions</div>
-        <h3>Lire une entreprise cotée</h3>
-        <p>Comprendre comment fonctionne un marché actions et comment décrypter une entreprise.</p>
+ 
+      <div class="parcours-card">
+        <div class="parcours-num">Parcours 02</div>
+        <h3>Marchés</h3>
+        <p>Pour qui est prêt à commencer à investir : lire une entreprise cotée, comprendre la bourse, et découvrir les fonds indiciels pour diversifier simplement.</p>
+        <div class="parcours-tags">
+          <span class="parcours-tag">Bourse &amp; actions</span>
+          <span class="parcours-tag">ETF &amp; fonds</span>
+        </div>
       </div>
-      <div class="theme-card">
-        <div class="section-label">ETF &amp; fonds</div>
-        <h3>Diversifier simplement</h3>
-        <p>Le principe des fonds indiciels, pour investir sans devoir choisir titre par titre.</p>
-      </div>
-      <div class="theme-card">
-        <div class="section-label">Immobilier</div>
-        <h3>Les bases du secteur</h3>
-        <p>Investissement locatif, financement, et les notions clés pour s'y retrouver.</p>
-      </div>
-      <div class="theme-card">
-        <div class="section-label">Cryptoactifs</div>
-        <h3>Comprendre avant d'agir</h3>
-        <p>Ce que sont les cryptomonnaies, comment elles fonctionnent, et leurs risques.</p>
-      </div>
-      <div class="theme-card">
-        <div class="section-label">Économie</div>
-        <h3>Suivre l'actualité</h3>
-        <p>Taux directeurs, inflation, décisions de la BCE — pour comprendre ce qu'on lit dans la presse.</p>
+ 
+      <div class="parcours-card">
+        <div class="parcours-num">Parcours 03</div>
+        <h3>Patrimoine</h3>
+        <p>Pour qui a déjà les bases et veut aller plus loin : immobilier locatif et cryptoactifs, avec leurs logiques et leurs risques propres.</p>
+        <div class="parcours-tags">
+          <span class="parcours-tag">Immobilier</span>
+          <span class="parcours-tag">Cryptoactifs</span>
+        </div>
       </div>
     </div>
  
