@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Nos outils</title>
+<meta name="description" content="Les outils d'analyse et de gestion à venir chez Ktiso : portefeuille, simulateur, screener, alertes et budget. Des outils pour agir, pas des conseils.">
+<meta property="og:title" content="Ktiso — Nos outils">
+<meta property="og:description" content="Des outils pour aller plus loin dans votre analyse.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+ 
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 72px;
+  }
+ 
+  .frame { width: 100%; max-width: 640px; }
+ 
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 48px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+ 
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+ 
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+ 
+  header { text-align: center; }
+ 
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+ 
+  .wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 10vw, 56px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+  }
+ 
+  .wordmark span { color: var(--gold); }
+ 
+  .subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 22px);
+    color: rgba(244, 239, 227, 0.65);
+  }
+ 
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+ 
+  section { margin-bottom: 8px; text-align: center; }
+ 
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+ 
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 400;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 460px;
+  }
+ 
+  section p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.75);
+    max-width: 460px;
+    margin: 0 auto 14px;
+  }
+ 
+  /* ============ FRAMING NOTE ============ */
+ 
+  .framing-note {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.04);
+    border-radius: 2px;
+    padding: 22px 24px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+ 
+  .framing-note p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.7);
+    text-align: left;
+    max-width: none;
+    margin: 0;
+  }
+ 
+  .framing-note strong { color: var(--cream); font-weight: 500; }
+ 
+  /* ============ TOOL CARDS ============ */
+ 
+  .tool-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+ 
+  .tool-card {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 28px 26px;
+    background: rgba(201, 169, 97, 0.03);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+ 
+  .tool-card:hover {
+    border-color: rgba(201, 169, 97, 0.45);
+    background: rgba(201, 169, 97, 0.06);
+  }
+ 
+  .tool-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+ 
+  .tool-icon {
+    width: 34px; height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+ 
+  .tool-icon svg { width: 16px; height: 16px; }
+ 
+  .tool-tag {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201, 169, 97, 0.35);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+ 
+  .tool-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+ 
+  .tool-card p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: rgba(244, 239, 227, 0.65);
+    margin: 0;
+    max-width: none;
+  }
+ 
+  /* ============ PRICING ============ */
+ 
+  .pricing-card {
+    border: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse 90% 100% at 50% 0%, rgba(201, 169, 97, 0.07), transparent 65%),
+      rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+ 
+  .pricing-card .section-label { display: flex; justify-content: center; }
+  .pricing-card h2 { max-width: 420px; }
+ 
+  .pricing-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+ 
+  .price-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+ 
+  /* ============ CTA / FOOTER ============ */
+ 
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin: 36px 0 8px;
+  }
+ 
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 17px 34px;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+ 
+  .btn-primary:hover {
+    background: #DCC07E;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
+  }
+ 
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--line);
+  }
+ 
+  .btn-secondary:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+ 
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+ 
+  footer {
+    text-align: center;
+    margin-top: 56px;
+  }
+ 
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+ 
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+ 
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+ 
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html" class="active">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a>
+    </nav>
+ 
+    <header>
+      <div class="eyebrow">Analyse & outils</div>
+      <h1 class="wordmark">KTIS<span>O</span></h1>
+      <p class="subtitle">Pour analyser, pas pour deviner</p>
+    </header>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="framing-note">
+        <p><strong>Ces outils ne donnent aucun conseil ni recommandation.</strong> Ce sont des instruments pour analyser, simuler et organiser vous-même vos finances — vous restez seul décisionnaire, comme indiqué sur notre page <a href="a-propos.html" style="color: var(--terracotta); border-bottom: 1px solid rgba(193,101,74,0.35);">À propos</a>.</p>
+      </div>
+    </section>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="section-label">Nos outils</div>
+      <h2>Des outils pour aller plus loin, en complément de l'application gratuite</h2>
+      <p>L'application reste gratuite pour apprendre. Ces outils, en abonnement, sont pour celles et ceux qui veulent passer à la pratique avec du concret.</p>
+    </section>
+ 
+    <section class="tool-grid">
+ 
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"></path>
+              <path d="M18 17V9"></path>
+              <path d="M13 17V5"></path>
+              <path d="M8 17v-3"></path>
+            </svg>
+          </div>
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Analyseur de portefeuille</h3>
+        <p>Suivez la répartition, la performance et le niveau de diversification de votre portefeuille réel, en un coup d'œil.</p>
+      </div>
+ 
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Simulateur d'investissement</h3>
+        <p>Projetez l'évolution de votre épargne selon différents scénarios : taux, durée, versements réguliers.</p>
+      </div>
+ 
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Screener actions & ETF</h3>
+        <p>Filtrez les actions et ETF selon vos propres critères : secteur, dividende, valorisation, zone géographique.</p>
+      </div>
+ 
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Alertes & watchlist</h3>
+        <p>Suivez vos actifs préférés et recevez une alerte dès qu'ils atteignent le seuil que vous avez fixé.</p>
+      </div>
+ 
+      <div class="tool-card">
+        <div class="tool-meta">
+          <div class="tool-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+          </div>
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Planificateur budgétaire</h3>
+        <p>Fixez des objectifs d'épargne et suivez votre progression mois après mois, sans relier votre compte bancaire.</p>
+      </div>
+ 
+    </section>
+ 
+    <div class="rule"></div>
+ 
+    <section>
+      <div class="pricing-card">
+        <div class="section-label">Tarifs</div>
+        <h2>Un abonnement, tous les outils</h2>
+        <div class="price-tag">Mensuel ou annuel — tarifs à venir</div>
+        <p>L'ensemble de ces outils sera accessible via un seul abonnement. Les tarifs seront annoncés au lancement.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            Être informé du lancement
+          </a>
+        </div>
+      </div>
+    </section>
+ 
+    <footer>
+      <div class="footer-nav">
+        <a href="home.html">Accueil</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="portefeuille.html">Portefeuille</a>
+        <span class="sep">·</span>
+        <a href="application.html">Application</a>
+        <span class="sep">·</span>
+        <a href="contenus.html">Contenus</a>
+        <span class="sep">·</span>
+        <a href="actualites.html">Actualités</a>
+        <span class="sep">·</span>
+        <a href="index.html">Support</a>
+        <span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+    </footer>
+  </div>
+</body>
+</html>
+ 
