@@ -336,17 +336,17 @@
   .value-strip h2 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
-    font-size: clamp(24px, 5vw, 34px);
-    max-width: 520px;
+    font-size: clamp(26px, 5.5vw, 38px);
+    max-width: 560px;
     margin: 0 auto 64px;
     line-height: 1.3;
   }
 
   .value-cols {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    max-width: 600px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 24px;
+    max-width: 880px;
     margin: 0 auto;
   }
 
@@ -354,18 +354,25 @@
     text-align: center;
   }
 
-  .value-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 34px;
-    color: var(--gold);
-    letter-spacing: 0.03em;
-    margin-bottom: 10px;
+  .value-icon {
+    height: 64px;
+    width: auto;
+    margin: 0 auto 18px;
+    display: block;
+  }
+
+  .value-col h3 {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13.5px;
+    color: var(--cream);
+    margin-bottom: 8px;
   }
 
   .value-col p {
-    font-size: 12.5px;
+    font-size: 12px;
     line-height: 1.6;
-    color: rgba(244, 239, 227, 0.65);
+    color: rgba(244, 239, 227, 0.6);
   }
 
   /* ============ BENTO ============ */
@@ -568,10 +575,24 @@
     color: rgba(244, 239, 227, 0.3);
   }
 
+  .legal-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.25);
+    max-width: 480px;
+    margin: 16px auto 0;
+    text-transform: none;
+    letter-spacing: 0.01em;
+  }
+
   /* ============ RESPONSIVE ============ */
 
+  @media (max-width: 900px) {
+    .value-cols { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; max-width: 480px; }
+  }
+
   @media (max-width: 640px) {
-    .value-cols { grid-template-columns: 1fr; gap: 32px; }
+    .value-cols { grid-template-columns: 1fr; gap: 32px; max-width: 320px; }
     .bento-grid { grid-template-columns: 1fr; grid-template-areas: "main" "b1" "b2" "b3"; }
     #compactLinks { font-size: 9.5px; max-width: 62vw; }
     #compactLinks a { padding: 4px 6px; }
@@ -612,9 +633,12 @@
       <div class="cta-group">
         <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path>
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+            <line x1="20" y1="8" x2="20" y2="14"></line>
+            <line x1="17" y1="11" x2="23" y2="11"></line>
           </svg>
-          Télécharger sur l'App Store
+          Créer votre compte
         </a>
         <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -640,19 +664,27 @@
 
     <section class="value-strip wrap">
       <div class="rule" style="margin-bottom: 40px;"></div>
-      <h2>Un outil pédagogique, pas un service financier — pensé pour vous faire progresser, pas pour vous faire scroller.</h2>
+      <h2>Explorez l'univers de la finance</h2>
       <div class="value-cols">
         <div class="value-col">
-          <div class="value-num">01</div>
-          <p>Comprendre les bases : budget, épargne, bourse, immobilier, crypto</p>
+          <img class="value-icon" src="icon-lune.png" alt="">
+          <h3>Crée ton espace</h3>
+          <p>— un espace personnalisé où tu construis ton patrimoine financier</p>
         </div>
         <div class="value-col">
-          <div class="value-num">02</div>
-          <p>Suivre une progression qui vous accompagne d'une connexion à l'autre</p>
+          <img class="value-icon" src="icon-saturne.png" alt="">
+          <h3>Comprend les bases</h3>
+          <p>— budget, épargne, bourse, immobilier, crypto</p>
         </div>
         <div class="value-col">
-          <div class="value-num">03</div>
-          <p>Passer à l'action avec des bases solides, à votre rythme</p>
+          <img class="value-icon" src="icon-fusee.png" alt="">
+          <h3>Passe à l'action</h3>
+          <p>— investis avec des bases solides, à ton rythme</p>
+        </div>
+        <div class="value-col">
+          <img class="value-icon" src="icon-astronaute.png" alt="">
+          <h3>Suis l'actualité et analyse</h3>
+          <p>— décrypter les marchés et affine tes décisions</p>
         </div>
       </div>
     </section>
@@ -721,10 +753,11 @@
       <a href="application.html">Application</a><span class="sep">·</span>
       <a href="contenus.html">Contenus</a><span class="sep">·</span>
       <a href="actualites.html">Actualités</a><span class="sep">·</span>
-      <a href="index.html">Support</a><span class="sep">·</span>
+      <a href="index.html">Soutien</a><span class="sep">·</span>
       <a href="privacy.html">Confidentialité</a>
     </div>
     <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
   </footer>
 
   <script>
