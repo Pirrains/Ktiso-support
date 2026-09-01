@@ -18,15 +18,15 @@
     --cream: #F4EFE3;
     --line: rgba(201, 169, 97, 0.2);
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
   html, body {
     background: var(--green-deep);
     color: var(--cream);
     font-family: 'DM Mono', monospace;
   }
- 
+
   body {
     background:
       radial-gradient(ellipse 80% 40% at 50% -10%, rgba(201, 169, 97, 0.07), transparent),
@@ -35,12 +35,12 @@
     justify-content: center;
     padding: 0 24px 96px;
   }
- 
+
   .frame {
     width: 100%;
     max-width: 680px;
   }
- 
+
   nav.topnav {
     display: flex;
     justify-content: center;
@@ -52,7 +52,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
- 
+
   nav.topnav a {
     color: rgba(244, 239, 227, 0.55);
     text-decoration: none;
@@ -61,16 +61,16 @@
     transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
   }
- 
+
   nav.topnav a:hover { color: var(--terracotta); }
   nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
- 
+
   header {
     text-align: center;
     margin-bottom: 56px;
   }
- 
+
   .eyebrow {
     font-size: 11px;
     letter-spacing: 0.28em;
@@ -79,25 +79,21 @@
     opacity: 0.85;
     margin-bottom: 24px;
   }
- 
+
   .wordmark {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 10vw, 56px);
-    letter-spacing: 0.04em;
-    line-height: 0.9;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
-    margin-bottom: 10px;
+    width: clamp(130px, 32vw, 180px);
+    height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
   }
- 
-  .wordmark span { color: var(--gold); }
- 
+
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-size: clamp(17px, 3.5vw, 19px);
     color: rgba(244, 239, 227, 0.6);
   }
- 
+
   .updated {
     margin-top: 18px;
     font-size: 11px;
@@ -105,16 +101,16 @@
     text-transform: uppercase;
     color: rgba(244, 239, 227, 0.35);
   }
- 
+
   .rule {
     width: 64px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     margin: 40px auto;
   }
- 
+
   section { margin-bottom: 40px; }
- 
+
   .section-label {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -122,7 +118,7 @@
     color: var(--lime);
     margin-bottom: 14px;
   }
- 
+
   h2 {
     font-family: 'Instrument Serif', serif;
     font-size: clamp(22px, 4.5vw, 26px);
@@ -130,57 +126,57 @@
     color: var(--cream);
     margin-bottom: 16px;
   }
- 
+
   p, li {
     font-family: 'DM Mono', monospace;
     font-size: 14.5px;
     line-height: 1.75;
     color: rgba(244, 239, 227, 0.82);
   }
- 
+
   p + p { margin-top: 14px; }
- 
+
   ul {
     list-style: none;
     margin-top: 16px;
   }
- 
+
   li {
     padding-left: 22px;
     position: relative;
     margin-bottom: 12px;
   }
- 
+
   li::before {
     content: '—';
     position: absolute;
     left: 0;
     color: var(--terracotta);
   }
- 
+
   .highlight {
     color: var(--gold);
   }
- 
+
   a {
     color: var(--terracotta);
     text-decoration: none;
     border-bottom: 1px solid rgba(193, 101, 74, 0.35);
   }
- 
+
   a:hover { border-bottom-color: var(--terracotta); }
- 
+
   .border-box {
     border: 1px solid var(--line);
     padding: 24px;
     margin-top: 20px;
   }
- 
+
   footer {
     margin-top: 64px;
     text-align: center;
   }
- 
+
   .footer-nav {
     font-size: 11px;
     letter-spacing: 0.06em;
@@ -191,22 +187,22 @@
     justify-content: center;
     gap: 6px 0;
   }
- 
+
   .footer-nav a {
     color: rgba(244, 239, 227, 0.5);
     border-bottom: 1px solid transparent;
   }
- 
+
   .footer-nav a:hover {
     color: var(--terracotta);
     border-bottom-color: var(--terracotta);
   }
- 
+
   .footer-nav .sep {
     color: rgba(244, 239, 227, 0.2);
     margin: 0 10px;
   }
- 
+
   .copyright {
     font-size: 11px;
     letter-spacing: 0.08em;
@@ -226,23 +222,23 @@
       <a href="contenus.html">Contenus</a><span class="sep">·</span>
       <a href="actualites.html">Actualités</a>
     </nav>
- 
+
     <header>
       <div class="eyebrow">Éducation financière</div>
-      <h1 class="wordmark">KTIS<span>O</span></h1>
+      <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
       <p class="subtitle">Politique de confidentialité</p>
       <p class="updated">Dernière mise à jour — Juin 2026</p>
     </header>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="section-label">Pourquoi cette page</div>
       <h2>Ce que nous collectons, et pourquoi</h2>
       <p>KTISO est une application d'éducation financière. Pour fonctionner, elle a besoin de créer un compte pour chaque utilisateur et de conserver certaines informations afin que votre progression et vos préférences soient retrouvées à chaque connexion.</p>
       <p>Cette page explique simplement ce qui est collecté, où c'est stocké, et comment nous contacter si vous avez une question.</p>
     </section>
- 
+
     <section>
       <div class="section-label">Données collectées</div>
       <h2>Informations liées à votre compte</h2>
@@ -253,7 +249,7 @@
       </ul>
       <p>Nous ne collectons aucune donnée financière réelle (pas de coordonnées bancaires, pas d'accès à vos comptes) : KTISO est un outil pédagogique, pas un service financier.</p>
     </section>
- 
+
     <section>
       <div class="section-label">Hébergement</div>
       <h2>Où sont stockées vos données</h2>
@@ -262,7 +258,7 @@
         <p>Nous ne vendons et ne partageons vos données avec aucun tiers à des fins publicitaires. Elles ne servent qu'au fonctionnement de l'application.</p>
       </div>
     </section>
- 
+
     <section>
       <div class="section-label">Vos droits</div>
       <h2>Garder le contrôle</h2>
@@ -273,13 +269,13 @@
       </ul>
       <p>Pour toute demande, écrivez-nous — nous répondons sous 48h.</p>
     </section>
- 
+
     <section>
       <div class="section-label">Nous contacter</div>
       <h2>Une question sur vos données ?</h2>
       <p>Écrivez à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a> pour toute question relative à cette politique ou à vos informations personnelles.</p>
     </section>
- 
+
     <footer>
       <div class="footer-nav">
         <a href="home.html">Accueil</a>
@@ -303,4 +299,3 @@
   </div>
 </body>
 </html>
- 

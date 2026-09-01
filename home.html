@@ -63,22 +63,19 @@
     top: 30vh;
     transform: translateX(-50%);
     z-index: 42;
-    font-family: 'Bebas Neue', sans-serif;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    text-shadow:
-      0 1px 0 rgba(0,0,0,0.4),
-      0 2px 20px rgba(201, 169, 97, 0.18),
-      0 10px 40px rgba(0,0,0,0.5);
-    font-size: clamp(84px, 21vw, 260px);
     cursor: pointer;
-    white-space: nowrap;
     text-decoration: none;
-    will-change: left, top, transform, font-size;
+    display: block;
+    line-height: 0;
+    filter: drop-shadow(0 2px 20px rgba(201, 169, 97, 0.18)) drop-shadow(0 10px 40px rgba(0,0,0,0.5));
+    will-change: left, top, transform, width;
   }
 
-  #brandFixed span { color: var(--gold); }
+  #brandFixed img {
+    display: block;
+    width: clamp(220px, 55vw, 700px);
+    height: auto;
+  }
 
   #compactLinks {
     position: fixed;
@@ -590,7 +587,7 @@
 <body>
 
   <div id="navBackdrop" aria-hidden="true"></div>
-  <a href="#top" id="brandFixed" aria-label="Retour en haut">KTIS<span>O</span></a>
+  <a href="#top" id="brandFixed" aria-label="Retour en haut"><img src="ktiso-logo.png" alt="KTISO" id="brandImg"></a>
   <nav id="compactLinks" aria-label="Navigation principale">
     <a href="a-propos.html">À propos</a><span class="sep">·</span>
     <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
@@ -733,25 +730,26 @@
   <script>
     (function () {
       var brand = document.getElementById('brandFixed');
+      var brandImg = document.getElementById('brandImg');
       var links = document.getElementById('compactLinks');
       var backdrop = document.getElementById('navBackdrop');
       var spacer = document.getElementById('heroLogoSpace');
 
-      var heroFontPx, heroTopPx, navFontPx, navTopPx, navLeftPx, heroLeftPx, triggerDistance;
+      var heroWidthPx, heroTopPx, navWidthPx, navTopPx, navLeftPx, heroLeftPx, triggerDistance;
       var ticking = false;
 
       function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
 
       function measure() {
-        // Reset to CSS defaults to read the natural hero font-size and height.
-        brand.style.fontSize = '';
+        // Reset to CSS defaults to read the natural hero width and height.
+        brandImg.style.width = '';
         brand.style.top = '';
         brand.style.left = '';
         brand.style.transform = '';
         spacer.style.minHeight = '';
 
-        var cs = window.getComputedStyle(brand);
-        heroFontPx = parseFloat(cs.fontSize);
+        var cs = window.getComputedStyle(brandImg);
+        heroWidthPx = parseFloat(cs.width);
         var brandHeight = brand.getBoundingClientRect().height;
 
         // Guarantee the reserved space is always at least as tall as the logo,
@@ -766,7 +764,7 @@
         heroLeftPx = window.innerWidth / 2;
 
         var small = window.innerWidth < 480;
-        navFontPx = small ? 22 : 27;
+        navWidthPx = small ? 72 : 88;
         navTopPx = small ? 20 : 26;
         navLeftPx = small ? 20 : 28;
         triggerDistance = Math.max(window.innerHeight * 0.62, 380);
@@ -778,11 +776,11 @@
         var p = Math.min(Math.max(y / triggerDistance, 0), 1);
         var e = easeOutCubic(p);
 
-        var fontSize = heroFontPx + (navFontPx - heroFontPx) * e;
+        var widthPx = heroWidthPx + (navWidthPx - heroWidthPx) * e;
         var top = heroTopPx + (navTopPx - heroTopPx) * e;
         var left = heroLeftPx + (navLeftPx - heroLeftPx) * e;
         var translatePercent = -50 + 50 * e; // -50% (centered) -> 0% (left-aligned)
-        brand.style.fontSize = fontSize + 'px';
+        brandImg.style.width = widthPx + 'px';
         brand.style.top = top + 'px';
         brand.style.left = left + 'px';
         brand.style.transform = 'translateX(' + translatePercent + '%)';
