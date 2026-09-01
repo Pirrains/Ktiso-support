@@ -3,11 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ktiso — À propos</title>
-<meta name="description" content="Pourquoi Ktiso existe : rendre l'éducation financière claire et accessible, sans jargon ni produits à vendre.">
-<meta property="og:title" content="Ktiso — À propos">
-<meta property="og:description" content="Un point d'appui, pas un mur d'attente.">
-<meta property="og:type" content="website">
+<title>KTISO — Politique de confidentialité</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -20,7 +16,7 @@
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --cream: #F4EFE3;
-    --line: rgba(201, 169, 97, 0.22);
+    --line: rgba(201, 169, 97, 0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,14 +29,17 @@
 
   body {
     background:
-      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      radial-gradient(ellipse 80% 40% at 50% -10%, rgba(201, 169, 97, 0.07), transparent),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
     display: flex;
     justify-content: center;
-    padding: 0 24px 72px;
+    padding: 0 24px 96px;
   }
 
-  .frame { width: 100%; max-width: 600px; }
+  .frame {
+    width: 100%;
+    max-width: 680px;
+  }
 
   nav.topnav {
     display: flex;
@@ -67,7 +66,10 @@
   nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
 
-  header { text-align: center; }
+  header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
 
   .eyebrow {
     font-size: 11px;
@@ -88,8 +90,16 @@
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: clamp(18px, 4vw, 22px);
-    color: rgba(244, 239, 227, 0.65);
+    font-size: clamp(17px, 3.5vw, 19px);
+    color: rgba(244, 239, 227, 0.6);
+  }
+
+  .updated {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.35);
   }
 
   .rule {
@@ -99,7 +109,7 @@
     margin: 40px auto;
   }
 
-  section { margin-bottom: 8px; text-align: center; }
+  section { margin-bottom: 40px; }
 
   .section-label {
     font-size: 12px;
@@ -111,107 +121,60 @@
 
   h2 {
     font-family: 'Instrument Serif', serif;
-    font-size: clamp(21px, 4.5vw, 26px);
+    font-size: clamp(22px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
-    margin: 0 auto 16px;
-    max-width: 440px;
+    margin-bottom: 16px;
   }
 
-  section p {
+  p, li {
     font-family: 'DM Mono', monospace;
     font-size: 14.5px;
     line-height: 1.75;
-    color: rgba(244, 239, 227, 0.75);
-    max-width: 420px;
-    margin: 0 auto 14px;
+    color: rgba(244, 239, 227, 0.82);
   }
 
-  ul.principles {
+  p + p { margin-top: 14px; }
+
+  ul {
     list-style: none;
-    text-align: left;
-    max-width: 400px;
-    margin: 22px auto 0;
+    margin-top: 16px;
   }
 
-  ul.principles li {
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: rgba(244, 239, 227, 0.85);
+  li {
     padding-left: 22px;
     position: relative;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
-  ul.principles li::before {
+  li::before {
     content: '—';
     position: absolute;
     left: 0;
     color: var(--terracotta);
   }
 
-  .cta-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    margin: 36px 0 8px;
+  .highlight {
+    color: var(--gold);
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 17px 34px;
-    border-radius: 2px;
-    width: 100%;
-    max-width: 320px;
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
-  }
-
-  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-  .btn-primary {
-    background: var(--gold);
-    color: var(--green-deep);
-    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
-  }
-
-  .btn-primary:hover {
-    background: #DCC07E;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid var(--line);
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--terracotta);
+  a {
     color: var(--terracotta);
-    transform: translateY(-2px);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
   }
 
-  .btn:active { transform: translateY(0); }
+  a:hover { border-bottom-color: var(--terracotta); }
 
-  .btn:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
+  .border-box {
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 20px;
   }
 
   footer {
+    margin-top: 64px;
     text-align: center;
-    margin-top: 56px;
   }
 
   .footer-nav {
@@ -227,7 +190,6 @@
 
   .footer-nav a {
     color: rgba(244, 239, 227, 0.5);
-    text-decoration: none;
     border-bottom: 1px solid transparent;
   }
 
@@ -247,17 +209,13 @@
     text-transform: uppercase;
     color: rgba(244, 239, 227, 0.3);
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .btn { transition: none; }
-  }
 </style>
 </head>
 <body>
   <div class="frame">
     <nav class="topnav" aria-label="Navigation principale">
       <a href="home.html">Accueil</a><span class="sep">·</span>
-      <a href="a-propos.html" class="active">À propos</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
       <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
       <a href="outils.html">Outils</a><span class="sep">·</span>
       <a href="application.html">Application</a><span class="sep">·</span>
@@ -266,68 +224,77 @@
     </nav>
 
     <header>
-      <div class="eyebrow">Notre mission</div>
+      <div class="eyebrow">Éducation financière</div>
       <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
-      <p class="subtitle">Pourquoi Ktiso existe</p>
+      <p class="subtitle">Politique de confidentialité</p>
+      <p class="updated">Dernière mise à jour — Juin 2026</p>
     </header>
 
     <div class="rule"></div>
 
     <section>
-      <div class="section-label">Le constat</div>
-      <h2>Comprendre l'argent ne devrait pas être un mur d'attente</h2>
-      <p>La finance est souvent enseignée avec un vocabulaire qui décourage avant même d'avoir commencé. Ktiso part du principe inverse : donner un point d'appui simple, puis laisser chacun avancer à son rythme.</p>
+      <div class="section-label">Pourquoi cette page</div>
+      <h2>Ce que nous collectons, et pourquoi</h2>
+      <p>KTISO est une application d'éducation financière. Pour fonctionner, elle a besoin de créer un compte pour chaque utilisateur et de conserver certaines informations afin que votre progression et vos préférences soient retrouvées à chaque connexion.</p>
+      <p>Cette page explique simplement ce qui est collecté, où c'est stocké, et comment nous contacter si vous avez une question.</p>
     </section>
 
-    <div class="rule"></div>
-
     <section>
-      <div class="section-label">Notre histoire</div>
-      <h2>Né sur les réseaux, pensé pour durer</h2>
-      <p>Ktiso a commencé par des contenus courts partagés sur Instagram — des explications simples sur le budget, l'épargne ou la bourse. Face à l'intérêt pour ce format, le projet s'est prolongé dans une application, pour offrir un vrai parcours plutôt qu'un simple fil à faire défiler.</p>
-    </section>
-
-    <div class="rule"></div>
-
-    <section>
-      <div class="section-label">Nos principes</div>
-      <h2>Ce que Ktiso ne fera jamais</h2>
-      <ul class="principles">
-        <li>Relier un compte bancaire ou accéder à vos finances réelles</li>
-        <li>Vendre ou recommander des produits financiers</li>
-        <li>Remplacer un conseil professionnel personnalisé</li>
-        <li>Partager vos données avec des tiers à des fins publicitaires</li>
+      <div class="section-label">Données collectées</div>
+      <h2>Informations liées à votre compte</h2>
+      <ul>
+        <li>Votre adresse email, utilisée pour créer votre compte et vous identifier</li>
+        <li>Votre mot de passe, stocké de façon chiffrée — nous n'y avons jamais accès en clair</li>
+        <li>Votre progression et vos préférences dans l'app (contenus consultés, paramètres choisis)</li>
       </ul>
+      <p>Nous ne collectons aucune donnée financière réelle (pas de coordonnées bancaires, pas d'accès à vos comptes) : KTISO est un outil pédagogique, pas un service financier.</p>
     </section>
 
-    <div class="cta-group">
-      <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
-        Télécharger sur l'App Store
-      </a>
-      <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-        Suivre sur Instagram
-      </a>
-    </div>
+    <section>
+      <div class="section-label">Hébergement</div>
+      <h2>Où sont stockées vos données</h2>
+      <p>KTISO est développée avec <span class="highlight">Base44</span>, une plateforme qui héberge l'application et sa base de données. Vos informations de compte et votre activité dans l'app sont stockées sur l'infrastructure de Base44, selon leurs propres standards de sécurité.</p>
+      <div class="border-box">
+        <p>Nous ne vendons et ne partageons vos données avec aucun tiers à des fins publicitaires. Elles ne servent qu'au fonctionnement de l'application.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Vos droits</div>
+      <h2>Garder le contrôle</h2>
+      <ul>
+        <li>Vous pouvez demander la suppression de votre compte et des données associées à tout moment</li>
+        <li>Vous pouvez demander une copie des informations que nous détenons sur vous</li>
+        <li>Vous pouvez nous signaler toute question ou préoccupation liée à vos données</li>
+      </ul>
+      <p>Pour toute demande, écrivez-nous — nous répondons sous 48h.</p>
+    </section>
+
+    <section>
+      <div class="section-label">Nous contacter</div>
+      <h2>Une question sur vos données ?</h2>
+      <p>Écrivez à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a> pour toute question relative à cette politique ou à vos informations personnelles.</p>
+    </section>
 
     <footer>
       <div class="footer-nav">
         <a href="home.html">Accueil</a>
         <span class="sep">·</span>
+        <a href="application.html">Application</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
         <a href="portefeuille.html">Portefeuille</a>
         <span class="sep">·</span>
         <a href="outils.html">Outils</a>
-        <span class="sep">·</span>
-        <a href="application.html">Application</a>
         <span class="sep">·</span>
         <a href="contenus.html">Contenus</a>
         <span class="sep">·</span>
         <a href="actualites.html">Actualités</a>
         <span class="sep">·</span>
         <a href="index.html">Support</a>
-        <span class="sep">·</span>
-        <a href="privacy.html">Confidentialité</a>
       </div>
-      <div class="copyright">KTISO — Éducation financière</div>
+      <div class="copyright">KTISO — Politique de confidentialité</div>
     </footer>
   </div>
 </body>

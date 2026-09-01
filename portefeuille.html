@@ -24,15 +24,15 @@
     --cream: #F4EFE3;
     --line: rgba(201, 169, 97, 0.22);
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
   html, body {
     background: var(--green-deep);
     color: var(--cream);
     font-family: 'DM Mono', monospace;
   }
- 
+
   body {
     background:
       radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
@@ -41,9 +41,9 @@
     justify-content: center;
     padding: 0 24px 72px;
   }
- 
+
   .frame { width: 100%; max-width: 640px; }
- 
+
   nav.topnav {
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
- 
+
   nav.topnav a {
     color: rgba(244, 239, 227, 0.55);
     text-decoration: none;
@@ -64,13 +64,13 @@
     transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
   }
- 
+
   nav.topnav a:hover { color: var(--terracotta); }
   nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
- 
+
   header { text-align: center; }
- 
+
   .eyebrow {
     font-size: 11px;
     letter-spacing: 0.28em;
@@ -79,34 +79,30 @@
     opacity: 0.85;
     margin-bottom: 24px;
   }
- 
+
   .wordmark {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 10vw, 56px);
-    letter-spacing: 0.04em;
-    line-height: 0.9;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 8px 30px rgba(0,0,0,0.5);
-    margin-bottom: 10px;
+    width: clamp(130px, 32vw, 180px);
+    height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
   }
- 
-  .wordmark span { color: var(--gold); }
- 
+
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     font-size: clamp(18px, 4vw, 22px);
     color: rgba(244, 239, 227, 0.65);
   }
- 
+
   .rule {
     width: 64px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     margin: 40px auto;
   }
- 
+
   section { margin-bottom: 8px; text-align: center; }
- 
+
   .section-label {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -114,7 +110,7 @@
     color: var(--lime);
     margin-bottom: 14px;
   }
- 
+
   h2 {
     font-family: 'Instrument Serif', serif;
     font-size: clamp(21px, 4.5vw, 26px);
@@ -123,7 +119,7 @@
     margin: 0 auto 16px;
     max-width: 460px;
   }
- 
+
   section p {
     font-size: 14.5px;
     line-height: 1.75;
@@ -131,9 +127,9 @@
     max-width: 460px;
     margin: 0 auto 14px;
   }
- 
+
   /* ============ DISCLAIMER ============ */
- 
+
   .disclaimer {
     border: 1px solid rgba(193, 101, 74, 0.4);
     background: rgba(193, 101, 74, 0.06);
@@ -142,7 +138,7 @@
     text-align: left;
     margin-bottom: 8px;
   }
- 
+
   .disclaimer-label {
     display: flex;
     align-items: center;
@@ -153,13 +149,13 @@
     color: var(--terracotta);
     margin-bottom: 12px;
   }
- 
+
   .disclaimer-label svg {
     width: 14px;
     height: 14px;
     flex-shrink: 0;
   }
- 
+
   .disclaimer p {
     font-size: 13px;
     line-height: 1.7;
@@ -168,12 +164,12 @@
     max-width: none;
     margin: 0 0 10px;
   }
- 
+
   .disclaimer p:last-child { margin-bottom: 0; }
   .disclaimer strong { color: var(--cream); font-weight: 500; }
- 
+
   /* ============ EVOLUTION / CHART ============ */
- 
+
   .chart-box {
     border: 1px solid var(--line);
     border-radius: 2px;
@@ -181,18 +177,18 @@
     text-align: center;
     background: rgba(201, 169, 97, 0.02);
   }
- 
+
   .chart-box svg { width: 100%; height: auto; display: block; margin-bottom: 4px; }
- 
+
   .chart-placeholder-text {
     font-size: 12px;
     letter-spacing: 0.04em;
     color: rgba(244, 239, 227, 0.4);
     margin-top: 6px;
   }
- 
+
   /* ============ ALLOCATION ============ */
- 
+
   .allocation-list {
     display: flex;
     flex-direction: column;
@@ -201,7 +197,7 @@
     max-width: 460px;
     margin: 8px auto 0;
   }
- 
+
   .allocation-row {
     display: flex;
     align-items: center;
@@ -210,13 +206,13 @@
     border-radius: 2px;
     padding: 18px 20px;
   }
- 
+
   .allocation-dot {
     width: 10px; height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
   }
- 
+
   .allocation-row h4 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
@@ -224,7 +220,7 @@
     color: var(--cream);
     margin-bottom: 3px;
   }
- 
+
   .allocation-row p {
     font-size: 12.5px;
     line-height: 1.5;
@@ -232,16 +228,16 @@
     margin: 0;
     max-width: none;
   }
- 
+
   /* ============ ANALYSES ============ */
- 
+
   .analysis-grid {
     display: flex;
     flex-direction: column;
     gap: 16px;
     text-align: left;
   }
- 
+
   .analysis-card {
     display: block;
     border: 1px solid var(--line);
@@ -251,13 +247,13 @@
     background: rgba(201, 169, 97, 0.03);
     transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
   }
- 
+
   .analysis-card:hover {
     border-color: rgba(201, 169, 97, 0.5);
     background: rgba(201, 169, 97, 0.06);
     transform: translateY(-2px);
   }
- 
+
   .analysis-meta {
     font-size: 10.5px;
     letter-spacing: 0.06em;
@@ -265,7 +261,7 @@
     color: var(--gold);
     margin-bottom: 12px;
   }
- 
+
   .analysis-card h3 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
@@ -274,7 +270,7 @@
     color: var(--cream);
     margin-bottom: 8px;
   }
- 
+
   .analysis-card p {
     font-size: 13.5px;
     line-height: 1.6;
@@ -282,7 +278,7 @@
     margin: 0;
     max-width: none;
   }
- 
+
   .placeholder-note {
     font-size: 12px;
     line-height: 1.7;
@@ -290,9 +286,9 @@
     max-width: 420px;
     margin: 24px auto 0;
   }
- 
+
   /* ============ CTA / FOOTER ============ */
- 
+
   .cta-group {
     display: flex;
     flex-direction: column;
@@ -300,7 +296,7 @@
     gap: 14px;
     margin: 36px 0 8px;
   }
- 
+
   .btn {
     display: inline-flex;
     align-items: center;
@@ -318,40 +314,40 @@
     max-width: 320px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   }
- 
+
   .btn-primary {
     background: var(--gold);
     color: var(--green-deep);
     box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
   }
- 
+
   .btn-primary:hover {
     background: #DCC07E;
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
   }
- 
+
   .btn-secondary {
     background: transparent;
     color: var(--cream);
     border: 1px solid var(--line);
   }
- 
+
   .btn-secondary:hover {
     border-color: var(--terracotta);
     color: var(--terracotta);
     transform: translateY(-2px);
   }
- 
+
   .btn:active { transform: translateY(0); }
   .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
   .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
- 
+
   footer {
     text-align: center;
     margin-top: 56px;
   }
- 
+
   .footer-nav {
     font-size: 11px;
     letter-spacing: 0.06em;
@@ -362,16 +358,16 @@
     justify-content: center;
     gap: 6px 0;
   }
- 
+
   .footer-nav a {
     color: rgba(244, 239, 227, 0.5);
     text-decoration: none;
     border-bottom: 1px solid transparent;
   }
- 
+
   .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
   .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
- 
+
   .copyright {
     font-size: 11px;
     letter-spacing: 0.08em;
@@ -391,15 +387,15 @@
       <a href="contenus.html">Contenus</a><span class="sep">·</span>
       <a href="actualites.html">Actualités</a>
     </nav>
- 
+
     <header>
       <div class="eyebrow">Analyse & transparence</div>
-      <h1 class="wordmark">KTIS<span>O</span></h1>
+      <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
       <p class="subtitle">Nos choix, en toute transparence</p>
     </header>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="disclaimer">
         <div class="disclaimer-label">
@@ -415,17 +411,17 @@
         <p>Comme indiqué sur notre page <a href="a-propos.html" style="color: var(--terracotta); border-bottom: 1px solid rgba(193,101,74,0.35);">À propos</a>, Ktiso ne vend ni ne recommande de produits financiers.</p>
       </div>
     </section>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="section-label">Pourquoi on partage ça</div>
       <h2>Voir un raisonnement réel, pas juste une théorie</h2>
       <p>Comprendre une règle de diversification en théorie est une chose. Voir comment une vraie personne l'applique, avec ses doutes et ses arbitrages, en est une autre. C'est ce que cette page essaie de montrer.</p>
     </section>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="section-label">Évolution</div>
       <h2>Le suivi de performance arrive bientôt</h2>
@@ -439,9 +435,9 @@
         <p class="chart-placeholder-text">Emplacement réservé — les données réelles remplaceront cette illustration dès que le suivi sera en place.</p>
       </div>
     </section>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="section-label">Répartition</div>
       <h2>Les grandes catégories que nous suivons</h2>
@@ -477,9 +473,9 @@
         </div>
       </div>
     </section>
- 
+
     <div class="rule"></div>
- 
+
     <section>
       <div class="section-label">Nos analyses</div>
       <h2>Le raisonnement derrière les choix</h2>
@@ -502,7 +498,7 @@
       </div>
       <p class="placeholder-note">Ces analyses sont des exemples de mise en page, en attente des vraies publications de l'équipe.</p>
     </section>
- 
+
     <div class="cta-group">
       <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
         Télécharger sur l'App Store
@@ -511,7 +507,7 @@
         Notre mission
       </a>
     </div>
- 
+
     <footer>
       <div class="footer-nav">
         <a href="home.html">Accueil</a>
@@ -535,4 +531,3 @@
   </div>
 </body>
 </html>
- 

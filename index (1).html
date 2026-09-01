@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTISO — Support</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 169, 97, 0.08), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px 40px;
+  }
+
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 8px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+
+  .content-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 32px 0;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 28px;
+  }
+
+  .wordmark {
+    width: clamp(170px, 40vw, 240px);
+    height: auto;
+    margin: 0 auto 6px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  }
+
+  .tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 22px);
+    color: rgba(244, 239, 227, 0.65);
+    margin-bottom: 44px;
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 44px;
+  }
+
+  .help-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+
+  .help-copy {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(20px, 4.5vw, 26px);
+    line-height: 1.4;
+    color: var(--cream);
+    max-width: 420px;
+    margin: 0 auto 36px;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--green-deep);
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+
+  .contact-button:hover {
+    background: #DCC07E;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
+  }
+
+  .contact-button:active {
+    transform: translateY(0);
+  }
+
+  .contact-button svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .email-fallback {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(244, 239, 227, 0.4);
+    letter-spacing: 0.02em;
+  }
+
+  .email-fallback a {
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
+  }
+
+  .email-fallback a:hover {
+    border-bottom-color: var(--terracotta);
+  }
+
+  footer {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer-nav a:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+  }
+
+  .footer-nav .sep {
+    color: rgba(244, 239, 227, 0.2);
+    margin: 0 10px;
+  }
+
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-button { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Navigation principale">
+    <a href="home.html">Accueil</a><span class="sep">·</span>
+    <a href="a-propos.html">À propos</a><span class="sep">·</span>
+    <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+    <a href="outils.html">Outils</a><span class="sep">·</span>
+    <a href="application.html">Application</a><span class="sep">·</span>
+    <a href="contenus.html">Contenus</a><span class="sep">·</span>
+    <a href="actualites.html">Actualités</a>
+  </nav>
+
+  <div class="content-wrap">
+    <div class="frame">
+      <div class="eyebrow">Éducation financière</div>
+      <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
+      <p class="tagline">Un point d'appui, pas un mur d'attente</p>
+
+      <div class="rule"></div>
+
+      <div class="help-label">Support</div>
+      <p class="help-copy">Une question sur l'application, un bug à signaler, une idée à partager — écrivez-nous directement.</p>
+
+      <a class="contact-button" href="mailto:ktiso@outlook.fr?subject=Support%20KTISO">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16v16H4z" opacity="0"></path>
+          <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6Z"></path>
+          <path d="m22 6-10 7L2 6"></path>
+        </svg>
+        Contacter le support
+      </a>
+
+      <p class="email-fallback">ou écrivez à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="actualites.html">Actualités</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="copyright">KTISO — Réponse sous 48h</div>
+  </footer>
+</body>
+</html>
