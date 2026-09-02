@@ -27,60 +27,61 @@
     --zone: var(--blue);
     --zone-line: rgba(91, 143, 168, 0.35);
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
   html, body {
     background: var(--green-deep);
     color: var(--cream);
     font-family: 'DM Mono', monospace;
   }
- 
+
   body {
     background:
       radial-gradient(ellipse 70% 40% at 50% 0%, rgba(91, 143, 168, 0.10), transparent),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green) 55%, var(--green-deep) 100%);
     overflow-x: hidden;
   }
- 
+
   a { color: inherit; }
- 
+
   .wrap {
     width: 100%;
     max-width: 720px;
     margin: 0 auto;
     padding: 0 24px;
   }
- 
+
   /* ============ NAV ============ */
- 
+
   nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 4px 0;
     padding-top: 28px;
-    margin-bottom: 8px;
     font-size: 10.5px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    position: relative;
-    z-index: 5;
   }
- 
+
   nav.topnav a {
-    color: rgba(244, 239, 227, 0.55);
+    color: rgba(244, 239, 227, 0.7);
     text-decoration: none;
     padding: 4px 7px;
     border-bottom: 1px solid transparent;
     transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
   }
- 
+
   nav.topnav a:hover { color: var(--terracotta); }
   nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
-  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
- 
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
   .zone-dot {
     display: inline-block;
     width: 6px; height: 6px;
@@ -89,132 +90,82 @@
     margin-right: 8px;
     vertical-align: middle;
   }
- 
+
   /* ============ HERO ============ */
- 
+
   .hero {
     position: relative;
-    min-height: 78vh;
-    min-height: 78svh;
+    min-height: 90vh;
+    min-height: 90svh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 6vh 24px 8vh;
+    padding: 90px 24px 8vh;
     overflow: hidden;
   }
- 
-  .coin-field {
+
+  .hero-bg-img {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
   }
- 
-  .coin {
-    position: absolute;
-    top: var(--top);
-    left: var(--left);
-    width: var(--size);
-    height: var(--size);
-    margin: calc(var(--size) / -2);
-    filter: blur(var(--blur, 0px));
-    animation: coinFloat var(--fdur) ease-in-out infinite;
-    animation-delay: var(--delay);
-  }
- 
-  @keyframes coinFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
- 
-  .coin-shape {
+
+  .hero-veil {
     position: absolute;
     inset: 0;
-  }
- 
-  .coin.edge-on .coin-shape {
-    transform: scaleX(0.17) rotate(6deg);
-  }
- 
-  .coin-rim {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 210deg,
-      #7a7d80 0%, #eef1f3 12%, #4c4f52 25%, #d6d9db 38%,
-      #3a3d40 50%, #e4e7e9 63%, #6a6d70 75%, #f4f6f7 88%, #7a7d80 100%);
-    box-shadow: 0 16px 36px rgba(0,0,0,0.5);
-  }
- 
-  .coin-face {
-    position: absolute;
-    inset: 7%;
-    border-radius: 50%;
     background:
-      linear-gradient(115deg, rgba(244,239,227,0.16) 0%, transparent 30%),
-      radial-gradient(circle at 30% 24%, rgba(244,239,227,0.42), rgba(244,239,227,0.06) 38%, rgba(15,26,20,0.4) 74%, rgba(8,13,10,0.6) 100%);
-    box-shadow:
-      inset 0 3px 10px rgba(0,0,0,0.55),
-      inset 0 -6px 16px rgba(0,0,0,0.4),
-      inset 0 0 0 1px rgba(244,239,227,0.14);
+      linear-gradient(180deg, rgba(4,6,12,0.55) 0%, rgba(4,6,12,0.15) 35%, rgba(4,6,12,0.3) 65%, rgba(4,6,12,0.75) 100%);
   }
- 
-  .coin.edge-on .coin-rim {
-    box-shadow: 0 10px 26px rgba(0,0,0,0.55);
-  }
- 
+
   .hero-content {
     position: relative;
     z-index: 2;
   }
- 
+
   .eyebrow {
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--zone);
-    opacity: 0.9;
-    margin-bottom: 26px;
+    opacity: 0.95;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
   }
- 
-  .wordmark {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 8.4vw, 84px);
-    letter-spacing: 0.04em;
-    line-height: 0.9;
-    color: var(--cream);
-    text-shadow:
-      0 1px 0 rgba(0,0,0,0.4),
-      0 2px 20px rgba(91, 143, 168, 0.18),
-      0 10px 40px rgba(0,0,0,0.5);
-    margin-bottom: 18px;
+
+  .hero-logo-img {
+    width: clamp(280px, 50vw, 760px);
+    height: auto;
+    margin: 0 auto 26px;
+    filter: drop-shadow(0 8px 30px rgba(0,0,0,0.6));
   }
- 
-  .wordmark span { color: var(--zone); }
- 
+
   .subtitle {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: clamp(19px, 4.2vw, 25px);
-    color: rgba(244, 239, 227, 0.7);
+    font-size: clamp(18px, 3.4vw, 24px);
+    color: rgba(244, 239, 227, 0.85);
     max-width: 480px;
     margin: 0 auto;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
   }
- 
+
   /* ============ SHARED SECTION LAYOUT ============ */
- 
+
   .rule {
     width: 64px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--zone), transparent);
     margin: 0 auto;
   }
- 
+
   .section-label {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -222,7 +173,7 @@
     color: var(--zone);
     margin-bottom: 14px;
   }
- 
+
   h2 {
     font-family: 'Instrument Serif', serif;
     font-size: clamp(21px, 4.5vw, 26px);
@@ -231,9 +182,9 @@
     margin: 0 auto 16px;
     max-width: 460px;
   }
- 
+
   .intro { text-align: center; padding: 56px 0 40px; }
- 
+
   .intro p {
     font-size: 14.5px;
     line-height: 1.75;
@@ -241,17 +192,17 @@
     max-width: 440px;
     margin: 0 auto;
   }
- 
+
   /* ============ ARTICLES ============ */
- 
+
   .article-section { padding: 0 0 80px; }
- 
+
   .article-grid {
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
- 
+
   .article-card {
     display: block;
     border: 1px solid var(--line);
@@ -262,13 +213,13 @@
     background: rgba(91, 143, 168, 0.035);
     transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
   }
- 
+
   .article-card:hover {
     border-color: rgba(91, 143, 168, 0.5);
     background: rgba(91, 143, 168, 0.06);
     transform: translateY(-2px);
   }
- 
+
   .article-meta {
     display: flex;
     align-items: center;
@@ -278,19 +229,19 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
- 
+
   .article-tag {
     color: var(--zone);
   }
- 
+
   .article-meta .dot-sep {
     color: rgba(244, 239, 227, 0.25);
   }
- 
+
   .article-date {
     color: rgba(244, 239, 227, 0.4);
   }
- 
+
   .article-card h3 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
@@ -299,32 +250,32 @@
     color: var(--cream);
     margin-bottom: 10px;
   }
- 
+
   .article-card p {
     font-size: 13.5px;
     line-height: 1.65;
     color: rgba(244, 239, 227, 0.65);
     margin-bottom: 14px;
   }
- 
+
   .article-read {
     font-size: 12px;
     letter-spacing: 0.03em;
     color: var(--terracotta);
   }
- 
+
   .article-card.featured {
     padding: 36px 30px;
     background:
       radial-gradient(ellipse 90% 100% at 100% 0%, rgba(91, 143, 168, 0.08), transparent 65%),
       rgba(91, 143, 168, 0.04);
   }
- 
+
   .article-card.featured h3 {
     font-size: 24px;
     max-width: 480px;
   }
- 
+
   .placeholder-note {
     text-align: center;
     font-size: 12px;
@@ -333,11 +284,11 @@
     max-width: 420px;
     margin: 28px auto 0;
   }
- 
+
   /* ============ CLOSING CTA ============ */
- 
+
   .social-section { padding: 0 0 90px; }
- 
+
   .social-card {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
@@ -345,11 +296,11 @@
     padding: 48px 32px;
     text-align: center;
   }
- 
+
   .social-card .section-label { color: var(--gold); display: flex; justify-content: center; }
- 
+
   .social-card h2 { max-width: 400px; }
- 
+
   .social-card p {
     font-size: 13.5px;
     line-height: 1.7;
@@ -357,14 +308,14 @@
     max-width: 380px;
     margin: 0 auto 28px;
   }
- 
+
   .cta-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
   }
- 
+
   .btn {
     display: inline-flex;
     align-items: center;
@@ -380,43 +331,43 @@
     border-radius: 2px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   }
- 
+
   .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
- 
+
   .btn-primary {
     background: var(--gold);
     color: var(--green-deep);
     box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
   }
- 
+
   .btn-primary:hover {
     background: #DCC07E;
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
   }
- 
+
   .btn-secondary {
     background: transparent;
     color: var(--cream);
     border: 1px solid var(--line);
   }
- 
+
   .btn-secondary:hover {
     border-color: var(--zone);
     color: var(--zone);
     transform: translateY(-2px);
   }
- 
+
   .btn:active { transform: translateY(0); }
   .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
- 
+
   /* ============ FOOTER ============ */
- 
+
   footer {
     text-align: center;
     padding: 0 24px 56px;
   }
- 
+
   .footer-nav {
     font-size: 11px;
     letter-spacing: 0.06em;
@@ -427,23 +378,23 @@
     justify-content: center;
     gap: 6px 0;
   }
- 
+
   .footer-nav a {
     color: rgba(244, 239, 227, 0.5);
     text-decoration: none;
     border-bottom: 1px solid transparent;
   }
- 
+
   .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
   .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
- 
+
   .copyright {
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(244, 239, 227, 0.3);
   }
- 
+
   @media (prefers-reduced-motion: reduce) {
     .coin { animation: none; }
     .btn, .article-card { transition: none; }
@@ -451,51 +402,31 @@
 </style>
 </head>
 <body>
- 
-  <nav class="topnav" aria-label="Navigation principale">
-    <a href="home.html">Accueil</a><span class="sep">·</span>
-    <a href="a-propos.html">À propos</a><span class="sep">·</span>
-    <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
-    <a href="outils.html">Outils</a><span class="sep">·</span>
-    <a href="application.html">Application</a><span class="sep">·</span>
-    <a href="contenus.html">Contenus</a><span class="sep">·</span>
-    <a href="actualites.html" class="active">Actualités</a>
-  </nav>
- 
+
   <header class="hero">
-    <div class="coin-field" aria-hidden="true">
-      <span class="coin" style="--top:5%; --left:10%; --size:100px; --blur:5px; --fdur:7s; --delay:0s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin" style="--top:10%; --left:80%; --size:78px; --blur:0px; --fdur:6.2s; --delay:0.6s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin edge-on" style="--top:2%; --left:47%; --size:64px; --blur:1px; --fdur:5.5s; --delay:1.1s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin" style="--top:86%; --left:15%; --size:64px; --blur:3px; --fdur:6.6s; --delay:0.3s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin" style="--top:79%; --left:70%; --size:92px; --blur:0px; --fdur:5.9s; --delay:1.6s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin edge-on" style="--top:90%; --left:90%; --size:56px; --blur:4px; --fdur:6.9s; --delay:0.9s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-      <span class="coin" style="--top:83%; --left:40%; --size:46px; --blur:6px; --fdur:6.3s; --delay:1.4s;">
-        <span class="coin-shape"><span class="coin-rim"></span><span class="coin-face"></span></span>
-      </span>
-    </div>
- 
+    <img class="hero-bg-img" src="astronaute.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="proto-espace-abonne.html">Mon compte</a>
+    </nav>
+
     <div class="hero-content">
       <div class="eyebrow"><span class="zone-dot"></span>Actualités économiques</div>
-      <h1 class="wordmark">ACTUALIT<span>É</span>S</h1>
+      <img class="hero-logo-img" src="actualites-logo.png" alt="Actualités">
       <p class="subtitle">Les marchés, l'épargne et l'économie, décryptés simplement</p>
     </div>
   </header>
- 
+
   <main>
- 
+
     <section class="wrap">
       <div class="rule"></div>
       <div class="intro">
@@ -504,10 +435,10 @@
         <p>Des analyses courtes sur les marchés, les taux, l'épargne et l'investissement — écrites pour être comprises sans formation en finance.</p>
       </div>
     </section>
- 
+
     <section class="article-section wrap">
       <div class="article-grid">
- 
+
         <a class="article-card featured" href="#">
           <div class="article-meta">
             <span class="article-tag">Économie</span>
@@ -518,7 +449,7 @@
           <p>Pourquoi les banques centrales relèvent ou baissent leurs taux, et ce que ça change concrètement pour votre épargne et vos crédits.</p>
           <span class="article-read">Lire l'article →</span>
         </a>
- 
+
         <a class="article-card" href="#">
           <div class="article-meta">
             <span class="article-tag">Bourse</span>
@@ -529,7 +460,7 @@
           <p>Frais, diversification, horizon de placement : les bases avant de passer un premier ordre.</p>
           <span class="article-read">Lire l'article →</span>
         </a>
- 
+
         <a class="article-card" href="#">
           <div class="article-meta">
             <span class="article-tag">Budget</span>
@@ -540,7 +471,7 @@
           <p>Comment elle se calcule, pourquoi elle touche chacun différemment, et comment ajuster son budget en conséquence.</p>
           <span class="article-read">Lire l'article →</span>
         </a>
- 
+
         <a class="article-card" href="#">
           <div class="article-meta">
             <span class="article-tag">Immobilier</span>
@@ -551,7 +482,7 @@
           <p>Les variables qui pèsent vraiment dans la décision — au-delà du taux d'intérêt affiché.</p>
           <span class="article-read">Lire l'article →</span>
         </a>
- 
+
         <a class="article-card" href="#">
           <div class="article-meta">
             <span class="article-tag">Cryptoactifs</span>
@@ -562,12 +493,12 @@
           <p>Ce que racontent vraiment les grandes variations de prix, et les questions à se poser avant d'y toucher.</p>
           <span class="article-read">Lire l'article →</span>
         </a>
- 
+
       </div>
- 
+
       <p class="placeholder-note">Ces articles sont des exemples de mise en page. Ils seront remplacés par les vraies publications de Ktiso au fil de leur sortie.</p>
     </section>
- 
+
     <section class="social-section wrap">
       <div class="social-card">
         <div class="section-label">Rester informé</div>
@@ -588,9 +519,9 @@
         </div>
       </div>
     </section>
- 
+
   </main>
- 
+
   <footer>
     <div class="footer-nav">
       <a href="home.html">Accueil</a>
@@ -611,7 +542,6 @@
     </div>
     <div class="copyright">KTISO — Éducation financière</div>
   </footer>
- 
+
 </body>
 </html>
- 
