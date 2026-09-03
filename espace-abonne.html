@@ -289,7 +289,7 @@
     gap: 4px;
   }
 
-  .tool-status.active { color: var(--lime); }
+  .tool-status.active { color: var(--gold); }
   .tool-status.locked { color: rgba(244,239,227,0.3); }
   .tool-status svg { width: 10px; height: 10px; }
 
@@ -494,6 +494,16 @@
     margin-top: 22px;
     padding-top: 18px;
     border-top: 1px solid var(--line);
+  }
+
+  .family-astro {
+    display: block;
+    width: 84px;
+    height: auto;
+    margin: 18px auto 4px;
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.45));
+    opacity: 0.92;
   }
 
   /* ============ FOOTER ============ */
@@ -786,6 +796,7 @@
 
         <button class="add-member-btn">+ Ajouter un membre</button>
 
+        <img class="family-astro" src="icon-astronaute.png" alt="">
         <p class="family-note">Bientôt disponible — l'espace famille arrive dans l'application.</p>
       </aside>
 
