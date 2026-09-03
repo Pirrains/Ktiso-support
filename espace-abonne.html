@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Espace abonné (prototype)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px 60px;
+  }
+
+  .frame { width: 100%; max-width: 480px; }
+
+  /* ============ PROTOTYPE BADGE ============ */
+
+  .proto-badge {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    background: var(--terracotta);
+    color: var(--cream);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    white-space: nowrap;
+  }
+
+  /* ============ SHARED ============ */
+
+  .wordmark-mini {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .wordmark-mini span { color: var(--gold); }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .rule {
+    width: 56px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 28px auto;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(244,239,227,0.6);
+    border: 1px solid var(--line);
+  }
+
+  .btn-ghost:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  input, select {
+    width: 100%;
+    background: rgba(244,239,227,0.04);
+    border: 1px solid var(--line);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 14px 16px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    outline: none;
+  }
+
+  input::placeholder { color: rgba(244,239,227,0.35); }
+  input:focus, select:focus { border-color: var(--gold); }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.5);
+    margin-bottom: 8px;
+  }
+
+  /* ============ AUTH VIEW ============ */
+
+  #view-auth { padding-top: 90px; }
+
+  .auth-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 36px 30px;
+  }
+
+  .auth-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 26px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 4px;
+  }
+
+  .auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.55);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .auth-tab.active {
+    background: var(--gold);
+    color: var(--green-deep);
+  }
+
+  .auth-note {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(244,239,227,0.4);
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .field-error {
+    font-size: 12px;
+    color: var(--terracotta);
+    margin: -8px 0 14px;
+    display: none;
+  }
+
+  /* ============ DASHBOARD VIEW ============ */
+
+  #view-dashboard, #view-portfolio { display: none; padding-top: 90px; }
+
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .dash-greeting .eyebrow { text-align: left; margin-bottom: 6px; }
+
+  .dash-greeting h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--cream);
+  }
+
+  .logout-link {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    background: none;
+    border-top: none; border-left: none; border-right: none;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .logout-link:hover { color: var(--terracotta); }
+
+  .stat-row {
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    flex: 1;
+    text-align: center;
+    padding: 18px 8px;
+    border-left: 1px solid var(--line);
+  }
+
+  .stat-cell:first-child { border-left: none; }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    margin-top: 4px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 16px;
+  }
+
+  .tool-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+
+  .tool-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 16px 18px;
+    background: rgba(201, 169, 97, 0.03);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    text-align: left;
+  }
+
+  .tool-row:hover {
+    border-color: rgba(201, 169, 97, 0.45);
+    background: rgba(201, 169, 97, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .tool-row.locked { cursor: default; opacity: 0.55; }
+  .tool-row.locked:hover { transform: none; border-color: var(--line); background: rgba(201, 169, 97, 0.03); }
+
+  .tool-icon-sm {
+    width: 36px; height: 36px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .tool-icon-sm svg { width: 16px; height: 16px; }
+
+  .tool-row-text { flex: 1; }
+
+  .tool-row-text h4 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .tool-row-text p {
+    font-size: 12px;
+    color: rgba(244,239,227,0.5);
+  }
+
+  .tool-row-arrow { color: var(--terracotta); font-size: 16px; }
+  .tag-soon {
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    border: 1px solid var(--line);
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  /* ============ PORTFOLIO VIEW ============ */
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.55);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 24px;
+    padding: 0;
+  }
+
+  .back-link:hover { color: var(--terracotta); }
+
+  .add-form {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+
+  .form-row { display: flex; gap: 10px; }
+  .form-row > div { flex: 1; }
+
+  .total-banner {
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 22px;
+    margin-bottom: 28px;
+    background: rgba(201, 169, 97, 0.03);
+  }
+
+  .total-banner .stat-value { font-size: 30px; }
+
+  .holding-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+  }
+
+  .holding-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .holding-info { flex: 1; }
+  .holding-info h4 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 15px; }
+  .holding-info span { font-size: 11px; color: rgba(244,239,227,0.45); text-transform: uppercase; letter-spacing: 0.04em; }
+  .holding-amount { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--gold); }
+  .holding-del {
+    background: none; border: none; color: rgba(244,239,227,0.35);
+    cursor: pointer; font-size: 16px; padding: 4px 6px; font-family: 'DM Mono', monospace;
+  }
+  .holding-del:hover { color: var(--terracotta); }
+
+  .empty-state {
+    text-align: center;
+    padding: 30px 20px;
+    color: rgba(244,239,227,0.4);
+    font-size: 13px;
+    border: 1px dashed var(--line);
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="frame">
+
+    <!-- ============ AUTH VIEW ============ -->
+    <div id="view-auth">
+      <div class="wordmark-mini">KTIS<span>O</span></div>
+      <div class="eyebrow">Espace abonné</div>
+
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</div>
+          <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Créer un compte</div>
+        </div>
+
+        <div id="signup-name-field" style="display:none;">
+          <label>Prénom</label>
+          <input type="text" id="input-name" placeholder="Votre prénom">
+        </div>
+
+        <label>Email</label>
+        <input type="email" id="input-email" placeholder="vous@exemple.com">
+
+        <label>Mot de passe</label>
+        <input type="password" id="input-password" placeholder="••••••••">
+        <div class="field-error" id="auth-error">Merci de remplir tous les champs.</div>
+        <div class="field-error" id="auth-message" style="color: var(--lime);"></div>
+
+        <button class="btn btn-primary" id="auth-submit" onclick="handleAuth()">Se connecter</button>
+
+        <p class="auth-note">Vos données sont personnelles et protégées — vous seul·e pouvez les consulter.</p>
+      </div>
+    </div>
+
+    <!-- ============ DASHBOARD VIEW ============ -->
+    <div id="view-dashboard">
+      <div class="dash-header">
+        <div class="dash-greeting">
+          <div class="eyebrow" style="margin-bottom:6px;">Espace abonné</div>
+          <h1 id="greeting-text">Bonjour 👋</h1>
+        </div>
+        <button class="logout-link" onclick="logout()">Déconnexion</button>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-value" id="stat-count">0</div>
+          <div class="stat-label">Positions</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value" id="stat-total">0 €</div>
+          <div class="stat-label">Investi</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">1</div>
+          <div class="stat-label">Outil actif</div>
+        </div>
+      </div>
+
+      <div class="section-label">Vos outils</div>
+      <div class="tool-list">
+        <div class="tool-row" onclick="showView('portfolio')">
+          <div class="tool-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+          </div>
+          <div class="tool-row-text">
+            <h4>Analyseur de portefeuille</h4>
+            <p>Renseignez et suivez vos investissements</p>
+          </div>
+          <div class="tool-row-arrow">→</div>
+        </div>
+
+        <div class="tool-row locked">
+          <div class="tool-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          </div>
+          <div class="tool-row-text">
+            <h4>Simulateur d'investissement</h4>
+            <p>Projetez l'évolution de votre épargne</p>
+          </div>
+          <span class="tag-soon">Bientôt</span>
+        </div>
+
+        <div class="tool-row locked">
+          <div class="tool-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <div class="tool-row-text">
+            <h4>Screener actions & ETF</h4>
+            <p>Filtrez selon vos propres critères</p>
+          </div>
+          <span class="tag-soon">Bientôt</span>
+        </div>
+
+        <div class="tool-row locked">
+          <div class="tool-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          </div>
+          <div class="tool-row-text">
+            <h4>Alertes & watchlist</h4>
+            <p>Un seuil, une notification</p>
+          </div>
+          <span class="tag-soon">Bientôt</span>
+        </div>
+
+        <div class="tool-row locked">
+          <div class="tool-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <div class="tool-row-text">
+            <h4>Planificateur budgétaire</h4>
+            <p>Objectifs d'épargne, mois après mois</p>
+          </div>
+          <span class="tag-soon">Bientôt</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PORTFOLIO VIEW ============ -->
+    <div id="view-portfolio">
+      <button class="back-link" onclick="showView('dashboard')">← Retour au tableau de bord</button>
+
+      <div class="eyebrow" style="text-align:left; margin-bottom:8px;">Analyseur de portefeuille</div>
+      <h1 style="font-family:'Instrument Serif', serif; font-weight:400; font-size:22px; margin-bottom:24px;">Vos investissements, renseignés par vous</h1>
+
+      <div class="total-banner">
+        <div class="stat-value" id="pf-total">0 €</div>
+        <div class="stat-label">Total investi (déclaratif)</div>
+      </div>
+
+      <div class="add-form">
+        <label>Nom de l'actif</label>
+        <input type="text" id="pf-name" placeholder="Ex: ETF World, Appartement Liège...">
+        <div class="form-row">
+          <div>
+            <label>Catégorie</label>
+            <select id="pf-category">
+              <option value="Actions">Actions</option>
+              <option value="ETF">ETF</option>
+              <option value="Obligations">Obligations</option>
+              <option value="Immobilier">Immobilier</option>
+              <option value="Crypto">Cryptoactifs</option>
+              <option value="Liquidités">Liquidités</option>
+            </select>
+          </div>
+          <div>
+            <label>Montant investi (€)</label>
+            <input type="number" id="pf-amount" placeholder="1000" min="0">
+          </div>
+        </div>
+        <div class="field-error" id="pf-error">Merci de renseigner un nom et un montant.</div>
+        <button class="btn btn-primary" onclick="addHolding()">+ Ajouter à mon portefeuille</button>
+      </div>
+
+      <div class="section-label">Vos positions</div>
+      <div id="holdings-list">
+        <div class="empty-state" id="holdings-empty">Aucune position renseignée pour l'instant. Ajoutez votre premier investissement ci-dessus.</div>
+      </div>
+    </div>
+
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const SUPABASE_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlleXRoeW5xYnpnanBkbXV3dnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MzExMjksImV4cCI6MjEwNDAwNzEyOX0.KGN8xj-PyuWbe8ytF9jBS6IXgUlyIVLGhNXIX4AsvWQ';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const categoryColors = {
+    'Actions': '#C9A961', 'ETF': '#A8C66C', 'Obligations': '#5B8FA8',
+    'Immobilier': '#C1654A', 'Crypto': '#E8B347', 'Liquidités': 'rgba(244,239,227,0.4)'
+  };
+
+  let currentTab = 'login';
+  let userName = '';
+  let holdings = [];
+
+  function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+    document.getElementById('signup-name-field').style.display = tab === 'signup' ? 'block' : 'none';
+    document.getElementById('auth-submit').textContent = tab === 'signup' ? 'Créer mon compte' : 'Se connecter';
+    hideMessages();
+  }
+
+  function hideMessages() {
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-message').style.display = 'none';
+  }
+
+  function showAuthError(msg) {
+    const el = document.getElementById('auth-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function showAuthMessage(msg) {
+    const el = document.getElementById('auth-message');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  async function handleAuth() {
+    const email = document.getElementById('input-email').value.trim();
+    const password = document.getElementById('input-password').value.trim();
+    const name = document.getElementById('input-name').value.trim();
+    const submitBtn = document.getElementById('auth-submit');
+
+    if (!email || !password || (currentTab === 'signup' && !name)) {
+      showAuthError('Merci de remplir tous les champs.');
+      return;
+    }
+    hideMessages();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Un instant…';
+
+    try {
+      if (currentTab === 'signup') {
+        const { data, error } = await sb.auth.signUp({
+          email, password,
+          options: { data: { full_name: name } }
+        });
+        if (error) throw error;
+
+        if (data.user && !data.session) {
+          showAuthMessage('Compte créé — vérifiez votre email pour confirmer votre inscription avant de vous connecter.');
+          switchTab('login');
+          return;
+        }
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+
+      await loadUserAndHoldings();
+      showView('dashboard');
+    } catch (err) {
+      showAuthError(translateAuthError(err.message));
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = currentTab === 'signup' ? 'Créer mon compte' : 'Se connecter';
+    }
+  }
+
+  function translateAuthError(msg) {
+    if (msg.includes('Invalid login credentials')) return 'Email ou mot de passe incorrect.';
+    if (msg.includes('already registered')) return 'Un compte existe déjà avec cet email.';
+    if (msg.includes('Password should be at least')) return 'Le mot de passe doit faire au moins 6 caractères.';
+    if (msg.includes('Email not confirmed')) return 'Confirmez votre email avant de vous connecter (vérifiez votre boîte de réception).';
+    return msg;
+  }
+
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  async function logout() {
+    await sb.auth.signOut();
+    document.getElementById('input-email').value = '';
+    document.getElementById('input-password').value = '';
+    document.getElementById('input-name').value = '';
+    holdings = [];
+    showView('auth');
+  }
+
+  function showView(name) {
+    document.getElementById('view-auth').style.display = name === 'auth' ? 'block' : 'none';
+    document.getElementById('view-dashboard').style.display = name === 'dashboard' ? 'block' : 'none';
+    document.getElementById('view-portfolio').style.display = name === 'portfolio' ? 'block' : 'none';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  async function loadUserAndHoldings() {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    userName = user.user_metadata?.full_name || user.email.split('@')[0] || 'Investisseur';
+    document.getElementById('greeting-text').textContent = `Bonjour, ${capitalize(userName)} 👋`;
+
+    const { data, error } = await sb
+      .from('holdings')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    holdings = error ? [] : data;
+    renderHoldings();
+  }
+
+  async function addHolding() {
+    const name = document.getElementById('pf-name').value.trim();
+    const category = document.getElementById('pf-category').value;
+    const amount = parseFloat(document.getElementById('pf-amount').value);
+    const errorEl = document.getElementById('pf-error');
+
+    if (!name || !amount || amount <= 0) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb.from('holdings').insert({
+      user_id: user.id, name, category, amount
+    });
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('pf-name').value = '';
+    document.getElementById('pf-amount').value = '';
+    await loadUserAndHoldings();
+  }
+
+  async function deleteHolding(id) {
+    await sb.from('holdings').delete().eq('id', id);
+    await loadUserAndHoldings();
+  }
+
+  function renderHoldings() {
+    const list = document.getElementById('holdings-list');
+    const total = holdings.reduce((sum, h) => sum + Number(h.amount), 0);
+
+    document.getElementById('stat-count').textContent = holdings.length;
+    document.getElementById('stat-total').textContent = formatEuro(total);
+    document.getElementById('pf-total').textContent = formatEuro(total);
+
+    if (holdings.length === 0) {
+      list.innerHTML = '<div class="empty-state" id="holdings-empty">Aucune position renseignée pour l\'instant. Ajoutez votre premier investissement ci-dessus.</div>';
+      return;
+    }
+
+    list.innerHTML = holdings.map(h => `
+      <div class="holding-row">
+        <span class="holding-dot" style="background:${categoryColors[h.category] || '#C9A961'};"></span>
+        <div class="holding-info">
+          <h4>${escapeHtml(h.name)}</h4>
+          <span>${escapeHtml(h.category)}</span>
+        </div>
+        <div class="holding-amount">${formatEuro(Number(h.amount))}</div>
+        <button class="holding-del" onclick="deleteHolding('${h.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function formatEuro(n) {
+    return new Intl.NumberFormat('fr-BE', { maximumFractionDigits: 0 }).format(n) + ' €';
+  }
+
+  function escapeHtml(s) {
+    const div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  // On page load: if already logged in (existing session), skip straight to the dashboard.
+  (async function init() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      await loadUserAndHoldings();
+      showView('dashboard');
+    } else {
+      showView('auth');
+    }
+  })();
+</script>
+
+</body>
+</html>
