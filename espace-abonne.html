@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ktiso — Espace abonné (prototype)</title>
+<title>Ktiso — Mon compte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -34,60 +34,39 @@
       radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px 60px;
+    padding-bottom: 60px;
   }
 
-  .frame { width: 100%; max-width: 480px; }
+  a { color: inherit; }
 
-  /* ============ PROTOTYPE BADGE ============ */
+  /* ============ NAV ============ */
 
-  .proto-badge {
-    position: fixed;
-    top: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    background: var(--terracotta);
-    color: var(--cream);
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 8px;
     font-size: 10.5px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 7px 16px;
-    border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
   }
 
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+
   /* ============ SHARED ============ */
-
-  .wordmark-mini {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.04em;
-    text-align: center;
-    margin-bottom: 6px;
-  }
-
-  .wordmark-mini span { color: var(--gold); }
-
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0.85;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .rule {
-    width: 56px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 28px auto;
-  }
 
   .btn {
     display: inline-flex;
@@ -117,14 +96,6 @@
   .btn-primary:hover { background: #DCC07E; transform: translateY(-1px); }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  .btn-ghost {
-    background: transparent;
-    color: rgba(244,239,227,0.6);
-    border: 1px solid var(--line);
-  }
-
-  .btn-ghost:hover { border-color: var(--terracotta); color: var(--terracotta); }
-
   input, select {
     width: 100%;
     background: rgba(244,239,227,0.04);
@@ -150,9 +121,36 @@
     margin-bottom: 8px;
   }
 
+  .field-error {
+    font-size: 12px;
+    color: var(--terracotta);
+    margin: -8px 0 14px;
+    display: none;
+  }
+
   /* ============ AUTH VIEW ============ */
 
-  #view-auth { padding-top: 90px; }
+  #view-auth { max-width: 420px; margin: 0 auto; padding: 60px 20px 0; }
+
+  .wordmark-mini {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .wordmark-mini span { color: var(--gold); }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
   .auth-card {
     border: 1px solid var(--line);
@@ -183,10 +181,7 @@
     transition: background 0.2s ease, color 0.2s ease;
   }
 
-  .auth-tab.active {
-    background: var(--gold);
-    color: var(--green-deep);
-  }
+  .auth-tab.active { background: var(--gold); color: var(--green-deep); }
 
   .auth-note {
     font-size: 12px;
@@ -196,30 +191,21 @@
     margin-top: 20px;
   }
 
-  .field-error {
-    font-size: 12px;
-    color: var(--terracotta);
-    margin: -8px 0 14px;
-    display: none;
-  }
+  /* ============ DASHBOARD ============ */
 
-  /* ============ DASHBOARD VIEW ============ */
-
-  #view-dashboard, #view-portfolio { display: none; padding-top: 90px; }
+  #view-dashboard { display: none; max-width: 1180px; margin: 0 auto; padding: 40px 24px 0; }
 
   .dash-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 36px;
   }
 
-  .dash-greeting .eyebrow { text-align: left; margin-bottom: 6px; }
-
-  .dash-greeting h1 {
+  .dash-header h1 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 26px;
     color: var(--cream);
   }
 
@@ -229,351 +215,597 @@
     text-transform: uppercase;
     color: rgba(244,239,227,0.45);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
     cursor: pointer;
     background: none;
-    border-top: none; border-left: none; border-right: none;
+    border: none;
     font-family: 'DM Mono', monospace;
   }
 
   .logout-link:hover { color: var(--terracotta); }
 
-  .stat-row {
-    display: flex;
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .dash-col {
     border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
     border-radius: 2px;
-    margin-bottom: 32px;
-    overflow: hidden;
+    padding: 24px 20px;
   }
 
-  .stat-cell {
-    flex: 1;
-    text-align: center;
-    padding: 18px 8px;
-    border-left: 1px solid var(--line);
-  }
-
-  .stat-cell:first-child { border-left: none; }
-
-  .stat-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--gold);
-    letter-spacing: 0.02em;
-  }
-
-  .stat-label {
-    font-size: 10px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgba(244,239,227,0.45);
-    margin-top: 4px;
-  }
-
-  .section-label {
-    font-size: 12px;
+  .col-label {
+    font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--lime);
-    margin-bottom: 16px;
+    color: var(--gold);
+    margin-bottom: 20px;
   }
 
-  .tool-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+  /* --- Outils column --- */
 
-  .tool-row {
+  .tool-item {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 16px 18px;
-    background: rgba(201, 169, 97, 0.03);
-    cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-    text-align: left;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
   }
 
-  .tool-row:hover {
-    border-color: rgba(201, 169, 97, 0.45);
-    background: rgba(201, 169, 97, 0.06);
-    transform: translateY(-1px);
-  }
+  .tool-item:last-child { border-bottom: none; }
 
-  .tool-row.locked { cursor: default; opacity: 0.55; }
-  .tool-row.locked:hover { transform: none; border-color: var(--line); background: rgba(201, 169, 97, 0.03); }
-
-  .tool-icon-sm {
-    width: 36px; height: 36px;
-    border: 1px solid var(--line);
+  .tool-icon {
+    width: 32px; height: 32px;
     border-radius: 50%;
+    border: 1px solid var(--line);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     color: var(--gold);
   }
 
-  .tool-icon-sm svg { width: 16px; height: 16px; }
+  .tool-item.locked .tool-icon { color: rgba(244,239,227,0.3); }
+  .tool-icon svg { width: 15px; height: 15px; }
 
-  .tool-row-text { flex: 1; }
-
-  .tool-row-text h4 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: 16px;
+  .tool-item h4 {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.3;
     color: var(--cream);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
 
-  .tool-row-text p {
-    font-size: 12px;
-    color: rgba(244,239,227,0.5);
-  }
+  .tool-item.locked h4 { color: rgba(244,239,227,0.45); }
 
-  .tool-row-arrow { color: var(--terracotta); font-size: 16px; }
-  .tag-soon {
-    font-size: 9.5px;
+  .tool-status {
+    font-size: 10px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(244,239,227,0.4);
-    border: 1px solid var(--line);
-    padding: 3px 8px;
-    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
-  /* ============ PORTFOLIO VIEW ============ */
+  .tool-status.active { color: var(--lime); }
+  .tool-status.locked { color: rgba(244,239,227,0.3); }
+  .tool-status svg { width: 10px; height: 10px; }
 
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+  /* --- Main (patrimoine) column --- */
+
+  .dash-main h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .demo-note {
     font-size: 12px;
-    letter-spacing: 0.04em;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 26px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .stat-box {
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 18px 16px;
+  }
+
+  .stat-box .k {
+    font-size: 10px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(244,239,227,0.55);
-    text-decoration: none;
+    color: rgba(244,239,227,0.45);
+    margin-bottom: 10px;
+  }
+
+  .stat-box .v {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .stat-box .d { font-size: 11.5px; color: var(--lime); }
+  .stat-box .d.down { color: var(--terracotta); }
+
+  .chart-wrap { margin-bottom: 32px; }
+  .chart-wrap svg { width: 100%; height: auto; display: block; }
+  .chart-axis {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: rgba(244,239,227,0.35);
+    margin-top: 6px;
+  }
+
+  .repart-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .repart-row { margin-bottom: 18px; }
+
+  .repart-row .top-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+
+  .repart-bar {
+    height: 6px;
+    background: rgba(244,239,227,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .repart-bar-fill { height: 100%; border-radius: 3px; }
+
+  /* --- Positions (real data) --- */
+
+  .positions-block {
+    margin-top: 36px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+
+  .positions-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .positions-head .repart-title { margin-bottom: 0; }
+
+  .add-position-btn {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
     background: none;
-    border: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 8px 14px;
     cursor: pointer;
     font-family: 'DM Mono', monospace;
-    margin-bottom: 24px;
-    padding: 0;
   }
 
-  .back-link:hover { color: var(--terracotta); }
+  .add-position-btn:hover { border-color: var(--gold); }
 
   .add-form {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
     border-radius: 2px;
-    padding: 24px;
-    margin-bottom: 28px;
+    padding: 18px;
+    margin-bottom: 16px;
+    display: none;
   }
 
-  .form-row { display: flex; gap: 10px; }
-  .form-row > div { flex: 1; }
-
-  .total-banner {
-    text-align: center;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 22px;
-    margin-bottom: 28px;
-    background: rgba(201, 169, 97, 0.03);
-  }
-
-  .total-banner .stat-value { font-size: 30px; }
+  .add-form.open { display: block; }
+  .add-form .form-row { display: flex; gap: 10px; }
+  .add-form .form-row > div { flex: 1; }
 
   .holding-row {
     display: flex;
     align-items: center;
-    gap: 14px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 16px 18px;
-    margin-bottom: 10px;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
   }
 
-  .holding-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .holding-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .holding-info { flex: 1; }
-  .holding-info h4 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 15px; }
-  .holding-info span { font-size: 11px; color: rgba(244,239,227,0.45); text-transform: uppercase; letter-spacing: 0.04em; }
-  .holding-amount { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--gold); }
-  .holding-del {
-    background: none; border: none; color: rgba(244,239,227,0.35);
-    cursor: pointer; font-size: 16px; padding: 4px 6px; font-family: 'DM Mono', monospace;
-  }
+  .holding-info span { font-size: 10.5px; color: rgba(244,239,227,0.45); text-transform: uppercase; }
+  .holding-amount { font-family: 'Instrument Serif', serif; font-size: 15px; color: var(--gold); }
+  .holding-del { background: none; border: none; color: rgba(244,239,227,0.35); cursor: pointer; font-family: 'DM Mono', monospace; }
   .holding-del:hover { color: var(--terracotta); }
 
-  .empty-state {
+  .empty-positions {
     text-align: center;
-    padding: 30px 20px;
+    padding: 20px;
+    font-size: 12.5px;
     color: rgba(244,239,227,0.4);
-    font-size: 13px;
     border: 1px dashed var(--line);
     border-radius: 2px;
+  }
+
+  /* --- Famille column --- */
+
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .member-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .member-row h4 { font-size: 13.5px; color: var(--cream); margin-bottom: 2px; }
+  .member-row span { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(244,239,227,0.4); }
+
+  .add-member-btn {
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px dashed var(--line);
+    border-radius: 2px;
+    background: none;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .add-member-btn:hover { border-color: var(--gold); }
+
+  .family-note {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: rgba(244,239,227,0.4);
+    text-align: center;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ============ FOOTER ============ */
+
+  footer { text-align: center; padding: 70px 24px 0; }
+
+  .footer-nav, .footer-nav-2 {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a, .footer-nav-2 a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover, .footer-nav-2 a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep, .footer-nav-2 .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  .legal-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.25);
+    max-width: 480px;
+    margin: 16px auto 0;
+  }
+
+  .footer-nav-2 { margin-top: 20px; }
+  .footer-nav-2 a { color: rgba(244, 239, 227, 0.35); font-size: 10.5px; }
+
+  /* ============ RESPONSIVE ============ */
+
+  @media (max-width: 900px) {
+    .dash-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-  <div class="frame">
+  <nav class="topnav" aria-label="Navigation principale">
+    <a href="home.html">Accueil</a><span class="sep">·</span>
+    <a href="a-propos.html">À propos</a><span class="sep">·</span>
+    <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+    <a href="outils.html">Outils</a><span class="sep">·</span>
+    <a href="application.html">Application</a><span class="sep">·</span>
+    <a href="contenus.html">Contenus</a><span class="sep">·</span>
+    <a href="actualites.html">Actualités</a><span class="sep">·</span>
+    <a href="espace-abonne.html" class="active">Mon compte</a>
+  </nav>
 
-    <!-- ============ AUTH VIEW ============ -->
-    <div id="view-auth">
-      <div class="wordmark-mini">KTIS<span>O</span></div>
-      <div class="eyebrow">Espace abonné</div>
+  <!-- ============ AUTH VIEW ============ -->
+  <div id="view-auth">
+    <div class="wordmark-mini">KTIS<span>O</span></div>
+    <div class="eyebrow">Espace abonné</div>
 
-      <div class="auth-card">
-        <div class="auth-tabs">
-          <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</div>
-          <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Créer un compte</div>
-        </div>
-
-        <div id="signup-name-field" style="display:none;">
-          <label>Prénom</label>
-          <input type="text" id="input-name" placeholder="Votre prénom">
-        </div>
-
-        <label>Email</label>
-        <input type="email" id="input-email" placeholder="vous@exemple.com">
-
-        <label>Mot de passe</label>
-        <input type="password" id="input-password" placeholder="••••••••">
-        <div class="field-error" id="auth-error">Merci de remplir tous les champs.</div>
-        <div class="field-error" id="auth-message" style="color: var(--lime);"></div>
-
-        <button class="btn btn-primary" id="auth-submit" onclick="handleAuth()">Se connecter</button>
-
-        <p class="auth-note">Vos données sont personnelles et protégées — vous seul·e pouvez les consulter.</p>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</div>
+        <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Créer un compte</div>
       </div>
+
+      <div id="signup-name-field" style="display:none;">
+        <label>Prénom</label>
+        <input type="text" id="input-name" placeholder="Votre prénom">
+      </div>
+
+      <label>Email</label>
+      <input type="email" id="input-email" placeholder="vous@exemple.com">
+
+      <label>Mot de passe</label>
+      <input type="password" id="input-password" placeholder="••••••••">
+      <div class="field-error" id="auth-error">Merci de remplir tous les champs.</div>
+      <div class="field-error" id="auth-message" style="color: var(--lime);"></div>
+
+      <button class="btn btn-primary" id="auth-submit" onclick="handleAuth()">Se connecter</button>
+
+      <p class="auth-note">Vos données sont personnelles et protégées — vous seul·e pouvez les consulter.</p>
     </div>
-
-    <!-- ============ DASHBOARD VIEW ============ -->
-    <div id="view-dashboard">
-      <div class="dash-header">
-        <div class="dash-greeting">
-          <div class="eyebrow" style="margin-bottom:6px;">Espace abonné</div>
-          <h1 id="greeting-text">Bonjour 👋</h1>
-        </div>
-        <button class="logout-link" onclick="logout()">Déconnexion</button>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-cell">
-          <div class="stat-value" id="stat-count">0</div>
-          <div class="stat-label">Positions</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value" id="stat-total">0 €</div>
-          <div class="stat-label">Investi</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">1</div>
-          <div class="stat-label">Outil actif</div>
-        </div>
-      </div>
-
-      <div class="section-label">Vos outils</div>
-      <div class="tool-list">
-        <div class="tool-row" onclick="showView('portfolio')">
-          <div class="tool-icon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
-          </div>
-          <div class="tool-row-text">
-            <h4>Analyseur de portefeuille</h4>
-            <p>Renseignez et suivez vos investissements</p>
-          </div>
-          <div class="tool-row-arrow">→</div>
-        </div>
-
-        <div class="tool-row locked">
-          <div class="tool-icon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-          </div>
-          <div class="tool-row-text">
-            <h4>Simulateur d'investissement</h4>
-            <p>Projetez l'évolution de votre épargne</p>
-          </div>
-          <span class="tag-soon">Bientôt</span>
-        </div>
-
-        <div class="tool-row locked">
-          <div class="tool-icon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </div>
-          <div class="tool-row-text">
-            <h4>Screener actions & ETF</h4>
-            <p>Filtrez selon vos propres critères</p>
-          </div>
-          <span class="tag-soon">Bientôt</span>
-        </div>
-
-        <div class="tool-row locked">
-          <div class="tool-icon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-          </div>
-          <div class="tool-row-text">
-            <h4>Alertes & watchlist</h4>
-            <p>Un seuil, une notification</p>
-          </div>
-          <span class="tag-soon">Bientôt</span>
-        </div>
-
-        <div class="tool-row locked">
-          <div class="tool-icon-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-          </div>
-          <div class="tool-row-text">
-            <h4>Planificateur budgétaire</h4>
-            <p>Objectifs d'épargne, mois après mois</p>
-          </div>
-          <span class="tag-soon">Bientôt</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ PORTFOLIO VIEW ============ -->
-    <div id="view-portfolio">
-      <button class="back-link" onclick="showView('dashboard')">← Retour au tableau de bord</button>
-
-      <div class="eyebrow" style="text-align:left; margin-bottom:8px;">Analyseur de portefeuille</div>
-      <h1 style="font-family:'Instrument Serif', serif; font-weight:400; font-size:22px; margin-bottom:24px;">Vos investissements, renseignés par vous</h1>
-
-      <div class="total-banner">
-        <div class="stat-value" id="pf-total">0 €</div>
-        <div class="stat-label">Total investi (déclaratif)</div>
-      </div>
-
-      <div class="add-form">
-        <label>Nom de l'actif</label>
-        <input type="text" id="pf-name" placeholder="Ex: ETF World, Appartement Liège...">
-        <div class="form-row">
-          <div>
-            <label>Catégorie</label>
-            <select id="pf-category">
-              <option value="Actions">Actions</option>
-              <option value="ETF">ETF</option>
-              <option value="Obligations">Obligations</option>
-              <option value="Immobilier">Immobilier</option>
-              <option value="Crypto">Cryptoactifs</option>
-              <option value="Liquidités">Liquidités</option>
-            </select>
-          </div>
-          <div>
-            <label>Montant investi (€)</label>
-            <input type="number" id="pf-amount" placeholder="1000" min="0">
-          </div>
-        </div>
-        <div class="field-error" id="pf-error">Merci de renseigner un nom et un montant.</div>
-        <button class="btn btn-primary" onclick="addHolding()">+ Ajouter à mon portefeuille</button>
-      </div>
-
-      <div class="section-label">Vos positions</div>
-      <div id="holdings-list">
-        <div class="empty-state" id="holdings-empty">Aucune position renseignée pour l'instant. Ajoutez votre premier investissement ci-dessus.</div>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ============ DASHBOARD VIEW ============ -->
+  <div id="view-dashboard">
+    <div class="dash-header">
+      <div>
+        <div class="eyebrow" style="text-align:left; margin-bottom:6px;">Espace abonné</div>
+        <h1 id="greeting-text">Bonjour 👋</h1>
+      </div>
+      <button class="logout-link" onclick="logout()">Déconnexion</button>
+    </div>
+
+    <div class="dash-grid">
+
+      <!-- OUTILS -->
+      <aside class="dash-col">
+        <div class="col-label">Outils</div>
+
+        <div class="tool-item">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg></div>
+          <div>
+            <h4>Suivi du patrimoine</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg></div>
+          <div>
+            <h4>Répartition d'actifs</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="7" x2="16" y2="7"></line><line x1="8" y1="12" x2="8.01" y2="12"></line><line x1="12" y1="12" x2="12.01" y2="12"></line><line x1="16" y1="12" x2="16.01" y2="12"></line><line x1="8" y1="16" x2="8.01" y2="16"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+          <div>
+            <h4>Calculateur d'intérêts composés</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
+          <div>
+            <h4>Simulateur d'épargne</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+          <div>
+            <h4>Analyse de portefeuille</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+          <div>
+            <h4>Simulateur immobilier</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+          <div>
+            <h4>Optimisation fiscale</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div>
+            <h4>Espace famille avancé</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PATRIMOINE (main) -->
+      <main class="dash-col dash-main">
+        <h2>Évolution du patrimoine</h2>
+        <p class="demo-note">Données de démonstration · dernière mise à jour aujourd'hui</p>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="k">Patrimoine total</div>
+            <div class="v">18 310 €</div>
+            <div class="d">+ 47,7 % sur l'année</div>
+          </div>
+          <div class="stat-box">
+            <div class="k">Ce mois-ci</div>
+            <div class="v">+ 860 €</div>
+            <div class="d">+ 4,9 %</div>
+          </div>
+          <div class="stat-box">
+            <div class="k">Épargne mensuelle</div>
+            <div class="v">450 €</div>
+            <div class="d down">- 50 € vs objectif</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <svg viewBox="0 0 880 240" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#C9A961" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#C9A961" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M 0.0,90.0 Q 0.0,90.0 55.0,87.0 Q 110.0,84.0 165.0,85.8 Q 220.0,87.6 275.0,81.0 Q 330.0,74.4 385.0,67.2 Q 440.0,60.0 495.0,61.8 Q 550.0,63.6 605.0,55.8 Q 660.0,48.0 715.0,40.2 Q 770.0,32.4 825.0,26.35 L 880.0,20.3 L 880.0,240 L 0.0,240 Z" fill="url(#chartFill)"></path>
+            <path d="M 0.0,90.0 Q 0.0,90.0 55.0,87.0 Q 110.0,84.0 165.0,85.8 Q 220.0,87.6 275.0,81.0 Q 330.0,74.4 385.0,67.2 Q 440.0,60.0 495.0,61.8 Q 550.0,63.6 605.0,55.8 Q 660.0,48.0 715.0,40.2 Q 770.0,32.4 825.0,26.35 L 880.0,20.3" fill="none" stroke="#C9A961" stroke-width="2.5"></path>
+          </svg>
+          <div class="chart-axis">
+            <span>Jan</span><span>Fév</span><span>Mar</span><span>Avr</span><span>Mai</span><span>Juin</span><span>Juil</span><span>Août</span><span>Sep</span>
+          </div>
+        </div>
+
+        <div class="repart-title">Répartition</div>
+
+        <div class="repart-row">
+          <div class="top-line"><span>Actions &amp; ETF</span><span>46 %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:46%; background:var(--lime);"></div></div>
+        </div>
+        <div class="repart-row">
+          <div class="top-line"><span>Épargne</span><span>24 %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:24%; background:var(--gold);"></div></div>
+        </div>
+        <div class="repart-row">
+          <div class="top-line"><span>Immobilier</span><span>18 %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:18%; background:var(--blue);"></div></div>
+        </div>
+        <div class="repart-row">
+          <div class="top-line"><span>Crypto</span><span>12 %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:12%; background:var(--terracotta);"></div></div>
+        </div>
+
+        <!-- REAL data block, backed by Supabase -->
+        <div class="positions-block">
+          <div class="positions-head">
+            <div class="repart-title">Vos positions renseignées</div>
+            <button class="add-position-btn" onclick="toggleAddForm()">+ Ajouter</button>
+          </div>
+
+          <div class="add-form" id="add-form">
+            <label>Nom de l'actif</label>
+            <input type="text" id="pf-name" placeholder="Ex: ETF World, Appartement Liège...">
+            <div class="form-row">
+              <div>
+                <label>Catégorie</label>
+                <select id="pf-category">
+                  <option value="Actions">Actions</option>
+                  <option value="ETF">ETF</option>
+                  <option value="Obligations">Obligations</option>
+                  <option value="Immobilier">Immobilier</option>
+                  <option value="Crypto">Cryptoactifs</option>
+                  <option value="Liquidités">Liquidités</option>
+                </select>
+              </div>
+              <div>
+                <label>Montant (€)</label>
+                <input type="number" id="pf-amount" placeholder="1000" min="0">
+              </div>
+            </div>
+            <div class="field-error" id="pf-error">Merci de renseigner un nom et un montant.</div>
+            <button class="btn btn-primary" onclick="addHolding()">Enregistrer cette position</button>
+          </div>
+
+          <div id="holdings-list">
+            <div class="empty-positions" id="holdings-empty">Aucune position renseignée pour l'instant.</div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FAMILLE -->
+      <aside class="dash-col">
+        <div class="col-label">Famille</div>
+
+        <div class="member-row">
+          <div class="member-avatar" id="member-avatar-you">V</div>
+          <div>
+            <h4 id="member-name-you">Vous</h4>
+            <span>Titulaire</span>
+          </div>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar">C</div>
+          <div><h4>Camille</h4><span>Conjoint·e</span></div>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar">L</div>
+          <div><h4>Léo</h4><span>Enfant</span></div>
+        </div>
+        <div class="member-row">
+          <div class="member-avatar">E</div>
+          <div><h4>Emma</h4><span>Enfant</span></div>
+        </div>
+
+        <button class="add-member-btn">+ Ajouter un membre</button>
+
+        <p class="family-note">Bientôt disponible — l'espace famille arrive dans l'application.</p>
+      </aside>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a><span class="sep">·</span>
+      <a href="index.html">Support</a><span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -587,7 +819,6 @@
   };
 
   let currentTab = 'login';
-  let userName = '';
   let holdings = [];
 
   function switchTab(tab) {
@@ -680,15 +911,20 @@
   function showView(name) {
     document.getElementById('view-auth').style.display = name === 'auth' ? 'block' : 'none';
     document.getElementById('view-dashboard').style.display = name === 'dashboard' ? 'block' : 'none';
-    document.getElementById('view-portfolio').style.display = name === 'portfolio' ? 'block' : 'none';
     window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function toggleAddForm() {
+    document.getElementById('add-form').classList.toggle('open');
   }
 
   async function loadUserAndHoldings() {
     const { data: { user } } = await sb.auth.getUser();
     if (!user) return;
-    userName = user.user_metadata?.full_name || user.email.split('@')[0] || 'Investisseur';
+    const userName = user.user_metadata?.full_name || user.email.split('@')[0] || 'Investisseur';
     document.getElementById('greeting-text').textContent = `Bonjour, ${capitalize(userName)} 👋`;
+    document.getElementById('member-name-you').textContent = capitalize(userName);
+    document.getElementById('member-avatar-you').textContent = userName.charAt(0).toUpperCase();
 
     const { data, error } = await sb
       .from('holdings')
@@ -724,6 +960,7 @@
 
     document.getElementById('pf-name').value = '';
     document.getElementById('pf-amount').value = '';
+    document.getElementById('add-form').classList.remove('open');
     await loadUserAndHoldings();
   }
 
@@ -734,14 +971,9 @@
 
   function renderHoldings() {
     const list = document.getElementById('holdings-list');
-    const total = holdings.reduce((sum, h) => sum + Number(h.amount), 0);
-
-    document.getElementById('stat-count').textContent = holdings.length;
-    document.getElementById('stat-total').textContent = formatEuro(total);
-    document.getElementById('pf-total').textContent = formatEuro(total);
 
     if (holdings.length === 0) {
-      list.innerHTML = '<div class="empty-state" id="holdings-empty">Aucune position renseignée pour l\'instant. Ajoutez votre premier investissement ci-dessus.</div>';
+      list.innerHTML = '<div class="empty-positions" id="holdings-empty">Aucune position renseignée pour l\'instant.</div>';
       return;
     }
 
@@ -749,7 +981,7 @@
       <div class="holding-row">
         <span class="holding-dot" style="background:${categoryColors[h.category] || '#C9A961'};"></span>
         <div class="holding-info">
-          <h4>${escapeHtml(h.name)}</h4>
+          <div>${escapeHtml(h.name)}</div>
           <span>${escapeHtml(h.category)}</span>
         </div>
         <div class="holding-amount">${formatEuro(Number(h.amount))}</div>
@@ -768,7 +1000,6 @@
     return div.innerHTML;
   }
 
-  // On page load: if already logged in (existing session), skip straight to the dashboard.
   (async function init() {
     const { data: { session } } = await sb.auth.getSession();
     if (session) {
