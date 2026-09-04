@@ -15,8 +15,8 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #131A26;
-    --green-deep: #0A0D14;
+    --green: #03152E;
+    --green-deep: #03152E;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
@@ -34,9 +34,7 @@
   }
 
   body {
-    background:
-      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(91, 143, 168, 0.10), transparent),
-      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 55%, var(--green-deep) 100%);
+    background: var(--green-deep);
     overflow-x: hidden;
   }
 
@@ -95,7 +93,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(6,10,16,0.55) 0%, rgba(6,10,16,0.2) 35%, rgba(6,10,16,0.32) 65%, rgba(6,10,16,0.75) 100%);
+      linear-gradient(180deg, rgba(3,21,46,0.55) 0%, rgba(3,21,46,0.2) 35%, rgba(3,21,46,0.32) 65%, rgba(3,21,46,0.92) 100%);
   }
 
   .hero-photo nav.topnav {
@@ -207,10 +205,13 @@
   /* ============ TOOL CARDS ============ */
 
   .tool-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
     text-align: left;
+    max-width: 1000px;
+    width: calc(100vw - 48px);
+    margin: 0 calc(50% - 50vw + 24px);
   }
 
   .tool-card {
@@ -220,7 +221,7 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 6px;
-    padding: 15% 12%;
+    padding: 10% 9%;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -236,17 +237,17 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .tool-tag {
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    font-size: 7.5px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--gold);
     border: 1px solid rgba(201, 169, 97, 0.45);
     background: rgba(6,10,18,0.7);
-    padding: 4px 10px;
+    padding: 3px 7px;
     border-radius: 20px;
     display: inline-block;
   }
@@ -254,19 +255,20 @@
   .tool-card h3 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
-    font-size: 19px;
+    font-size: 13px;
     color: var(--cream);
-    margin-bottom: 8px;
-    max-width: 62%;
+    margin-bottom: 5px;
+    max-width: 72%;
+    line-height: 1.25;
     text-shadow: 0 2px 8px rgba(0,0,0,0.8);
   }
 
   .tool-card p {
-    font-size: 12.5px;
-    line-height: 1.6;
+    font-size: 9px;
+    line-height: 1.45;
     color: rgba(244, 239, 227, 0.75);
     margin: 0;
-    max-width: 60%;
+    max-width: 68%;
     text-shadow: 0 2px 8px rgba(0,0,0,0.9);
   }
 
@@ -389,10 +391,17 @@
     text-transform: uppercase;
     color: rgba(244, 239, 227, 0.3);
   }
-  @media (max-width: 480px) {
-    .tool-card h3 { font-size: 15px; max-width: 68%; }
-    .tool-card p { font-size: 10.5px; line-height: 1.5; max-width: 66%; }
-    .tool-tag { font-size: 8.5px; padding: 3px 8px; }
+
+  @media (max-width: 860px) {
+    .tool-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .tool-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .tool-card h3 { font-size: 17px; max-width: 65%; margin-bottom: 8px; }
+    .tool-card p { font-size: 11.5px; line-height: 1.55; max-width: 62%; }
+    .tool-tag { font-size: 9px; padding: 4px 9px; }
+    .tool-card { padding: 12% 10%; }
   }
 </style>
 </head>
@@ -437,7 +446,7 @@
 
     <section class="tool-grid">
 
-      <div class="tool-card" style="background-image:url('card-portefeuille.jpg'); justify-content:flex-end;">
+      <div class="tool-card" style="background-image:url('card-portefeuille.jpg'); justify-content:flex-end; padding-bottom:14%;">
         <div class="tool-meta">
           <span class="tool-tag">À venir</span>
         </div>
@@ -445,7 +454,7 @@
         <p>Suivez la répartition, la performance et le niveau de diversification de votre portefeuille réel, en un coup d'œil.</p>
       </div>
 
-      <div class="tool-card" style="background-image:url('card-investissement.jpg'); justify-content:flex-start;">
+      <div class="tool-card" style="background-image:url('card-investissement.jpg'); justify-content:flex-start; padding-top:16%;">
         <div class="tool-meta">
           <span class="tool-tag">À venir</span>
         </div>
@@ -453,7 +462,7 @@
         <p>Projetez l'évolution de votre épargne selon différents scénarios : taux, durée, versements réguliers.</p>
       </div>
 
-      <div class="tool-card" style="background-image:url('card-screener.jpg'); justify-content:flex-end; align-items:flex-end; text-align:right;">
+      <div class="tool-card" style="background-image:url('card-screener.jpg'); justify-content:center; align-items:flex-end; text-align:right; padding-right:8%;">
         <div class="tool-meta">
           <span class="tool-tag">À venir</span>
         </div>
@@ -461,7 +470,7 @@
         <p>Filtrez les actions et ETF selon vos propres critères : secteur, dividende, valorisation, zone géographique.</p>
       </div>
 
-      <div class="tool-card" style="background-image:url('card-alertes.jpg'); justify-content:flex-end;">
+      <div class="tool-card" style="background-image:url('card-alertes.jpg'); justify-content:flex-end; padding-bottom:12%;">
         <div class="tool-meta">
           <span class="tool-tag">À venir</span>
         </div>
@@ -469,12 +478,20 @@
         <p>Suivez vos actifs préférés et recevez une alerte dès qu'ils atteignent le seuil que vous avez fixé.</p>
       </div>
 
-      <div class="tool-card" style="background-image:url('card-budget.jpg'); justify-content:flex-start;">
+      <div class="tool-card" style="background-image:url('card-budget.jpg'); justify-content:flex-start; padding-top:14%;">
         <div class="tool-meta">
           <span class="tool-tag">À venir</span>
         </div>
         <h3>Planificateur budgétaire</h3>
         <p>Fixez des objectifs d'épargne et suivez votre progression mois après mois, sans relier votre compte bancaire.</p>
+      </div>
+
+      <div class="tool-card" style="background-image:url('card-objectifs.jpg'); justify-content:flex-start; align-items:flex-start; padding-top:12%;">
+        <div class="tool-meta">
+          <span class="tool-tag">À venir</span>
+        </div>
+        <h3>Jalons financiers</h3>
+        <p>Fixez un cap précis — apport, retraite, projet — et suivez la distance qu'il vous reste à parcourir.</p>
       </div>
 
     </section>
