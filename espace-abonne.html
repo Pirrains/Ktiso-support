@@ -227,74 +227,34 @@
     align-items: start;
   }
 
-  /* ============ TOOL MODAL ============ */
+  /* ============ TOOL VIEW (inline, no modal) ============ */
 
-  .tool-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
+  .tool-back-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .tool-modal.open { opacity: 1; pointer-events: auto; }
-
-  .tool-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(5, 7, 11, 0.82);
-    backdrop-filter: blur(4px);
-  }
-
-  .tool-modal-panel {
-    position: relative;
-    width: min(1100px, 94vw);
-    height: min(820px, 90vh);
-    background: var(--green-deep);
+    gap: 6px;
+    background: none;
     border: 1px solid var(--line);
-    border-radius: 4px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    overflow: hidden;
-    transform: translateY(14px) scale(0.98);
-    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .tool-modal.open .tool-modal-panel { transform: translateY(0) scale(1); }
-
-  .tool-modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 2;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(10,13,20,0.75);
-    border: 1px solid var(--line);
+    border-radius: 2px;
     color: var(--cream);
     font-family: 'DM Mono', monospace;
-    font-size: 15px;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    padding: 10px 16px;
+    margin-bottom: 16px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: border-color 0.2s ease, color 0.2s ease;
   }
 
-  .tool-modal-close:hover { border-color: var(--gold); color: var(--gold); }
+  .tool-back-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-  .tool-modal-iframe {
+  .tool-frame {
     width: 100%;
-    height: 100%;
-    border: none;
+    height: 78vh;
+    min-height: 560px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
     display: block;
-  }
-
-  @media (max-width: 640px) {
-    .tool-modal-panel { width: 100vw; height: 100vh; border-radius: 0; }
   }
 
   .dash-col {
@@ -769,6 +729,7 @@
 
       <!-- PATRIMOINE (main) -->
       <main class="dash-col dash-main">
+        <div id="dashDefaultView">
         <h2>Évolution du patrimoine</h2>
         <p class="demo-note">Données de démonstration · dernière mise à jour aujourd'hui</p>
 
@@ -860,6 +821,12 @@
             <div class="empty-positions" id="holdings-empty">Aucune position renseignée pour l'instant.</div>
           </div>
         </div>
+        </div>
+
+        <div id="dashToolView" style="display:none;">
+          <button class="tool-back-btn" onclick="closeTool()">← Retour au tableau de bord</button>
+          <iframe id="toolFrame" class="tool-frame" src="" title="Outil Ktiso"></iframe>
+        </div>
       </main>
 
       <!-- FAMILLE -->
@@ -892,14 +859,6 @@
         <p class="family-note">Bientôt disponible — l'espace famille arrive dans l'application.</p>
       </aside>
 
-    </div>
-  </div>
-
-  <div class="tool-modal" id="toolModal">
-    <div class="tool-modal-backdrop" onclick="closeTool()"></div>
-    <div class="tool-modal-panel">
-      <button class="tool-modal-close" onclick="closeTool()" aria-label="Fermer">✕</button>
-      <iframe class="tool-modal-iframe" id="toolFrame" src="" title="Outil Ktiso"></iframe>
     </div>
   </div>
 
@@ -1029,14 +988,15 @@
 
   function openTool(url) {
     document.getElementById('toolFrame').src = url;
-    document.getElementById('toolModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.getElementById('dashDefaultView').style.display = 'none';
+    document.getElementById('dashToolView').style.display = 'block';
+    document.querySelector('.dash-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function closeTool() {
-    document.getElementById('toolModal').classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => { document.getElementById('toolFrame').src = ''; }, 300);
+    document.getElementById('dashToolView').style.display = 'none';
+    document.getElementById('dashDefaultView').style.display = 'block';
+    document.getElementById('toolFrame').src = '';
   }
 
   function toggleAddForm() {
