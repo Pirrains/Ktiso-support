@@ -15,8 +15,8 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #040F24;
-    --green-deep: #020C1C;
+    --green: #040B1B;
+    --green-deep: #040B1B;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
@@ -34,11 +34,7 @@
   }
 
   body {
-    background:
-      radial-gradient(ellipse 70% 40% at 20% 0%, rgba(22,48,94,0.28), transparent 65%),
-      radial-gradient(ellipse 60% 35% at 80% 5%, rgba(14,28,57,0.3), transparent 65%),
-      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(14,28,57,0.25), transparent 70%),
-      var(--green-deep);
+    background: var(--green-deep);
     overflow-x: hidden;
   }
 
@@ -97,7 +93,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(2,12,28,0.55) 0%, rgba(2,12,28,0.2) 35%, rgba(2,12,28,0.32) 65%, rgba(2,12,28,0.78) 100%);
+      linear-gradient(180deg, rgba(4,11,27,0.55) 0%, rgba(4,11,27,0.2) 35%, rgba(4,11,27,0.32) 65%, rgba(4,11,27,0.8) 100%);
   }
 
   .hero-photo nav.topnav {
@@ -209,17 +205,7 @@
   /* ============ TOOL CARDS ============ */
 
   .tool-grid-wrap {
-    padding: 130px 24px;
-    margin: -70px -24px;
-    background:
-      radial-gradient(ellipse 65% 60% at 12% 15%, rgba(22,48,94,0.65), transparent 70%),
-      radial-gradient(ellipse 55% 55% at 55% 5%, rgba(22,49,96,0.55), transparent 68%),
-      radial-gradient(ellipse 60% 60% at 92% 20%, rgba(14,28,57,0.6), transparent 70%),
-      radial-gradient(ellipse 60% 55% at 5% 65%, rgba(14,28,57,0.55), transparent 68%),
-      radial-gradient(ellipse 65% 60% at 50% 85%, rgba(22,48,94,0.5), transparent 70%),
-      radial-gradient(ellipse 60% 55% at 95% 78%, rgba(22,49,96,0.55), transparent 68%),
-      radial-gradient(ellipse 90% 80% at 50% 50%, rgba(4,15,36,0.4), transparent 75%),
-      #020C1C;
+    padding: 40px 24px;
   }
 
   .tool-grid {
@@ -242,7 +228,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    box-shadow: 0 0 50px rgba(20, 70, 150, 0.22);
     transition: transform 0.25s ease, filter 0.25s ease;
   }
 
