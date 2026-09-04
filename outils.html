@@ -15,8 +15,8 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #03152E;
-    --green-deep: #03152E;
+    --green: #031939;
+    --green-deep: #031939;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
@@ -93,7 +93,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(3,21,46,0.55) 0%, rgba(3,21,46,0.2) 35%, rgba(3,21,46,0.32) 65%, rgba(3,21,46,0.92) 100%);
+      linear-gradient(180deg, rgba(6,10,16,0.55) 0%, rgba(6,10,16,0.2) 35%, rgba(6,10,16,0.32) 65%, rgba(6,10,16,0.75) 100%);
   }
 
   .hero-photo nav.topnav {
@@ -204,14 +204,17 @@
 
   /* ============ TOOL CARDS ============ */
 
+  .tool-grid-wrap {
+    padding: 0 24px;
+  }
+
   .tool-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     text-align: left;
     max-width: 1000px;
-    width: calc(100vw - 48px);
-    margin: 0 calc(50% - 50vw + 24px);
+    margin: 0 auto;
   }
 
   .tool-card {
@@ -225,6 +228,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    box-shadow: 0 0 50px rgba(20, 70, 150, 0.22);
     transition: transform 0.25s ease, filter 0.25s ease;
   }
 
@@ -444,6 +448,9 @@
       <p>L'application reste gratuite pour apprendre. Ces outils, en abonnement, sont pour celles et ceux qui veulent passer à la pratique avec du concret.</p>
     </section>
 
+    </div>
+
+    <section class="tool-grid-wrap">
     <section class="tool-grid">
 
       <div class="tool-card" style="background-image:url('card-portefeuille.jpg'); justify-content:flex-end; padding-bottom:14%;">
@@ -495,6 +502,9 @@
       </div>
 
     </section>
+    </section>
+
+    <div class="frame">
 
     <div class="rule"></div>
 
