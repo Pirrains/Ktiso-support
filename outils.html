@@ -15,8 +15,8 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #02122A;
-    --green-deep: #02122A;
+    --green: #040F24;
+    --green-deep: #020C1C;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
@@ -35,7 +35,9 @@
 
   body {
     background:
-      radial-gradient(ellipse 70% 35% at 50% 0%, rgba(11,51,100,0.16), transparent 65%),
+      radial-gradient(ellipse 70% 40% at 20% 0%, rgba(22,48,94,0.28), transparent 65%),
+      radial-gradient(ellipse 60% 35% at 80% 5%, rgba(14,28,57,0.3), transparent 65%),
+      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(14,28,57,0.25), transparent 70%),
       var(--green-deep);
     overflow-x: hidden;
   }
@@ -95,7 +97,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(6,10,16,0.55) 0%, rgba(6,10,16,0.2) 35%, rgba(6,10,16,0.32) 65%, rgba(6,10,16,0.75) 100%);
+      linear-gradient(180deg, rgba(2,12,28,0.55) 0%, rgba(2,12,28,0.2) 35%, rgba(2,12,28,0.32) 65%, rgba(2,12,28,0.78) 100%);
   }
 
   .hero-photo nav.topnav {
@@ -210,13 +212,14 @@
     padding: 130px 24px;
     margin: -70px -24px;
     background:
-      radial-gradient(ellipse 40% 45% at 15% 30%, rgba(11,51,100,0.4), transparent 68%),
-      radial-gradient(ellipse 35% 40% at 50% 22%, rgba(9,45,90,0.35), transparent 65%),
-      radial-gradient(ellipse 40% 45% at 85% 30%, rgba(11,51,100,0.4), transparent 68%),
-      radial-gradient(ellipse 45% 42% at 15% 72%, rgba(8,35,72,0.32), transparent 68%),
-      radial-gradient(ellipse 40% 40% at 50% 78%, rgba(6,30,64,0.28), transparent 65%),
-      radial-gradient(ellipse 45% 42% at 85% 72%, rgba(8,35,72,0.32), transparent 68%),
-      transparent;
+      radial-gradient(ellipse 65% 60% at 12% 15%, rgba(22,48,94,0.65), transparent 70%),
+      radial-gradient(ellipse 55% 55% at 55% 5%, rgba(22,49,96,0.55), transparent 68%),
+      radial-gradient(ellipse 60% 60% at 92% 20%, rgba(14,28,57,0.6), transparent 70%),
+      radial-gradient(ellipse 60% 55% at 5% 65%, rgba(14,28,57,0.55), transparent 68%),
+      radial-gradient(ellipse 65% 60% at 50% 85%, rgba(22,48,94,0.5), transparent 70%),
+      radial-gradient(ellipse 60% 55% at 95% 78%, rgba(22,49,96,0.55), transparent 68%),
+      radial-gradient(ellipse 90% 80% at 50% 50%, rgba(4,15,36,0.4), transparent 75%),
+      #020C1C;
   }
 
   .tool-grid {
