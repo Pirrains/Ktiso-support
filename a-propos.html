@@ -10,13 +10,15 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
     --green: #1A2E22;
     --green-deep: #0F1A14;
+    --brown: #241A10;
+    --brown-deep: #140F0A;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --cream: #F4EFE3;
@@ -26,7 +28,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    background: var(--green-deep);
+    background: var(--brown-deep);
     color: var(--cream);
     font-family: 'DM Mono', monospace;
   }
@@ -34,7 +36,7 @@
   body {
     background:
       radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
-      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+      linear-gradient(180deg, var(--brown-deep) 0%, var(--brown) 100%);
     overflow-x: hidden;
   }
 
@@ -93,7 +95,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(6,8,12,0.55) 0%, rgba(6,8,12,0.15) 35%, rgba(6,8,12,0.3) 65%, rgba(6,8,12,0.78) 100%);
+      linear-gradient(180deg, rgba(20,15,10,0.55) 0%, rgba(20,15,10,0.15) 35%, rgba(20,15,10,0.3) 65%, rgba(20,15,10,0.8) 100%);
   }
 
   .hero-photo nav.topnav {
@@ -108,7 +110,11 @@
 
   .hero-content { position: relative; z-index: 2; }
 
-  .hero-photo .eyebrow { text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+  .hero-photo .eyebrow {
+    color: var(--cream);
+    font-size: 13px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
 
   .hero-photo .wordmark {
     height: clamp(70px, 11vh, 130px);
@@ -142,6 +148,15 @@
     color: rgba(244, 239, 227, 0.65);
   }
 
+  .subtitle-inline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(19px, 4.2vw, 24px);
+    color: rgba(244, 239, 227, 0.75);
+    text-align: center;
+    margin: 0 0 8px;
+  }
+
   .rule {
     width: 64px;
     height: 1px;
@@ -160,9 +175,9 @@
   }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--cream);
     margin: 0 auto 16px;
     max-width: 440px;
@@ -322,11 +337,14 @@
     <div class="hero-content">
       <div class="eyebrow"><span style="color:var(--gold);">●</span> Qui sommes-nous</div>
       <img class="wordmark" src="a-propos-logo.png" alt="À propos">
-      <p class="subtitle">Pourquoi Ktiso existe</p>
     </div>
   </header>
 
   <div class="frame">
+    <div class="rule"></div>
+
+    <p class="subtitle-inline">Pourquoi Ktiso existe</p>
+
     <div class="rule"></div>
 
     <section>

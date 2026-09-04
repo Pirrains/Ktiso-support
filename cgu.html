@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — CGU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--green-deep); color: var(--cream); font-family: 'DM Mono', monospace; }
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex; justify-content: center; padding: 0 24px 72px;
+  }
+  a { color: var(--terracotta); }
+  .frame { width: 100%; max-width: 640px; }
+
+  nav.topnav {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 0;
+    padding-top: 28px; margin-bottom: 40px;
+    font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  nav.topnav a { color: rgba(244, 239, 227, 0.55); text-decoration: none; padding: 4px 7px; border-bottom: 1px solid transparent; }
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+
+  header { text-align: center; margin-bottom: 48px; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+  h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 6vw, 42px);
+    color: var(--cream);
+  }
+
+  .rule { width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 40px auto; }
+
+  section { margin-bottom: 40px; }
+  h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  p, li { font-size: 13.5px; line-height: 1.75; color: rgba(244, 239, 227, 0.75); margin-bottom: 10px; }
+  ul { padding-left: 20px; margin-bottom: 10px; }
+
+  footer { text-align: center; margin-top: 56px; }
+  .footer-nav { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 0; }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <header>
+      <div class="eyebrow">Conditions générales</div>
+      <h1>CGU</h1>
+    </header>
+
+    <div class="rule"></div>
+
+    <section>
+      <h2>Objet</h2>
+      <p>Les présentes conditions générales d'utilisation (CGU) régissent l'accès et l'usage du site Ktiso, de l'application mobile Ktiso et de l'espace abonné. En les utilisant, vous acceptez ces conditions.</p>
+    </section>
+
+    <section>
+      <h2>Nature du service</h2>
+      <p>Ktiso est un outil pédagogique d'éducation financière. Il ne s'agit ni d'un service de conseil en investissement, ni d'un établissement financier, ni d'un intermédiaire. Aucun contenu de Ktiso ne doit être interprété comme une recommandation personnalisée.</p>
+    </section>
+
+    <section>
+      <h2>Compte utilisateur</h2>
+      <p>La création d'un compte dans l'espace abonné nécessite une adresse email et un mot de passe. Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée depuis votre compte.</p>
+      <p>Les données que vous renseignez (par exemple, un portefeuille d'investissement) vous sont strictement personnelles et ne sont visibles que par vous.</p>
+    </section>
+
+    <section>
+      <h2>Usage acceptable</h2>
+      <ul>
+        <li>Ne pas tenter d'accéder aux comptes ou données d'autres utilisateurs.</li>
+        <li>Ne pas utiliser le service à des fins frauduleuses ou illégales.</li>
+        <li>Ne pas perturber le fonctionnement technique du site ou de l'application.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Disponibilité</h2>
+      <p>Ktiso s'efforce d'assurer un accès continu au site et à l'application, sans garantie de disponibilité permanente. Certaines fonctionnalités peuvent évoluer, être ajoutées ou retirées sans préavis.</p>
+    </section>
+
+    <section>
+      <h2>Outils payants</h2>
+      <p>Certains outils avancés pourront être proposés sous forme d'abonnement. Les tarifs et conditions spécifiques seront communiqués avant toute mise en place d'un paiement.</p>
+    </section>
+
+    <section>
+      <h2>Résiliation</h2>
+      <p>Vous pouvez supprimer votre compte à tout moment en nous contactant à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a>. Ktiso se réserve le droit de suspendre un compte en cas d'usage contraire aux présentes CGU.</p>
+    </section>
+
+    <section>
+      <h2>Droit applicable</h2>
+      <p>Les présentes CGU sont soumises au droit belge. Voir également notre <a href="privacy.html">politique de confidentialité</a> et nos <a href="mentions-legales.html">mentions légales</a>.</p>
+    </section>
+
+    <div class="rule"></div>
+
+    <footer>
+      <div class="footer-nav">
+        <a href="a-propos.html">À propos</a><span class="sep">·</span>
+        <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+        <a href="outils.html">Outils</a><span class="sep">·</span>
+        <a href="application.html">Application</a><span class="sep">·</span>
+        <a href="contenus.html">Contenus</a><span class="sep">·</span>
+        <a href="actualites.html">Actualités</a><span class="sep">·</span>
+        <a href="index.html">Support</a><span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a><span class="sep">·</span>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+    </footer>
+  </div>
+</body>
+</html>
