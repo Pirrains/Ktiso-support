@@ -329,6 +329,87 @@
 
   /* --- Main (patrimoine) column --- */
 
+  .goal-card {
+    border: 1px solid var(--gold);
+    background: rgba(201, 169, 97, 0.06);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+  }
+
+  .goal-empty { text-align: center; padding: 8px 0; }
+
+  .goal-empty p {
+    font-size: 13px;
+    color: rgba(244,239,227,0.55);
+    margin-bottom: 14px;
+  }
+
+  .goal-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .goal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .goal-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px;
+    color: var(--cream);
+  }
+
+  .goal-edit-btn {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .goal-edit-btn:hover { color: var(--gold); }
+
+  .goal-bar-outer {
+    height: 10px;
+    background: rgba(244,239,227,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .goal-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--lime));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .goal-figures {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: rgba(244,239,227,0.6);
+  }
+
+  .goal-figures strong { color: var(--cream); font-weight: 500; }
+
+  .goal-form { display: none; }
+  .goal-form.open { display: block; }
+
+  .goal-form .form-row { display: flex; gap: 10px; margin-bottom: 4px; }
+  .goal-form .form-row > div { flex: 1; }
+
   .dash-main h2 {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
@@ -746,6 +827,11 @@
       <!-- PATRIMOINE (main) -->
       <main class="dash-col dash-main">
         <div id="dashDefaultView">
+
+        <div class="goal-card" id="goalCard">
+          <!-- rempli dynamiquement par JS -->
+        </div>
+
         <h2>Évolution du patrimoine</h2>
         <p class="demo-note">Données de démonstration · dernière mise à jour aujourd'hui</p>
 
@@ -1034,6 +1120,107 @@
 
     holdings = error ? [] : data;
     renderHoldings();
+
+    const { data: profile } = await sb
+      .from('profiles')
+      .select('goal_amount, goal_label')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    renderGoal(profile);
+  }
+
+  function holdingsTotal() {
+    return holdings.reduce((sum, h) => sum + Number(h.amount || 0), 0);
+  }
+
+  function renderGoal(profile) {
+    const card = document.getElementById('goalCard');
+    const total = holdingsTotal();
+
+    if (!profile || !profile.goal_amount) {
+      card.innerHTML = `
+        <div class="goal-empty">
+          <div class="goal-eyebrow">Votre objectif</div>
+          <p>Créez votre espace personnalisé : fixez le cap que vous voulez atteindre, et suivez votre progression réelle au fil de vos positions renseignées.</p>
+          <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="toggleGoalForm()">+ Définir mon objectif</button>
+        </div>
+        ${goalFormHtml(profile)}
+      `;
+      return;
+    }
+
+    const pct = Math.min(100, Math.round((total / Number(profile.goal_amount)) * 100));
+    card.innerHTML = `
+      <div class="goal-eyebrow">Votre objectif</div>
+      <div class="goal-head">
+        <div class="goal-title">${escapeHtml(profile.goal_label || 'Mon objectif patrimonial')}</div>
+        <button class="goal-edit-btn" onclick="toggleGoalForm()">Modifier</button>
+      </div>
+      <div class="goal-bar-outer"><div class="goal-bar-fill" style="width:${pct}%;"></div></div>
+      <div class="goal-figures">
+        <span><strong>${formatEuro(total)}</strong> atteints</span>
+        <span>${pct}% · objectif <strong>${formatEuro(Number(profile.goal_amount))}</strong></span>
+      </div>
+      ${goalFormHtml(profile)}
+    `;
+  }
+
+  function goalFormHtml(profile) {
+    const label = profile?.goal_label ? escapeHtml(profile.goal_label) : '';
+    const amount = profile?.goal_amount || '';
+    return `
+      <div class="goal-form" id="goalForm" style="margin-top:16px;">
+        <div class="form-row">
+          <div>
+            <label>Nom de l'objectif</label>
+            <input type="text" id="goal-label-input" placeholder="Ex: Apport immobilier" value="${label}">
+          </div>
+          <div>
+            <label>Montant visé (€)</label>
+            <input type="number" id="goal-amount-input" placeholder="30000" min="0" value="${amount}">
+          </div>
+        </div>
+        <div class="field-error" id="goal-error">Merci d'indiquer un montant.</div>
+        <button class="btn btn-primary" onclick="saveGoal()">Enregistrer mon objectif</button>
+      </div>
+    `;
+  }
+
+  function toggleGoalForm() {
+    document.getElementById('goalForm').classList.toggle('open');
+  }
+
+  async function saveGoal() {
+    const label = document.getElementById('goal-label-input').value.trim();
+    const amount = parseFloat(document.getElementById('goal-amount-input').value);
+    const errorEl = document.getElementById('goal-error');
+
+    if (!amount || amount <= 0) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb
+      .from('profiles')
+      .update({ goal_amount: amount, goal_label: label || 'Mon objectif patrimonial' })
+      .eq('id', user.id);
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const { data: profile } = await sb
+      .from('profiles')
+      .select('goal_amount, goal_label')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    renderGoal(profile);
   }
 
   async function addHolding() {
