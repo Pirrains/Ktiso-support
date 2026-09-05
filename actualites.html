@@ -15,15 +15,15 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #1A2E22;
-    --green-deep: #0F1A14;
+    --green: #030C22;
+    --green-deep: #030C22;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
     --blue: #5B8FA8;
     --blue-deep: #3F6478;
     --cream: #F4EFE3;
-    --line: rgba(201, 169, 97, 0.22);
+    --line: rgba(91, 143, 168, 0.28);
     --zone: var(--blue);
     --zone-line: rgba(91, 143, 168, 0.35);
   }
@@ -38,8 +38,9 @@
 
   body {
     background:
-      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(91, 143, 168, 0.10), transparent),
-      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 55%, var(--green-deep) 100%);
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
     overflow-x: hidden;
   }
 
@@ -119,7 +120,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(4,6,12,0.55) 0%, rgba(4,6,12,0.15) 35%, rgba(4,6,12,0.3) 65%, rgba(4,6,12,0.75) 100%);
+      linear-gradient(180deg, rgba(3,12,34,0.55) 0%, rgba(3,12,34,0.2) 35%, rgba(3,12,34,0.32) 65%, rgba(3,12,34,0.8) 100%);
   }
 
   .hero-content {
