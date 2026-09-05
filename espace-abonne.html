@@ -19,6 +19,7 @@
     --blue: #5B8FA8;
     --cream: #F4EFE3;
     --line: rgba(201, 169, 97, 0.22);
+    --accent: var(--gold);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -192,6 +193,60 @@
 
   #view-dashboard { display: none; max-width: 1180px; margin: 0 auto; padding: 40px 24px 0; }
 
+  .accent-picker { position: relative; }
+
+  .accent-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 8px 14px;
+    color: rgba(244,239,227,0.6);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .accent-toggle:hover { border-color: var(--accent); color: var(--cream); }
+
+  .accent-toggle-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .accent-swatches {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 20;
+    background: var(--green-deep);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    gap: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+
+  .accent-swatches.open { display: flex; }
+
+  .accent-swatch {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .accent-swatch:hover { transform: scale(1.15); border-color: rgba(244,239,227,0.5); }
+
   .dash-header {
     display: flex;
     align-items: center;
@@ -323,15 +378,15 @@
     gap: 4px;
   }
 
-  .tool-status.active { color: var(--gold); }
+  .tool-status.active { color: var(--accent); }
   .tool-status.locked { color: rgba(244,239,227,0.3); }
   .tool-status svg { width: 10px; height: 10px; }
 
   /* --- Main (patrimoine) column --- */
 
   .goal-card {
-    border: 1px solid var(--gold);
-    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
     border-radius: 12px;
     padding: 22px 24px;
     margin-bottom: 28px;
@@ -349,7 +404,7 @@
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 10px;
   }
 
@@ -378,7 +433,7 @@
     white-space: nowrap;
   }
 
-  .goal-edit-btn:hover { color: var(--gold); }
+  .goal-edit-btn:hover { color: var(--accent); }
 
   .goal-bar-outer {
     height: 10px;
@@ -390,7 +445,7 @@
 
   .goal-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--gold), var(--lime));
+    background: linear-gradient(90deg, var(--accent), var(--lime));
     border-radius: 10px;
     transition: width 0.5s ease;
   }
@@ -573,7 +628,7 @@
   .member-avatar {
     width: 34px; height: 34px;
     border-radius: 50%;
-    background: var(--gold);
+    background: var(--accent);
     color: var(--green-deep);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Instrument Serif', serif;
@@ -591,7 +646,7 @@
     border: 1px dashed var(--line);
     border-radius: 12px;
     background: none;
-    color: var(--gold);
+    color: var(--accent);
     font-family: 'DM Mono', monospace;
     font-size: 11.5px;
     letter-spacing: 0.05em;
@@ -599,7 +654,7 @@
     cursor: pointer;
   }
 
-  .add-member-btn:hover { border-color: var(--gold); }
+  .add-member-btn:hover { border-color: var(--accent); }
 
   .family-note {
     font-size: 11.5px;
@@ -734,7 +789,21 @@
         <div class="eyebrow" style="text-align:left; margin-bottom:6px;">Espace abonné</div>
         <h1 id="greeting-text">Bonjour 👋</h1>
       </div>
-      <button class="logout-link" onclick="logout()">Déconnexion</button>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <div class="accent-picker">
+          <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Personnaliser les couleurs">
+            <span class="accent-toggle-dot"></span> Personnaliser
+          </button>
+          <div class="accent-swatches" id="accentSwatches">
+            <button class="accent-swatch" style="background:#C9A961;" onclick="setAccent('gold')" title="Doré"></button>
+            <button class="accent-swatch" style="background:#A8C66C;" onclick="setAccent('lime')" title="Vert"></button>
+            <button class="accent-swatch" style="background:#5B8FA8;" onclick="setAccent('blue')" title="Bleu"></button>
+            <button class="accent-swatch" style="background:#C1654A;" onclick="setAccent('terracotta')" title="Terracotta"></button>
+            <button class="accent-swatch" style="background:#E8B347;" onclick="setAccent('yellow')" title="Jaune"></button>
+          </div>
+        </div>
+        <button class="logout-link" onclick="logout()">Déconnexion</button>
+      </div>
     </div>
 
     <div class="dash-grid">
@@ -1123,16 +1192,43 @@
 
     const { data: profile } = await sb
       .from('profiles')
-      .select('goal_amount, goal_label')
+      .select('goal_amount, goal_label, accent_color')
       .eq('id', user.id)
       .maybeSingle();
 
+    applyAccent(profile?.accent_color);
     renderGoal(profile);
   }
 
   function holdingsTotal() {
     return holdings.reduce((sum, h) => sum + Number(h.amount || 0), 0);
   }
+
+  const accentColors = { gold: '#C9A961', lime: '#A8C66C', blue: '#5B8FA8', terracotta: '#C1654A', yellow: '#E8B347' };
+
+  function applyAccent(name) {
+    const hex = accentColors[name] || accentColors.gold;
+    document.documentElement.style.setProperty('--accent', hex);
+  }
+
+  function toggleAccentPicker() {
+    document.getElementById('accentSwatches').classList.toggle('open');
+  }
+
+  async function setAccent(name) {
+    applyAccent(name);
+    document.getElementById('accentSwatches').classList.remove('open');
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    await sb.from('profiles').update({ accent_color: name }).eq('id', user.id);
+  }
+
+  document.addEventListener('click', (e) => {
+    const picker = document.querySelector('.accent-picker');
+    if (picker && !picker.contains(e.target)) {
+      document.getElementById('accentSwatches')?.classList.remove('open');
+    }
+  });
 
   function renderGoal(profile) {
     const card = document.getElementById('goalCard');
