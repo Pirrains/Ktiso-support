@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Analyse de portefeuille</title>
+<meta name="description" content="Répartition sectorielle de vos actions et ETF, et comparaison de votre allocation à des repères par profil de risque.">
+<meta property="og:title" content="Ktiso — Analyse de portefeuille">
+<meta property="og:description" content="Voir la forme réelle de son portefeuille.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --bg-deep: #0A0D13;
+    --bg: #14171D;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --violet: #7B6FC4;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.16);
+    --radius-lg: 20px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--bg-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% -8%, rgba(123, 111, 196, 0.14), transparent),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 72px;
+  }
+
+  .frame { width: 100%; max-width: 640px; }
+
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 44px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.5);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.15); }
+
+  header { text-align: center; }
+
+  .hero-mascot {
+    position: relative;
+    height: 104px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+
+  .hero-mascot::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 46%;
+    width: 170px; height: 170px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(123, 111, 196, 0.35), transparent 70%);
+    filter: blur(4px);
+    z-index: 0;
+  }
+
+  .hero-mascot img {
+    position: relative;
+    z-index: 1;
+    width: 82px;
+    height: auto;
+    filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.55));
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 22px;
+  }
+
+  .wordmark {
+    width: clamp(130px, 32vw, 180px);
+    height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  }
+
+  .subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(17px, 4vw, 21px);
+    color: rgba(244, 239, 227, 0.65);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+
+  section { margin-bottom: 8px; text-align: center; }
+
+  .section-topper { display: flex; flex-direction: column; align-items: center; margin-bottom: 4px; }
+
+  .section-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.05);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .section-icon img { width: 24px; height: auto; }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+
+  .section-topper .section-label { margin-bottom: 0; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 400;
+    color: var(--cream);
+    margin: 14px auto 16px;
+    max-width: 480px;
+  }
+
+  h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  section > p { font-size: 14.5px; line-height: 1.75; color: rgba(244, 239, 227, 0.75); max-width: 480px; margin: 0 auto 14px; }
+
+  .framing-note {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.04);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .framing-note p { font-size: 13px; line-height: 1.7; color: rgba(244, 239, 227, 0.7); text-align: left; max-width: none; margin: 0 0 8px; }
+  .framing-note p:last-child { margin-bottom: 0; }
+  .framing-note strong { color: var(--cream); font-weight: 500; }
+
+  /* ============ BOX ============ */
+
+  .box {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+    text-align: left;
+    background: rgba(201, 169, 97, 0.035);
+    margin-bottom: 10px;
+  }
+  .box:last-child { margin-bottom: 0; }
+
+  .muted-note { font-size: 12px; color: rgba(244,239,227,0.5); text-align: center; padding: 14px; }
+
+  /* ============ SECTOR BARS ============ */
+
+  .bar-row { margin-bottom: 16px; }
+  .bar-row:last-child { margin-bottom: 0; }
+
+  .bar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
+  .bar-name { font-size: 13.5px; color: var(--cream); }
+  .bar-value { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
+
+  .bar-track { height: 8px; border-radius: 999px; background: rgba(244,239,227,0.08); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
+  .bar-fill.warn { background: linear-gradient(90deg, #8a4433, var(--terracotta)); }
+
+  .concentration-note {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(193, 101, 74, 0.35);
+    background: rgba(193, 101, 74, 0.06);
+    border-radius: var(--radius-sm);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(244,239,227,0.8);
+  }
+
+  /* ============ ASSIGN LIST ============ */
+
+  .assign-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+  }
+  .assign-row:last-child { margin-bottom: 0; }
+
+  .assign-info { min-width: 0; flex: 1; }
+  .assign-name { font-size: 13px; color: var(--cream); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .assign-amount { font-size: 11px; color: rgba(244,239,227,0.45); }
+
+  .assign-select {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--cream);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 26px 7px 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A961' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 11px;
+    flex-shrink: 0;
+    max-width: 160px;
+  }
+  .assign-select:focus { outline: none; border-color: var(--gold); }
+
+  /* ============ RISK PROFILE ============ */
+
+  .field-row { margin-bottom: 20px; text-align: left; }
+  .field-row label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.55);
+    margin-bottom: 10px;
+  }
+  .field-row select {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--cream);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 12px 34px 12px 14px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A961' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+  }
+  .field-row select:focus { outline: none; border-color: var(--gold); }
+
+  .profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+  }
+  .profile-row:last-child { margin-bottom: 0; }
+
+  .profile-bucket { font-size: 13px; color: var(--cream); flex-shrink: 0; width: 90px; }
+  .profile-mid { flex: 1; text-align: center; font-size: 11.5px; color: rgba(244,239,227,0.45); }
+  .profile-actual { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--gold); width: 50px; text-align: right; flex-shrink: 0; }
+
+  .profile-status {
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: 92px;
+    text-align: center;
+  }
+  .profile-status.ok { background: rgba(168, 198, 108, 0.14); color: var(--lime); }
+  .profile-status.low { background: rgba(91, 143, 168, 0.14); color: var(--blue); }
+  .profile-status.high { background: rgba(193, 101, 74, 0.14); color: var(--terracotta); }
+
+  footer { text-align: center; margin-top: 40px; }
+
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244,239,227,0.3); max-width: 480px; margin: 14px auto 0; }
+
+  @media (max-width: 460px) {
+    .assign-row { flex-wrap: wrap; }
+    .profile-row { flex-wrap: wrap; gap: 6px; }
+    .profile-mid { width: 100%; order: 3; text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html" class="active">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a>
+    </nav>
+
+    <header>
+      <div class="hero-mascot"><img src="https://raw.githubusercontent.com/pirrains/Ktiso-support/main/astro-suspendu.png" alt=""></div>
+      <div class="eyebrow">Analyse de portefeuille</div>
+      <img class="wordmark" src="https://raw.githubusercontent.com/pirrains/Ktiso-support/main/ktiso-logo.png" alt="KTISO">
+      <p class="subtitle">Voir la forme réelle de son portefeuille</p>
+    </header>
+
+    <div class="rule"></div>
+
+    <section>
+      <div class="framing-note">
+        <p><strong>Un miroir, pas un verdict.</strong> Cette analyse s'appuie sur les positions que vous avez renseignées dans Suivi du patrimoine et Suivi des investissements. Elle ne constitue pas un conseil en investissement personnalisé — pour ajuster réellement votre allocation, un conseiller en gestion de patrimoine tient compte de bien plus que ces quelques chiffres (âge, horizon, fiscalité, objectifs).</p>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ DIVERSIFICATION SECTORIELLE ============ -->
+    <section aria-live="polite">
+      <div class="section-topper">
+        <span class="section-icon"><img src="https://raw.githubusercontent.com/pirrains/Ktiso-support/main/icon-loupe.png" alt=""></span>
+        <div class="section-label">Diversification</div>
+      </div>
+      <h2>Vos actions et ETF, par secteur</h2>
+      <p>Basé sur les positions classées « Actions » ou « ETF » dans vos outils de suivi.</p>
+
+      <div class="box" id="sector-box">
+        <div class="muted-note">Chargement…</div>
+      </div>
+
+      <div class="box" id="assign-box" style="display:none;">
+        <h3>Attribuer un secteur à chaque position</h3>
+        <div id="assign-list"></div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ PROFIL DE RISQUE ============ -->
+    <section aria-live="polite">
+      <div class="section-topper">
+        <span class="section-icon"><img src="https://raw.githubusercontent.com/pirrains/Ktiso-support/main/icon-ordinateur.png" alt=""></span>
+        <div class="section-label">Repères</div>
+      </div>
+      <h2>Votre allocation face à un profil type</h2>
+      <p>Des fourchettes indicatives couramment utilisées en éducation financière — pas une recommandation personnalisée.</p>
+
+      <div class="box">
+        <div class="field-row">
+          <label for="select-profile">Profil de référence</label>
+          <select id="select-profile">
+            <option value="prudent">Prudent</option>
+            <option value="equilibre" selected>Équilibré</option>
+            <option value="dynamique">Dynamique</option>
+          </select>
+        </div>
+
+        <div id="profile-list">
+          <div class="muted-note">Chargement…</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-nav">
+        <a href="home.html">Accueil</a><span class="sep">·</span>
+        <a href="a-propos.html">À propos</a><span class="sep">·</span>
+        <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+        <a href="outils.html">Outils</a><span class="sep">·</span>
+        <a href="application.html">Application</a><span class="sep">·</span>
+        <a href="contenus.html">Contenus</a><span class="sep">·</span>
+        <a href="actualites.html">Actualités</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+      <p class="legal-note">Les repères de cette page sont des fourchettes générales à visée pédagogique, pas une recommandation personnalisée. Tout investissement comporte un risque de perte en capital.</p>
+    </footer>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var currency = new Intl.NumberFormat("fr-BE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  function fmt(n) { return currency.format(Math.round(n)); }
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  var SUPABASE_URL = "https://ieythynqbzgjpdmuwvxc.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlleXRoeW5xYnpnanBkbXV3dnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MzExMjksImV4cCI6MjEwNDAwNzEyOX0.KGN8xj-PyuWbe8ytF9jBS6IXgUlyIVLGhNXIX4AsvWQ";
+
+  var SECTOR_LABELS = {
+    "Technology": "Technologie",
+    "Healthcare": "Santé",
+    "Financial Services": "Services financiers",
+    "Consumer Cyclical": "Consommation discrétionnaire",
+    "Consumer Defensive": "Consommation de base",
+    "Industrials": "Industrie",
+    "Energy": "Énergie",
+    "Utilities": "Services publics",
+    "Real Estate": "Immobilier",
+    "Basic Materials": "Matériaux de base",
+    "Communication Services": "Communication",
+    "Diversifie": "Diversifié (plusieurs secteurs)"
+  };
+  var SECTOR_KEYS = Object.keys(SECTOR_LABELS);
+
+  var sectorBox = document.getElementById("sector-box");
+  var assignBox = document.getElementById("assign-box");
+  var assignList = document.getElementById("assign-list");
+  var profileList = document.getElementById("profile-list");
+  var selectProfile = document.getElementById("select-profile");
+
+  var sb = null;
+  try {
+    if (window.supabase && window.supabase.createClient) {
+      sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+  } catch (e) { sb = null; }
+
+  var allHoldings = [];
+
+  function showSectorMessage(text) {
+    sectorBox.innerHTML = '<div class="muted-note">' + escapeHtml(text) + "</div>";
+  }
+  function showProfileMessage(text) {
+    profileList.innerHTML = '<div class="muted-note">' + escapeHtml(text) + "</div>";
+  }
+
+  function loadHoldings() {
+    if (!sb) { showSectorMessage("Connexion au compte indisponible ici."); showProfileMessage("Connexion au compte indisponible ici."); return; }
+
+    sb.auth.getUser().then(function (res) {
+      var user = res && res.data && res.data.user;
+      if (!user) {
+        showSectorMessage("Connectez-vous depuis l'Espace Abonné pour voir cette analyse.");
+        showProfileMessage("Connectez-vous depuis l'Espace Abonné pour voir cette analyse.");
+        return;
+      }
+
+      sb.from("holdings").select("*").order("created_at", { ascending: true }).then(function (result) {
+        allHoldings = (result && result.data) || [];
+        renderSectorSection();
+        renderProfileSection();
+      }).catch(function () {
+        showSectorMessage("Impossible de charger vos positions pour le moment.");
+        showProfileMessage("Impossible de charger vos positions pour le moment.");
+      });
+    }).catch(function () {
+      showSectorMessage("Connectez-vous depuis l'Espace Abonné pour voir cette analyse.");
+      showProfileMessage("Connectez-vous depuis l'Espace Abonné pour voir cette analyse.");
+    });
+  }
+
+  /* ================= DIVERSIFICATION SECTORIELLE ================= */
+
+  function equityHoldings() {
+    return allHoldings.filter(function (h) {
+      return h.category === "Actions" || h.category === "ETF";
+    });
+  }
+
+  function renderSectorSection() {
+    var equities = equityHoldings();
+
+    if (equities.length === 0) {
+      showSectorMessage("Ajoutez des actions ou ETF dans Suivi des investissements pour voir leur répartition sectorielle ici.");
+      assignBox.style.display = "none";
+      return;
+    }
+
+    var bySector = {};
+    var total = 0;
+    equities.forEach(function (h) {
+      var key = h.sector || "unclassified";
+      bySector[key] = (bySector[key] || 0) + Number(h.amount || 0);
+      total += Number(h.amount || 0);
+    });
+
+    if (total <= 0) {
+      showSectorMessage("Ajoutez des actions ou ETF avec un montant renseigné pour voir leur répartition sectorielle ici.");
+      assignBox.style.display = "none";
+      return;
+    }
+
+    var rows = Object.keys(bySector).map(function (key) {
+      var label = key === "unclassified" ? "Non classé" : (SECTOR_LABELS[key] || key);
+      return { label: label, value: bySector[key] };
+    });
+    rows.sort(function (a, b) { return b.value - a.value; });
+
+    var maxPct = 0;
+    sectorBox.innerHTML = rows.map(function (r) {
+      var pct = total > 0 ? Math.round((r.value / total) * 100) : 0;
+      if (r.label !== "Non classé" && pct > maxPct) maxPct = pct;
+      var warn = pct >= 40;
+      return '' +
+        '<div class="bar-row">' +
+          '<div class="bar-head"><span class="bar-name">' + escapeHtml(r.label) + '</span><span class="bar-value">' + pct + "%</span></div>" +
+          '<div class="bar-track"><div class="bar-fill' + (warn ? " warn" : "") + '" style="width:' + pct + '%;"></div></div>' +
+        "</div>";
+    }).join("");
+
+    if (maxPct >= 40) {
+      sectorBox.innerHTML += '<div class="concentration-note">Un secteur représente ' + maxPct + '% de vos actions et ETF classés. Ce n\'est ni bon ni mauvais en soi, mais c\'est le genre de concentration qui mérite d\'être un choix conscient plutôt qu\'un hasard.</div>';
+    }
+
+    renderAssignList(equities);
+  }
+
+  function renderAssignList(equities) {
+    assignBox.style.display = "block";
+
+    var optionsHtml = '<option value="">Non classé</option>' + SECTOR_KEYS.map(function (key) {
+      return '<option value="' + escapeHtml(key) + '">' + escapeHtml(SECTOR_LABELS[key]) + "</option>";
+    }).join("");
+
+    assignList.innerHTML = equities.map(function (h) {
+      return '' +
+        '<div class="assign-row">' +
+          '<div class="assign-info">' +
+            '<div class="assign-name">' + escapeHtml(h.name) + "</div>" +
+            '<div class="assign-amount">' + fmt(Number(h.amount || 0)) + " · " + escapeHtml(h.category) + "</div>" +
+          "</div>" +
+          '<select class="assign-select" data-holding-id="' + escapeHtml(h.id) + '">' + optionsHtml + "</select>" +
+        "</div>";
+    }).join("");
+
+    equities.forEach(function (h) {
+      var sel = assignList.querySelector('select[data-holding-id="' + h.id + '"]');
+      if (sel) sel.value = h.sector || "";
+    });
+
+    assignList.querySelectorAll(".assign-select").forEach(function (sel) {
+      sel.addEventListener("change", function () {
+        var holdingId = sel.getAttribute("data-holding-id");
+        var sector = sel.value || null;
+        sb.from("holdings").update({ sector: sector }).eq("id", holdingId).then(function () {
+          loadHoldings();
+        });
+      });
+    });
+  }
+
+  /* ================= PROFIL DE RISQUE ================= */
+
+  var CATEGORY_TO_BUCKET = {
+    "Actions": "actions",
+    "ETF": "actions",
+    "Obligations": "obligations",
+    "Immobilier": "immobilier",
+    "Liquidités": "liquidites",
+    "Crypto": "crypto"
+  };
+
+  var BUCKET_LABELS = {
+    actions: "Actions / ETF",
+    obligations: "Obligations",
+    immobilier: "Immobilier",
+    liquidites: "Liquidités",
+    crypto: "Crypto"
+  };
+
+  var BUCKET_ORDER = ["actions", "obligations", "immobilier", "liquidites", "crypto"];
+
+  var RISK_PROFILES = {
+    prudent: { actions: [10, 30], obligations: [40, 60], immobilier: [10, 20], liquidites: [10, 20], crypto: [0, 5] },
+    equilibre: { actions: [40, 60], obligations: [15, 30], immobilier: [10, 20], liquidites: [5, 15], crypto: [0, 5] },
+    dynamique: { actions: [65, 85], obligations: [0, 10], immobilier: [5, 15], liquidites: [0, 10], crypto: [0, 10] }
+  };
+
+  function renderProfileSection() {
+    if (allHoldings.length === 0) {
+      showProfileMessage("Ajoutez des positions dans Patrimoine ou Investissements pour comparer votre allocation.");
+      return;
+    }
+
+    var byBucket = {};
+    var total = 0;
+    allHoldings.forEach(function (h) {
+      var bucket = CATEGORY_TO_BUCKET[h.category];
+      if (!bucket) return;
+      byBucket[bucket] = (byBucket[bucket] || 0) + Number(h.amount || 0);
+      total += Number(h.amount || 0);
+    });
+
+    if (total <= 0) {
+      showProfileMessage("Ajoutez des positions avec un montant renseigné pour comparer votre allocation.");
+      return;
+    }
+
+    var profile = RISK_PROFILES[selectProfile.value] || RISK_PROFILES.equilibre;
+
+    profileList.innerHTML = BUCKET_ORDER.map(function (bucket) {
+      var actualPct = Math.round(((byBucket[bucket] || 0) / total) * 100);
+      var range = profile[bucket];
+      var status = "ok", statusLabel = "Dans la fourchette";
+      if (actualPct < range[0]) { status = "low"; statusLabel = "En dessous"; }
+      else if (actualPct > range[1]) { status = "high"; statusLabel = "Au-dessus"; }
+
+      return '' +
+        '<div class="profile-row">' +
+          '<span class="profile-bucket">' + escapeHtml(BUCKET_LABELS[bucket]) + "</span>" +
+          '<span class="profile-mid">repère ' + range[0] + '–' + range[1] + "%</span>" +
+          '<span class="profile-actual">' + actualPct + "%</span>" +
+          '<span class="profile-status ' + status + '">' + statusLabel + "</span>" +
+        "</div>";
+    }).join("");
+  }
+
+  selectProfile.addEventListener("change", renderProfileSection);
+
+  loadHoldings();
+})();
+</script>
+</body>
+</html>
