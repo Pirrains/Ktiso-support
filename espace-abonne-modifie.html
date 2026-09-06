@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ktiso — Mon compte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #131A26;
+    --green-deep: #0A0D14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.22);
+    --accent: var(--gold);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  a { color: inherit; }
+
+  /* ============ NAV ============ */
+
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 8px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+
+  /* ============ SHARED ============ */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 12px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green-deep);
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+  }
+
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  input, select {
+    width: 100%;
+    background: rgba(244,239,227,0.04);
+    border: 1px solid var(--line);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    outline: none;
+  }
+
+  input::placeholder { color: rgba(244,239,227,0.35); }
+  input:focus, select:focus { border-color: var(--gold); }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.5);
+    margin-bottom: 8px;
+  }
+
+  .field-error {
+    font-size: 12px;
+    color: var(--terracotta);
+    margin: -8px 0 14px;
+    display: none;
+  }
+
+  /* ============ AUTH VIEW ============ */
+
+  #view-auth { max-width: 420px; margin: 0 auto; padding: 60px 20px 0; }
+
+  .wordmark-mini {
+    height: 34px;
+    width: auto;
+    display: block;
+    margin: 0 auto 6px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .auth-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 12px;
+    padding: 36px 30px;
+  }
+
+  .auth-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 26px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 4px;
+  }
+
+  .auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.55);
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .auth-tab.active { background: var(--gold); color: var(--green-deep); }
+
+  .auth-note {
+    font-size: 12px;
+    line-height: 1.6;
+    color: rgba(244,239,227,0.4);
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* ============ DASHBOARD ============ */
+
+  #view-dashboard { display: none; max-width: 1180px; margin: 0 auto; padding: 40px 24px 0; }
+
+  .accent-picker { position: relative; }
+
+  .accent-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 8px 14px;
+    color: rgba(244,239,227,0.6);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .accent-toggle:hover { border-color: var(--accent); color: var(--cream); }
+
+  .accent-toggle-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .accent-swatches {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 20;
+    width: 300px;
+    background: var(--green-deep);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    text-align: left;
+  }
+
+  .accent-swatches.open { display: flex; }
+
+  .settings-section-label {
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    margin-bottom: 10px;
+  }
+
+  .swatch-row { display: flex; gap: 10px; }
+
+  .bg-row { display: flex; gap: 10px; }
+
+  .bg-swatch {
+    width: 44px; height: 34px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .bg-swatch-default { background: linear-gradient(180deg, #131A26, #0A0D14); }
+
+  .bg-swatch:hover, .bg-swatch.active { transform: scale(1.08); border-color: var(--accent); }
+
+  .accent-swatch {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .accent-swatch:hover { transform: scale(1.15); border-color: rgba(244,239,227,0.5); }
+
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .dash-header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--cream);
+  }
+
+  .logout-link {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .logout-link:hover { color: var(--terracotta); }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr 250px;
+    gap: 20px;
+    align-items: start;
+  }
+
+  /* ============ TOOL VIEW (inline, no modal) ============ */
+
+  .tool-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .tool-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .tool-frame {
+    width: 100%;
+    height: 78vh;
+    min-height: 560px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    display: block;
+  }
+
+  .dash-col {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+
+  .col-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  /* --- Outils column --- */
+
+  .tool-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    margin: 0 -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+  }
+
+  .tool-item:not(.locked):hover { background: rgba(201, 169, 97, 0.06); }
+
+  .tool-item:last-child { border-bottom: none; }
+
+  .tool-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .tool-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .tool-item.locked .tool-icon img { opacity: 0.35; filter: grayscale(0.6); }
+  .tool-item.locked .tool-icon { color: rgba(244,239,227,0.3); }
+  .tool-icon svg { width: 15px; height: 15px; }
+
+  .tool-item h4 {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .tool-item.locked h4 { color: rgba(244,239,227,0.45); }
+
+  .tool-status {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tool-status.active { color: var(--accent); }
+  .tool-status.locked { color: rgba(244,239,227,0.3); }
+  .tool-status svg { width: 10px; height: 10px; }
+
+  /* --- Main (patrimoine) column --- */
+
+  .goal-card {
+    border: 1px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+  }
+
+  .goal-empty { text-align: center; padding: 8px 0; }
+
+  .goal-empty p {
+    font-size: 13px;
+    color: rgba(244,239,227,0.55);
+    margin-bottom: 14px;
+  }
+
+  .goal-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .goal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .goal-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px;
+    color: var(--cream);
+  }
+
+  .goal-edit-btn {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+
+  .goal-edit-btn:hover { color: var(--accent); }
+
+  .goal-bar-outer {
+    height: 10px;
+    background: rgba(244,239,227,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .goal-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--lime));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .goal-figures {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: rgba(244,239,227,0.6);
+  }
+
+  .goal-figures strong { color: var(--cream); font-weight: 500; }
+
+  .goal-form { display: none; }
+  .goal-form.open { display: block; }
+
+  .goal-form .form-row { display: flex; gap: 10px; margin-bottom: 4px; }
+  .goal-form .form-row > div { flex: 1; }
+
+  .dash-main h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .demo-note {
+    font-size: 12px;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 26px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+
+  .stat-box {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+
+  .stat-box .k {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    margin-bottom: 10px;
+  }
+
+  .stat-box .v {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .stat-box .d { font-size: 11.5px; color: var(--lime); }
+  .stat-box .d.down { color: var(--terracotta); }
+
+  .chart-wrap { margin-bottom: 32px; }
+  .chart-wrap svg { width: 100%; height: auto; display: block; }
+  .chart-axis {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: rgba(244,239,227,0.35);
+    margin-top: 6px;
+  }
+
+  .repart-title {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .repart-row { margin-bottom: 18px; }
+
+  .repart-row .top-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    margin-bottom: 8px;
+  }
+
+  .repart-bar {
+    height: 6px;
+    background: rgba(244,239,227,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .repart-bar-fill { height: 100%; border-radius: 10px; }
+
+  /* --- Positions (real data) --- */
+
+  .positions-block {
+    margin-top: 36px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+
+  .positions-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .positions-head .repart-title { margin-bottom: 0; }
+
+  .add-position-btn {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .add-position-btn:hover { border-color: var(--gold); }
+
+  .add-form {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 16px;
+    display: none;
+  }
+
+  .add-form.open { display: block; }
+  .add-form .form-row { display: flex; gap: 10px; }
+  .add-form .form-row > div { flex: 1; }
+
+  .holding-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+
+  .holding-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .holding-info { flex: 1; }
+  .holding-info span { font-size: 10.5px; color: rgba(244,239,227,0.45); text-transform: uppercase; }
+  .holding-amount { font-family: 'Instrument Serif', serif; font-size: 15px; color: var(--gold); }
+  .holding-del { background: none; border: none; color: rgba(244,239,227,0.35); cursor: pointer; font-family: 'DM Mono', monospace; }
+  .holding-del:hover { color: var(--terracotta); }
+
+  .empty-positions {
+    text-align: center;
+    padding: 20px;
+    font-size: 12.5px;
+    color: rgba(244,239,227,0.4);
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+  }
+
+  /* --- Famille column --- */
+
+  .member-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .member-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .member-row h4 { font-size: 13.5px; color: var(--cream); margin-bottom: 2px; }
+  .member-row span { font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(244,239,227,0.4); }
+
+  .add-member-btn {
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    background: none;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .add-member-btn:hover { border-color: var(--accent); }
+
+  .family-note {
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: rgba(244,239,227,0.4);
+    text-align: center;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .hanging-astro {
+    display: block;
+    width: 76px;
+    height: auto;
+    margin: 0 auto 4px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.45));
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), max-height 0.5s ease, margin 0.5s ease;
+  }
+
+  .hanging-astro.shown {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+    margin: 4px auto 4px;
+  }
+
+  .footer-astro {
+    display: block;
+    width: 130px;
+    height: auto;
+    margin: 40px 40px 0 auto;
+    filter: drop-shadow(0 14px 26px rgba(0,0,0,0.5));
+  }
+
+  /* ============ FOOTER ============ */
+
+  footer { text-align: center; padding: 70px 24px 0; }
+
+  .footer-nav, .footer-nav-2 {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a, .footer-nav-2 a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover, .footer-nav-2 a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep, .footer-nav-2 .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  .legal-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.25);
+    max-width: 480px;
+    margin: 16px auto 0;
+  }
+
+  .footer-nav-2 { margin-top: 20px; }
+  .footer-nav-2 a { color: rgba(244, 239, 227, 0.35); font-size: 10.5px; }
+
+  /* ============ RESPONSIVE ============ */
+
+  @media (max-width: 900px) {
+    .dash-grid { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="topnav" aria-label="Navigation principale">
+    <a href="home.html">Accueil</a><span class="sep">·</span>
+    <a href="a-propos.html">À propos</a><span class="sep">·</span>
+    <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+    <a href="outils.html">Outils</a><span class="sep">·</span>
+    <a href="application.html">Application</a><span class="sep">·</span>
+    <a href="contenus.html">Contenus</a><span class="sep">·</span>
+    <a href="actualites.html">Actualités</a><span class="sep">·</span>
+    <a href="espace-abonne.html" class="active">Mon compte</a>
+  </nav>
+
+  <!-- ============ AUTH VIEW ============ -->
+  <div id="view-auth">
+    <img class="wordmark-mini" src="ktiso-logo.png" alt="KTISO">
+    <div class="eyebrow">Espace abonné</div>
+
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</div>
+        <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Créer un compte</div>
+      </div>
+
+      <div id="signup-name-field" style="display:none;">
+        <label>Prénom</label>
+        <input type="text" id="input-name" placeholder="Votre prénom">
+      </div>
+
+      <label>Email</label>
+      <input type="email" id="input-email" placeholder="vous@exemple.com">
+
+      <label>Mot de passe</label>
+      <input type="password" id="input-password" placeholder="••••••••">
+      <div class="field-error" id="auth-error">Merci de remplir tous les champs.</div>
+      <div class="field-error" id="auth-message" style="color: var(--lime);"></div>
+
+      <button class="btn btn-primary" id="auth-submit" onclick="handleAuth()">Se connecter</button>
+
+      <p class="auth-note">Vos données sont personnelles et protégées — vous seul·e pouvez les consulter.</p>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD VIEW ============ -->
+  <div id="view-dashboard">
+    <div class="dash-header">
+      <div>
+        <div class="eyebrow" style="text-align:left; margin-bottom:6px;">Espace abonné</div>
+        <h1 id="greeting-text">Bonjour 👋</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <div class="accent-picker">
+          <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Réglages de l'espace">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Réglages
+          </button>
+          <div class="accent-swatches" id="accentSwatches">
+            <div class="settings-section-label">Apparence de mon espace</div>
+            <div class="swatch-row">
+              <button class="accent-swatch" style="background:#C9A961;" onclick="setAccent('gold')" title="Doré"></button>
+              <button class="accent-swatch" style="background:#A8C66C;" onclick="setAccent('lime')" title="Vert"></button>
+              <button class="accent-swatch" style="background:#5B8FA8;" onclick="setAccent('blue')" title="Bleu"></button>
+              <button class="accent-swatch" style="background:#C1654A;" onclick="setAccent('terracotta')" title="Terracotta"></button>
+              <button class="accent-swatch" style="background:#E8B347;" onclick="setAccent('yellow')" title="Jaune"></button>
+            </div>
+            <div class="settings-section-label" style="margin-top:16px;">Arrière-plan de mon espace</div>
+            <div class="bg-row">
+              <button class="bg-swatch bg-swatch-default" onclick="setBackground('default')" title="Sobre"></button>
+              <button class="bg-swatch" style="background-image:url('astronaute.jpg');" onclick="setBackground('espace')" title="Espace"></button>
+              <button class="bg-swatch" style="background-image:url('construction-outils.jpg');" onclick="setBackground('atelier')" title="Atelier"></button>
+              <button class="bg-swatch" style="background-image:url('systeme-planetaire.jpg');" onclick="setBackground('nebuleuse')" title="Nébuleuse"></button>
+            </div>
+            <div class="settings-section-label" style="margin-top:16px;">Mon objectif patrimonial</div>
+            <div id="goalFormSettings"></div>
+          </div>
+        </div>
+        <button class="logout-link" onclick="logout()">Déconnexion</button>
+      </div>
+    </div>
+
+    <div class="dash-grid">
+
+      <!-- OUTILS -->
+      <aside class="dash-col">
+        <div class="col-label">Outils</div>
+
+        <div class="tool-item" onclick="openTool('patrimoine.html')" style="cursor:pointer;">
+          <div class="tool-icon"><img src="icon-labo.png" alt=""></div>
+          <div>
+            <h4>Suivi du patrimoine</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item" onclick="openTool('investissements.html')" style="cursor:pointer;">
+          <div class="tool-icon"><img src="icon-ordinateur.png" alt=""></div>
+          <div>
+            <h4>Suivi des investissements</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item" onclick="openTool('interets-composes.html')" style="cursor:pointer;">
+          <div class="tool-icon"><img src="icon-fusee.png" alt=""></div>
+          <div>
+            <h4>Intérêts composés</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item" onclick="openTool('comptes.html')" style="cursor:pointer;">
+          <div class="tool-icon"><img src="icon-livre.png" alt=""></div>
+          <div>
+            <h4>Comptes du quotidien</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><img src="icon-radio.png" alt=""></div>
+          <div>
+            <h4>Screener d'actions</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item" onclick="openTool('comparateur-performance.html')" style="cursor:pointer;">
+          <div class="tool-icon"><img src="icon-becher.png" alt=""></div>
+          <div>
+            <h4>Comparateur de performances</h4>
+            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><img src="icon-loupe.png" alt=""></div>
+          <div>
+            <h4>Analyse de portefeuille</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><img src="icon-marteau.png" alt=""></div>
+          <div>
+            <h4>Simulateur immobilier</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><img src="icon-astronaute.png" alt=""></div>
+          <div>
+            <h4>Optimisation fiscale</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+
+        <div class="tool-item locked">
+          <div class="tool-icon"><img src="icon-boussole.png" alt=""></div>
+          <div>
+            <h4>Espace famille avancé</h4>
+            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PATRIMOINE (main) -->
+      <main class="dash-col dash-main">
+        <div id="dashDefaultView">
+
+        <div class="goal-card" id="goalCard">
+          <!-- rempli dynamiquement par JS -->
+        </div>
+
+        <h2>Évolution du patrimoine</h2>
+        <p class="demo-note">Calculé automatiquement à partir de vos positions et de vos outils</p>
+
+        <div class="stats-row" id="realStatsRow">
+          <div class="stat-box">
+            <div class="k">Patrimoine total</div>
+            <div class="v" id="stat-total">0 €</div>
+            <div class="d" id="stat-sources">Toutes sources confondues</div>
+          </div>
+          <div class="stat-box">
+            <div class="k">Revenus ce mois-ci</div>
+            <div class="v" id="stat-revenus">0 €</div>
+            <div class="d">Via Comptes du quotidien</div>
+          </div>
+          <div class="stat-box">
+            <div class="k">Charges ce mois-ci</div>
+            <div class="v down" id="stat-charges">0 €</div>
+            <div class="d" id="stat-solde">Solde : 0 €</div>
+          </div>
+        </div>
+
+        <div class="repart-title">Répartition</div>
+        <div id="repartList">
+          <div class="empty-positions">Ajoutez une position (ici ou dans un outil) pour voir la répartition.</div>
+        </div>
+
+        <!-- REAL data block, backed by Supabase -->
+        <div class="positions-block">
+          <div class="positions-head">
+            <div class="repart-title">Vos positions renseignées</div>
+            <button class="add-position-btn" onclick="toggleAddForm()">+ Ajouter</button>
+          </div>
+
+          <div class="add-form" id="add-form">
+            <label>Nom de l'actif</label>
+            <input type="text" id="pf-name" placeholder="Ex: ETF World, Appartement Liège...">
+            <div class="form-row">
+              <div>
+                <label>Catégorie</label>
+                <select id="pf-category">
+                  <option value="Actions">Actions</option>
+                  <option value="ETF">ETF</option>
+                  <option value="Obligations">Obligations</option>
+                  <option value="Immobilier">Immobilier</option>
+                  <option value="Crypto">Cryptoactifs</option>
+                  <option value="Liquidités">Liquidités</option>
+                </select>
+              </div>
+              <div>
+                <label>Montant (€)</label>
+                <input type="number" id="pf-amount" placeholder="1000" min="0">
+              </div>
+            </div>
+            <div class="field-error" id="pf-error">Merci de renseigner un nom et un montant.</div>
+            <button class="btn btn-primary" onclick="addHolding()">Enregistrer cette position</button>
+          </div>
+
+          <div id="holdings-list">
+            <div class="empty-positions" id="holdings-empty">Aucune position renseignée pour l'instant.</div>
+          </div>
+        </div>
+        </div>
+
+        <div id="dashToolView" style="display:none;">
+          <button class="tool-back-btn" onclick="closeTool()">← Retour au tableau de bord</button>
+          <iframe id="toolFrame" class="tool-frame" src="" title="Outil Ktiso"></iframe>
+        </div>
+      </main>
+
+      <!-- FAMILLE -->
+      <aside class="dash-col">
+        <div class="col-label">Famille</div>
+
+        <div class="member-row">
+          <div class="member-avatar" id="member-avatar-you">V</div>
+          <div>
+            <h4 id="member-name-you">Vous</h4>
+            <span>Titulaire</span>
+          </div>
+        </div>
+
+        <div id="familyMembersList"></div>
+
+        <button class="add-member-btn" onclick="toggleFamilyForm()">+ Ajouter un membre</button>
+
+        <div class="goal-form" id="familyForm" style="margin-top:14px;">
+          <label>Prénom</label>
+          <input type="text" id="family-name-input" placeholder="Ex: Camille">
+          <label>Lien</label>
+          <select id="family-relation-input">
+            <option value="Conjoint·e">Conjoint·e</option>
+            <option value="Enfant">Enfant</option>
+            <option value="Parent">Parent</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <div class="field-error" id="family-error">Merci d'indiquer un prénom.</div>
+          <button class="btn btn-primary" onclick="addFamilyMember()">Ajouter</button>
+        </div>
+
+        <img class="hanging-astro" id="hangingAstro" src="astro-suspendu.png" alt="">
+      </aside>
+
+    </div>
+  </div>
+
+  <img class="footer-astro" src="astro-assis.png" alt="">
+
+  <footer>
+    <div class="footer-nav">
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a><span class="sep">·</span>
+      <a href="index.html">Support</a><span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const SUPABASE_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlleXRoeW5xYnpnanBkbXV3dnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MzExMjksImV4cCI6MjEwNDAwNzEyOX0.KGN8xj-PyuWbe8ytF9jBS6IXgUlyIVLGhNXIX4AsvWQ';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const categoryColors = {
+    'Actions': '#C9A961', 'ETF': '#A8C66C', 'Obligations': '#5B8FA8',
+    'Immobilier': '#C1654A', 'Crypto': '#E8B347', 'Liquidités': 'rgba(244,239,227,0.4)'
+  };
+
+  let currentTab = 'login';
+  let holdings = [];
+
+  function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+    document.getElementById('signup-name-field').style.display = tab === 'signup' ? 'block' : 'none';
+    document.getElementById('auth-submit').textContent = tab === 'signup' ? 'Créer mon compte' : 'Se connecter';
+    hideMessages();
+  }
+
+  function hideMessages() {
+    document.getElementById('auth-error').style.display = 'none';
+    document.getElementById('auth-message').style.display = 'none';
+  }
+
+  function showAuthError(msg) {
+    const el = document.getElementById('auth-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function showAuthMessage(msg) {
+    const el = document.getElementById('auth-message');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  async function handleAuth() {
+    const email = document.getElementById('input-email').value.trim();
+    const password = document.getElementById('input-password').value.trim();
+    const name = document.getElementById('input-name').value.trim();
+    const submitBtn = document.getElementById('auth-submit');
+
+    if (!email || !password || (currentTab === 'signup' && !name)) {
+      showAuthError('Merci de remplir tous les champs.');
+      return;
+    }
+    hideMessages();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Un instant…';
+
+    try {
+      if (currentTab === 'signup') {
+        const { data, error } = await sb.auth.signUp({
+          email, password,
+          options: { data: { full_name: name } }
+        });
+        if (error) throw error;
+
+        if (data.user && !data.session) {
+          showAuthMessage('Compte créé — vérifiez votre email pour confirmer votre inscription avant de vous connecter.');
+          switchTab('login');
+          return;
+        }
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+
+      await loadUserAndHoldings();
+      showView('dashboard');
+    } catch (err) {
+      showAuthError(translateAuthError(err.message));
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = currentTab === 'signup' ? 'Créer mon compte' : 'Se connecter';
+    }
+  }
+
+  function translateAuthError(msg) {
+    if (msg.includes('Invalid login credentials')) return 'Email ou mot de passe incorrect.';
+    if (msg.includes('already registered')) return 'Un compte existe déjà avec cet email.';
+    if (msg.includes('Password should be at least')) return 'Le mot de passe doit faire au moins 6 caractères.';
+    if (msg.includes('Email not confirmed')) return 'Confirmez votre email avant de vous connecter (vérifiez votre boîte de réception).';
+    return msg;
+  }
+
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  async function logout() {
+    await sb.auth.signOut();
+    document.getElementById('input-email').value = '';
+    document.getElementById('input-password').value = '';
+    document.getElementById('input-name').value = '';
+    holdings = [];
+    showView('auth');
+  }
+
+  function showView(name) {
+    document.getElementById('view-auth').style.display = name === 'auth' ? 'block' : 'none';
+    document.getElementById('view-dashboard').style.display = name === 'dashboard' ? 'block' : 'none';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function openTool(url) {
+    document.getElementById('toolFrame').src = url;
+    document.getElementById('dashDefaultView').style.display = 'none';
+    document.getElementById('dashToolView').style.display = 'block';
+    document.querySelector('.dash-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function closeTool() {
+    document.getElementById('dashToolView').style.display = 'none';
+    document.getElementById('dashDefaultView').style.display = 'block';
+    document.getElementById('toolFrame').src = '';
+  }
+
+  function toggleAddForm() {
+    document.getElementById('add-form').classList.toggle('open');
+  }
+
+  async function loadUserAndHoldings() {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    const userName = user.user_metadata?.full_name || user.email.split('@')[0] || 'Investisseur';
+    document.getElementById('greeting-text').textContent = `Bonjour, ${capitalize(userName)} 👋`;
+    document.getElementById('member-name-you').textContent = capitalize(userName);
+    document.getElementById('member-avatar-you').textContent = userName.charAt(0).toUpperCase();
+
+    const { data, error } = await sb
+      .from('holdings')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    holdings = error ? [] : data;
+    renderHoldings();
+
+    const { data: txData, error: txError } = await sb
+      .from('transactions')
+      .select('*')
+      .order('date', { ascending: false });
+
+    transactions = txError ? [] : txData;
+    renderRealStats();
+
+    const { data: profile } = await sb
+      .from('profiles')
+      .select('goal_amount, goal_label, accent_color, background_theme')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    applyAccent(profile?.accent_color);
+    applyBackground(profile?.background_theme || 'default');
+    renderGoal(profile);
+    await loadFamilyMembers();
+  }
+
+  function holdingsTotal() {
+    return holdings.reduce((sum, h) => sum + Number(h.amount || 0), 0);
+  }
+
+  let transactions = [];
+
+  function isSameMonth(dateStr, ref) {
+    if (!dateStr) return false;
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
+  }
+
+  function renderRealStats() {
+    const total = holdingsTotal();
+    const now = new Date();
+    const monthTx = transactions.filter(t => isSameMonth(t.date, now));
+    const revenus = monthTx.filter(t => t.type === 'revenu').reduce((s, t) => s + Number(t.amount || 0), 0);
+    const charges = monthTx.filter(t => t.type === 'depense').reduce((s, t) => s + Number(t.amount || 0), 0);
+    const solde = revenus - charges;
+
+    document.getElementById('stat-total').textContent = formatEuro(total);
+    const sources = new Set(holdings.map(h => h.source || 'manual'));
+    const sourceLabels = { manual: 'saisie manuelle', patrimoine: 'Suivi du patrimoine', investissements: 'Suivi des investissements' };
+    document.getElementById('stat-sources').textContent = holdings.length === 0
+      ? 'Aucune position pour le moment'
+      : Array.from(sources).map(s => sourceLabels[s] || s).join(' · ');
+
+    document.getElementById('stat-revenus').textContent = formatEuro(revenus);
+    document.getElementById('stat-charges').textContent = formatEuro(charges);
+    const soldeEl = document.getElementById('stat-solde');
+    soldeEl.textContent = `Solde : ${solde >= 0 ? '+' : ''}${formatEuro(solde)}`;
+    soldeEl.parentElement.querySelector('.v').className = charges > revenus ? 'v down' : 'v';
+
+    renderRepartition(total);
+  }
+
+  function renderRepartition(total) {
+    const el = document.getElementById('repartList');
+    if (holdings.length === 0) {
+      el.innerHTML = '<div class="empty-positions">Ajoutez une position (ici ou dans un outil) pour voir la répartition.</div>';
+      return;
+    }
+    const byCategory = {};
+    holdings.forEach(h => {
+      const cat = h.category || 'Autre';
+      byCategory[cat] = (byCategory[cat] || 0) + Number(h.amount || 0);
+    });
+    const palette = ['var(--lime)', 'var(--gold)', 'var(--blue)', 'var(--terracotta)', 'var(--yellow)'];
+    const rows = Object.keys(byCategory).sort((a, b) => byCategory[b] - byCategory[a]);
+
+    el.innerHTML = rows.map((cat, i) => {
+      const pct = total > 0 ? Math.round((byCategory[cat] / total) * 100) : 0;
+      const color = palette[i % palette.length];
+      return `
+        <div class="repart-row">
+          <div class="top-line"><span>${escapeHtml(cat)}</span><span>${pct} %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:${pct}%; background:${color};"></div></div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  const accentColors = { gold: '#C9A961', lime: '#A8C66C', blue: '#5B8FA8', terracotta: '#C1654A', yellow: '#E8B347' };
+
+  function applyAccent(name) {
+    const hex = accentColors[name] || accentColors.gold;
+    document.documentElement.style.setProperty('--accent', hex);
+  }
+
+  const backgroundThemes = {
+    default: null,
+    espace: 'astronaute.jpg',
+    atelier: 'construction-outils.jpg',
+    nebuleuse: 'systeme-planetaire.jpg'
+  };
+
+  function applyBackground(theme) {
+    const file = backgroundThemes[theme];
+    document.querySelectorAll('.bg-swatch').forEach(b => b.classList.remove('active'));
+    const active = document.querySelector(`.bg-swatch[onclick="setBackground('${theme}')"]`) || document.querySelector('.bg-swatch-default');
+    active?.classList.add('active');
+
+    if (!file) {
+      document.body.style.backgroundImage = '';
+      return;
+    }
+    document.body.style.backgroundImage = `linear-gradient(rgba(3,12,34,0.82), rgba(3,12,34,0.9)), url('${file}')`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+    document.body.style.backgroundAttachment = 'fixed';
+  }
+
+  async function setBackground(theme) {
+    applyBackground(theme);
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    await sb.from('profiles').update({ background_theme: theme }).eq('id', user.id);
+  }
+
+  function toggleAccentPicker() {
+    document.getElementById('accentSwatches').classList.toggle('open');
+  }
+
+  async function setAccent(name) {
+    applyAccent(name);
+    document.getElementById('accentSwatches').classList.remove('open');
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    await sb.from('profiles').update({ accent_color: name }).eq('id', user.id);
+  }
+
+  document.addEventListener('click', (e) => {
+    const picker = document.querySelector('.accent-picker');
+    if (picker && !picker.contains(e.target)) {
+      document.getElementById('accentSwatches')?.classList.remove('open');
+    }
+  });
+
+  function renderGoal(profile) {
+    const card = document.getElementById('goalCard');
+    const total = holdingsTotal();
+
+    if (!profile || !profile.goal_amount) {
+      card.innerHTML = `
+        <div class="goal-empty">
+          <div class="goal-eyebrow">Votre objectif</div>
+          <p>Créez votre espace personnalisé : fixez le cap que vous voulez atteindre, et suivez votre progression réelle au fil de vos positions renseignées.</p>
+          <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="toggleAccentPicker()">+ Définir mon objectif</button>
+        </div>
+      `;
+    } else {
+      const pct = Math.min(100, Math.round((total / Number(profile.goal_amount)) * 100));
+      card.innerHTML = `
+        <div class="goal-eyebrow">Votre objectif</div>
+        <div class="goal-head">
+          <div class="goal-title">${escapeHtml(profile.goal_label || 'Mon objectif patrimonial')}</div>
+        </div>
+        <div class="goal-bar-outer"><div class="goal-bar-fill" style="width:${pct}%;"></div></div>
+        <div class="goal-figures">
+          <span><strong>${formatEuro(total)}</strong> atteints</span>
+          <span>${pct}% · objectif <strong>${formatEuro(Number(profile.goal_amount))}</strong></span>
+        </div>
+      `;
+    }
+
+    document.getElementById('goalFormSettings').innerHTML = goalFormHtml(profile);
+  }
+
+  function goalFormHtml(profile) {
+    const label = profile?.goal_label ? escapeHtml(profile.goal_label) : '';
+    const amount = profile?.goal_amount || '';
+    return `
+      <div>
+        <label>Nom de l'objectif</label>
+        <input type="text" id="goal-label-input" placeholder="Ex: Apport immobilier" value="${label}">
+        <label>Montant visé (€)</label>
+        <input type="number" id="goal-amount-input" placeholder="30000" min="0" value="${amount}">
+        <div class="field-error" id="goal-error">Merci d'indiquer un montant.</div>
+        <button class="btn btn-primary" onclick="saveGoal()">Enregistrer mon objectif</button>
+      </div>
+    `;
+  }
+
+  async function saveGoal() {
+    const label = document.getElementById('goal-label-input').value.trim();
+    const amount = parseFloat(document.getElementById('goal-amount-input').value);
+    const errorEl = document.getElementById('goal-error');
+
+    if (!amount || amount <= 0) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb
+      .from('profiles')
+      .update({ goal_amount: amount, goal_label: label || 'Mon objectif patrimonial' })
+      .eq('id', user.id);
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const { data: profile } = await sb
+      .from('profiles')
+      .select('goal_amount, goal_label')
+      .eq('id', user.id)
+      .maybeSingle();
+
+    renderGoal(profile);
+  }
+
+  async function addHolding() {
+    const name = document.getElementById('pf-name').value.trim();
+    const category = document.getElementById('pf-category').value;
+    const amount = parseFloat(document.getElementById('pf-amount').value);
+    const errorEl = document.getElementById('pf-error');
+
+    if (!name || !amount || amount <= 0) {
+      errorEl.style.display = 'block';
+      return;
+    }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb.from('holdings').insert({
+      user_id: user.id, name, category, amount
+    });
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('pf-name').value = '';
+    document.getElementById('pf-amount').value = '';
+    document.getElementById('add-form').classList.remove('open');
+    await loadUserAndHoldings();
+  }
+
+  async function deleteHolding(id) {
+    await sb.from('holdings').delete().eq('id', id);
+    await loadUserAndHoldings();
+  }
+
+  let familyMembers = [];
+
+  async function loadFamilyMembers() {
+    const { data, error } = await sb
+      .from('family_members')
+      .select('*')
+      .order('created_at', { ascending: true });
+    familyMembers = error ? [] : data;
+    renderFamilyMembers();
+  }
+
+  function renderFamilyMembers() {
+    const list = document.getElementById('familyMembersList');
+    list.innerHTML = familyMembers.map(m => `
+      <div class="member-row">
+        <div class="member-avatar">${escapeHtml(m.name.charAt(0).toUpperCase())}</div>
+        <div style="flex:1;">
+          <h4>${escapeHtml(m.name)}</h4>
+          <span>${escapeHtml(m.relation)}</span>
+        </div>
+        <button class="holding-del" onclick="deleteFamilyMember('${m.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function toggleFamilyForm() {
+    document.getElementById('familyForm').classList.toggle('open');
+    document.getElementById('hangingAstro').classList.add('shown');
+    setTimeout(() => document.getElementById('hangingAstro').classList.remove('shown'), 2600);
+  }
+
+  async function addFamilyMember() {
+    const name = document.getElementById('family-name-input').value.trim();
+    const relation = document.getElementById('family-relation-input').value;
+    const errorEl = document.getElementById('family-error');
+
+    if (!name) { errorEl.style.display = 'block'; return; }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb.from('family_members').insert({ user_id: user.id, name, relation });
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('family-name-input').value = '';
+    document.getElementById('familyForm').classList.remove('open');
+    document.getElementById('hangingAstro').classList.add('shown');
+    setTimeout(() => document.getElementById('hangingAstro').classList.remove('shown'), 2600);
+    await loadFamilyMembers();
+  }
+
+  async function deleteFamilyMember(id) {
+    await sb.from('family_members').delete().eq('id', id);
+    await loadFamilyMembers();
+  }
+
+  function renderHoldings() {
+    const list = document.getElementById('holdings-list');
+
+    if (holdings.length === 0) {
+      list.innerHTML = '<div class="empty-positions" id="holdings-empty">Aucune position renseignée pour l\'instant.</div>';
+      return;
+    }
+
+    list.innerHTML = holdings.map(h => `
+      <div class="holding-row">
+        <span class="holding-dot" style="background:${categoryColors[h.category] || '#C9A961'};"></span>
+        <div class="holding-info">
+          <div>${escapeHtml(h.name)}</div>
+          <span>${escapeHtml(h.category)}</span>
+        </div>
+        <div class="holding-amount">${formatEuro(Number(h.amount))}</div>
+        <button class="holding-del" onclick="deleteHolding('${h.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function formatEuro(n) {
+    return new Intl.NumberFormat('fr-BE', { maximumFractionDigits: 0 }).format(n) + ' €';
+  }
+
+  function escapeHtml(s) {
+    const div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  (async function init() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      await loadUserAndHoldings();
+      showView('dashboard');
+    } else {
+      showView('auth');
+    }
+  })();
+</script>
+
+</body>
+</html>
