@@ -223,19 +223,31 @@
 
   .accent-swatches {
     display: none;
+    flex-direction: column;
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
     z-index: 20;
+    width: 300px;
     background: var(--green-deep);
     border: 1px solid var(--line);
     border-radius: 14px;
-    padding: 12px;
-    gap: 10px;
+    padding: 18px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    text-align: left;
   }
 
   .accent-swatches.open { display: flex; }
+
+  .settings-section-label {
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.45);
+    margin-bottom: 10px;
+  }
+
+  .swatch-row { display: flex; gap: 10px; }
 
   .accent-swatch {
     width: 26px; height: 26px;
@@ -791,15 +803,21 @@
       </div>
       <div style="display:flex; align-items:center; gap:18px;">
         <div class="accent-picker">
-          <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Personnaliser les couleurs">
-            <span class="accent-toggle-dot"></span> Personnaliser
+          <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Réglages de l'espace">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            Réglages
           </button>
           <div class="accent-swatches" id="accentSwatches">
-            <button class="accent-swatch" style="background:#C9A961;" onclick="setAccent('gold')" title="Doré"></button>
-            <button class="accent-swatch" style="background:#A8C66C;" onclick="setAccent('lime')" title="Vert"></button>
-            <button class="accent-swatch" style="background:#5B8FA8;" onclick="setAccent('blue')" title="Bleu"></button>
-            <button class="accent-swatch" style="background:#C1654A;" onclick="setAccent('terracotta')" title="Terracotta"></button>
-            <button class="accent-swatch" style="background:#E8B347;" onclick="setAccent('yellow')" title="Jaune"></button>
+            <div class="settings-section-label">Apparence de mon espace</div>
+            <div class="swatch-row">
+              <button class="accent-swatch" style="background:#C9A961;" onclick="setAccent('gold')" title="Doré"></button>
+              <button class="accent-swatch" style="background:#A8C66C;" onclick="setAccent('lime')" title="Vert"></button>
+              <button class="accent-swatch" style="background:#5B8FA8;" onclick="setAccent('blue')" title="Bleu"></button>
+              <button class="accent-swatch" style="background:#C1654A;" onclick="setAccent('terracotta')" title="Terracotta"></button>
+              <button class="accent-swatch" style="background:#E8B347;" onclick="setAccent('yellow')" title="Jaune"></button>
+            </div>
+            <div class="settings-section-label" style="margin-top:16px;">Mon objectif patrimonial</div>
+            <div id="goalFormSettings"></div>
           </div>
         </div>
         <button class="logout-link" onclick="logout()">Déconnexion</button>
@@ -902,59 +920,29 @@
         </div>
 
         <h2>Évolution du patrimoine</h2>
-        <p class="demo-note">Données de démonstration · dernière mise à jour aujourd'hui</p>
+        <p class="demo-note">Calculé automatiquement à partir de vos positions et de vos outils</p>
 
-        <div class="stats-row">
+        <div class="stats-row" id="realStatsRow">
           <div class="stat-box">
             <div class="k">Patrimoine total</div>
-            <div class="v">18 310 €</div>
-            <div class="d">+ 47,7 % sur l'année</div>
+            <div class="v" id="stat-total">0 €</div>
+            <div class="d" id="stat-sources">Toutes sources confondues</div>
           </div>
           <div class="stat-box">
-            <div class="k">Ce mois-ci</div>
-            <div class="v">+ 860 €</div>
-            <div class="d">+ 4,9 %</div>
+            <div class="k">Revenus ce mois-ci</div>
+            <div class="v" id="stat-revenus">0 €</div>
+            <div class="d">Via Comptes du quotidien</div>
           </div>
           <div class="stat-box">
-            <div class="k">Épargne mensuelle</div>
-            <div class="v">450 €</div>
-            <div class="d down">- 50 € vs objectif</div>
-          </div>
-        </div>
-
-        <div class="chart-wrap">
-          <svg viewBox="0 0 880 240" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#C9A961" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#C9A961" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M 0.0,90.0 Q 0.0,90.0 55.0,87.0 Q 110.0,84.0 165.0,85.8 Q 220.0,87.6 275.0,81.0 Q 330.0,74.4 385.0,67.2 Q 440.0,60.0 495.0,61.8 Q 550.0,63.6 605.0,55.8 Q 660.0,48.0 715.0,40.2 Q 770.0,32.4 825.0,26.35 L 880.0,20.3 L 880.0,240 L 0.0,240 Z" fill="url(#chartFill)"></path>
-            <path d="M 0.0,90.0 Q 0.0,90.0 55.0,87.0 Q 110.0,84.0 165.0,85.8 Q 220.0,87.6 275.0,81.0 Q 330.0,74.4 385.0,67.2 Q 440.0,60.0 495.0,61.8 Q 550.0,63.6 605.0,55.8 Q 660.0,48.0 715.0,40.2 Q 770.0,32.4 825.0,26.35 L 880.0,20.3" fill="none" stroke="#C9A961" stroke-width="2.5"></path>
-          </svg>
-          <div class="chart-axis">
-            <span>Jan</span><span>Fév</span><span>Mar</span><span>Avr</span><span>Mai</span><span>Juin</span><span>Juil</span><span>Août</span><span>Sep</span>
+            <div class="k">Charges ce mois-ci</div>
+            <div class="v down" id="stat-charges">0 €</div>
+            <div class="d" id="stat-solde">Solde : 0 €</div>
           </div>
         </div>
 
         <div class="repart-title">Répartition</div>
-
-        <div class="repart-row">
-          <div class="top-line"><span>Actions &amp; ETF</span><span>46 %</span></div>
-          <div class="repart-bar"><div class="repart-bar-fill" style="width:46%; background:var(--lime);"></div></div>
-        </div>
-        <div class="repart-row">
-          <div class="top-line"><span>Épargne</span><span>24 %</span></div>
-          <div class="repart-bar"><div class="repart-bar-fill" style="width:24%; background:var(--gold);"></div></div>
-        </div>
-        <div class="repart-row">
-          <div class="top-line"><span>Immobilier</span><span>18 %</span></div>
-          <div class="repart-bar"><div class="repart-bar-fill" style="width:18%; background:var(--blue);"></div></div>
-        </div>
-        <div class="repart-row">
-          <div class="top-line"><span>Crypto</span><span>12 %</span></div>
-          <div class="repart-bar"><div class="repart-bar-fill" style="width:12%; background:var(--terracotta);"></div></div>
+        <div id="repartList">
+          <div class="empty-positions">Ajoutez une position (ici ou dans un outil) pour voir la répartition.</div>
         </div>
 
         <!-- REAL data block, backed by Supabase -->
@@ -1011,23 +999,26 @@
             <span>Titulaire</span>
           </div>
         </div>
-        <div class="member-row">
-          <div class="member-avatar">C</div>
-          <div><h4>Camille</h4><span>Conjoint·e</span></div>
-        </div>
-        <div class="member-row">
-          <div class="member-avatar">L</div>
-          <div><h4>Léo</h4><span>Enfant</span></div>
-        </div>
-        <div class="member-row">
-          <div class="member-avatar">E</div>
-          <div><h4>Emma</h4><span>Enfant</span></div>
-        </div>
 
-        <button class="add-member-btn" onclick="document.getElementById('hangingAstro').classList.toggle('shown')">+ Ajouter un membre</button>
+        <div id="familyMembersList"></div>
+
+        <button class="add-member-btn" onclick="toggleFamilyForm()">+ Ajouter un membre</button>
+
+        <div class="goal-form" id="familyForm" style="margin-top:14px;">
+          <label>Prénom</label>
+          <input type="text" id="family-name-input" placeholder="Ex: Camille">
+          <label>Lien</label>
+          <select id="family-relation-input">
+            <option value="Conjoint·e">Conjoint·e</option>
+            <option value="Enfant">Enfant</option>
+            <option value="Parent">Parent</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <div class="field-error" id="family-error">Merci d'indiquer un prénom.</div>
+          <button class="btn btn-primary" onclick="addFamilyMember()">Ajouter</button>
+        </div>
 
         <img class="hanging-astro" id="hangingAstro" src="astro-suspendu.png" alt="">
-        <p class="family-note">Bientôt disponible — l'espace famille arrive dans l'application.</p>
       </aside>
 
     </div>
@@ -1190,6 +1181,14 @@
     holdings = error ? [] : data;
     renderHoldings();
 
+    const { data: txData, error: txError } = await sb
+      .from('transactions')
+      .select('*')
+      .order('date', { ascending: false });
+
+    transactions = txError ? [] : txData;
+    renderRealStats();
+
     const { data: profile } = await sb
       .from('profiles')
       .select('goal_amount, goal_label, accent_color')
@@ -1198,10 +1197,69 @@
 
     applyAccent(profile?.accent_color);
     renderGoal(profile);
+    await loadFamilyMembers();
   }
 
   function holdingsTotal() {
     return holdings.reduce((sum, h) => sum + Number(h.amount || 0), 0);
+  }
+
+  let transactions = [];
+
+  function isSameMonth(dateStr, ref) {
+    if (!dateStr) return false;
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
+  }
+
+  function renderRealStats() {
+    const total = holdingsTotal();
+    const now = new Date();
+    const monthTx = transactions.filter(t => isSameMonth(t.date, now));
+    const revenus = monthTx.filter(t => t.type === 'revenu').reduce((s, t) => s + Number(t.amount || 0), 0);
+    const charges = monthTx.filter(t => t.type === 'depense').reduce((s, t) => s + Number(t.amount || 0), 0);
+    const solde = revenus - charges;
+
+    document.getElementById('stat-total').textContent = formatEuro(total);
+    const sources = new Set(holdings.map(h => h.source || 'manual'));
+    const sourceLabels = { manual: 'saisie manuelle', patrimoine: 'Suivi du patrimoine', investissements: 'Suivi des investissements' };
+    document.getElementById('stat-sources').textContent = holdings.length === 0
+      ? 'Aucune position pour le moment'
+      : Array.from(sources).map(s => sourceLabels[s] || s).join(' · ');
+
+    document.getElementById('stat-revenus').textContent = formatEuro(revenus);
+    document.getElementById('stat-charges').textContent = formatEuro(charges);
+    const soldeEl = document.getElementById('stat-solde');
+    soldeEl.textContent = `Solde : ${solde >= 0 ? '+' : ''}${formatEuro(solde)}`;
+    soldeEl.parentElement.querySelector('.v').className = charges > revenus ? 'v down' : 'v';
+
+    renderRepartition(total);
+  }
+
+  function renderRepartition(total) {
+    const el = document.getElementById('repartList');
+    if (holdings.length === 0) {
+      el.innerHTML = '<div class="empty-positions">Ajoutez une position (ici ou dans un outil) pour voir la répartition.</div>';
+      return;
+    }
+    const byCategory = {};
+    holdings.forEach(h => {
+      const cat = h.category || 'Autre';
+      byCategory[cat] = (byCategory[cat] || 0) + Number(h.amount || 0);
+    });
+    const palette = ['var(--lime)', 'var(--gold)', 'var(--blue)', 'var(--terracotta)', 'var(--yellow)'];
+    const rows = Object.keys(byCategory).sort((a, b) => byCategory[b] - byCategory[a]);
+
+    el.innerHTML = rows.map((cat, i) => {
+      const pct = total > 0 ? Math.round((byCategory[cat] / total) * 100) : 0;
+      const color = palette[i % palette.length];
+      return `
+        <div class="repart-row">
+          <div class="top-line"><span>${escapeHtml(cat)}</span><span>${pct} %</span></div>
+          <div class="repart-bar"><div class="repart-bar-fill" style="width:${pct}%; background:${color};"></div></div>
+        </div>
+      `;
+    }).join('');
   }
 
   const accentColors = { gold: '#C9A961', lime: '#A8C66C', blue: '#5B8FA8', terracotta: '#C1654A', yellow: '#E8B347' };
@@ -1239,52 +1297,40 @@
         <div class="goal-empty">
           <div class="goal-eyebrow">Votre objectif</div>
           <p>Créez votre espace personnalisé : fixez le cap que vous voulez atteindre, et suivez votre progression réelle au fil de vos positions renseignées.</p>
-          <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="toggleGoalForm()">+ Définir mon objectif</button>
+          <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="toggleAccentPicker()">+ Définir mon objectif</button>
         </div>
-        ${goalFormHtml(profile)}
       `;
-      return;
+    } else {
+      const pct = Math.min(100, Math.round((total / Number(profile.goal_amount)) * 100));
+      card.innerHTML = `
+        <div class="goal-eyebrow">Votre objectif</div>
+        <div class="goal-head">
+          <div class="goal-title">${escapeHtml(profile.goal_label || 'Mon objectif patrimonial')}</div>
+        </div>
+        <div class="goal-bar-outer"><div class="goal-bar-fill" style="width:${pct}%;"></div></div>
+        <div class="goal-figures">
+          <span><strong>${formatEuro(total)}</strong> atteints</span>
+          <span>${pct}% · objectif <strong>${formatEuro(Number(profile.goal_amount))}</strong></span>
+        </div>
+      `;
     }
 
-    const pct = Math.min(100, Math.round((total / Number(profile.goal_amount)) * 100));
-    card.innerHTML = `
-      <div class="goal-eyebrow">Votre objectif</div>
-      <div class="goal-head">
-        <div class="goal-title">${escapeHtml(profile.goal_label || 'Mon objectif patrimonial')}</div>
-        <button class="goal-edit-btn" onclick="toggleGoalForm()">Modifier</button>
-      </div>
-      <div class="goal-bar-outer"><div class="goal-bar-fill" style="width:${pct}%;"></div></div>
-      <div class="goal-figures">
-        <span><strong>${formatEuro(total)}</strong> atteints</span>
-        <span>${pct}% · objectif <strong>${formatEuro(Number(profile.goal_amount))}</strong></span>
-      </div>
-      ${goalFormHtml(profile)}
-    `;
+    document.getElementById('goalFormSettings').innerHTML = goalFormHtml(profile);
   }
 
   function goalFormHtml(profile) {
     const label = profile?.goal_label ? escapeHtml(profile.goal_label) : '';
     const amount = profile?.goal_amount || '';
     return `
-      <div class="goal-form" id="goalForm" style="margin-top:16px;">
-        <div class="form-row">
-          <div>
-            <label>Nom de l'objectif</label>
-            <input type="text" id="goal-label-input" placeholder="Ex: Apport immobilier" value="${label}">
-          </div>
-          <div>
-            <label>Montant visé (€)</label>
-            <input type="number" id="goal-amount-input" placeholder="30000" min="0" value="${amount}">
-          </div>
-        </div>
+      <div>
+        <label>Nom de l'objectif</label>
+        <input type="text" id="goal-label-input" placeholder="Ex: Apport immobilier" value="${label}">
+        <label>Montant visé (€)</label>
+        <input type="number" id="goal-amount-input" placeholder="30000" min="0" value="${amount}">
         <div class="field-error" id="goal-error">Merci d'indiquer un montant.</div>
         <button class="btn btn-primary" onclick="saveGoal()">Enregistrer mon objectif</button>
       </div>
     `;
-  }
-
-  function toggleGoalForm() {
-    document.getElementById('goalForm').classList.toggle('open');
   }
 
   async function saveGoal() {
@@ -1351,6 +1397,64 @@
   async function deleteHolding(id) {
     await sb.from('holdings').delete().eq('id', id);
     await loadUserAndHoldings();
+  }
+
+  let familyMembers = [];
+
+  async function loadFamilyMembers() {
+    const { data, error } = await sb
+      .from('family_members')
+      .select('*')
+      .order('created_at', { ascending: true });
+    familyMembers = error ? [] : data;
+    renderFamilyMembers();
+  }
+
+  function renderFamilyMembers() {
+    const list = document.getElementById('familyMembersList');
+    list.innerHTML = familyMembers.map(m => `
+      <div class="member-row">
+        <div class="member-avatar">${escapeHtml(m.name.charAt(0).toUpperCase())}</div>
+        <div style="flex:1;">
+          <h4>${escapeHtml(m.name)}</h4>
+          <span>${escapeHtml(m.relation)}</span>
+        </div>
+        <button class="holding-del" onclick="deleteFamilyMember('${m.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  function toggleFamilyForm() {
+    document.getElementById('familyForm').classList.toggle('open');
+  }
+
+  async function addFamilyMember() {
+    const name = document.getElementById('family-name-input').value.trim();
+    const relation = document.getElementById('family-relation-input').value;
+    const errorEl = document.getElementById('family-error');
+
+    if (!name) { errorEl.style.display = 'block'; return; }
+    errorEl.style.display = 'none';
+
+    const { data: { user } } = await sb.auth.getUser();
+    const { error } = await sb.from('family_members').insert({ user_id: user.id, name, relation });
+
+    if (error) {
+      errorEl.textContent = "Erreur d'enregistrement — réessayez.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    document.getElementById('family-name-input').value = '';
+    document.getElementById('familyForm').classList.remove('open');
+    document.getElementById('hangingAstro').classList.add('shown');
+    setTimeout(() => document.getElementById('hangingAstro').classList.remove('shown'), 2600);
+    await loadFamilyMembers();
+  }
+
+  async function deleteFamilyMember(id) {
+    await sb.from('family_members').delete().eq('id', id);
+    await loadFamilyMembers();
   }
 
   function renderHoldings() {

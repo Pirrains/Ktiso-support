@@ -700,6 +700,7 @@
   }
 </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <body>
   <div class="frame">
     <nav class="topnav" aria-label="Navigation principale">
@@ -975,6 +976,36 @@
   };
 
   var state = { transactions: [], dcaPlans: [], positionMeta: {}, snapshots: [] };
+
+  // ---------- Synchronisation Supabase (corrélation inter-outils) ----------
+  var sbSync = (function () {
+    var client = null;
+    try {
+      if (window.supabase && window.supabase.createClient) {
+        client = window.supabase.createClient(
+          "https://ieythynqbzgjpdmuwvxc.supabase.co",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlleXRoeW5xYnpnanBkbXV3dnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MzExMjksImV4cCI6MjEwNDAwNzEyOX0.KGN8xj-PyuWbe8ytF9jBS6IXgUlyIVLGhNXIX4AsvWQ"
+        );
+      }
+    } catch (e) { client = null; }
+
+    function push(positions) {
+      if (!client) return;
+      client.auth.getUser().then(function (res) {
+        var user = res && res.data && res.data.user;
+        if (!user) return;
+        client.from("holdings").delete().eq("user_id", user.id).eq("source", "investissements").then(function () {
+          var list = (positions || []).filter(function (p) { return p.currentValue > 0; });
+          if (list.length === 0) return;
+          var rows = list.map(function (p) {
+            return { user_id: user.id, name: p.name, category: p.assetType, amount: p.currentValue, source: "investissements" };
+          });
+          client.from("holdings").insert(rows);
+        });
+      }).catch(function () {});
+    }
+    return { push: push };
+  })();
 
   var els = {
     form: document.getElementById("entry-form"),
@@ -1397,6 +1428,7 @@
     refreshNameList();
     refreshDcaPlanSelect();
     saveState();
+    sbSync.push(pf.positions);
   }
 
   // ---------- Events ----------
