@@ -290,10 +290,43 @@
   }
 
   .horizon-assets {
-    font-size: 13px;
-    line-height: 1.75;
-    color: rgba(244, 239, 227, 0.65);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
+
+  .asset-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(244, 239, 227, 0.75);
+    background: none;
+    border: none;
+    border-bottom: 1px dotted rgba(244, 239, 227, 0.35);
+    padding: 2px 1px 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  .asset-item:hover { color: var(--cream); border-bottom-color: var(--cream); }
+  .asset-item .plus { font-size: 10px; color: rgba(244,239,227,0.4); transition: transform 0.2s ease; }
+  .asset-item.open .plus { transform: rotate(45deg); }
+  .asset-item.open { color: var(--cream); border-bottom-color: transparent; }
+
+  .asset-detail {
+    display: none;
+    width: 100%;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.6);
+    padding: 4px 2px 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .asset-detail.open { display: block; }
+
+  .asset-detail .unverified { color: var(--terracotta); font-style: italic; }
 
   /* ============ ANALYSES ============ */
 
@@ -475,28 +508,6 @@
   <div class="frame">
     <div class="rule"></div>
 
-    <p class="subtitle-inline">Nos choix, en toute transparence</p>
-
-    <div class="rule"></div>
-
-    <section>
-      <div class="disclaimer">
-        <div class="disclaimer-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="13"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-          Avant de lire cette page
-        </div>
-        <p><strong>Ceci n'est pas un conseil en investissement.</strong> Ce que vous voyez ici est le portefeuille personnel de l'équipe Ktiso, partagé à titre pédagogique — pour montrer un raisonnement, pas pour indiquer quoi acheter.</p>
-        <p>Les performances passées ne préjugent pas des performances futures. Vos objectifs, votre horizon et votre tolérance au risque sont probablement différents des nôtres.</p>
-        <p>Comme indiqué sur notre page <a href="a-propos.html" style="color: var(--terracotta); border-bottom: 1px solid rgba(193,101,74,0.35);">À propos</a>, Ktiso ne vend ni ne recommande de produits financiers.</p>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
     <section>
       <div class="section-label">Pourquoi on partage ça</div>
       <h2>Voir un raisonnement réel, pas juste une théorie</h2>
@@ -513,19 +524,83 @@
       <div class="horizon-group">
         <div class="horizon-block">
           <div class="horizon-head"><span class="horizon-dot" style="background: var(--gold);"></span>Court terme</div>
-          <div class="horizon-assets">Capgemini · Planet Fitness · Neptune Digital Asset · Obligation 1 an</div>
+          <div class="horizon-assets">
+            <div>
+              <button class="asset-item" data-asset="capgemini">Capgemini<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-capgemini"><p>Société française de conseil, technologie et services numériques, cotée sur Euronext Paris (indice CAC 40).</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="planetfitness">Planet Fitness<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-planetfitness"><p>Chaîne américaine de salles de sport à bas coût, cotée au NYSE.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="neptune">Neptune Digital Asset<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-neptune"><p>Société canadienne d'infrastructure blockchain (minage de Bitcoin, staking, DeFi), basée à Vancouver et cotée à la Bourse de croissance TSX de Toronto (ainsi qu'à Francfort et sur le marché OTC américain).</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="obligation1an">Obligation 1 an<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-obligation1an"><p>Pas un titre précis mais une catégorie : une obligation à échéance courte (environ un an), utilisée pour placer des liquidités avec un risque de taux limité.</p></div>
+            </div>
+          </div>
         </div>
         <div class="horizon-block">
           <div class="horizon-head"><span class="horizon-dot" style="background: var(--terracotta);"></span>Moyen terme</div>
-          <div class="horizon-assets">Ethereum · Solana · B23 Dynamique Global</div>
+          <div class="horizon-assets">
+            <div>
+              <button class="asset-item" data-asset="ethereum">Ethereum<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-ethereum"><p>Deuxième cryptoactif par capitalisation, plateforme blockchain qui héberge des contrats intelligents et des applications décentralisées.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="solana">Solana<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-solana"><p>Cryptoactif et blockchain conçus pour un débit de transactions élevé et des frais réduits.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="b23">B23 Dynamique Global<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-b23"><p class="unverified">Descriptif à confirmer — nous n'avons pas trouvé de fiche fiable pour ce produit précis. À compléter.</p></div>
+            </div>
+          </div>
         </div>
         <div class="horizon-block">
           <div class="horizon-head"><span class="horizon-dot" style="background: var(--lime);"></span>Long terme</div>
-          <div class="horizon-assets">ETF S&amp;P 500 · ETF Marchés émergents · Fonds Aqua · Immobilier</div>
+          <div class="horizon-assets">
+            <div>
+              <button class="asset-item" data-asset="sp500">ETF S&amp;P 500<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-sp500"><p>Fonds indiciel qui réplique les 500 plus grandes entreprises cotées aux États-Unis.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="emergents">ETF Marchés émergents<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-emergents"><p>Fonds indiciel exposé aux économies en développement (Asie, Amérique latine, Europe de l'Est...).</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="aqua">Fonds Aqua<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-aqua"><p>Fonds thématique investi sur toute la chaîne de valeur de l'eau — traitement, distribution, infrastructures — à l'image du fonds BNP Paribas Aqua.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="immobilier">Immobilier<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-immobilier"><p>Catégorie générale — SCPI, foncières cotées (REIT) ou biens détenus en direct, selon le support retenu.</p></div>
+            </div>
+          </div>
         </div>
         <div class="horizon-block">
           <div class="horizon-head"><span class="horizon-dot" style="background: var(--blue);"></span>Couverture</div>
-          <div class="horizon-assets">Or · Argent · Cuivre · Bitcoin</div>
+          <div class="horizon-assets">
+            <div>
+              <button class="asset-item" data-asset="or">Or<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-or"><p>Métal précieux traditionnellement utilisé comme réserve de valeur et protection contre l'inflation.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="argent">Argent<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-argent"><p>Métal précieux à double usage, industriel et d'investissement.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="cuivre">Cuivre<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-cuivre"><p>Métal industriel, souvent considéré comme un indicateur avancé de l'activité économique mondiale.</p></div>
+            </div>
+            <div>
+              <button class="asset-item" data-asset="bitcoin">Bitcoin<span class="plus">+</span></button>
+              <div class="asset-detail" id="detail-bitcoin"><p>Première cryptomonnaie créée, souvent considérée comme une réserve de valeur numérique.</p></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -619,6 +694,24 @@
       <p class="placeholder-note">Ces analyses sont des exemples de mise en page, en attente des vraies publications de l'équipe.</p>
     </section>
 
+    <div class="rule"></div>
+
+    <section>
+      <div class="disclaimer">
+        <div class="disclaimer-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="13"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          Avant de refermer cette page
+        </div>
+        <p><strong>Ceci n'est pas un conseil en investissement.</strong> Ce que vous avez vu ici est le portefeuille personnel de l'équipe Ktiso, partagé à titre pédagogique — pour montrer un raisonnement, pas pour indiquer quoi acheter.</p>
+        <p>Les performances passées ne préjugent pas des performances futures. Vos objectifs, votre horizon et votre tolérance au risque sont probablement différents des nôtres.</p>
+        <p>Comme indiqué sur notre page <a href="a-propos.html" style="color: var(--terracotta); border-bottom: 1px solid rgba(193,101,74,0.35);">À propos</a>, Ktiso ne vend ni ne recommande de produits financiers.</p>
+      </div>
+    </section>
+
     <div class="cta-group">
       <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
         Télécharger sur l'App Store
@@ -650,5 +743,15 @@
       <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
     </footer>
   </div>
+<script>
+  document.querySelectorAll('.asset-item').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var detail = document.getElementById('detail-' + btn.dataset.asset);
+      var isOpen = detail.classList.contains('open');
+      detail.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+    });
+  });
+</script>
 </body>
 </html>
