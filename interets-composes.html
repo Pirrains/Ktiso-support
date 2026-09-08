@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="favicon.png">
+<script>if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ktiso — Calculateur d'intérêts composés</title>
 <meta name="description" content="Simulez la croissance d'un capital avec des versements réguliers et des intérêts composés.">
@@ -454,6 +454,11 @@
     .btn, .btn-primary:hover { transition: none !important; }
     .btn-primary:hover { transform: none; }
   }
+
+  html.embedded nav.topnav,
+  html.embedded header,
+  html.embedded footer { display: none !important; }
+  html.embedded .frame { padding-top: 28px !important; }
 </style>
 </head>
 <body>

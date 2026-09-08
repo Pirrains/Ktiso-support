@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" href="favicon.png">
+<script>if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ktiso — Suivi du patrimoine</title>
 <meta name="description" content="Suivez vos actifs et vos dettes pour calculer votre patrimoine net et son évolution dans le temps.">
@@ -243,6 +243,11 @@
     .btn, .btn-primary:hover, .type-toggle button, .item-delete { transition: none !important; }
     .btn-primary:hover { transform: none; }
   }
+
+  html.embedded nav.topnav,
+  html.embedded header,
+  html.embedded footer { display: none !important; }
+  html.embedded .frame { padding-top: 28px !important; }
 </style>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
