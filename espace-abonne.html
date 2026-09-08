@@ -817,7 +817,8 @@
 
   <!-- ============ DASHBOARD VIEW ============ -->
   <div id="view-dashboard">
-    <div class="dash-header" style="justify-content: flex-end;">
+    <div class="dash-header">
+      <button class="tool-back-btn" onclick="closeTool()" style="margin-bottom:0;">← Tableau de bord</button>
       <div style="display:flex; align-items:center; gap:18px;">
         <div class="accent-picker">
           <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Réglages de l'espace">
@@ -857,7 +858,6 @@
 
       <!-- OUTILS -->
       <aside class="dash-col">
-        <button class="tool-back-btn" onclick="closeTool()">← Tableau de bord</button>
         <div class="col-label">Outils</div>
 
         <div class="tool-item" onclick="openTool('patrimoine.html')" style="cursor:pointer;">
