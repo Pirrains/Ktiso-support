@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ktiso — Portefeuille</title>
 <meta name="description" content="Le portefeuille de Ktiso en toute transparence : nos choix, notre raisonnement, et l'évolution suivie dans le temps. Contenu pédagogique, pas un conseil en investissement.">
@@ -255,44 +256,43 @@
 
   /* ============ ALLOCATION ============ */
 
-  .allocation-list {
+  .horizon-group {
     display: flex;
     flex-direction: column;
     gap: 14px;
     text-align: left;
-    max-width: 460px;
+    max-width: 480px;
     margin: 8px auto 0;
   }
 
-  .allocation-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  .horizon-block {
     border: 1px solid var(--line);
     border-radius: 2px;
     padding: 18px 20px;
   }
 
-  .allocation-dot {
+  .horizon-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .horizon-dot {
     width: 10px; height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
   }
 
-  .allocation-row h4 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--cream);
-    margin-bottom: 3px;
-  }
-
-  .allocation-row p {
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: rgba(244, 239, 227, 0.6);
-    margin: 0;
-    max-width: none;
+  .horizon-assets {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.65);
   }
 
   /* ============ ANALYSES ============ */
@@ -500,7 +500,34 @@
     <section>
       <div class="section-label">Pourquoi on partage ça</div>
       <h2>Voir un raisonnement réel, pas juste une théorie</h2>
-      <p>Comprendre une règle de diversification en théorie est une chose. Voir comment une vraie personne l'applique, avec ses doutes et ses arbitrages, en est une autre. C'est ce que cette page essaie de montrer.</p>
+      <p>Nous sommes convaincus que l'apprentissage financier ne passe pas uniquement par la théorie : l'observation compte tout autant que la pratique. Voir comment un portefeuille réel se construit, évolue et s'ajuste dans le temps complète ce qu'aucun manuel ne peut enseigner seul.</p>
+    </section>
+
+    <div class="rule"></div>
+
+    <section>
+      <div class="section-label">Sélection</div>
+      <h2>Découvrez la sélection Ktiso</h2>
+      <p>Notre sélection d'actifs reflète nos objectifs personnels — elle ne constitue en aucun cas un conseil en investissement.</p>
+
+      <div class="horizon-group">
+        <div class="horizon-block">
+          <div class="horizon-head"><span class="horizon-dot" style="background: var(--gold);"></span>Court terme</div>
+          <div class="horizon-assets">Capgemini · Planet Fitness · Neptune Digital Asset · Obligation 1 an</div>
+        </div>
+        <div class="horizon-block">
+          <div class="horizon-head"><span class="horizon-dot" style="background: var(--terracotta);"></span>Moyen terme</div>
+          <div class="horizon-assets">Ethereum · Solana · B23 Dynamique Global</div>
+        </div>
+        <div class="horizon-block">
+          <div class="horizon-head"><span class="horizon-dot" style="background: var(--lime);"></span>Long terme</div>
+          <div class="horizon-assets">ETF S&amp;P 500 · ETF Marchés émergents · Fonds Aqua · Immobilier</div>
+        </div>
+        <div class="horizon-block">
+          <div class="horizon-head"><span class="horizon-dot" style="background: var(--blue);"></span>Couverture</div>
+          <div class="horizon-assets">Or · Argent · Cuivre · Bitcoin</div>
+        </div>
+      </div>
     </section>
 
     <div class="rule"></div>
@@ -517,6 +544,16 @@
         </svg>
         <p class="chart-placeholder-text">Emplacement réservé — les données réelles remplaceront cette illustration dès que le suivi sera en place.</p>
       </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section>
+      <div class="section-label">Notre stratégie</div>
+      <h2>Une logique de fonds, pas de trading</h2>
+      <p>Notre positionnement consiste à investir majoritairement dans les changements de demain, et à miser sur les éléments qui seront sollicités sur le long terme — semi-conducteurs, terres rares, secteur de l'eau.</p>
+      <p>Nous cherchons à construire une stratégie de croissance : une prise de risque plus importante à court terme, combinée à des actifs positionnés sur des secteurs durables dans le temps. Cet équilibre nous garde la souplesse nécessaire en cas d'arbitrage imprévu.</p>
+      <p>Nous construisons cette stratégie comme un fonds d'investissement, pas comme du trading — ce qui nous permet d'accepter des pertes substantielles à court terme pour laisser le portefeuille se développer sur la durée.</p>
     </section>
 
     <div class="rule"></div>
