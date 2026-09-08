@@ -6,7 +6,7 @@
 <title>Ktiso — Mon compte</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #C9A961;
@@ -64,7 +64,7 @@
   }
 
   nav.topnav a:hover { color: var(--terracotta); }
-  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav a.active { color: var(--accent); border-bottom-color: var(--accent); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
 
   /* ============ SHARED ============ */
@@ -89,12 +89,12 @@
   }
 
   .btn-primary {
-    background: var(--gold);
+    background: var(--accent);
     color: var(--green-deep);
-    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 18%, transparent);
   }
 
-  .btn-primary:hover { background: #DCC07E; transform: translateY(-1px); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--accent) 85%, white); transform: translateY(-1px); }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
   input, select {
@@ -111,7 +111,7 @@
   }
 
   input::placeholder { color: rgba(244,239,227,0.35); }
-  input:focus, select:focus { border-color: var(--gold); }
+  input:focus, select:focus { border-color: var(--accent); }
 
   label {
     display: block;
@@ -348,7 +348,7 @@
     transition: border-color 0.2s ease, color 0.2s ease;
   }
 
-  .tool-back-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .tool-back-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   .tool-frame {
     width: 100%;
@@ -370,7 +370,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 20px;
   }
 
@@ -397,7 +397,7 @@
     width: 40px; height: 40px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    color: var(--gold);
+    color: var(--accent);
   }
 
   .tool-icon img { width: 100%; height: 100%; object-fit: contain; }
@@ -463,8 +463,9 @@
   }
 
   .goal-title {
-    font-family: 'Instrument Serif', serif;
-    font-size: 19px;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
     color: var(--cream);
   }
 
@@ -513,9 +514,9 @@
   .goal-form .form-row > div { flex: 1; }
 
   .dash-main h2 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: 26px;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
     margin-bottom: 8px;
   }
 
@@ -570,7 +571,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     margin-bottom: 18px;
   }
 
@@ -613,7 +614,7 @@
     font-size: 11px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
     background: none;
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -622,7 +623,7 @@
     font-family: 'DM Mono', monospace;
   }
 
-  .add-position-btn:hover { border-color: var(--gold); }
+  .add-position-btn:hover { border-color: var(--accent); }
 
   .add-form {
     border: 1px solid var(--line);
@@ -856,6 +857,7 @@
               <button class="bg-swatch" style="background-image:url('labo-contenus.jpg');" onclick="setBackground('laboratoire')" title="Laboratoire"></button>
               <button class="bg-swatch" style="background-image:url('dune-verte.jpg');" onclick="setBackground('vallee')" title="Vallée"></button>
               <button class="bg-swatch" style="background-image:url('deux-freres.jpg');" onclick="setBackground('compagnons')" title="Compagnons"></button>
+              <button class="bg-swatch" style="background-image:url('hero-application.jpg');" onclick="setBackground('experience')" title="Expérience"></button>
               <button class="bg-swatch bg-swatch-nuit" onclick="setBackground('nuit')" title="Nuit étoilée"></button>
             </div>
             <div class="settings-section-label" style="margin-top:16px;">Mon objectif patrimonial</div>
@@ -1318,7 +1320,8 @@
     nebuleuse: 'systeme-planetaire.jpg',
     laboratoire: 'labo-contenus.jpg',
     vallee: 'dune-verte.jpg',
-    compagnons: 'deux-freres.jpg'
+    compagnons: 'deux-freres.jpg',
+    experience: 'hero-application.jpg'
   };
 
   const STARFIELD_BG = `
