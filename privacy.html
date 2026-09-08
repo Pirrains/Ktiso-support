@@ -6,7 +6,7 @@
 <title>KTISO — Politique de confidentialité</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #C9A961;
@@ -87,13 +87,6 @@
     filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
   }
 
-  .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: clamp(17px, 3.5vw, 19px);
-    color: rgba(244, 239, 227, 0.6);
-  }
-
   .updated {
     margin-top: 18px;
     font-size: 11px;
@@ -120,9 +113,9 @@
   }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(22px, 4.5vw, 26px);
-    font-weight: 400;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
     color: var(--cream);
     margin-bottom: 16px;
   }
@@ -235,8 +228,7 @@
     <header>
       <div class="eyebrow">Éducation financière</div>
       <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
-      <p class="subtitle">Politique de confidentialité</p>
-      <p class="updated">Dernière mise à jour — Juin 2026</p>
+      <p class="updated">Dernière mise à jour — Septembre 2026</p>
     </header>
 
     <div class="rule"></div>
@@ -262,7 +254,8 @@
     <section>
       <div class="section-label">Hébergement</div>
       <h2>Où sont stockées vos données</h2>
-      <p>KTISO est développée avec <span class="highlight">Base44</span>, une plateforme qui héberge l'application et sa base de données. Vos informations de compte et votre activité dans l'app sont stockées sur l'infrastructure de Base44, selon leurs propres standards de sécurité.</p>
+      <p>KTISO est hébergée sur <span class="highlight">Supabase</span>, qui héberge le site, l'application et leur base de données commune. Vos informations de compte et votre activité dans l'app sont stockées sur cette infrastructure, avec chiffrement des données sensibles et selon les standards de sécurité de Supabase.</p>
+      <p>Cette infrastructure remplace celle de Base44, utilisée lors du développement initial de l'application : vos données ne transitent plus par la plateforme Base44.</p>
       <div class="border-box">
         <p>Nous ne vendons et ne partageons vos données avec aucun tiers à des fins publicitaires. Elles ne servent qu'au fonctionnement de l'application.</p>
       </div>
