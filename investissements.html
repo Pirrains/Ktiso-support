@@ -198,6 +198,19 @@
   .framing-note p:last-child { margin-bottom: 0; }
   .framing-note strong { color: var(--cream); font-weight: 500; }
 
+  .sync-warning {
+    border: 1px solid rgba(193, 101, 74, 0.4);
+    background: rgba(193, 101, 74, 0.08);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .sync-warning.open { display: block; }
+  .sync-warning p { font-size: 13px; line-height: 1.6; color: rgba(244, 239, 227, 0.85); margin: 0; text-align: left; max-width: none; }
+  .sync-warning strong { color: var(--terracotta); }
+
   /* ============ STATS ============ */
 
   .stat-grid {
@@ -733,6 +746,9 @@
         <p><strong>Vous entrez vos opérations, l'outil calcule.</strong> Aucun courtier connecté, aucun cours de marché en temps réel — c'est vous qui mettez à jour les prix actuels de vos positions.</p>
         <p>Les montants de TOB, précompte et impôt sur les plus-values sont des <strong>estimations pédagogiques</strong>, pas une déclaration fiscale. Vérifiez toujours vos bordereaux de courtier pour les montants exacts.</p>
       </div>
+      <div class="sync-warning" id="sync-warning">
+        <p><strong>Aucun historique trouvé sur cet appareil</strong>, mais des positions existent déjà en ligne pour cet outil. Pour éviter de les effacer, la synchronisation est mise en pause tant qu'aucune opération n'est ajoutée ici. Ouvrez l'outil sur l'appareil où vous avez saisi vos opérations pour les retrouver.</p>
+      </div>
     </section>
 
     <div class="rule"></div>
@@ -995,8 +1011,10 @@
       }
     } catch (e) { client = null; }
 
+    var pushBlocked = false;
+
     function push(positions) {
-      if (!client) return;
+      if (!client || pushBlocked) return;
       client.auth.getUser().then(function (res) {
         var user = res && res.data && res.data.user;
         if (!user) return;
@@ -1010,7 +1028,26 @@
         });
       }).catch(function () {});
     }
-    return { push: push };
+
+    // Checks whether this source already has positions in Supabase. Used at
+    // load time to avoid silently wiping them with an empty push when this
+    // device's local transaction history is empty (e.g. first time on a new
+    // browser) — the transaction ledger itself is never synced, only the
+    // computed positions, so there is nothing to pull back and merge.
+    function hasRemoteData() {
+      if (!client) return Promise.resolve(false);
+      return client.auth.getUser().then(function (res) {
+        var user = res && res.data && res.data.user;
+        if (!user) return false;
+        return client.from("holdings").select("id").eq("user_id", user.id).eq("source", "investissements").limit(1).then(function (r) {
+          return Array.isArray(r.data) && r.data.length > 0;
+        });
+      }).catch(function () { return false; });
+    }
+
+    function setPushBlocked(v) { pushBlocked = v; }
+
+    return { push: push, hasRemoteData: hasRemoteData, setPushBlocked: setPushBlocked };
   })();
 
   var els = {
@@ -1445,6 +1482,9 @@
 
   els.form.addEventListener("submit", function (e) {
     e.preventDefault();
+    sbSync.setPushBlocked(false);
+    var warn = document.getElementById("sync-warning");
+    if (warn) warn.classList.remove("open");
     var operation = els.opSelect.value;
     var assetType = els.assetSelect.value;
     var name = els.inputName.value.trim();
@@ -1572,7 +1612,18 @@
       state.positionMeta = loaded.positionMeta && typeof loaded.positionMeta === "object" ? loaded.positionMeta : {};
       state.snapshots = Array.isArray(loaded.snapshots) ? loaded.snapshots : [];
     }
-    renderAll();
+    if (state.transactions.length === 0) {
+      sbSync.hasRemoteData().then(function (hasRemote) {
+        if (hasRemote) {
+          sbSync.setPushBlocked(true);
+          var warn = document.getElementById("sync-warning");
+          if (warn) warn.classList.add("open");
+        }
+        renderAll();
+      });
+    } else {
+      renderAll();
+    }
   });
 })();
 </script>
