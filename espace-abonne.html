@@ -310,7 +310,7 @@
     align-items: start;
   }
 
-  #comptes-analytics-dock {
+  #analytics-dock {
     margin-top: 20px;
     border: 1px solid var(--line);
     border-radius: 16px;
@@ -1060,7 +1060,7 @@
 
     </div>
 
-    <div id="comptes-analytics-dock" style="display:none;"></div>
+    <div id="analytics-dock" style="display:none;"></div>
   </div>
 
   <img class="footer-astro" src="astro-assis.png" alt="">
@@ -1198,7 +1198,7 @@
     container.innerHTML = '<div class="tool-loading">Chargement…</div>';
     document.querySelector('.dash-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    var dock = document.getElementById('comptes-analytics-dock');
+    var dock = document.getElementById('analytics-dock');
     dock.innerHTML = '';
     dock.style.display = 'none';
 
@@ -1225,9 +1225,9 @@
       // becomes local to those same containers so custom properties still resolve.
       var styleTag = doc.querySelector('style');
       if (styleTag && window.CSS && CSS.supports && CSS.supports('selector(:scope)')) {
-        var cssText = styleTag.textContent.replace(':root {', '#toolContent, #comptes-analytics-dock {');
+        var cssText = styleTag.textContent.replace(':root {', '#toolContent, #analytics-dock {');
         var scoped = document.createElement('style');
-        scoped.textContent = '@scope (#toolContent, #comptes-analytics-dock) {\n' + cssText + '\n}';
+        scoped.textContent = '@scope (#toolContent, #analytics-dock) {\n' + cssText + '\n}';
         document.head.appendChild(scoped);
         currentToolStyleEl = scoped;
       }
@@ -1235,7 +1235,7 @@
       // Some tools (e.g. Comptes du quotidien) ship a full-width analytics block meant to
       // live in its own row below the three dashboard columns, not squeezed into this one.
       // Pull it out before injecting the rest, so it lands in the dedicated dock instead.
-      var analyticsBlock = frame.querySelector('#comptes-analytics-block');
+      var analyticsBlock = frame.querySelector('.dash-analytics-block');
       if (analyticsBlock) {
         dock.appendChild(analyticsBlock);
         dock.style.display = 'block';
@@ -1273,7 +1273,7 @@
     document.getElementById('dashToolView').style.display = 'none';
     document.getElementById('dashDefaultView').style.display = 'block';
     document.getElementById('toolContent').innerHTML = '';
-    var dock = document.getElementById('comptes-analytics-dock');
+    var dock = document.getElementById('analytics-dock');
     dock.innerHTML = '';
     dock.style.display = 'none';
     if (currentToolStyleEl) { currentToolStyleEl.remove(); currentToolStyleEl = null; }
