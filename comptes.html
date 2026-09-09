@@ -314,6 +314,31 @@
     margin-bottom: 12px;
   }
 
+  .range-tabs {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .range-tab {
+    padding: 6px 12px;
+    background: transparent;
+    border: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.5);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .range-tab + .range-tab { border-left: 1px solid var(--line); }
+  .range-tab[aria-pressed="true"] { background: rgba(201, 169, 97, 0.16); color: var(--gold); }
+  .range-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+
   .chart-dot {
     display: inline-block;
     width: 8px; height: 8px;
@@ -825,9 +850,15 @@
 
     <section id="comptes-analytics-block">
       <div class="section-label">Analyse</div>
-      <h2>Vos flux sur 6 mois</h2>
+      <h2>Vos flux dans le temps</h2>
       <div class="analytics-grid">
         <div class="analytics-chart-box">
+          <div class="range-tabs" id="range-tabs">
+            <button type="button" class="range-tab" data-range="3" aria-pressed="false">3 mois</button>
+            <button type="button" class="range-tab" data-range="6" aria-pressed="true">6 mois</button>
+            <button type="button" class="range-tab" data-range="12" aria-pressed="false">1 an</button>
+            <button type="button" class="range-tab" data-range="all" aria-pressed="false">Tout</button>
+          </div>
           <div class="chart-legend">
             <span><i class="chart-dot" style="background:var(--lime)"></i>Revenus</span>
             <span><i class="chart-dot" style="background:var(--terracotta)"></i>Dépenses</span>
@@ -1144,10 +1175,25 @@
     return dateStr.slice(0, 7); // "YYYY-MM"
   }
 
-  function last6MonthsKeys() {
-    var keys = [];
+  var currentRange = 6;
+
+  function monthsForRange(range) {
     var ref = new Date();
-    for (var i = 5; i >= 0; i--) {
+    if (range === "all") {
+      if (state.transactions.length === 0) return monthsForRange(1);
+      var earliest = state.transactions.reduce(function (min, t) { return t.date < min ? t.date : min; }, state.transactions[0].date);
+      var cursor = new Date(Number(earliest.slice(0, 4)), Number(earliest.slice(5, 7)) - 1, 1);
+      var end = new Date(ref.getFullYear(), ref.getMonth(), 1);
+      var months = [];
+      while (cursor <= end) {
+        months.push(cursor.getFullYear() + "-" + String(cursor.getMonth() + 1).padStart(2, "0"));
+        cursor.setMonth(cursor.getMonth() + 1);
+      }
+      return months;
+    }
+    var n = Number(range);
+    var keys = [];
+    for (var i = n - 1; i >= 0; i--) {
       var d = new Date(ref.getFullYear(), ref.getMonth() - i, 1);
       keys.push(d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"));
     }
@@ -1162,7 +1208,7 @@
   }
 
   function renderEvolutionChart() {
-    var keys = last6MonthsKeys();
+    var keys = monthsForRange(currentRange);
     var revenusByMonth = {};
     var depensesByMonth = {};
     keys.forEach(function (k) { revenusByMonth[k] = 0; depensesByMonth[k] = 0; });
@@ -1199,7 +1245,9 @@
       return '<line x1="' + PAD_L + '" y1="' + y.toFixed(1) + '" x2="' + (W - PAD_R) + '" y2="' + y.toFixed(1) + '" stroke="rgba(244,239,227,0.07)" stroke-width="1"></line>';
     }).join("");
 
+    var labelStep = Math.max(1, Math.ceil(keys.length / 8));
     var labels = keys.map(function (k, i) {
+      if (i % labelStep !== 0 && i !== keys.length - 1) return "";
       var x = PAD_L + i * stepX;
       return '<text x="' + x.toFixed(1) + '" y="' + (H - 4) + '" font-size="9" fill="rgba(244,239,227,0.45)" text-anchor="middle" font-family="DM Mono, monospace">' + monthShortLabel(k) + '</text>';
     }).join("");
@@ -1353,6 +1401,16 @@
     state.transactions = [];
     saveTransactions();
     renderAll();
+  });
+
+  document.querySelectorAll(".range-tab").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      currentRange = btn.getAttribute("data-range") === "all" ? "all" : Number(btn.getAttribute("data-range"));
+      document.querySelectorAll(".range-tab").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      renderEvolutionChart();
+    });
   });
 
   document.querySelectorAll(".dash-tab").forEach(function (btn) {

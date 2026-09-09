@@ -1215,6 +1215,10 @@
 
       // Strip the tool's own nav/header/footer — the dashboard already provides that chrome.
       frame.querySelectorAll('nav.topnav, header, footer').forEach(function (el) { el.remove(); });
+      // The header used to be followed by a divider line; with the header gone that
+      // line is now an orphan sitting at the very top with dead space around it.
+      var leadingRule = frame.querySelector('.rule');
+      if (leadingRule) leadingRule.remove();
 
       // Scope the tool's CSS to #toolContent (and the analytics dock, when a tool uses it)
       // so it can't leak onto the rest of the dashboard. Its ":root { --gold: ...}" block
