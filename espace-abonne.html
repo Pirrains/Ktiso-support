@@ -310,6 +310,14 @@
     align-items: start;
   }
 
+  #comptes-analytics-dock {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    background: rgba(201, 169, 97, 0.03);
+  }
+
   /* ============ TOOL VIEW (inline, no modal) ============ */
 
   .tool-back-btn {
@@ -1051,6 +1059,8 @@
       </aside>
 
     </div>
+
+    <div id="comptes-analytics-dock" style="display:none;"></div>
   </div>
 
   <img class="footer-astro" src="astro-assis.png" alt="">
@@ -1188,6 +1198,10 @@
     container.innerHTML = '<div class="tool-loading">Chargement…</div>';
     document.querySelector('.dash-main').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+    var dock = document.getElementById('comptes-analytics-dock');
+    dock.innerHTML = '';
+    dock.style.display = 'none';
+
     if (currentToolStyleEl) { currentToolStyleEl.remove(); currentToolStyleEl = null; }
 
     try {
@@ -1202,16 +1216,25 @@
       // Strip the tool's own nav/header/footer — the dashboard already provides that chrome.
       frame.querySelectorAll('nav.topnav, header, footer').forEach(function (el) { el.remove(); });
 
-      // Scope the tool's CSS to #toolContent so it can't leak onto the rest of the dashboard.
-      // Its ":root { --gold: ...}" block becomes "#toolContent { --gold: ...}" so custom
-      // properties resolve locally instead of trying (and failing) to reach the real <html> root.
+      // Scope the tool's CSS to #toolContent (and the analytics dock, when a tool uses it)
+      // so it can't leak onto the rest of the dashboard. Its ":root { --gold: ...}" block
+      // becomes local to those same containers so custom properties still resolve.
       var styleTag = doc.querySelector('style');
       if (styleTag && window.CSS && CSS.supports && CSS.supports('selector(:scope)')) {
-        var cssText = styleTag.textContent.replace(':root {', '#toolContent {');
+        var cssText = styleTag.textContent.replace(':root {', '#toolContent, #comptes-analytics-dock {');
         var scoped = document.createElement('style');
-        scoped.textContent = '@scope (#toolContent) {\n' + cssText + '\n}';
+        scoped.textContent = '@scope (#toolContent, #comptes-analytics-dock) {\n' + cssText + '\n}';
         document.head.appendChild(scoped);
         currentToolStyleEl = scoped;
+      }
+
+      // Some tools (e.g. Comptes du quotidien) ship a full-width analytics block meant to
+      // live in its own row below the three dashboard columns, not squeezed into this one.
+      // Pull it out before injecting the rest, so it lands in the dedicated dock instead.
+      var analyticsBlock = frame.querySelector('#comptes-analytics-block');
+      if (analyticsBlock) {
+        dock.appendChild(analyticsBlock);
+        dock.style.display = 'block';
       }
 
       container.innerHTML = '';
@@ -1246,6 +1269,9 @@
     document.getElementById('dashToolView').style.display = 'none';
     document.getElementById('dashDefaultView').style.display = 'block';
     document.getElementById('toolContent').innerHTML = '';
+    var dock = document.getElementById('comptes-analytics-dock');
+    dock.innerHTML = '';
+    dock.style.display = 'none';
     if (currentToolStyleEl) { currentToolStyleEl.remove(); currentToolStyleEl = null; }
   }
 
