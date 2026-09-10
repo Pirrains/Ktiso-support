@@ -151,10 +151,22 @@
   }
 
   .auth-card {
+    position: relative;
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
     border-radius: 12px;
     padding: 36px 30px;
+  }
+
+  .astro-peek {
+    position: absolute;
+    top: -86px;
+    left: 18px;
+    width: 150px;
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.4));
+    z-index: 2;
   }
 
   .auth-tabs {
@@ -799,6 +811,7 @@
     <div class="eyebrow">Espace abonné</div>
 
     <div class="auth-card">
+      <img class="astro-peek" src="astronaute-coucou.png" alt="">
       <div class="auth-tabs">
         <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</div>
         <div class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Créer un compte</div>
