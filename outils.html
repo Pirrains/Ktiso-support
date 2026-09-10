@@ -309,6 +309,85 @@
     margin-bottom: 24px;
   }
 
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .pricing-tier {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 32px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-tier.featured {
+    border-color: rgba(201, 169, 97, 0.4);
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, rgba(201, 169, 97, 0.1), transparent 65%),
+      rgba(201, 169, 97, 0.04);
+  }
+
+  .tier-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.55);
+    margin-bottom: 10px;
+  }
+
+  .tier-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .tier-price span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: rgba(244, 239, 227, 0.5);
+    text-transform: none;
+  }
+
+  ul.tier-features {
+    list-style: none;
+    text-align: left;
+    flex: 1;
+    margin: 0 0 28px;
+  }
+
+  ul.tier-features li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.8);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  ul.tier-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .pricing-tier .btn { width: 100%; text-align: center; justify-content: center; }
+
+  @media (max-width: 720px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
   /* ============ CTA / FOOTER ============ */
 
   .cta-group {
@@ -513,21 +592,42 @@
     <section>
       <div class="pricing-card">
         <div class="section-label">Tarifs</div>
-        <h2>Un abonnement, tous les outils</h2>
-        <div class="price-tag">Mensuel ou annuel — tarifs à venir</div>
-        <p>L'ensemble de ces outils sera accessible via un seul abonnement. Les tarifs seront annoncés au lancement.</p>
-        <div class="cta-group">
-          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
-            Ouvrir l'application
-          </a>
-          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-            </svg>
-            Être informé du lancement
-          </a>
+        <h2>Un abonnement, à votre rythme</h2>
+        <p>Trois formules, du strict nécessaire à l'accès complet — sans engagement.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-tier">
+          <div class="tier-name">Gratuit</div>
+          <div class="tier-price">0 €<span>/mois</span></div>
+          <ul class="tier-features">
+            <li>Accès à l'application</li>
+            <li>Gestion de comptes au quotidien</li>
+            <li>Tableau de bord principal</li>
+          </ul>
+          <a class="btn btn-secondary" href="espace-abonne.html?action=signup">Créer votre compte</a>
+        </div>
+
+        <div class="pricing-tier">
+          <div class="tier-name">Essentiel</div>
+          <div class="tier-price">4,90 €<span>/mois</span></div>
+          <ul class="tier-features">
+            <li>Comparateur de fonds</li>
+            <li>Outil immobilier</li>
+            <li>Suivi des investissements</li>
+            <li>+ 1 nouveau personnage débloqué dans l'application</li>
+          </ul>
+          <a class="btn btn-secondary" href="espace-abonne.html?action=signup">Choisir cette offre</a>
+        </div>
+
+        <div class="pricing-tier featured">
+          <div class="tier-name">Complet</div>
+          <div class="tier-price">12,90 €<span>/mois</span></div>
+          <ul class="tier-features">
+            <li>Tous les outils disponibles</li>
+            <li>+ une zone secrète débloquée dans l'application</li>
+          </ul>
+          <a class="btn btn-primary" href="espace-abonne.html?action=signup">Choisir cette offre</a>
         </div>
       </div>
     </section>
