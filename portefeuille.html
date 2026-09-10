@@ -17,8 +17,9 @@
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
-    --green: #1A2E22;
-    --green-deep: #0F1A14;
+    --green: #22402C;
+    --green-mid: #15291C;
+    --green-deep: #0B1510;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --yellow: #E8B347;
@@ -38,7 +39,9 @@
   body {
     background:
       radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
-      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+      radial-gradient(ellipse 85% 70% at 50% 45%, transparent 35%, rgba(4, 10, 7, 0.5) 100%),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green-mid) 50%, var(--green) 100%);
+    background-attachment: fixed;
     overflow-x: hidden;
   }
 
