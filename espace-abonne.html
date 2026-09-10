@@ -1651,6 +1651,8 @@
       showView('dashboard');
     } else {
       showView('auth');
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('action') === 'signup') switchTab('signup');
     }
   })();
 </script>
