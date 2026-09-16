@@ -12,8 +12,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -34,7 +43,7 @@
   html, body {
     background: var(--brown-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -129,8 +138,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(18px, 3.4vw, 24px);
     color: rgba(244, 239, 227, 0.85);
     max-width: 520px;
@@ -196,7 +204,7 @@
   }
 
   .format-card h3 {
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 500;
     font-size: 17px;
     color: var(--cream);
@@ -233,7 +241,7 @@
   }
 
   .theme-row h3 {
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 500;
     font-size: 17px;
     color: var(--cream);
@@ -283,7 +291,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.06em;

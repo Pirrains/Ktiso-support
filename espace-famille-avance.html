@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -35,7 +44,7 @@
   html, body {
     background: var(--bg-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -121,8 +130,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 4vw, 21px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -162,7 +170,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
@@ -171,7 +179,7 @@
   }
 
   h3 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: 17px;
     font-weight: 400;
     color: var(--cream);
@@ -219,7 +227,7 @@
 
   .member-bar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
   .member-bar-name { font-size: 13.5px; color: var(--cream); }
-  .member-bar-value { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
+  .member-bar-value { font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
 
   .member-bar-track { height: 8px; border-radius: 999px; background: rgba(244,239,227,0.08); overflow: hidden; }
   .member-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
@@ -241,7 +249,7 @@
   .assign-amount { font-size: 11px; color: rgba(244,239,227,0.45); }
 
   .assign-select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 12px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -274,7 +282,7 @@
   }
 
   .field-row select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 14px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -293,7 +301,7 @@
 
   .field-number-wrap { display: flex; align-items: center; gap: 10px; }
   .field-number-wrap input[type="number"] {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--gold);
@@ -309,7 +317,7 @@
   .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: left; margin-top: 18px; }
   .stat-card { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 18px 14px; background: rgba(201, 169, 97, 0.035); }
   .stat-label { font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(244, 239, 227, 0.5); margin-bottom: 8px; }
-  .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: clamp(15px, 4.5vw, 19px); line-height: 1; word-break: break-word; }
+  .stat-value { font-family: 'DIN Next LT Pro', sans-serif; font-size: clamp(15px, 4.5vw, 19px); line-height: 1; word-break: break-word; }
   .stat-value.gold { color: var(--gold); }
   .stat-value.terracotta { color: var(--terracotta); }
 
@@ -510,15 +518,15 @@
 
       <div class="box">
         <div class="regime-card">
-          <h3>Communauté légale <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DM Mono',monospace;">— régime par défaut, sans contrat</span></h3>
+          <h3>Communauté légale <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DIN Next LT Pro',sans-serif;">— régime par défaut, sans contrat</span></h3>
           <p>Tout ce que les époux acquièrent pendant le mariage devient commun. Ce que chacun possédait avant le mariage, ou reçoit par donation ou héritage, reste propre.</p>
         </div>
         <div class="regime-card">
-          <h3>Séparation de biens <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DM Mono',monospace;">— contrat notarié</span></h3>
+          <h3>Séparation de biens <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DIN Next LT Pro',sans-serif;">— contrat notarié</span></h3>
           <p>Chaque époux reste seul propriétaire de ce qu'il possède et acquiert, avant comme pendant le mariage. Protège en cas de dettes professionnelles d'un conjoint, mais peut désavantager celui qui a le moins contribué financièrement.</p>
         </div>
         <div class="regime-card">
-          <h3>Communauté universelle <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DM Mono',monospace;">— contrat notarié</span></h3>
+          <h3>Communauté universelle <span style="font-size:11px; color:rgba(244,239,227,0.4); font-family:'DIN Next LT Pro',sans-serif;">— contrat notarié</span></h3>
           <p>Tous les biens des deux époux, même ceux d'avant le mariage, deviennent communs. Souvent associée à une clause qui attribue tout au conjoint survivant — protection forte pour lui, mais à mettre en balance avec la part réservée aux enfants.</p>
         </div>
       </div>

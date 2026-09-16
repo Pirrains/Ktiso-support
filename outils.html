@@ -12,8 +12,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -32,7 +41,7 @@
   html, body {
     background: var(--green-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -145,8 +154,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(18px, 4vw, 22px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -301,7 +309,7 @@
   }
 
   .price-tag {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 15px;
     letter-spacing: 0.06em;
     color: var(--gold);
@@ -334,7 +342,7 @@
   }
 
   .tier-name {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -343,7 +351,7 @@
   }
 
   .tier-price {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 34px;
     letter-spacing: 0.02em;
     color: var(--cream);
@@ -351,7 +359,7 @@
   }
 
   .tier-price span {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 12px;
     letter-spacing: 0.02em;
     color: rgba(244, 239, 227, 0.5);
@@ -403,7 +411,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.06em;

@@ -12,8 +12,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -34,7 +43,7 @@
   html, body {
     background: var(--green-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -182,8 +191,7 @@
   }
 
   .tagline {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(19px, 4.2vw, 24px);
     color: rgba(244, 239, 227, 0.68);
     margin-bottom: 14px;
@@ -229,7 +237,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.06em;
@@ -387,7 +395,7 @@
   }
 
   .value-col h3 {
-    font-family: 'DM Mono', monospace;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 500;
     font-size: 13.5px;
     color: var(--cream);
@@ -410,7 +418,7 @@
   }
 
   .bento-head h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 400;
     font-size: clamp(24px, 5vw, 32px);
     max-width: 480px;
@@ -469,7 +477,7 @@
   .bento-main .section-label { justify-content: center; }
 
   .bento-card h3 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 400;
     color: var(--cream);
     margin-bottom: 10px;
@@ -532,7 +540,7 @@
   .social-card .section-label { display: flex; justify-content: center; }
 
   .social-card h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 400;
     font-size: clamp(24px, 5vw, 32px);
     max-width: 440px;
@@ -555,8 +563,7 @@
   }
 
   .outro .tagline-big {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(30px, 7vw, 52px);
     line-height: 1.25;
     color: var(--cream);

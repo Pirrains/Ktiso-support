@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -32,7 +41,7 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body { background: var(--bg-deep); color: var(--cream); font-family: 'DM Mono', monospace; }
+  html, body { background: var(--bg-deep); color: var(--cream); font-family: 'DIN Next LT Pro', sans-serif; }
 
   body {
     background:
@@ -73,7 +82,7 @@
 
   .eyebrow { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); opacity: 0.85; margin-bottom: 22px; }
   .wordmark { width: clamp(130px, 32vw, 180px); height: auto; margin: 0 auto 14px; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4)); }
-  .subtitle { font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(18px, 4vw, 22px); color: rgba(244, 239, 227, 0.65); }
+  .subtitle { font-family: 'DIN Next LT Pro', sans-serif; font-size: clamp(18px, 4vw, 22px); color: rgba(244, 239, 227, 0.65); }
 
   .rule { width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 40px auto; }
 
@@ -90,7 +99,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif; font-size: clamp(21px, 4.5vw, 26px); font-weight: 400;
+    font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(21px, 4.5vw, 26px); font-weight: 400;
     color: var(--cream); margin: 14px auto 16px; max-width: 480px;
   }
 
@@ -108,7 +117,7 @@
   .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: left; }
   .stat-card { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 16px; background: rgba(201, 169, 97, 0.035); }
   .stat-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.5); margin-bottom: 10px; }
-  .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: clamp(17px, 5vw, 22px); letter-spacing: 0.02em; line-height: 1; word-break: break-word; }
+  .stat-value { font-family: 'DIN Next LT Pro', sans-serif; font-size: clamp(17px, 5vw, 22px); letter-spacing: 0.02em; line-height: 1; word-break: break-word; }
   .stat-value.lime { color: var(--lime); }
   .stat-value.terracotta { color: var(--terracotta); }
   .stat-value.gold { color: var(--gold); }
@@ -123,7 +132,7 @@
   .dash-tabs { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
   .dash-tab {
     flex: 1; padding: 12px 8px; background: transparent; border: none;
-    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
     color: rgba(244, 239, 227, 0.55); cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
   }
   .dash-tab + .dash-tab { border-left: 1px solid var(--line); }
@@ -148,14 +157,14 @@
 
   .item-mid { flex: 1; min-width: 0; }
   .item-name {
-    font-family: 'Instrument Serif', serif; font-size: 15px; color: var(--cream);
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--cream);
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .item-type { font-size: 11px; color: rgba(244, 239, 227, 0.45); }
 
   .item-amount-wrap { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
   .item-amount-wrap input {
-    font-family: 'DM Mono', monospace; font-size: 13px; color: var(--gold);
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 13px; color: var(--gold);
     background: rgba(201, 169, 97, 0.06); border: 1px solid var(--line); border-radius: 8px;
     padding: 6px 8px; width: 92px; text-align: right;
   }
@@ -185,7 +194,7 @@
   .allocation-row { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px 18px; background: rgba(201, 169, 97, 0.02); }
   .allocation-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
   .allocation-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .allocation-name { font-family: 'Instrument Serif', serif; font-size: 15.5px; color: var(--cream); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .allocation-name { font-family: 'DIN Next LT Pro', sans-serif; font-size: 15.5px; color: var(--cream); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .allocation-amount { font-size: 13px; color: rgba(244, 239, 227, 0.65); flex-shrink: 0; }
   .allocation-bar-track { height: 4px; background: rgba(244, 239, 227, 0.08); border-radius: 999px; overflow: hidden; }
   .allocation-bar-fill { height: 100%; border-radius: 999px; }
@@ -197,7 +206,7 @@
   .type-toggle { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 20px; }
   .type-toggle button {
     flex: 1; padding: 12px; background: transparent; border: none;
-    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase;
     color: rgba(244, 239, 227, 0.55); cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
   }
   .type-toggle button:first-child { border-right: 1px solid var(--line); }
@@ -211,7 +220,7 @@
   .form-field label { font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.45); }
 
   .form-field input, .form-field select {
-    font-family: 'DM Mono', monospace; font-size: 14px; color: var(--cream);
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 14px; color: var(--cream);
     background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line); border-radius: var(--radius-sm);
     padding: 12px 14px; width: 100%; transition: border-color 0.2s ease, background 0.2s ease;
   }
@@ -228,7 +237,7 @@
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    font-family: 'DM Mono', monospace; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
+    font-family: 'DIN Next LT Pro', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
     text-decoration: none; padding: 15px 34px; border-radius: var(--radius-md); border: none; cursor: pointer;
     width: 100%; max-width: 320px;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
@@ -240,7 +249,7 @@
 
   .reset-link {
     display: block; text-align: center; font-size: 11px; letter-spacing: 0.05em; color: rgba(244, 239, 227, 0.3);
-    text-decoration: none; border: none; background: none; cursor: pointer; margin: 44px auto 0; font-family: 'DM Mono', monospace;
+    text-decoration: none; border: none; background: none; cursor: pointer; margin: 44px auto 0; font-family: 'DIN Next LT Pro', sans-serif;
   }
   .reset-link:hover { color: var(--terracotta); }
 
@@ -621,7 +630,7 @@
     var W = 400, H = 160, PAD = 12;
 
     if (pts.length < 2) {
-      els.evoChart.innerHTML = '<text x="200" y="84" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="rgba(244,239,227,0.35)">Revenez mettre à jour vos montants pour voir l\'évolution</text>';
+      els.evoChart.innerHTML = '<text x="200" y="84" text-anchor="middle" font-family="DIN Next LT Pro, sans-serif" font-size="12" fill="rgba(244,239,227,0.35)">Revenez mettre à jour vos montants pour voir l\'évolution</text>';
       return;
     }
 

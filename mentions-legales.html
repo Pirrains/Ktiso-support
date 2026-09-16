@@ -7,8 +7,17 @@
 <title>Ktiso — Mentions légales</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --green: #1A2E22;
@@ -19,7 +28,7 @@
     --line: rgba(201, 169, 97, 0.22);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { background: var(--green-deep); color: var(--cream); font-family: 'DM Mono', monospace; }
+  html, body { background: var(--green-deep); color: var(--cream); font-family: 'DIN Next LT Pro', sans-serif; }
   body {
     background:
       radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),

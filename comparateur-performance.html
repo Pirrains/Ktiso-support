@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -36,7 +45,7 @@
   html, body {
     background: var(--bg-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -122,8 +131,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 4vw, 21px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -163,7 +171,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
@@ -229,7 +237,7 @@
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--line);
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 19px;
     color: var(--cream);
     padding: 2px 0 6px;
@@ -276,7 +284,7 @@
   }
 
   .param-input-wrap input[type="number"] {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--gold);
@@ -347,7 +355,7 @@
   .fr-head { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
   .fr-head img { width: 20px; height: auto; flex-shrink: 0; }
   .fr-name {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 15px;
     color: var(--cream);
     overflow: hidden;
@@ -367,7 +375,7 @@
   }
 
   .fr-stat-value {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(16px, 5vw, 20px);
     line-height: 1;
     word-break: break-word;
@@ -395,7 +403,7 @@
   }
 
   .verdict-text {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 4.2vw, 20px);
     color: var(--cream);
     line-height: 1.45;
@@ -445,7 +453,7 @@
   }
 
   .year-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 16px;
     color: var(--gold);
     width: 46px;
@@ -473,7 +481,7 @@
     background: none;
     cursor: pointer;
     margin: 44px auto 0;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   .reset-link:hover { color: var(--terracotta); }
@@ -999,9 +1007,9 @@
       '<line x1="0" y1="' + (H - PAD) + '" x2="' + W + '" y2="' + (H - PAD) + '" stroke="rgba(244,239,227,0.08)" stroke-width="1"/>' +
       '<path d="' + pathB + '" fill="none" stroke="#5B8FA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
       '<path d="' + pathA + '" fill="none" stroke="#C9A961" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<text x="' + PAD + '" y="' + (H - 1) + '" font-family="DM Mono, monospace" font-size="9" fill="rgba(244,239,227,0.35)">An 0</text>' +
-      '<text x="' + (xAt((n - 1) / 2)) + '" y="' + (H - 1) + '" text-anchor="middle" font-family="DM Mono, monospace" font-size="9" fill="rgba(244,239,227,0.35)">An ' + midYear + '</text>' +
-      '<text x="' + (W - PAD) + '" y="' + (H - 1) + '" text-anchor="end" font-family="DM Mono, monospace" font-size="9" fill="rgba(244,239,227,0.35)">An ' + lastYear + '</text>';
+      '<text x="' + PAD + '" y="' + (H - 1) + '" font-family="DIN Next LT Pro, sans-serif" font-size="9" fill="rgba(244,239,227,0.35)">An 0</text>' +
+      '<text x="' + (xAt((n - 1) / 2)) + '" y="' + (H - 1) + '" text-anchor="middle" font-family="DIN Next LT Pro, sans-serif" font-size="9" fill="rgba(244,239,227,0.35)">An ' + midYear + '</text>' +
+      '<text x="' + (W - PAD) + '" y="' + (H - 1) + '" text-anchor="end" font-family="DIN Next LT Pro, sans-serif" font-size="9" fill="rgba(244,239,227,0.35)">An ' + lastYear + '</text>';
   }
 
   function renderYearList(seriesA, seriesB) {

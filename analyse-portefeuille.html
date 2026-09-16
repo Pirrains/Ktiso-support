@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -35,7 +44,7 @@
   html, body {
     background: var(--bg-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -121,8 +130,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 4vw, 21px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -162,7 +170,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
@@ -171,7 +179,7 @@
   }
 
   h3 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: var(--cream);
@@ -215,7 +223,7 @@
 
   .bar-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; gap: 8px; }
   .bar-name { font-size: 13.5px; color: var(--cream); }
-  .bar-value { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
+  .bar-value { font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--gold); white-space: nowrap; }
 
   .bar-track { height: 8px; border-radius: 999px; background: rgba(244,239,227,0.08); overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
@@ -251,7 +259,7 @@
   .assign-amount { font-size: 11px; color: rgba(244,239,227,0.45); }
 
   .assign-select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 12px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -281,7 +289,7 @@
     margin-bottom: 10px;
   }
   .field-row select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 14px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -312,7 +320,7 @@
 
   .profile-bucket { font-size: 13px; color: var(--cream); flex-shrink: 0; width: 90px; }
   .profile-mid { flex: 1; text-align: center; font-size: 11.5px; color: rgba(244,239,227,0.45); }
-  .profile-actual { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--gold); width: 50px; text-align: right; flex-shrink: 0; }
+  .profile-actual { font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--gold); width: 50px; text-align: right; flex-shrink: 0; }
 
   .profile-status {
     font-size: 9.5px;

@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -35,7 +44,7 @@
   html, body {
     background: var(--bg-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -121,8 +130,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 4vw, 21px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -162,7 +170,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
@@ -209,7 +217,7 @@
   }
 
   .field-row select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 14px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -230,7 +238,7 @@
   .field-number-wrap { display: flex; align-items: center; gap: 10px; }
 
   .field-number-wrap input[type="number"] {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--gold);
@@ -250,7 +258,7 @@
 
   .btn {
     display: block;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.06em;
@@ -288,7 +296,7 @@
   .results-count { font-size: 12.5px; color: rgba(244, 239, 227, 0.55); }
 
   .sort-select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 12px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -321,7 +329,7 @@
   .stock-head { display: flex; align-items: baseline; gap: 10px; }
 
   .stock-ticker {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 18px;
     letter-spacing: 0.02em;
     color: var(--gold);

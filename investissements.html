@@ -11,8 +11,17 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -35,7 +44,7 @@
   html, body {
     background: var(--bg-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -123,8 +132,7 @@
   }
 
   .subtitle {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(18px, 4vw, 22px);
     color: rgba(244, 239, 227, 0.65);
   }
@@ -173,7 +181,7 @@
   .section-topper .section-label { margin-bottom: 0; }
 
   h2 {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 400;
     color: var(--cream);
@@ -240,7 +248,7 @@
   }
 
   .stat-value {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: clamp(17px, 5vw, 22px);
     letter-spacing: 0.02em;
     line-height: 1;
@@ -278,7 +286,7 @@
   .dash-tabs { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
   .dash-tab {
     flex: 1; padding: 12px 6px; background: transparent; border: none;
-    font-family: 'DM Mono', monospace; font-size: 11.5px; letter-spacing: 0.03em; text-transform: uppercase;
+    font-family: 'DIN Next LT Pro', sans-serif; font-size: 11.5px; letter-spacing: 0.03em; text-transform: uppercase;
     color: rgba(244, 239, 227, 0.55); cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
   }
   .dash-tab + .dash-tab { border-left: 1px solid var(--line); }
@@ -334,7 +342,7 @@
   }
 
   .form-field input, .form-field select {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 14px;
     color: var(--cream);
     background: rgba(255, 255, 255, 0.03);
@@ -393,7 +401,7 @@
   .position-name-wrap { flex: 1; min-width: 0; }
 
   .position-name {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 16px;
     color: var(--cream);
     overflow: hidden;
@@ -435,7 +443,7 @@
   .position-metric .position-metric-value { color: var(--cream); }
 
   .position-metric input {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 13px;
     color: var(--gold);
     background: rgba(201, 169, 97, 0.06);
@@ -465,7 +473,7 @@
   .dca-mid { flex: 1; min-width: 0; }
 
   .dca-name {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 15.5px;
     color: var(--cream);
     overflow: hidden;
@@ -484,7 +492,7 @@
   .dca-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
   .dca-log-btn {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 11px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -544,7 +552,7 @@
   .ledger-mid { flex: 1; min-width: 0; }
 
   .ledger-nature {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 15px;
     color: var(--cream);
     overflow: hidden;
@@ -637,7 +645,7 @@
   }
 
   .year-tax-year {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 17px;
     letter-spacing: 0.03em;
     color: var(--gold);
@@ -660,7 +668,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.06em;
@@ -693,7 +701,7 @@
     background: none;
     cursor: pointer;
     margin: 44px auto 0;
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   .reset-link:hover { color: var(--terracotta); }
@@ -1449,7 +1457,7 @@
     var W = 400, H = 160, PAD = 12;
 
     if (pts.length < 2) {
-      els.evoChart.innerHTML = '<text x="200" y="84" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" fill="rgba(244,239,227,0.35)">Mettez à jour vos prix pour voir l\'évolution se dessiner</text>';
+      els.evoChart.innerHTML = '<text x="200" y="84" text-anchor="middle" font-family="DIN Next LT Pro, sans-serif" font-size="12" fill="rgba(244,239,227,0.35)">Mettez à jour vos prix pour voir l\'évolution se dessiner</text>';
       return;
     }
 
