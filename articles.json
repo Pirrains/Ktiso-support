@@ -1,50 +1,14 @@
 {
-  "showPlaceholderNote": true,
+  "showPlaceholderNote": false,
   "articles": [
     {
-      "tag": "Économie",
-      "title": "Ce qu'il faut retenir de la dernière décision de taux de la BCE",
-      "excerpt": "Pourquoi les banques centrales relèvent ou baissent leurs taux, et ce que ça change concrètement pour votre épargne et vos crédits.",
-      "auteur": "Ktiso",
-      "date": "Hier à 20h20",
-      "href": "#",
-      "image": "actu-astronaute-decolle.png"
-    },
-    {
       "tag": "Bourse",
-      "title": "3 choses à comprendre avant d'investir dans un premier ETF",
-      "excerpt": "Frais, diversification, horizon de placement : les bases avant de passer un premier ordre.",
+      "title": "51 461,90 points, -600 en une séance, le 10 ans américain au plus haut depuis 2007... et l'Europe qui ouvre dans le vert le lendemain : la première hausse de taux de la Fed depuis 2023 a-t-elle vraiment fait peur aux marchés ?",
+      "excerpt": "Le 16 septembre 2026, la Fed a relevé ses taux de 25 points de base à 3,75 %-4,00 %, sa première hausse depuis 2023. Wall Street a chuté (Dow -1,21 %, 10 ans au plus haut depuis 2007) mais l'Europe a ouvert en hausse le lendemain matin.",
       "auteur": "Ktiso",
-      "date": "Hier à 19h40",
-      "href": "#",
-      "image": "astronaute-coucou.png"
-    },
-    {
-      "tag": "Budget",
-      "title": "Inflation : ce qu'elle change vraiment pour votre pouvoir d'achat",
-      "excerpt": "Comment elle se calcule, pourquoi elle touche chacun différemment, et comment ajuster son budget en conséquence.",
-      "auteur": "Ktiso",
-      "date": "Hier à 18h10",
-      "href": "#",
-      "image": "petit-astronaute-qui-dort.png"
-    },
-    {
-      "tag": "Immobilier",
-      "title": "Acheter ou louer : comment poser le calcul correctement",
-      "excerpt": "Les variables qui pèsent vraiment dans la décision — au-delà du taux d'intérêt affiché.",
-      "auteur": "Ktiso",
-      "date": "Hier à 17h05",
-      "href": "#",
-      "image": "astro-suspendu.png"
-    },
-    {
-      "tag": "Cryptoactifs",
-      "title": "Volatilité crypto : comment la lire sans paniquer ni s'emballer",
-      "excerpt": "Ce que racontent vraiment les grandes variations de prix, et les questions à se poser avant d'y toucher.",
-      "auteur": "Ktiso",
-      "date": "Hier à 16h30",
-      "href": "#",
-      "image": "actu-experience-ratee.png"
+      "date": "17 septembre 2026",
+      "href": "2026-09-17-1929-bourse-fed-hausse-taux-divergence-usa-europe.html",
+      "image": "actu-astronaute-decolle.png"
     }
   ]
 }
