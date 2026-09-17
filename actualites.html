@@ -421,21 +421,21 @@
     margin: 26px auto 0;
   }
 
-  /* ============ CLOSING CTA ============ */
+  /* ============ NEWSLETTER CTA ============ */
 
   .social-section { padding: 0 0 90px; }
 
   .social-card {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
-    border-radius: 2px;
+    border-radius: 28px;
     padding: 48px 32px;
     text-align: center;
   }
 
   .social-card .section-label { color: var(--gold); display: flex; justify-content: center; }
 
-  .social-card h2 { max-width: 400px; }
+  .social-card h2 { max-width: 420px; }
 
   .social-card p {
     font-size: 13.5px;
@@ -445,57 +445,102 @@
     margin: 0 auto 28px;
   }
 
-  .cta-row {
+  .newsletter-form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
+    max-width: 420px;
+    margin: 0 auto;
   }
 
-  .btn {
+  .newsletter-field {
+    flex: 1 1 240px;
+    min-width: 0;
+  }
+
+  .newsletter-input {
+    width: 100%;
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 14px;
+    color: var(--cream);
+    background: rgba(244, 239, 227, 0.06);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 14px 20px;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .newsletter-input::placeholder { color: rgba(244, 239, 227, 0.4); }
+
+  .newsletter-input:focus {
+    border-color: var(--gold);
+    background: rgba(244, 239, 227, 0.1);
+  }
+
+  .newsletter-input:invalid:not(:placeholder-shown) {
+    border-color: var(--terracotta);
+  }
+
+  .newsletter-submit {
+    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     font-family: 'DIN Next LT Pro', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 28px;
-    border-radius: 2px;
+    background: var(--gold);
+    color: var(--green-deep);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 26px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
   }
 
-  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-  .btn-primary {
-    background: var(--gold);
-    color: var(--green-deep);
-    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18);
-  }
-
-  .btn-primary:hover {
+  .newsletter-submit:hover {
     background: #DCC07E;
     transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
   }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid var(--line);
+  .newsletter-submit:active { transform: translateY(0); }
+  .newsletter-submit:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  .newsletter-note {
+    font-size: 11px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.4);
+    max-width: 380px;
+    margin: 16px auto 0;
   }
 
-  .btn-secondary:hover {
-    border-color: var(--zone);
-    color: var(--zone);
-    transform: translateY(-2px);
+  .newsletter-success {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 16px 22px;
+    border: 1px solid rgba(168, 198, 108, 0.4);
+    background: rgba(168, 198, 108, 0.08);
+    border-radius: 999px;
+    color: var(--lime);
+    font-size: 13.5px;
   }
 
-  .btn:active { transform: translateY(0); }
-  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+  .newsletter-success svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .social-card.is-subscribed .newsletter-form,
+  .social-card.is-subscribed .newsletter-note { display: none; }
+  .social-card.is-subscribed .newsletter-success { display: inline-flex; }
 
   /* ============ FOOTER ============ */
 
@@ -541,7 +586,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .coin { animation: none; }
-    .btn, .panel { transition: none; }
+    .btn, .panel, .newsletter-submit { transition: none; }
   }
 </style>
 </head>
@@ -603,22 +648,23 @@
     </section>
 
     <section class="social-section wrap">
-      <div class="social-card">
-        <div class="section-label">Rester informé</div>
-        <h2>Recevez les analyses dès leur publication</h2>
-        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
-            Ouvrir l'application
-          </a>
-          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-            </svg>
-            @ktiso_off
-          </a>
+      <div class="social-card" id="newsletterCard">
+        <div class="section-label">Newsletter</div>
+        <h2>Inscrivez-vous à la newsletter</h2>
+        <p>Une sélection des analyses Ktiso directement dans votre boîte mail, dès leur publication. Pas de spam, désinscription en un clic.</p>
+
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <div class="newsletter-field">
+            <label for="newsletterEmail" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Adresse email</label>
+            <input class="newsletter-input" type="email" id="newsletterEmail" name="email" placeholder="Votre adresse email" required autocomplete="email">
+          </div>
+          <button class="newsletter-submit" type="submit">S'inscrire</button>
+        </form>
+        <p class="newsletter-note">En vous inscrivant, vous acceptez de recevoir les emails de Ktiso. Voir notre <a href="privacy.html" style="text-decoration:underline;">politique de confidentialité</a>.</p>
+
+        <div class="newsletter-success" id="newsletterSuccess" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+          <span>Merci, vous êtes inscrit·e ! Surveillez votre boîte mail.</span>
         </div>
       </div>
     </section>
@@ -788,6 +834,26 @@
           liveFallback.style.display = '';
         }
       });
+
+    // ---- Newsletter : formulaire visuel, pas encore branché à un service d'emailing.
+    // Pour le connecter plus tard : remplacer le bloc ci-dessous par un vrai envoi
+    // (fetch vers l'API du service choisi, ou action="..." + method="POST" sur le <form>).
+    var newsletterForm = document.getElementById('newsletterForm');
+    var newsletterCard = document.getElementById('newsletterCard');
+    var newsletterEmail = document.getElementById('newsletterEmail');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!newsletterEmail.checkValidity()) {
+          newsletterEmail.reportValidity();
+          return;
+        }
+        // TODO: brancher ici l'appel réel au service d'emailing (Mailchimp, Brevo, etc.)
+        // quand le compte sera prêt.
+        newsletterCard.classList.add('is-subscribed');
+      });
+    }
   })();
   </script>
 
