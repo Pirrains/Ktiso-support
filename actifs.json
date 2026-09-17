@@ -1,0 +1,125 @@
+{
+  "actifs": [
+    {
+      "slug": "capgemini",
+      "nom": "Capgemini",
+      "sigle": "CAP",
+      "horizon": "Court terme",
+      "quoi": "Société française de conseil, technologie et services numériques, cotée sur Euronext Paris (indice CAC 40).",
+      "pourquoi": "Une valeur européenne qui nous expose à la demande croissante en conseil technologique et en intégration de l'intelligence artificielle, sans nous positionner sur un unique acteur pur player IA. Un choix plus tactique, sur notre poche à horizon court terme."
+    },
+    {
+      "slug": "planetfitness",
+      "nom": "Planet Fitness",
+      "sigle": "PF",
+      "horizon": "Court terme",
+      "quoi": "Chaîne américaine de salles de sport à bas coût, cotée au NYSE.",
+      "pourquoi": "Un modèle d'abonnement à bas coût, avec des revenus récurrents et une résilience historique même en période de ralentissement économique — le type de profil défensif que nous aimons inclure dans notre poche court terme."
+    },
+    {
+      "slug": "neptune",
+      "nom": "Neptune Digital Asset",
+      "sigle": "NDA",
+      "horizon": "Court terme",
+      "quoi": "Société canadienne d'infrastructure blockchain (minage de Bitcoin, staking, DeFi), basée à Vancouver et cotée à la Bourse de croissance TSX de Toronto (ainsi qu'à Francfort et sur le marché OTC américain).",
+      "pourquoi": "Une exposition indirecte à l'écosystème blockchain via une action cotée plutôt qu'un achat direct de cryptoactifs — plus volatile, ce qui correspond à la prise de risque que nous acceptons sur l'horizon court terme."
+    },
+    {
+      "slug": "obligation1an",
+      "nom": "Obligation 1 an",
+      "sigle": "OBL",
+      "horizon": "Court terme",
+      "quoi": "Pas un titre précis mais une catégorie : une obligation à échéance courte (environ un an), utilisée pour placer des liquidités avec un risque de taux limité.",
+      "pourquoi": "Une brique de liquidité rémunérée, qui limite le risque de taux tout en évitant de laisser dormir du cash — la partie la plus prudente de notre poche court terme."
+    },
+    {
+      "slug": "ethereum",
+      "nom": "Ethereum",
+      "sigle": "ETH",
+      "horizon": "Moyen terme",
+      "quoi": "Deuxième cryptoactif par capitalisation, plateforme blockchain qui héberge des contrats intelligents et des applications décentralisées.",
+      "pourquoi": "Un usage réel (contrats intelligents, applications décentralisées) qui la distingue de purs actifs spéculatifs — une des lignes qui composent notre poche crypto volontairement limitée."
+    },
+    {
+      "slug": "solana",
+      "nom": "Solana",
+      "sigle": "SOL",
+      "horizon": "Moyen terme",
+      "quoi": "Cryptoactif et blockchain conçus pour un débit de transactions élevé et des frais réduits.",
+      "pourquoi": "Une blockchain pensée pour la rapidité et les faibles frais de transaction, qui diversifie notre poche crypto au-delà de Bitcoin et Ethereum sans en changer la taille globale."
+    },
+    {
+      "slug": "b23",
+      "nom": "B23 Dynamique Global",
+      "sigle": "B23",
+      "horizon": "Moyen terme",
+      "quoi": "Descriptif à confirmer — nous n'avons pas trouvé de fiche fiable pour ce produit précis. À compléter.",
+      "pourquoi_a_confirmer": true,
+      "pourquoi": "Nous n'avons pas encore retrouvé de documentation fiable sur ce produit précis pour expliquer ce choix avec la rigueur que nous nous imposons. Cette section sera complétée dès que ce sera fait."
+    },
+    {
+      "slug": "sp500",
+      "nom": "ETF S&P 500",
+      "sigle": "S&P",
+      "horizon": "Long terme",
+      "quoi": "Fonds indiciel qui réplique les 500 plus grandes entreprises cotées aux États-Unis.",
+      "pourquoi": "Le cœur diversifié de notre portefeuille : une exposition large aux 500 plus grandes entreprises américaines, pour capter la croissance économique sans miser sur une poignée de titres."
+    },
+    {
+      "slug": "emergents",
+      "nom": "ETF Marchés émergents",
+      "sigle": "EM",
+      "horizon": "Long terme",
+      "quoi": "Fonds indiciel exposé aux économies en développement (Asie, Amérique latine, Europe de l'Est...).",
+      "pourquoi": "Une diversification géographique vers des économies en développement, dont le potentiel de croissance à long terme complète notre exposition aux marchés développés."
+    },
+    {
+      "slug": "aqua",
+      "nom": "Fonds Aqua",
+      "sigle": "H2O",
+      "horizon": "Long terme",
+      "quoi": "Fonds thématique investi sur toute la chaîne de valeur de l'eau — traitement, distribution, infrastructures — à l'image du fonds BNP Paribas Aqua.",
+      "pourquoi": "Le secteur de l'eau fait partie des thèmes structurels sur lesquels nous construisons une partie de notre stratégie long terme — une ressource dont la demande ne devrait pas se tarir."
+    },
+    {
+      "slug": "immobilier",
+      "nom": "Immobilier",
+      "sigle": "IMMO",
+      "horizon": "Long terme",
+      "quoi": "Catégorie générale — SCPI, foncières cotées (REIT) ou biens détenus en direct, selon le support retenu.",
+      "pourquoi": "Une classe d'actifs tangible qui complète notre portefeuille financier, indépendamment du support retenu."
+    },
+    {
+      "slug": "or",
+      "nom": "Or",
+      "sigle": "AU",
+      "horizon": "Couverture",
+      "quoi": "Métal précieux traditionnellement utilisé comme réserve de valeur et protection contre l'inflation.",
+      "pourquoi": "Une réserve de valeur traditionnelle, utilisée pour amortir une partie de la volatilité du reste du portefeuille en période d'incertitude ou d'inflation."
+    },
+    {
+      "slug": "argent",
+      "nom": "Argent",
+      "sigle": "AG",
+      "horizon": "Couverture",
+      "quoi": "Métal précieux à double usage, industriel et d'investissement.",
+      "pourquoi": "Un profil hybride entre métal industriel et actif refuge, qui complète notre exposition à l'or avec une dynamique de prix parfois différente."
+    },
+    {
+      "slug": "cuivre",
+      "nom": "Cuivre",
+      "sigle": "CU",
+      "horizon": "Couverture",
+      "quoi": "Métal industriel, souvent considéré comme un indicateur avancé de l'activité économique mondiale.",
+      "pourquoi": "Un indicateur avancé de l'activité économique mondiale, qui nous permet de garder un pied dans les matières premières industrielles au sein de notre poche de couverture."
+    },
+    {
+      "slug": "bitcoin",
+      "nom": "Bitcoin",
+      "sigle": "BTC",
+      "horizon": "Couverture",
+      "quoi": "Première cryptomonnaie créée, souvent considérée comme une réserve de valeur numérique.",
+      "pourquoi": "Nous le considérons davantage comme une réserve de valeur numérique naissante que comme une monnaie d'usage courant — une ligne de couverture à part entière plutôt qu'un pari spéculatif isolé."
+    }
+  ]
+}
