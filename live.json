@@ -1,0 +1,29 @@
+{
+  "showPlaceholderNote": true,
+  "items": [
+    {
+      "temps": "Il y a 2h",
+      "texte": "🇪🇺 La BCE confirme le statu quo sur ses taux directeurs, conformément aux attentes du marché."
+    },
+    {
+      "temps": "Il y a 4h",
+      "texte": "📉 Le CAC 40 recule légèrement à l'ouverture, entraîné par les valeurs technologiques."
+    },
+    {
+      "temps": "Il y a 6h",
+      "texte": "₿ Bitcoin repasse au-dessus des 60 000 $ après une semaine de baisse."
+    },
+    {
+      "temps": "Hier",
+      "texte": "🏛️ Le gouvernement présente les grandes lignes du budget 2027 devant l'Assemblée."
+    },
+    {
+      "temps": "Hier",
+      "texte": "🏠 Les taux des crédits immobiliers en Belgique se stabilisent pour le troisième mois consécutif."
+    },
+    {
+      "temps": "Il y a 2 jours",
+      "texte": "📊 L'inflation en zone euro ressort à 2,1 % sur un an, conforme aux prévisions."
+    }
+  ]
+}
