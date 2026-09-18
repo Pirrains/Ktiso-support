@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "Le chômage repasse un cap inédit depuis cinq ans : ce que ça change vraiment pour vous",
+      "excerpt": "Au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 %, un niveau plus vu depuis cinq ans. L'Insee anticipe désormais 8,6 % fin 2026 et a abaissé sa prévision de croissance de 0,7 % à 0,4 %.",
+      "auteur": "Ktiso",
+      "date": "18 septembre 2026",
+      "href": "2026-09-18-0935-economie-chomage-croissance-insee.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "51 461,90 points, -600 en une séance, le 10 ans américain au plus haut depuis 2007... et l'Europe qui ouvre dans le vert le lendemain : la première hausse de taux de la Fed depuis 2023 a-t-elle vraiment fait peur aux marchés ?",
       "excerpt": "Le 16 septembre 2026, la Fed a relevé ses taux de 25 points de base à 3,75 %-4,00 %, sa première hausse depuis 2023. Wall Street a chuté (Dow -1,21 %, 10 ans au plus haut depuis 2007) mais l'Europe a ouvert en hausse le lendemain matin.",

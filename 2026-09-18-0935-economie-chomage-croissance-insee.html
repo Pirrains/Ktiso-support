@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le chômage repasse un cap inédit depuis cinq ans — Ktiso Actualités</title>
+<meta name="description" content="au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 % de la population active — 2,7 millions de personnes sans emploi au sens du Bureau international du travail — un niveau que le pays n&#x27;avait plus connu depuis cinq ans. Quelques…">
+<meta property="og:title" content="Le chômage repasse un cap inédit depuis cinq ans">
+<meta property="og:description" content="au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 % de la population active — 2,7 millions de personnes sans emploi au sens du Bureau international du travail — un niveau que le pays n&#x27;avait plus connu depuis cinq ans. Quelques…">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-alertes.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Économie<span class="dot-sep">·</span>18 septembre 2026</div>
+      <h1>Le chômage repasse un cap inédit depuis cinq ans : ce que ça change vraiment pour vous</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>En résumé : au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 % de la population active — 2,7 millions de personnes sans emploi au sens du Bureau international du travail — un niveau que le pays n'avait plus connu depuis cinq ans. Quelques semaines plus tard, l'Insee a coup sur coup abaissé sa prévision de croissance pour 2026, de 0,7 % à 0,4 %, et annoncé s'attendre à un chômage à 8,6 % d'ici la fin de l'année. Deux publications distinctes, à dix jours d'écart, qui racontent la même histoire : une économie française qui ralentit plus vite que prévu, des entreprises plus frileuses à l'embauche, et des salaires sous pression — au moment même où une réforme de l'assurance chômage, entrée en vigueur le 1er septembre 2026, change concrètement les droits de celles et ceux qui basculent dans le chômage à partir de maintenant.</p>
+        <h2>Contexte : les faits, vérifiés et vérifiables</h2>
+        <p>Le 7 août 2026, l'Insee a publié son enquête Emploi pour le deuxième trimestre 2026 (Informations rapides n° 192). Le taux de chômage y ressort à 8,3 % de la population active, en hausse de 0,2 point sur trois mois et de 0,7 point sur un an. Cela représente 2,7 millions de personnes sans emploi au sens du BIT — c'est-à-dire sans avoir travaillé, même une heure, au cours de la semaine de référence, disponibles pour travailler et ayant effectué une démarche active de recherche d'emploi. La dégradation touche toutes les catégories, mais de façon inégale : chez les 15-24 ans, le taux atteint 21,6 % (+2,5 points sur un an, la plus forte hausse de toutes les tranches d'âge) ; il s'établit à 7,5 % chez les 25-49 ans (+0,5 point) et à 5,5 % chez les 50 ans et plus (+0,7 point). Entre les femmes (8,2 %, +0,8 point sur un an) et les hommes (8,5 %, +0,8 point), l'écart reste stable mais les deux courbes progressent au même rythme. Selon plusieurs analyses reprenant les données Insee, le taux de chômage avait repassé la barre symbolique des 8 % dès le début de l'année 2026, pour la première fois depuis cinq ans.</p>
+        <p>Le 10 septembre 2026, l'Insee a publié deux informations coup sur coup. D'une part, une révision à la baisse de sa prévision de croissance du PIB pour 2026, ramenée de 0,7 % à 0,4 % — une correction importante pour un institut statistique public, qui justifie ce coup de frein par trois facteurs cumulés : des épisodes de canicule ayant pesé sur l'activité de certains secteurs, une chute marquée de l'activité dans les travaux publics, et un marché du travail qui se dégrade plus vite qu'anticipé. Ces éléments conduisent l'Insee à constater que la France « décroche » par rapport à plusieurs de ses voisins européens en matière de croissance. D'autre part, dans un document distinct consacré aux perspectives d'emploi, l'institut anticipe désormais un taux de chômage à 8,6 % de la population active d'ici la fin de l'année 2026 — soit encore 0,3 point de plus que le niveau déjà observé au deuxième trimestre. L'Insee y relève un ralentissement de la demande adressée aux entreprises, une prudence accrue de celles-ci en matière de recrutement, et une poursuite de l'arrivée de nouveaux actifs sur le marché du travail qui ne trouve pas en face une offre d'emploi suffisante. La situation reste toutefois contrastée selon les secteurs : les services et la santé continuent de recruter, tandis que la construction et l'industrie sont sous pression plus marquée. L'institut souligne enfin que cette hausse du chômage « freinerait aussi les salaires », un mécanisme qui pèserait à son tour sur le pouvoir d'achat des ménages et, in fine, sur la consommation intérieure — l'un des principaux moteurs de la croissance française.</p>
+        <p>Cette dégradation du marché du travail intervient alors qu'une réforme de l'assurance chômage est entrée en vigueur le 1er septembre 2026, pour toute personne dont le contrat de travail prend fin à partir de cette date dans le cadre d'une rupture conventionnelle individuelle. Concrètement, la durée maximale d'indemnisation est désormais fixée à 15 mois pour les moins de 55 ans (20 mois pour les résidents d'outre-mer, hors Mayotte), et à 20,5 mois pour les 55 ans et plus (30 mois outre-mer) — ces derniers pouvant demander une prolongation auprès de France Travail selon leurs démarches de recherche d'emploi ou leur projet professionnel. Le mode de calcul du salaire de référence évolue également : les périodes d'activité partielle de longue durée dite « rebond » sont désormais prises en compte comme des périodes de suspension dans la reconstitution du salaire, ce qui évite qu'elles ne fassent mécaniquement baisser le montant de l'allocation. Pour les générations 1964-1968, le dispositif de maintien des droits jusqu'à l'âge de la retraite à taux plein démarre désormais un trimestre plus tôt, en raison de la suspension de la réforme des retraites. Ces règles ne s'appliquent qu'aux ruptures conventionnelles individuelles ; les licenciements collectifs restent régis par d'autres dispositions.</p>
+        <h2>Analyse fondamentale pour les marchés financiers</h2>
+        <p>Pour les marchés, ce n'est pas tant le niveau du taux de chômage en lui-même que sa trajectoire et son interaction avec la croissance et les finances publiques qui comptent. Une révision de la prévision de croissance de 0,7 % à 0,4 % peut sembler modeste en apparence, mais elle a un effet démultiplicateur sur la trajectoire budgétaire : les recettes fiscales et sociales de l'État dépendent directement du niveau d'activité économique, et une croissance plus faible que prévu se traduit mécaniquement par des rentrées fiscales inférieures aux hypothèses retenues lors de la construction du budget. Dans un contexte où la France discute actuellement de son projet de loi de finances pour 2027 et cherche à réduire son déficit public, un chômage plus élevé et une croissance plus faible compliquent l'équation budgétaire par les deux bouts : moins de recettes d'un côté, davantage de dépenses sociales liées à l'indemnisation du chômage de l'autre. C'est ce type de signal que les agences de notation et les investisseurs en dette souveraine surveillent en priorité lorsqu'ils évaluent la trajectoire de la dette française, davantage que le niveau ponctuel d'un indicateur pris isolément.</p>
+        <p>Sur les marchés actions, la dégradation du marché du travail et le ralentissement de la croissance pèsent en priorité sur les valeurs les plus directement exposées à la consommation intérieure des ménages français — distribution, biens de consommation courante, automobile, construction — puisque des salaires sous pression et un chômage en hausse tendent à peser sur la propension des ménages à dépenser plutôt qu'à épargner par précaution. À l'inverse, les grandes valeurs du CAC 40 tournées vers l'exportation et les marchés internationaux restent, pour une large part, moins directement sensibles à la seule conjoncture domestique française. Sur le compartiment obligataire, une trajectoire de croissance dégradée, conjuguée à des interrogations sur la capacité de la France à tenir sa trajectoire de réduction du déficit, entretient une prime de risque sur la dette française par rapport à ses partenaires les mieux notés de la zone euro ; les investisseurs obligataires raisonnent moins en fonction d'un chiffre de chômage isolé que de la cohérence d'ensemble entre croissance, déficit et charge de la dette sur plusieurs années. Ce type de dégradation progressive des fondamentaux macroéconomiques agit ainsi davantage comme un bruit de fond qui renchérit, avec un décalage de plusieurs mois, le coût auquel l'État et les entreprises françaises se financent sur les marchés, plutôt que comme un choc immédiat et spectaculaire sur une seule séance de cotation.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p><strong>Un taux de chômage à 8,3 % ne veut pas dire qu'une personne active sur 8,3 est au chômage aujourd'hui.</strong> Ce taux rapporte le nombre de chômeurs au sens du BIT à l'ensemble de la population active (actifs occupés + chômeurs) ; il exclut notamment les personnes inactives, les découragés qui ont cessé toute recherche active, ou celles en incapacité de prendre un emploi dans les deux semaines. C'est une photographie standardisée, comparable dans le temps et entre pays, mais qui ne recouvre pas exactement l'ensemble des situations de précarité professionnelle vécues sur le terrain.</p>
+        <p><strong>Une hausse du chômage qui « freine les salaires », selon les mots de l'Insee, se traduit concrètement par des négociations salariales et des augmentations individuelles plus difficiles à obtenir.</strong> Lorsque le marché du travail se détend — c'est-à-dire lorsque l'offre de main-d'œuvre disponible dépasse la demande des entreprises — le rapport de force lors des négociations annuelles obligatoires en entreprise ou lors d'un changement de poste tend mécaniquement à se rééquilibrer en défaveur des salariés, ce qui peut peser sur le pouvoir d'achat même pour les personnes qui conservent leur emploi.</p>
+        <p><strong>Pour toute personne envisageant un départ négocié (rupture conventionnelle) à partir du 1er septembre 2026, les nouvelles durées d'indemnisation changent directement le calcul à faire avant de signer.</strong> Un salarié de moins de 55 ans qui négocierait aujourd'hui une rupture conventionnelle ouvre droit, au maximum, à 15 mois d'allocation chômage (hors prolongations spécifiques) — une donnée à comparer avec le temps de retour à l'emploi généralement observé dans son secteur et sa région avant de prendre une décision, plutôt qu'avec les règles antérieures à septembre 2026, qui ne s'appliquent plus aux ruptures intervenant après cette date.</p>
+        <p><strong>Les jeunes actifs (15-24 ans) restent la catégorie la plus exposée, avec un taux de chômage de 21,6 %, en hausse de 2,5 points sur un an — la dégradation la plus rapide de toutes les tranches d'âge.</strong> Ce chiffre inclut une proportion importante d'étudiants en recherche d'un premier emploi ou d'une alternance, ce qui le rend structurellement plus élevé que la moyenne nationale, mais son accélération sur un an suggère que l'entrée sur le marché du travail devient concrètement plus difficile pour cette génération, y compris pour les profils qualifiés.</p>
+        <p><strong>Les secteurs ne sont pas tous logés à la même enseigne : les services et la santé continuent de recruter quand la construction et l'industrie sont sous pression plus marquée.</strong> Pour une personne en recherche d'emploi ou en réflexion sur une reconversion, ce contraste sectoriel, documenté par l'Insee, pèse potentiellement plus lourd dans les perspectives concrètes de retour à l'emploi que le seul taux de chômage national.</p>
+        <h2>Solutions et pistes concrètes</h2>
+        <ul>
+          <li>Avant d'envisager une rupture conventionnelle ou tout départ négocié à compter de 2026, se renseigner précisément auprès de France Travail ou d'un conseiller sur la durée d'indemnisation applicable à sa situation (moins de 55 ans, 55 ans et plus, résidence en outre-mer) depuis la réforme du 1er septembre 2026, plutôt que de se fier à des règles antérieures qui ne s'appliquent plus.</li>
+          <li>Dans un contexte de marché du travail qui se tend, renforcer si possible son épargne de précaution disponible à tout moment (livret A, LDDS ou équivalent) avant d'envisager un changement professionnel volontaire, afin de disposer d'une marge de manœuvre en cas de retour à l'emploi plus long que prévu.</li>
+          <li>Pour les jeunes actifs et les personnes en recherche d'un premier emploi, tenir compte du contraste sectoriel documenté par l'Insee (services et santé en recrutement, construction et industrie sous pression) dans le choix d'une orientation, d'une alternance ou d'une reconversion, sans que cela dispense d'une réflexion plus large sur ses propres compétences et aspirations.</li>
+          <li>Lors d'une négociation salariale ou d'un changement de poste, garder à l'esprit qu'un marché du travail moins tendu qu'auparavant modifie le rapport de force ; documenter sa valeur ajoutée avec des éléments concrets (résultats, responsabilités, comparaisons de marché) devient d'autant plus utile dans ce contexte.</li>
+          <li>Pour un particulier détenant des placements exposés aux valeurs françaises de consommation ou à la dette souveraine française, suivre dans la durée l'articulation entre croissance, chômage et trajectoire budgétaire plutôt qu'un seul indicateur isolé, et solliciter au besoin son conseiller pour évaluer l'exposition réelle de ses contrats (assurance-vie, PEA, fonds euros) à l'économie domestique française.</li>
+          <li>Suivre les prochaines publications de l'Insee (comptes nationaux, prochaine enquête Emploi, note de conjoncture) ainsi que l'issue des discussions sur le projet de loi de finances 2027, qui donneront une meilleure visibilité sur la capacité de la France à stabiliser sa trajectoire de croissance et de déficit d'ici la fin de l'année.</li>
+        </ul>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement personnalisé.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Insee, Informations rapides n° 192, 7 août 2026 (taux de chômage T2 2026, détail par âge et par sexe) : <a href="https://www.insee.fr/fr/statistiques/9032359" target="_blank" rel="noopener noreferrer">https://www.insee.fr/fr/statistiques/9032359</a></li>
+          <li>Boursorama, 10/09/2026, 17h19 (Insee anticipe un chômage à 8,6 % fin 2026, ralentissement des salaires) : <a href="https://www.boursorama.com/actualite-economique/actualites/emploi-perspectives-sombres-pour-la-fin-de-l-annee-avec-un-chomage-a-8-6-insee-c860410de2f61e1d562fa97031db03fc" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/emploi-perspectives-sombres-pour-la-fin-de-l-annee-avec-un-chomage-a-8-6-insee-c860410de2f61e1d562fa97031db03fc</a></li>
+          <li>Boursorama, 10/09/2026, 17h15 (Insee abaisse sa prévision de croissance 2026 de 0,7 % à 0,4 %) : <a href="https://www.boursorama.com/actualite-economique/actualites/l-insee-abaisse-fortement-sa-prevision-de-croissance-pour-la-france-en-2026-a-0-4-5e86304d1ec88830adf52a4b2c051684" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/l-insee-abaisse-fortement-sa-prevision-de-croissance-pour-la-france-en-2026-a-0-4-5e86304d1ec88830adf52a4b2c051684</a></li>
+          <li>Econostrum, 2026 (causes citées par l&#x27;Insee : ralentissement de la demande, prudence des entreprises à l&#x27;embauche, secteurs contrastés) : <a href="https://econostrum.info/chomage-france-vers-taux-de-86-fin-annee/" target="_blank" rel="noopener noreferrer">https://econostrum.info/chomage-france-vers-taux-de-86-fin-annee/</a></li>
+          <li>Unédic, actualités du 1er septembre 2026 (nouvelles règles d&#x27;indemnisation chômage après rupture conventionnelle) : <a href="https://www.unedic.org/actualites/assurance-chomage-ce-qui-change-le-1er-septembre-2026" target="_blank" rel="noopener noreferrer">https://www.unedic.org/actualites/assurance-chomage-ce-qui-change-le-1er-septembre-2026</a></li>
+          <li>Insee, Note de conjoncture, 24 mars 2026 (série longue du taux de chômage et du pouvoir d&#x27;achat des ménages, pour mise en perspective) : <a href="https://www.insee.fr/fr/statistiques/8907421?sommaire=8907467" target="_blank" rel="noopener noreferrer">https://www.insee.fr/fr/statistiques/8907421?sommaire=8907467</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
