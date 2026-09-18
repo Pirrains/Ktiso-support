@@ -1,0 +1,41 @@
+{
+  "showPlaceholderNote": true,
+  "posts": [
+    {
+      "plateforme": "Instagram",
+      "titre": "Résumé de la semaine : ce qu'il faut retenir des marchés",
+      "image": "systeme-planetaire.jpg",
+      "lien": "#"
+    },
+    {
+      "plateforme": "Instagram",
+      "titre": "3 repères pour lire un bilan d'entreprise",
+      "image": "dune-verte.jpg",
+      "lien": "#"
+    },
+    {
+      "plateforme": "Instagram",
+      "titre": "La règle du 50/30/20, expliquée en 60 secondes",
+      "image": "nuit-etoilee.jpg",
+      "lien": "#"
+    },
+    {
+      "plateforme": "YouTube",
+      "titre": "Débat : faut-il encore investir en bourse en 2026 ?",
+      "image": "deux-freres.jpg",
+      "lien": "#"
+    },
+    {
+      "plateforme": "YouTube",
+      "titre": "Podcast : on démonte un ETF, ligne par ligne",
+      "image": "construction-outils.jpg",
+      "lien": "#"
+    },
+    {
+      "plateforme": "YouTube",
+      "titre": "Pourquoi on a lancé Ktiso",
+      "image": "astronaute.jpg",
+      "lien": "#"
+    }
+  ]
+}

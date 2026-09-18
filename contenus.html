@@ -218,6 +218,149 @@
     color: rgba(244, 239, 227, 0.6);
   }
 
+  /* ============ ANALYSES (bibliothèque) ============ */
+
+  .analyses-section { padding: 0 0 96px; }
+
+  .analyses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .analysis-card {
+    display: block;
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 24px 22px;
+    text-align: left;
+    text-decoration: none;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  }
+
+  .analysis-card:hover {
+    border-color: rgba(201, 169, 97, 0.5);
+    background: rgba(201, 169, 97, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .analysis-ticker {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 12px;
+  }
+
+  .analysis-card h3 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .analysis-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.6);
+    margin-bottom: 10px;
+  }
+
+  .analysis-read {
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+  }
+
+  .analyses-empty {
+    border: 1px dashed var(--line);
+    border-radius: 2px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .analyses-empty p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* ============ VIGNETTES (derniers posts) ============ */
+
+  .vignettes-section { padding: 0 0 96px; }
+
+  .platform-group + .platform-group { margin-top: 44px; }
+
+  .platform-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.55);
+    margin-bottom: 18px;
+  }
+
+  .platform-label svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--yellow); }
+
+  .vignette-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .vignette-card { display: block; text-decoration: none; }
+
+  .vignette-frame {
+    position: relative;
+    aspect-ratio: 908 / 572;
+    border-radius: 4px;
+  }
+
+  .vignette-thumb {
+    position: absolute;
+    top: 16.5%; left: 10.4%; right: 8.5%; bottom: 14.2%;
+    overflow: hidden;
+    background: var(--brown-deep);
+  }
+
+  .vignette-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .vignette-card:hover .vignette-thumb img { transform: scale(1.06); }
+
+  .vignette-frame-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .vignette-caption {
+    margin-top: 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: rgba(244, 239, 227, 0.7);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+  }
+
+  .vignette-card:hover .vignette-caption { color: var(--cream); }
+
   /* ============ THEMATIQUES (numbered list) ============ */
 
   .theme-section { padding: 0 0 96px; }
@@ -346,6 +489,12 @@
 
   @media (max-width: 720px) {
     .format-grid { grid-template-columns: 1fr; }
+    .analyses-grid { grid-template-columns: 1fr; }
+    .vignette-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  }
+
+  @media (max-width: 460px) {
+    .vignette-grid { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
   }
 </style>
 </head>
@@ -377,9 +526,24 @@
     <section class="wrap">
       <div class="rule"></div>
       <div class="intro">
-        <div class="section-label">Les formats</div>
-        <h2>Trois façons d'apprendre avec Ktiso</h2>
-        <p>Le même socle pédagogique, décliné du format court au parcours complet — selon le temps que vous avez.</p>
+        <div class="section-label">Nos analyses</div>
+        <h2>Découvrez nos analyses</h2>
+        <p>Des analyses d'entreprises écrites par l'équipe Ktiso — pensées comme une bibliothèque qui s'enrichit publication après publication.</p>
+      </div>
+    </section>
+
+    <section class="analyses-section wrap">
+      <div class="analyses-grid" id="analysesGrid">
+        <!-- Rempli dynamiquement par le script en bas de page, à partir de analyses.json -->
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="intro">
+        <div class="section-label">Nos formats</div>
+        <h2>Nos contenus, sur tous vos formats</h2>
+        <p>Le même travail de fond, décliné différemment selon la plateforme et le temps que vous avez devant vous.</p>
       </div>
     </section>
 
@@ -387,20 +551,33 @@
       <div class="format-grid">
         <div class="format-card">
           <div class="format-tag">Format court</div>
-          <h3>Publications Instagram</h3>
-          <p>Des repères simples sur l'épargne, la bourse et le budget, publiés régulièrement.</p>
+          <h3>Instagram</h3>
+          <p>Des contenus rapides : résumés d'actualité, repères chiffrés et analyses condensées, publiés régulièrement.</p>
         </div>
         <div class="format-card">
           <div class="format-tag">Format long</div>
-          <h3>Guides &amp; dossiers</h3>
-          <p>Des explications complètes sur un sujet, pour comprendre les mécanismes de bout en bout.</p>
+          <h3>YouTube</h3>
+          <p>Des podcasts et des débats pour prendre le temps d'aller au fond des sujets, à plusieurs voix.</p>
         </div>
         <div class="format-card">
-          <div class="format-tag">Dans l'app</div>
-          <h3>Parcours d'apprentissage</h3>
-          <p>Des modules progressifs qui construisent les bases, chapitre par chapitre.</p>
+          <div class="format-tag">Format ultra-court</div>
+          <h3>TikTok</h3>
+          <p>Les mêmes repères qu'ailleurs, en clips directs — pour comprendre l'essentiel en quelques secondes.</p>
         </div>
       </div>
+    </section>
+
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="intro">
+        <div class="section-label">Sur nos réseaux</div>
+        <h2>Ce qu'on vient de publier</h2>
+        <p>Les dernières publications Instagram et vidéos YouTube.</p>
+      </div>
+    </section>
+
+    <section class="vignettes-section wrap" id="vignettesSection">
+      <!-- Rempli dynamiquement par le script en bas de page, à partir de derniers-posts.json -->
     </section>
 
     <section class="wrap">
@@ -485,6 +662,110 @@
     <div class="copyright">KTISO — Éducation financière</div>
     <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
   </footer>
+
+  <script>
+  (function () {
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    /* ---- Bibliothèque d'analyses ---- */
+
+    var analysesGrid = document.getElementById('analysesGrid');
+
+    fetch('analyses.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : { analyses: [] }; })
+      .then(function (data) {
+        var analyses = (data && data.analyses) || [];
+        if (!analyses.length) {
+          analysesGrid.innerHTML = '<div class="analyses-empty" style="grid-column: 1 / -1;">' +
+            '<p>La bibliothèque est vide pour l\'instant — les premières analyses seront publiées ici prochainement.</p>' +
+            '</div>';
+          return;
+        }
+        analysesGrid.innerHTML = analyses.map(function (a) {
+          return (
+            '<a class="analysis-card" href="' + escapeHtml(a.lien || '#') + '">' +
+              '<div class="analysis-ticker">' + escapeHtml(a.ticker || '') + '</div>' +
+              '<h3>' + escapeHtml(a.entreprise || '') + '</h3>' +
+              '<p>' + escapeHtml(a.resume || '') + '</p>' +
+              '<span class="analysis-read">Lire l\'analyse →</span>' +
+            '</a>'
+          );
+        }).join('');
+      })
+      .catch(function () {
+        analysesGrid.innerHTML = '<div class="analyses-empty" style="grid-column: 1 / -1;">' +
+          '<p>La bibliothèque est vide pour l\'instant — les premières analyses seront publiées ici prochainement.</p>' +
+          '</div>';
+      });
+
+    /* ---- Derniers posts ---- */
+
+    var vignettesSection = document.getElementById('vignettesSection');
+
+    var PLATFORM_ICONS = {
+      'Instagram': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>',
+      'YouTube': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>'
+    };
+
+    function renderVignette(post) {
+      return (
+        '<a class="vignette-card" href="' + escapeHtml(post.lien || '#') + '">' +
+          '<div class="vignette-frame">' +
+            '<div class="vignette-thumb"><img src="' + escapeHtml(post.image || '') + '" alt=""></div>' +
+            '<img class="vignette-frame-overlay" src="vignette-cadre.png" alt="">' +
+          '</div>' +
+          '<div class="vignette-caption">' + escapeHtml(post.titre || '') + '</div>' +
+        '</a>'
+      );
+    }
+
+    fetch('derniers-posts.json', { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) { throw new Error('derniers-posts.json introuvable'); }
+        return r.json();
+      })
+      .then(function (data) {
+        var posts = (data && data.posts) || [];
+        if (!posts.length) { throw new Error('Aucun post dans derniers-posts.json'); }
+
+        var byPlatform = {};
+        var order = [];
+        posts.forEach(function (p) {
+          var plat = p.plateforme || 'Autre';
+          if (!byPlatform[plat]) { byPlatform[plat] = []; order.push(plat); }
+          byPlatform[plat].push(p);
+        });
+
+        var html = order.map(function (plat) {
+          var icon = PLATFORM_ICONS[plat] || '';
+          return (
+            '<div class="platform-group">' +
+              '<div class="platform-label">' + icon + '<span>' + escapeHtml(plat) + '</span></div>' +
+              '<div class="vignette-grid">' +
+                byPlatform[plat].map(renderVignette).join('') +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+
+        vignettesSection.innerHTML = html;
+
+        if (data.showPlaceholderNote) {
+          vignettesSection.insertAdjacentHTML('beforeend',
+            '<p class="placeholder-note" style="text-align:center; font-size:11.5px; color:rgba(244,239,227,0.35); max-width:420px; margin:30px auto 0;">Ces publications sont des exemples de mise en page. Elles seront remplacées par les vraies publications de Ktiso au fil de leur sortie.</p>'
+          );
+        }
+      })
+      .catch(function () {
+        // derniers-posts.json absent, vide, ou en erreur : la section reste vide, rien ne casse visuellement.
+      });
+  })();
+  </script>
 
 </body>
 </html>
