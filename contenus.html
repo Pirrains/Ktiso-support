@@ -190,7 +190,7 @@
   .format-card {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 28px 24px;
     text-align: left;
   }
@@ -232,7 +232,7 @@
     display: block;
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 24px 22px;
     text-align: left;
     text-decoration: none;
@@ -277,7 +277,7 @@
 
   .analyses-empty {
     border: 1px dashed var(--line);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 40px 24px;
     text-align: center;
   }
@@ -361,42 +361,6 @@
 
   .vignette-card:hover .vignette-caption { color: var(--cream); }
 
-  /* ============ THEMATIQUES (numbered list) ============ */
-
-  .theme-section { padding: 0 0 96px; }
-
-  .theme-list { border-top: 1px solid var(--line); }
-
-  .theme-row {
-    display: flex;
-    gap: 22px;
-    padding: 30px 0;
-    border-bottom: 1px solid var(--line);
-    text-align: left;
-  }
-
-  .theme-num {
-    font-size: 13px;
-    color: var(--yellow);
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-
-  .theme-row h3 {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-    font-weight: 500;
-    font-size: 17px;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .theme-row p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(244, 239, 227, 0.6);
-  }
-
   /* ============ FINAL CTA ============ */
 
   .final-section { padding: 0 0 90px; }
@@ -406,7 +370,7 @@
     background:
       radial-gradient(ellipse 90% 100% at 50% 0%, rgba(201, 169, 97, 0.08), transparent 65%),
       rgba(201, 169, 97, 0.03);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 56px 32px;
     text-align: center;
   }
@@ -427,6 +391,46 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+  }
+
+  .social-follow {
+    margin-top: 34px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+
+  .social-follow p {
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.5);
+    margin-bottom: 18px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(244, 239, 227, 0.75);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .social-icon svg { width: 19px; height: 19px; }
+
+  .social-icon:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+    transform: translateY(-2px);
   }
 
   .btn {
@@ -580,54 +584,6 @@
       <!-- Rempli dynamiquement par le script en bas de page, à partir de derniers-posts.json -->
     </section>
 
-    <section class="wrap">
-      <div class="rule"></div>
-      <div class="intro" style="padding-bottom: 8px;">
-        <div class="section-label">Les thématiques</div>
-        <h2>Ce que vous pouvez apprendre</h2>
-      </div>
-    </section>
-
-    <section class="theme-section wrap">
-      <div class="theme-list">
-        <div class="theme-row">
-          <div class="theme-num">01</div>
-          <div>
-            <h3>Budget &amp; épargne</h3>
-            <p>Organiser ses revenus, se constituer une réserve, choisir où déposer son argent.</p>
-          </div>
-        </div>
-        <div class="theme-row">
-          <div class="theme-num">02</div>
-          <div>
-            <h3>Bourse &amp; ETF</h3>
-            <p>Comprendre ce qu'on achète, les frais, la diversification et l'horizon de placement.</p>
-          </div>
-        </div>
-        <div class="theme-row">
-          <div class="theme-num">03</div>
-          <div>
-            <h3>Immobilier</h3>
-            <p>Acheter, louer, financer : poser les bons calculs avant de s'engager.</p>
-          </div>
-        </div>
-        <div class="theme-row">
-          <div class="theme-num">04</div>
-          <div>
-            <h3>Cryptoactifs</h3>
-            <p>Décoder la volatilité et les usages réels, sans promesse de rendement.</p>
-          </div>
-        </div>
-        <div class="theme-row">
-          <div class="theme-num">05</div>
-          <div>
-            <h3>Fiscalité &amp; cadre légal</h3>
-            <p>Les règles qui s'appliquent à vos placements, expliquées simplement.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="final-section wrap">
       <div class="final-card">
         <div class="section-label">Commencer</div>
@@ -637,9 +593,21 @@
           <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
             Télécharger l'application
           </a>
-          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-            @ktiso_off
-          </a>
+        </div>
+
+        <div class="social-follow">
+          <p>Suivez-nous sur nos réseaux</p>
+          <div class="social-icons">
+            <a class="social-icon" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+            </a>
+            <a class="social-icon" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a class="social-icon" href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
