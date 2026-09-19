@@ -288,16 +288,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
     background: radial-gradient(ellipse 70% 60% at 50% 68%, rgba(3, 12, 34, 0.07), transparent 70%);
   }
 
   .panel-frame img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 10px 14px rgba(3, 12, 34, 0.2));
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .panel-stamp {
@@ -712,6 +710,18 @@
     var TAG_ORDER = ['Économie', 'Bourse', 'Budget', 'Immobilier', 'Cryptoactifs', 'Corporate', 'Crypto', 'Politique'];
     var DEFAULT_ACCENT = '#5B8FA8';
 
+    // Miniature standard par catégorie — prioritaire sur le champ "image" de chaque
+    // article. Un article dans une catégorie ci-dessous n'a plus besoin de préciser
+    // sa propre image : elle est déduite automatiquement de son tag.
+    var CATEGORY_IMAGES = {
+      'Économie': 'actu-cat-economie.jpg',
+      'Bourse': 'actu-cat-bourse.jpg',
+      'Immobilier': 'actu-cat-immobilier.jpg',
+      'Corporate': 'actu-cat-corporate.jpg',
+      'Crypto': 'actu-cat-crypto.jpg',
+      'Cryptoactifs': 'actu-cat-crypto.jpg'
+    };
+
     var grid = document.getElementById('articleGrid');
     var note = document.getElementById('placeholderNote');
     var pillsBox = document.getElementById('filterPills');
@@ -729,8 +739,9 @@
 
     function renderCard(article) {
       var accent = ACCENTS[article.tag] || DEFAULT_ACCENT;
-      var img = article.image
-        ? '<img src="' + escapeHtml(article.image) + '" alt="">'
+      var imageSrc = CATEGORY_IMAGES[article.tag] || article.image;
+      var img = imageSrc
+        ? '<img src="' + escapeHtml(imageSrc) + '" alt="">'
         : '';
       var byline = (article.auteur ? 'Par ' + escapeHtml(article.auteur) : '') +
         (article.auteur && article.date ? ' · ' : '') +
