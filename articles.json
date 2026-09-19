@@ -2,13 +2,22 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Nike vient d'être exclu d'un club où il siégeait depuis 18 ans : ce que ça change pour votre épargne",
+      "excerpt": "À partir du 21 septembre 2026, Nike sort du S&P 100 après près de 18 ans, conséquence d'une chute de 76 % de son action en cinq ans. Ventes en repli en Chine, dixième trimestre consécutif de baisse du numérique, et analystes très divisés avant les résultats du 1er octobre.",
+      "auteur": "Ktiso",
+      "date": "19 septembre 2026",
+      "href": "2026-09-19-0935-corporate-nike-exclusion-sp100.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "Le chômage repasse un cap inédit depuis cinq ans : ce que ça change vraiment pour vous",
       "excerpt": "Au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 %, un niveau plus vu depuis cinq ans. L'Insee anticipe désormais 8,6 % fin 2026 et a abaissé sa prévision de croissance de 0,7 % à 0,4 %.",
       "auteur": "Ktiso",
       "date": "18 septembre 2026",
       "href": "2026-09-18-0935-economie-chomage-croissance-insee.html",
-      "image": "actu-cat-economie.jpg"
+      "image": "card-alertes.jpg"
     },
     {
       "tag": "Bourse",
@@ -17,7 +26,7 @@
       "auteur": "Ktiso",
       "date": "17 septembre 2026",
       "href": "2026-09-17-1929-bourse-fed-hausse-taux-divergence-usa-europe.html",
-      "image": "actu-cat-bourse.jpg"
+      "image": "actu-astronaute-decolle.png"
     }
   ]
 }
