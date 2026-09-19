@@ -205,46 +205,6 @@
     margin: 0 auto 14px;
   }
 
-  /* ============ DISCLAIMER ============ */
-
-  .disclaimer {
-    border: 1px solid rgba(193, 101, 74, 0.4);
-    background: rgba(193, 101, 74, 0.06);
-    border-radius: 2px;
-    padding: 26px 26px;
-    text-align: left;
-    margin-bottom: 8px;
-  }
-
-  .disclaimer-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 12px;
-  }
-
-  .disclaimer-label svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-
-  .disclaimer p {
-    font-size: 13px;
-    line-height: 1.7;
-    color: rgba(244, 239, 227, 0.75);
-    text-align: left;
-    max-width: none;
-    margin: 0 0 10px;
-  }
-
-  .disclaimer p:last-child { margin-bottom: 0; }
-  .disclaimer strong { color: var(--cream); font-weight: 500; }
-
   /* ============ EVOLUTION / CHART ============ */
 
   .chart-box {
@@ -325,56 +285,6 @@
   }
 
   .actif-block:hover .actif-name { color: var(--cream); }
-
-  /* ============ ANALYSES ============ */
-
-  .analysis-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: left;
-  }
-
-  .analysis-card {
-    display: block;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    padding: 26px 24px;
-    text-decoration: none;
-    background: rgba(201, 169, 97, 0.03);
-    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
-  }
-
-  .analysis-card:hover {
-    border-color: rgba(201, 169, 97, 0.5);
-    background: rgba(201, 169, 97, 0.06);
-    transform: translateY(-2px);
-  }
-
-  .analysis-meta {
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .analysis-card h3 {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 1.3;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .analysis-card p {
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: rgba(244, 239, 227, 0.65);
-    margin: 0;
-    max-width: none;
-  }
 
   .placeholder-note {
     font-size: 12px;
@@ -554,85 +464,6 @@
     </section>
 
     <div class="rule"></div>
-
-    <section>
-      <div class="section-label">Répartition</div>
-      <h2>Les grandes catégories que nous suivons</h2>
-      <p>Sans pourcentages précis pour l'instant — l'idée est de montrer la logique de répartition, qui sera détaillée ici au fur et à mesure.</p>
-      <div class="allocation-list">
-        <div class="allocation-row">
-          <span class="allocation-dot" style="background: var(--gold);"></span>
-          <div>
-            <h4>Actions & ETF</h4>
-            <p>Le cœur du portefeuille, orienté long terme et diversifié par secteur et zone géographique.</p>
-          </div>
-        </div>
-        <div class="allocation-row">
-          <span class="allocation-dot" style="background: var(--lime);"></span>
-          <div>
-            <h4>Obligations</h4>
-            <p>Une poche plus défensive, pour amortir la volatilité de la partie actions.</p>
-          </div>
-        </div>
-        <div class="allocation-row">
-          <span class="allocation-dot" style="background: var(--terracotta);"></span>
-          <div>
-            <h4>Cryptoactifs</h4>
-            <p>Une exposition volontairement limitée, à la mesure du risque que représente cette classe d'actifs.</p>
-          </div>
-        </div>
-        <div class="allocation-row">
-          <span class="allocation-dot" style="background: rgba(244,239,227,0.4);"></span>
-          <div>
-            <h4>Liquidités</h4>
-            <p>Une réserve de sécurité, indépendante du reste du portefeuille.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
-    <section>
-      <div class="section-label">Nos analyses</div>
-      <h2>Le raisonnement derrière les choix</h2>
-      <div class="analysis-grid">
-        <a class="analysis-card" href="#">
-          <div class="analysis-meta">Diversification</div>
-          <h3>Pourquoi nous répartissons entre plusieurs zones géographiques</h3>
-          <p>Ce que ça change concrètement de ne pas tout miser sur un seul marché, et comment nous avons réfléchi cette répartition.</p>
-        </a>
-        <a class="analysis-card" href="#">
-          <div class="analysis-meta">Gestion du risque</div>
-          <h3>Comment nous avons fixé la taille de notre poche crypto</h3>
-          <p>La règle simple qu'on s'est fixée pour ne jamais laisser une classe d'actifs volatile peser trop lourd.</p>
-        </a>
-        <a class="analysis-card" href="#">
-          <div class="analysis-meta">Horizon long terme</div>
-          <h3>Pourquoi on n'ajuste pas le portefeuille à chaque actualité</h3>
-          <p>Ce qui nous fait revoir une position — et ce qui, la plupart du temps, ne le justifie pas.</p>
-        </a>
-      </div>
-      <p class="placeholder-note">Ces analyses sont des exemples de mise en page, en attente des vraies publications de l'équipe.</p>
-    </section>
-
-    <div class="rule"></div>
-
-    <section>
-      <div class="disclaimer">
-        <div class="disclaimer-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="13"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-          Avant de refermer cette page
-        </div>
-        <p><strong>Ceci n'est pas un conseil en investissement.</strong> Ce que vous avez vu ici est le portefeuille personnel de l'équipe Ktiso, partagé à titre pédagogique — pour montrer un raisonnement, pas pour indiquer quoi acheter.</p>
-        <p>Les performances passées ne préjugent pas des performances futures. Vos objectifs, votre horizon et votre tolérance au risque sont probablement différents des nôtres.</p>
-        <p>Comme indiqué sur notre page <a href="a-propos.html" style="color: var(--terracotta); border-bottom: 1px solid rgba(193,101,74,0.35);">À propos</a>, Ktiso ne vend ni ne recommande de produits financiers.</p>
-      </div>
-    </section>
 
     <div class="cta-group">
       <a class="btn btn-primary" href="espace-abonne.html?action=signup">
