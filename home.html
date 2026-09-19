@@ -265,20 +265,34 @@
     box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28);
   }
 
-  .btn-secondary {
-    background: transparent;
-    color: var(--cream);
-    border: 1px solid var(--line);
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
   }
 
-  .btn-secondary:hover {
+  .social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .social-icon svg { width: 19px; height: 19px; }
+
+  .social-icon:hover {
     border-color: var(--terracotta);
     color: var(--terracotta);
     transform: translateY(-2px);
   }
-
-  .btn:active { transform: translateY(0); }
-  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
   .caption {
     font-size: 11px;
@@ -656,7 +670,7 @@
       <img class="hero-bg-img" src="dune-verte.jpg" alt="">
       <div class="hero-bg-veil"></div>
     </div>
-    <div class="eyebrow">Voir la finance autrement</div>
+    <div class="eyebrow">La finance autrement</div>
     <div class="hero-logo-space" id="heroLogoSpace" aria-hidden="true"></div>
     <div class="hero-below">
       <div class="steps" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -671,14 +685,17 @@
           </svg>
           Créer votre compte
         </a>
-        <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-          </svg>
-          Suivre sur Instagram
-        </a>
+        <div class="social-row">
+          <a class="social-icon" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+          </a>
+          <a class="social-icon" href="https://www.tiktok.com/@ktiso_off?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          </a>
+          <a class="social-icon" href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          </a>
+        </div>
       </div>
       <p class="caption">Gratuit · iPhone &amp; iPad · Dès 16 ans</p>
 
@@ -700,22 +717,22 @@
         <div class="value-col">
           <img class="value-icon" src="icon-lune.png" alt="">
           <h3>Crée ton espace</h3>
-          <p>un espace personnalisé où tu construis ton patrimoine financier</p>
+          <p>Un espace personnalisé où tu construis ton patrimoine financier</p>
         </div>
         <div class="value-col">
           <img class="value-icon" src="icon-saturne.png" alt="">
           <h3>Comprend les bases</h3>
-          <p>budget, épargne, bourse, immobilier, crypto</p>
+          <p>Budget, épargne, bourse, immobilier, crypto</p>
         </div>
         <div class="value-col">
           <img class="value-icon" src="icon-fusee.png" alt="">
           <h3>Passe à l'action</h3>
-          <p>investis avec des bases solides, à ton rythme</p>
+          <p>Investis avec des bases solides, à ton rythme</p>
         </div>
         <div class="value-col">
           <img class="value-icon" src="icon-astronaute.png" alt="">
           <h3>Suis l'actualité et analyse</h3>
-          <p>décrypter les marchés et affine tes décisions</p>
+          <p>Décrypter les marchés et affine tes décisions</p>
         </div>
       </div>
     </section>
@@ -735,7 +752,7 @@
       <a href="mentions-legales.html">Mentions légales</a><span class="sep">·</span>
       <a href="cgu.html">CGU</a>
     </div>
-    <div class="copyright">KTISO — Voir la finance autrement</div>
+    <div class="copyright">KTISO — La finance autrement</div>
     <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
   </footer>
 
@@ -746,6 +763,7 @@
       var links = document.getElementById('compactLinks');
       var backdrop = document.getElementById('navBackdrop');
       var spacer = document.getElementById('heroLogoSpace');
+      var heroEl = document.getElementById('top');
 
       var heroWidthPx, heroTopPx, navWidthPx, navTopPx, navLeftPx, heroLeftPx, triggerDistance;
       var ticking = false;
@@ -779,7 +797,13 @@
         navWidthPx = small ? 72 : 88;
         navTopPx = small ? 20 : 26;
         navLeftPx = small ? 20 : 28;
-        triggerDistance = Math.max(window.innerHeight * 0.62, 380);
+        // Basé sur la hauteur réelle du hero (pas sur la hauteur de la fenêtre) :
+        // sur un écran large et peu haut (ex. navigateur maximisé sur un grand
+        // moniteur), window.innerHeight pouvait produire une distance de
+        // déclenchement plus grande que ce qu'il restait à défiler sur la page,
+        // rendant le menu injustement difficile — voire quasi impossible — à
+        // rendre cliquable.
+        triggerDistance = Math.max(heroEl.offsetHeight * 0.4, 260);
         render();
       }
 
