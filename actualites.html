@@ -271,16 +271,15 @@
     display: flex;
     flex-direction: column;
     text-decoration: none;
-    border: 2.5px solid var(--green-deep);
     border-radius: 16px;
     overflow: hidden;
-    background: var(--cream);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    background: transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .panel:hover {
-    border-color: var(--panel-accent, var(--green-deep));
     transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   }
 
   .panel-frame {
@@ -318,17 +317,17 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 13px 15px 0;
+    padding: 13px 2px 0;
     font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 10.5px;
-    color: rgba(3, 12, 34, 0.5);
+    color: rgba(244, 239, 227, 0.5);
   }
 
   .card-byline svg { width: 12px; height: 12px; flex-shrink: 0; }
 
   .panel-caption {
-    padding: 6px 15px 16px;
-    background: var(--cream);
+    padding: 6px 2px 16px;
+    background: transparent;
   }
 
   .panel-caption h3 {
@@ -337,7 +336,7 @@
     letter-spacing: 0.005em;
     font-size: 16px;
     line-height: 1.25;
-    color: var(--green-deep);
+    color: var(--cream);
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
