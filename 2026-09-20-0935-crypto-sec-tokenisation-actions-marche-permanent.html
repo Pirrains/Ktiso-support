@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Bourse américaine ne fermera bientôt plus jamais — Ktiso Actualités</title>
+<meta name="description" content="le 17 septembre 2026, la SEC a accordé une exemption de cinq ans permettant à des plateformes crypto d&#x27;échanger des actions américaines &quot;tokenisées&quot;, hors des horaires classiques de la Bourse. Coinbase et Robinhood ont bondi en Bourse le jour même.">
+<meta property="og:title" content="La Bourse américaine ne fermera bientôt plus jamais">
+<meta property="og:description" content="le 17 septembre 2026, la SEC a accordé une exemption de cinq ans permettant à des plateformes crypto d&#x27;échanger des actions américaines &quot;tokenisées&quot;, hors des horaires classiques de la Bourse. Coinbase et Robinhood ont bondi en Bourse le jour même.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-portefeuille.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Crypto<span class="dot-sep">·</span>20 septembre 2026</div>
+      <h1>La Bourse américaine ne fermera bientôt plus jamais : voici ce que ça change pour vous</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <p>Une action Apple ou Nvidia que l'on pourrait acheter un dimanche à 3 heures du matin, directement depuis une application crypto, sans passer par une banque ni par la Bourse de New York. Ce n'est plus un scénario de fintech en PowerPoint : le gendarme boursier américain vient d'ouvrir officiellement la porte à ce système. En résumé : le 17 septembre 2026, la SEC a accordé une exemption de cinq ans permettant à des plateformes crypto d'échanger des actions américaines "tokenisées", hors des horaires classiques de la Bourse. Coinbase et Robinhood ont bondi en Bourse le jour même.</p>
+        <h2>Contexte : ce que la SEC a réellement annoncé</h2>
+        <p>Le 17 septembre 2026, la Securities and Exchange Commission (SEC), l'autorité américaine des marchés financiers, a publié ce qu'elle appelle une "Innovation Exemption" : une dérogation temporaire de cinq ans qui autorise certaines plateformes, baptisées "Tokenized Securities Venues" (TSV), à organiser l'échange de versions numériques d'actions américaines cotées sur les grands indices ("NMS stock", pour National Market System, soit la quasi-totalité des actions cotées aux États-Unis), sans être elles-mêmes enregistrées comme des Bourses classiques.</p>
+        <p>Concrètement, ces plateformes pourront faire tourner des carnets d'ordres automatisés ("automated market makers") et des réserves de liquidité fonctionnant sur une blockchain publique, avec plusieurs garde-fous imposés par la SEC : le jeton représentant l'action doit donner à son détenteur des droits strictement identiques à ceux d'un actionnaire classique, les contrats informatiques doivent être publics et auditables, la plateforme doit prévenir l'entreprise cotée avant de proposer une version tokenisée de son titre, et surtout — condition centrale — l'exemption ne s'applique pas si l'entreprise s'y oppose. Cette clause fait directement écho au différend qui avait opposé Robinhood et AMC Entertainment un peu plus tôt cet été, lorsque des actions tokenisées d'AMC avaient été proposées à la négociation sans l'accord du cinéma américain.</p>
+        <p>Le président de la SEC, Paul Atkins, a présenté cette décision comme "un pas important pour faire entrer les marchés de capitaux américains dans l'ère numérique". Le commissaire Mark Uyeda, dans une déclaration séparée, a justifié le choix d'une exemption plutôt que d'une nouvelle loi en rappelant que la SEC avait déjà emprunté cette voie par le passé pour les fonds monétaires ou les ETF, avant de les encadrer par des règles définitives une fois les risques mieux connus. Le texte fixe des limites de volume et de nombre de titres concernés, et la SEC a ouvert une consultation publique pour ajuster le dispositif.</p>
+        <p>Réaction des marchés le jour même : l'action Coinbase a grimpé d'environ 4 %, celle de Robinhood de plus de 3 %, tandis que Morgan Stanley reculait d'environ 0,5 % et Charles Schwab d'environ 1,4 %. Cette annonce intervient dans un climat déjà chargé pour le secteur : quelques jours plus tôt, le Sénat américain n'était pas parvenu à faire adopter le CLARITY Act, la grande loi censée fixer un cadre réglementaire durable pour les crypto-actifs, à cause d'un désaccord de procédure sur des questions d'éthique. Le bitcoin, qui avait accusé le coup après la hausse de taux de la Fed du 16 septembre, est reparti à la hausse cette semaine, repassant au-dessus de 80 000 dollars.</p>
+        <h2>Analyse : une brèche dans le monopole horaire des Bourses</h2>
+        <p>Pour les marchés financiers, l'enjeu dépasse largement la crypto. Depuis toujours, la négociation d'actions américaines obéit à des horaires stricts : la Bourse de New York et le Nasdaq ouvrent à 9h30 et ferment à 16h, heure de New York, du lundi au vendredi, avec quelques plages élargies avant et après séance. Ce monopole horaire est aussi un monopole de structure de marché : carnets d'ordres centralisés, chambres de compensation dédiées, courtiers agréés.</p>
+        <p>L'exemption de la SEC ne supprime pas ce système, mais elle installe, à côté, un circuit parallèle où des jetons répliquant des actions pourraient s'échanger en continu, potentiellement 24 heures sur 24 et 7 jours sur 7, sur des plateformes utilisant des "réserves de liquidité" automatisées plutôt que des carnets d'ordres classiques. C'est un changement de nature, pas seulement d'horaires : la liquidité de ces jetons dépendra de la profondeur de ces réserves et non plus directement de celle du titre sous-jacent coté à Wall Street, avec un risque de décrochage de prix (le jeton peut, en théorie, s'échanger à un cours différent de l'action réelle) en dehors des heures de marché normal, quand personne ne peut arbitrer l'écart en négociant directement l'action.</p>
+        <p>C'est aussi une manœuvre réglementaire prudente et calculée : en choisissant une exemption limitée à cinq ans, plafonnée en volume et en nombre de titres, plutôt qu'une règle définitive, la SEC se donne le temps d'observer comment ce marché parallèle se comporte avant de l'encadrer durablement — ou de le refermer. Les plateformes crypto historiques (Coinbase, Robinhood, Kraken, Gemini sont citées comme candidates naturelles) entrent ainsi en concurrence frontale avec les courtiers traditionnels sur un terrain — la tokenisation — qu'elles maîtrisent déjà pour les crypto-actifs, ce qui explique la hausse de leurs actions et le recul, plus mesuré, des courtiers historiques.</p>
+        <h2>Ce que ça change concrètement pour les particuliers</h2>
+        <p>Une action tokenisée est un jeton numérique, inscrit sur une blockchain publique, censé donner à son détenteur les mêmes droits économiques qu'une action classique (et, selon les conditions posées par la SEC, des droits identiques — pas seulement une exposition au prix). Dans le cadre de cette exemption, un particulier pourrait donc, en théorie, ouvrir une position sur une action américaine via une application crypto un samedi soir, alors que la Bourse de New York est fermée, ce qui est aujourd'hui impossible sauf via des produits dérivés spécifiques et peu accessibles au grand public.</p>
+        <p>Cela ne change rien, pour l'instant, à la manière dont l'immense majorité des épargnants français investissent en actions américaines : par des fonds indiciels ou des ETF détenus sur un compte-titres, une assurance-vie ou un PEA, qui ne sont pas concernés par ce dispositif. Le changement concerne surtout les investisseurs qui utiliseraient directement des plateformes crypto américaines pour acheter des jetons représentant des actions individuelles — une pratique aujourd'hui marginale en France, où l'accès à ce type de plateformes reste soumis aux règles européennes (MiCA) qui n'ont pas d'équivalent direct à cette exemption américaine.</p>
+        <p>Les risques à connaître avant de s'y intéresser : le dispositif est expérimental (la SEC parle elle-même de "controlled experimentation") et pourrait être modifié ou arrêté avant son terme ; les échanges hors des heures normales de Bourse se font sur des marchés plus étroits, donc avec des écarts de prix potentiellement plus larges qu'en séance ; la sécurité dépend de la plateforme et du contrat informatique utilisés, avec un risque technologique distinct de celui d'un compte-titres classique protégé par les garanties des dépositaires réglementés ; enfin, la SEC elle-même demande encore l'avis du public sur les garde-fous à renforcer pour les investisseurs particuliers, signe que le cadre n'est pas figé.</p>
+        <h2>Solutions et points de vigilance</h2>
+        <p>Il n'y a pas d'urgence à agir : ce dispositif ne change rien à la fiscalité, à la protection ou aux modalités d'un investissement classique en actions américaines via un courtier ou une assurance-vie française. Pour qui serait tenté par ces nouveaux produits, quelques réflexes simples limitent le risque : vérifier que la plateforme utilisée est bien enregistrée comme "Tokenized Securities Venue" au sens de l'exemption de la SEC, et non une simple copie non autorisée d'un titre (le précédent Robinhood-AMC montre que cela s'est déjà produit) ; ne pas confondre l'exposition à un jeton avec la détention d'une vraie action, tant que le cadre juridique complet n'est pas stabilisé ; garder à l'esprit qu'une exemption réglementaire de cinq ans, soumise à consultation publique, peut évoluer, se durcir ou disparaître ; et, comme toujours face à un produit financier nouveau et peu testé, ne pas y consacrer une part significative de son épargne tant que le retour d'expérience reste limité. Pour la grande majorité des épargnants, rester sur des supports réglementés et éprouvés (ETF, comptes-titres, assurance-vie) demeure la voie la plus simple pour s'exposer aux marchés américains, avec ou sans cette nouvelle option en toile de fond.</p>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement. Tout investissement, y compris via des actifs numériques, comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>SEC, communiqué du 17 septembre 2026 : <a href="https://www.sec.gov/newsroom/press-releases/2026-90-sec-issues-innovation-exemption-facilitate-trading-tokenized-nms-stock-request-comment" target="_blank" rel="noopener noreferrer">https://www.sec.gov/newsroom/press-releases/2026-90-sec-issues-innovation-exemption-facilitate-trading-tokenized-nms-stock-request-comment</a></li>
+          <li>SEC, déclaration du président Paul Atkins, 17 septembre 2026 : <a href="https://www.sec.gov/newsroom/speeches-statements/atkins-innovation-exemption-bridge-toward-durable-rulemaking-091726" target="_blank" rel="noopener noreferrer">https://www.sec.gov/newsroom/speeches-statements/atkins-innovation-exemption-bridge-toward-durable-rulemaking-091726</a></li>
+          <li>SEC, déclaration du commissaire Mark Uyeda, 17 septembre 2026 : <a href="https://www.sec.gov/newsroom/speeches-statements/uyeda-statement-innovation-exemption-091726" target="_blank" rel="noopener noreferrer">https://www.sec.gov/newsroom/speeches-statements/uyeda-statement-innovation-exemption-091726</a></li>
+          <li>CNBC, 17 septembre 2026 : <a href="https://www.cnbc.com/2026/09/17/sec-clears-path-for-tokenized-stocks-bringing-24/7-trading-closer.html" target="_blank" rel="noopener noreferrer">https://www.cnbc.com/2026/09/17/sec-clears-path-for-tokenized-stocks-bringing-24/7-trading-closer.html</a></li>
+          <li>Reuters via Investing.com, 17 septembre 2026 : <a href="https://www.investing.com/news/stock-market-news/us-securities-regulator-rolls-out-fiveyear-exemption-for-tokenized-stock-trading-4905776" target="_blank" rel="noopener noreferrer">https://www.investing.com/news/stock-market-news/us-securities-regulator-rolls-out-fiveyear-exemption-for-tokenized-stock-trading-4905776</a></li>
+          <li>Securities Lawyer 101, analyse juridique de l&#x27;ordonnance, 17 septembre 2026 : <a href="https://www.securitieslawyer101.com/2026/09/17/sec-innovation-exemption-tokenized-stock-trading/" target="_blank" rel="noopener noreferrer">https://www.securitieslawyer101.com/2026/09/17/sec-innovation-exemption-tokenized-stock-trading/</a></li>
+          <li>CoinDesk, prix et contexte de marché du bitcoin, 19 septembre 2026 : <a href="https://www.coindesk.com/price/bitcoin" target="_blank" rel="noopener noreferrer">https://www.coindesk.com/price/bitcoin</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
