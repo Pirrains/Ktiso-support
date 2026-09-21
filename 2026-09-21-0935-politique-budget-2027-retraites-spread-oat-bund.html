@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecornu cible vos retraites pour rassurer les marchés — Ktiso Actualités</title>
+<meta name="description" content="le 17 septembre 2026, Sébastien Lecornu a dévoilé un budget 2027 de 54 milliards d&#x27;économies, dont près de 6 milliards ciblant les retraités. Dès le lendemain, l&#x27;écart de taux entre la France et l&#x27;Allemagne a atteint son plus haut niveau depuis 2012.">
+<meta property="og:title" content="Lecornu cible vos retraites pour rassurer les marchés">
+<meta property="og:description" content="le 17 septembre 2026, Sébastien Lecornu a dévoilé un budget 2027 de 54 milliards d&#x27;économies, dont près de 6 milliards ciblant les retraités. Dès le lendemain, l&#x27;écart de taux entre la France et l&#x27;Allemagne a atteint son plus haut niveau depuis 2012.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="hero-application.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Politique<span class="dot-sep">·</span>21 septembre 2026</div>
+      <h1>Lecornu cible vos retraites pour rassurer les marchés : ils ne l'ont pas récompensé</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>En résumé : le 17 septembre 2026, Sébastien Lecornu a dévoilé un budget 2027 de 54 milliards d'économies, dont près de 6 milliards ciblant les retraités. Dès le lendemain, l'écart de taux entre la France et l'Allemagne a atteint son plus haut niveau depuis 2012.</p>
+        <h2>Contexte : les faits, vérifiés et vérifiables</h2>
+        <p>Le 17 septembre 2026, le Premier ministre Sébastien Lecornu a présenté les grandes lignes du projet de loi de finances pour 2027, articulé autour d'un « effort » total de 54 milliards d'euros, qu'il a qualifié publiquement de « budget offensif » tout en assurant qu'il ne s'agissait « pas d'austérité ». L'objectif affiché est de ramener le déficit public à 5 % du PIB en 2027, contre 5,4 % attendus pour 2026 — un chiffre qui reste près du double du plafond de 3 % fixé par les règles budgétaires européennes, et qui traduit également un an de retard : le gouvernement visait initialement à repasser sous 5 % dès 2026.</p>
+        <p>La répartition de ces 54 milliards mêle économies de dépenses et recettes nouvelles. Côté dépenses : gel en valeur du point d'indice des fonctionnaires (2 milliards d'euros), réexamen des dispositifs du ministère du Travail dont le compte personnel de formation (2,5 milliards), économies ciblées sur les arrêts maladie (2 milliards), encadrement des ruptures conventionnelles (100 millions en 2027, 800 millions en année pleine). Côté recettes : renforcement de la lutte contre la fraude fiscale et sociale (1 milliard), une surtaxe sur les grandes entreprises ramenée de 7,5 à 5 milliards après exonération des entreprises de taille intermédiaire, et un effort demandé aux retraités inférieur à 6 milliards d'euros. Dans le même temps, certaines dépenses augmentent : les crédits militaires progressent de 6,4 milliards, la sécurité sociale de 22 milliards en évolution naturelle, et la seule charge de la dette de l'État augmente de 10 milliards par rapport à 2026.</p>
+        <p>C'est la partie retraites qui a le plus retenu l'attention. Deux pistes sont sur la table, sans arbitrage tranché par le gouvernement à ce stade : une désindexation partielle des pensions par rapport à l'inflation, ou la suppression de l'abattement fiscal de 10 % actuellement accordé aux retraités sur leurs revenus (un avantage aujourd'hui plafonné à 4 439 euros par foyer). Lecornu a renvoyé ce choix au Parlement, faute de majorité pour l'imposer lui-même, tout en promettant que « les petites retraites seront protégées » et qu'« aucune pension ne diminuera » en valeur nominale. Le gouvernement envisage par ailleurs de protéger le minimum vieillesse et le RSA tout en gelant potentiellement les pensions les plus élevées et les aides au logement.</p>
+        <p>Ces annonces ont immédiatement suscité de vives réactions dans l'opposition. À La France insoumise, Éric Coquerel, président de la commission des Finances de l'Assemblée, a dénoncé un « baroud d'honneur macroniste » menant la France « droit dans le mur », jugeant l'effort injustement réparti entre retraités, salariés et fonctionnaires d'un côté, grandes entreprises de l'autre ; il promet que ce budget « devra être battu ou censuré ». La secrétaire générale de la CGT, Sophie Binet, a qualifié le gel du point d'indice de « scandale », rappelant une perte de pouvoir d'achat des fonctionnaires de plus de 16 % depuis 2017, et a appelé à une journée de mobilisation le 29 septembre 2026. Au Parti socialiste, Arthur Delaporte a parlé d'une « potion d'austérité » « insoutenable » et « très à droite ». Au Rassemblement national, Jordan Bardella a annoncé la préparation d'un contre-budget avec Marine Le Pen. Seule la majorité présidentielle, par la voix de Marie Lebec, a défendu la nécessité d'agir face à l'endettement du pays.</p>
+        <p>Le marché obligataire, lui, a réagi dès le lendemain. Le 18 septembre 2026, l'écart de taux (le « spread ») entre l'OAT française à 10 ans et le Bund allemand de même maturité a franchi les 100 points de base, à environ 105 points de base — un niveau qu'on n'avait plus revu depuis la crise des dettes souveraines de 2012. L'OAT à 10 ans s'échangeait alors autour de 4,55 %, contre environ 3,50 % pour le Bund allemand ; lors de sa dernière adjudication, le 17 septembre, l'Agence France Trésor avait déjà dû lever 27 milliards d'euros à des taux atteignant 4,74 % sur les maturités les plus longues. Selon les données citées par les gérants obligataires, dont Amundi, ce spread ne dépassait qu'environ 55 points de base en tout début d'année 2026 : il a donc plus que doublé en moins de neuf mois, une accélération jugée rare pour une économie du cœur de la zone euro. Sur la même période, la trajectoire de la dette publique française continue de se dégrader : elle est projetée à 119,3 % du PIB pour 2026 et 121,7 % pour 2027. Ce contexte s'inscrit dans la continuité d'une série de dégradations déjà actées par les agences de notation : Fitch et Standard &amp; Poor's ont chacune abaissé la note souveraine française à A+ en 2025, tandis que Moody's la maintient à Aa3 avec une perspective négative depuis décembre 2024. Le budget 2026, rappelons-le, n'a jamais été adopté par un vote ordinaire du Parlement : il a été mis en œuvre par l'article 49.3, faute de majorité, pour la troisième année consécutive.</p>
+        <h2>Analyse fondamentale et technique pour les marchés financiers</h2>
+        <p>Le spread OAT-Bund est le baromètre le plus suivi de la confiance des investisseurs dans la dette d'un État de la zone euro par rapport à la référence allemande, jugée la plus sûre. Plus il s'élargit, plus les investisseurs exigent une prime de risque pour accepter de prêter à la France plutôt qu'à l'Allemagne — et plus l'État français doit, en retour, offrir un rendement élevé pour placer sa dette, comme l'illustre l'adjudication du 17 septembre à 4,74 % sur les longues maturités. Le franchissement du seuil symbolique des 100 points de base, un jour seulement après la présentation d'un budget censé démontrer la volonté de la France de maîtriser ses finances publiques, est un signal que les marchés jugent cet effort insuffisant au regard de l'ampleur du problème : un déficit qui resterait à 5 % du PIB en 2027, soit près du double du plafond européen, et une dette qui continue de croître en proportion de la richesse nationale plutôt que de se stabiliser.</p>
+        <p>Trois éléments alimentent particulièrement la défiance des investisseurs obligataires. D'abord, l'incertitude politique : avec un gouvernement sans majorité absolue à l'Assemblée nationale et un budget 2026 passé en force par l'article 49.3 pour la troisième année de suite, rien ne garantit que les arbitrages présentés le 17 septembre — notamment sur les retraites, renvoyés au Parlement — survivront intacts au débat parlementaire de l'automne, ni même que ce budget sera in fine adopté sans une nouvelle motion de censure. Ensuite, l'ampleur relative de l'effort : les 6 milliards demandés aux retraités, ou même les 54 milliards au total, restent modestes face à une dette proche de 120 % du PIB et à une charge de la dette qui augmente déjà de 10 milliards par elle-même en 2027 — un effet boule de neige où le coût du passé pèse de plus en plus sur les marges de manœuvre futures. Enfin, l'effet de comparaison : plusieurs analystes évoquent, avec prudence, un climat de défiance qui rappelle « toutes proportions gardées » celui vécu par l'Italie il y a une quinzaine d'années, sans qu'il s'agisse pour autant d'une équivalence stricte entre les deux situations — la France conserve des notations bien supérieures et une capacité de financement propre nettement plus large.</p>
+        <p>Pour les marchés, la question n'est donc pas seulement « combien économise-t-on ? » mais « ce budget sera-t-il seulement voté, et dans quelle version ? ». C'est cette incertitude sur l'issue parlementaire, plus que le détail des mesures elles-mêmes, qui explique qu'un budget présenté comme un geste de rigueur ait pu coïncider avec une nouvelle poussée de la prime de risque française plutôt qu'avec un apaisement. Les prochaines échéances à surveiller sont le calendrier des débats budgétaires à l'Assemblée à l'automne, d'éventuelles motions de censure, et les prochaines revues des agences de notation, qui scruteront la capacité du pays à transformer ces annonces en loi de finances effectivement votée.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p>Pour les retraités, deux issues très différentes restent sur la table, et rien n'est encore tranché. Si le Parlement retient la piste d'une désindexation partielle, les pensions ne baisseraient pas en valeur affichée mais progresseraient moins vite que l'inflation, ce qui revient à une perte de pouvoir d'achat réelle et progressive. Si c'est la piste de la réduction de l'abattement fiscal de 10 % qui est retenue, l'effet passerait par l'impôt sur le revenu plutôt que par le montant brut de la pension : la retraite versée resterait identique, mais l'impôt dû dessus augmenterait pour les foyers concernés. Le gouvernement affirme vouloir protéger les petites retraites, le minimum vieillesse et le RSA, et cibler plutôt les pensions les plus élevées et les APL pour un éventuel gel — mais ces arbitrages définitifs se joueront dans les débats parlementaires des prochaines semaines, pas dans l'annonce du 17 septembre.</p>
+        <p>Pour tous les épargnants, la hausse du taux auquel l'État français emprunte a des répercussions plus larges que le seul cas des retraites. Une grande partie de l'épargne des Français en fonds euros d'assurance-vie est investie en obligations d'État, dont une bonne part de dette française : lorsque les taux montent, la valeur de marché des obligations déjà émises à taux plus bas baisse mécaniquement, ce qui peut peser, à court terme, sur la performance de ces fonds — même si, à moyen terme, des taux plus élevés permettent aussi de réinvestir les nouvelles souscriptions à un meilleur rendement. Plus largement, le taux auquel l'État emprunte sert souvent de référence indirecte aux conditions de financement de l'économie française dans son ensemble ; une remontée durable et prononcée du coût de la dette publique n'est pas neutre pour le financement des banques ni, in fine, pour les taux proposés aux ménages et aux entreprises, même si la Banque centrale européenne reste le principal déterminant des taux à court terme.</p>
+        <p>Enfin, pour les 5,7 millions d'agents publics concernés par le gel du point d'indice, ou pour les salariés visés par la réforme des ruptures conventionnelles et des arrêts maladie, l'impact est plus direct et plus proche dans le temps que les débats sur le spread obligataire — mais il dépend, lui aussi, de l'issue des négociations parlementaires à venir plutôt que d'un texte déjà définitif.</p>
+        <h2>Solutions et pistes concrètes</h2>
+        <ul>
+          <li>Si vous êtes retraité, attendez l'issue des débats parlementaires avant de tirer des conclusions définitives sur votre situation : aucune des deux pistes évoquées (désindexation ou baisse de l'abattement fiscal) n'est arrêtée à ce stade, et leur impact réel dépendra du niveau de vos revenus et de la version finalement votée par le Parlement.</li>
+          <li>Si vous détenez un contrat d'assurance-vie en fonds euros ou un fonds obligataire exposé à la dette française, ne réagissez pas à la seule variation ponctuelle du spread OAT-Bund : consultez plutôt le rapport de gestion ou la fiche du fonds pour connaître sa part réelle investie en dette française, et rappelez-vous que la hausse des taux, si elle pèse à court terme sur la valeur des obligations déjà en portefeuille, profite aussi aux nouveaux investissements du fonds sur la durée.</li>
+          <li>Pour limiter l'exposition à un risque souverain concentré sur un seul pays, la diversification géographique de la poche obligataire d'un portefeuille (fonds euro diversifiés à l'échelle européenne plutôt que purement français) reste une option à examiner avec son conseiller ou son assureur.</li>
+          <li>Suivez le calendrier parlementaire de l'automne plutôt que les titres de presse au jour le jour : c'est le vote définitif du budget, pas l'annonce du 17 septembre, qui fixera les règles réellement applicables — avec, en toile de fond, le risque désormais récurrent d'une nouvelle motion de censure ou d'un nouveau recours à l'article 49.3.</li>
+          <li>Gardez à l'esprit qu'un spread à un plus haut de quatorze ans est un signal de vigilance à surveiller, pas une alerte de défaut imminent : la France conserve des notations de crédit de catégorie « investissement » (A+ chez Fitch et S&amp;P, Aa3 chez Moody's), très éloignées d'une situation de crise de solvabilité aiguë.</li>
+        </ul>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement personnalisé.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Boursorama, 17/09/2026 (annonces du budget 2027, effort de 54 milliards, retraités ciblés) : <a href="https://www.boursorama.com/actualite-economique/actualites/budget-2027-effort-de-54-milliards-retraites-cibles-debats-au-parlement-les-principales-annonces-de-lecornu-ebf642998a0c937bbbbc894aeae78398" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/budget-2027-effort-de-54-milliards-retraites-cibles-debats-au-parlement-les-principales-annonces-de-lecornu-ebf642998a0c937bbbbc894aeae78398</a></li>
+          <li>LCP - Assemblée nationale, 18/09/2026 (mesures détaillées sur les retraites, garanties annoncées par Lecornu) : <a href="https://lcp.fr/actualites/budget-2027-les-retraites-mis-a-contribution-mais-lecornu-promet-qu-aucune-pension-ne" target="_blank" rel="noopener noreferrer">https://lcp.fr/actualites/budget-2027-les-retraites-mis-a-contribution-mais-lecornu-promet-qu-aucune-pension-ne</a></li>
+          <li>toutsurmesfinances.com, 09/2026 (options de gel des pensions ou de réduction de l&#x27;abattement fiscal) : <a href="https://www.toutsurmesfinances.com/actualites/a/retraites-2027-gel-des-pensions-ou-abattement-rabote-lecornu-s-en-remet-au-parlement" target="_blank" rel="noopener noreferrer">https://www.toutsurmesfinances.com/actualites/a/retraites-2027-gel-des-pensions-ou-abattement-rabote-lecornu-s-en-remet-au-parlement</a></li>
+          <li>echosplus.com, 17/09/2026 (objectif de déficit à 5 % du PIB, détail des 54 milliards d&#x27;économies) : <a href="https://echosplus.com/2026/09/17/budget-2027-lecornu-annonce-54-milliards-deuros-deffort-pour-viser-5-de-deficit/" target="_blank" rel="noopener noreferrer">https://echosplus.com/2026/09/17/budget-2027-lecornu-annonce-54-milliards-deuros-deffort-pour-viser-5-de-deficit/</a></li>
+          <li>Boursorama, 18/09/2026 (spread OAT-Bund à 10 ans au-dessus de 100 points de base, plus haut niveau depuis 2012) : <a href="https://www.boursorama.com/bourse/actualites/le-spread-entre-le-bund-et-l-oat-a-10-ans-atteint-100-pdb-pour-la-premiere-fois-depuis-2012-efac682ce7b589273474c662719d9600" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/bourse/actualites/le-spread-entre-le-bund-et-l-oat-a-10-ans-atteint-100-pdb-pour-la-premiere-fois-depuis-2012-efac682ce7b589273474c662719d9600</a></li>
+          <li>Refrance, 09/2026 (niveau exact du spread, taux OAT et Bund, projections de dette, réactions Amundi/agences de notation) : <a href="https://refrance.fr/dette-francaise-le-spread-oat-bund-franchit-le-seuil-symbolique-des-100-points-de-base-un-niveau-inedit-depuis-2012/" target="_blank" rel="noopener noreferrer">https://refrance.fr/dette-francaise-le-spread-oat-bund-franchit-le-seuil-symbolique-des-100-points-de-base-un-niveau-inedit-depuis-2012/</a></li>
+          <li>LCP - Assemblée nationale, 18/09/2026 (réactions des oppositions : LFI, CGT, PS, RN, majorité) : <a href="https://lcp.fr/actualites/potion-d-austerite-droit-dans-le-mur-comment-les-oppositions-reagissent-aux-annonces-de" target="_blank" rel="noopener noreferrer">https://lcp.fr/actualites/potion-d-austerite-droit-dans-le-mur-comment-les-oppositions-reagissent-aux-annonces-de</a></li>
+          <li>France 24, 13/09/2025 (Fitch abaisse la note souveraine de la France à A+) : <a href="https://www.france24.com/fr/france/20250913-l-agence-de-notation-fitch-abaisse-la-note-souveraine-de-la-france-%C3%A0-a" target="_blank" rel="noopener noreferrer">https://www.france24.com/fr/france/20250913-l-agence-de-notation-fitch-abaisse-la-note-souveraine-de-la-france-%C3%A0-a</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
