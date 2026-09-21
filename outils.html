@@ -254,27 +254,6 @@
     filter: brightness(1.08);
   }
 
-  .tool-meta {
-    position: absolute;
-    top: 9%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-  }
-
-  .tool-tag {
-    font-size: 7.5px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--blue);
-    border: 1px solid rgba(91, 143, 168, 0.5);
-    background: rgba(6,10,18,0.7);
-    padding: 3px 7px;
-    border-radius: 20px;
-    display: inline-block;
-  }
-
   .tool-card h3 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 600;
@@ -499,7 +478,6 @@
   @media (max-width: 560px) {
     .tool-grid { grid-template-columns: 1fr; max-width: 420px; }
     .tool-card h3 { font-size: 20px; max-width: 75%; }
-    .tool-tag { font-size: 9px; padding: 4px 9px; }
     .tool-card { padding: 12% 10%; }
   }
 </style>
@@ -549,45 +527,27 @@
     <section class="tool-grid">
 
       <div class="tool-card" style="background-image:url('card-portefeuille.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Analyseur de portefeuille</h3>
+        <h3>K01</h3>
       </div>
 
       <div class="tool-card" style="background-image:url('card-investissement.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Simulateur d'investissement</h3>
+        <h3>K02</h3>
       </div>
 
       <div class="tool-card" style="background-image:url('card-screener.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Screener actions &amp; ETF</h3>
+        <h3>K03</h3>
       </div>
 
       <div class="tool-card" style="background-image:url('card-alertes.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Alertes &amp; watchlist</h3>
+        <h3>K04</h3>
       </div>
 
       <div class="tool-card" style="background-image:url('card-budget.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Planificateur budgétaire</h3>
+        <h3>K05</h3>
       </div>
 
       <div class="tool-card" style="background-image:url('card-objectifs.jpg');">
-        <div class="tool-meta">
-          <span class="tool-tag">À venir</span>
-        </div>
-        <h3>Jalons financiers</h3>
+        <h3>K06</h3>
       </div>
 
     </section>
