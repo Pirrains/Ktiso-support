@@ -733,8 +733,8 @@
   html.embedded header,
   html.embedded footer { display: none !important; }
   html.embedded .frame { padding-top: 28px !important; }
-</style>
-</head>
+</style></head>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <body>
   <div class="frame">
@@ -882,6 +882,7 @@
       </div>
     </section>
 
+    <label class="reset-link" style="cursor:pointer;">Importer Excel / CSV<input type="file" accept=".csv,.xlsx,.xls" id="input-import-sheet" hidden></label>
     <button type="button" class="reset-link" id="reset-data">Réinitialiser toutes les données</button>
 
     <footer>
@@ -1411,6 +1412,101 @@
     state.transactions = [];
     saveTransactions();
     renderAll();
+  });
+
+  // ---------- Import Excel / CSV (détection de feuille multi-onglets) ----------
+
+  function detectSheetName(workbook, keyword) {
+    var names = workbook.SheetNames || [];
+    if (names.length <= 1) return names[0] || null;
+    var normalized = names.map(function (n) {
+      return n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    });
+    var idx = normalized.indexOf(keyword);
+    if (idx === -1) idx = normalized.findIndex(function (n) { return n.indexOf(keyword) !== -1; });
+    if (idx !== -1) return names[idx];
+    var choice = prompt(
+      "Ce fichier contient plusieurs feuilles : " + names.join(", ") +
+      ".\nQuelle feuille contient vos opérations (comptes du quotidien) ? (recopiez le nom exact)",
+      names[0]
+    );
+    return (choice && names.indexOf(choice) !== -1) ? choice : null;
+  }
+
+  function cellNum(v) {
+    if (v === null || v === undefined || v === "") return 0;
+    if (typeof v === "number") return v;
+    var n = parseFloat(String(v).replace(",", "."));
+    return isNaN(n) ? 0 : n;
+  }
+
+  function cellDate(v) {
+    if (!v) return todayISO();
+    if (typeof v === "string") {
+      var iso = v.match(/^(\d{4})-(\d{2})-(\d{2})/);
+      if (iso) return iso[0];
+      var fr = v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+      if (fr) return fr[3] + "-" + ("0" + fr[2]).slice(-2) + "-" + ("0" + fr[1]).slice(-2);
+      return todayISO();
+    }
+    if (typeof v === "number" && window.XLSX && XLSX.SSF) {
+      var d = XLSX.SSF.parse_date_code(v);
+      if (d) return d.y + "-" + ("0" + d.m).slice(-2) + "-" + ("0" + d.d).slice(-2);
+    }
+    return todayISO();
+  }
+
+  document.getElementById("input-import-sheet").addEventListener("change", function (e) {
+    var file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var workbook = XLSX.read(new Uint8Array(reader.result), { type: "array" });
+        var sheetName = detectSheetName(workbook, "compte");
+        if (!sheetName) { alert("Import annulé : impossible de déterminer quelle feuille contient vos opérations."); return; }
+
+        var rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: "" });
+        rows.shift(); // en-tête : Type, Catégorie, Nature, Montant, Date, Description
+
+        var txs = [];
+        rows.forEach(function (cells) {
+          var typeRaw = String(cells[0] || "").trim().toLowerCase();
+          var catRaw = String(cells[1] || "").trim().toLowerCase();
+          var nature = String(cells[2] || "").trim();
+          var amount = cellNum(cells[3]);
+          var date = cellDate(cells[4]);
+          var description = String(cells[5] || "").trim();
+          if (!nature || !amount) return;
+
+          var type = typeRaw.indexOf("revenu") !== -1 ? "revenu" : "depense";
+          var category = null;
+          if (type === "depense") {
+            if (catRaw.indexOf("fixe") !== -1) category = "fixe";
+            else if (catRaw.indexOf("epargn") !== -1 || catRaw.indexOf("épargn") !== -1) category = "epargne";
+            else category = "variable";
+          }
+
+          txs.push({
+            id: newId(), type: type, nature: nature,
+            amount: Math.round(amount * 100) / 100, date: date,
+            description: description, category: category
+          });
+        });
+
+        if (!txs.length) { alert("Aucune ligne exploitable dans la feuille « " + sheetName + " ». Colonnes attendues : Type (Revenu/Dépense), Catégorie, Nature, Montant, Date, Description."); return; }
+        if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les opérations actuelles. Continuer ?")) return;
+
+        state.transactions = txs;
+        if (txs.length) { state.viewDate = startOfMonth(new Date(txs[txs.length - 1].date + "T00:00:00")); }
+        saveTransactions();
+        renderAll();
+      } catch (err) {
+        alert("Fichier illisible : " + err.message);
+      }
+    };
+    reader.readAsArrayBuffer(file);
   });
 
   document.querySelectorAll(".range-tab").forEach(function (btn) {

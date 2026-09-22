@@ -277,6 +277,7 @@
   html.embedded footer { display: none !important; }
   html.embedded .frame { padding-top: 28px !important; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <body>
@@ -397,6 +398,7 @@
       </div>
     </section>
 
+    <label class="reset-link" style="cursor:pointer;">Importer Excel / CSV<input type="file" accept=".csv,.xlsx,.xls" id="input-import-sheet" hidden></label>
     <button type="button" class="reset-link" id="reset-btn">Réinitialiser toutes les données</button>
 
     <footer>
@@ -716,6 +718,73 @@
     if (!window.confirm("Supprimer définitivement tous les actifs, passifs et l'historique enregistrés ?")) return;
     state = { items: [], snapshots: [] };
     renderAll();
+  });
+
+  // ---------- Import Excel / CSV (détection de feuille multi-onglets) ----------
+
+  function detectSheetName(workbook, keyword) {
+    var names = workbook.SheetNames || [];
+    if (names.length <= 1) { return names[0] || null; }
+    var normalized = names.map(function (n) {
+      return n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    });
+    var idx = normalized.indexOf(keyword);
+    if (idx === -1) { idx = normalized.findIndex(function (n) { return n.indexOf(keyword) !== -1; }); }
+    if (idx !== -1) { return names[idx]; }
+    var choice = prompt(
+      "Ce fichier contient plusieurs feuilles : " + names.join(", ") +
+      ".\nQuelle feuille contient votre patrimoine (actifs/passifs) ? (recopiez le nom exact)",
+      names[0]
+    );
+    return (choice && names.indexOf(choice) !== -1) ? choice : null;
+  }
+
+  function cellNum(v) {
+    if (v === null || v === undefined || v === "") return 0;
+    if (typeof v === "number") return v;
+    var n = parseFloat(String(v).replace(",", "."));
+    return isNaN(n) ? 0 : n;
+  }
+
+  document.getElementById("input-import-sheet").addEventListener("change", function (e) {
+    var file = e.target.files[0];
+    e.target.value = "";
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var workbook = XLSX.read(new Uint8Array(reader.result), { type: "array" });
+        var sheetName = detectSheetName(workbook, "patrimoine");
+        if (!sheetName) { alert("Import annulé : impossible de déterminer quelle feuille contient votre patrimoine."); return; }
+
+        var rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: "" });
+        rows.shift(); // en-tête : Nom, Catégorie, Type, Montant
+
+        var items = [];
+        rows.forEach(function (cells) {
+          var name = String(cells[0] || "").trim();
+          var catRaw = String(cells[1] || "").trim().toLowerCase();
+          var type = String(cells[2] || "").trim();
+          var amount = cellNum(cells[3]);
+          if (!name || !amount) return;
+          var category = catRaw.indexOf("passif") !== -1 ? "passif" : "actif";
+          if (!type) { type = category === "actif" ? "Autre actif" : "Autre dette"; }
+          items.push({
+            id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7) + items.length,
+            category: category, type: type, name: name, amount: Math.round(amount * 100) / 100
+          });
+        });
+
+        if (!items.length) { alert("Aucune ligne exploitable dans la feuille « " + sheetName + " ». Colonnes attendues : Nom, Catégorie (Actif/Passif), Type, Montant."); return; }
+        if (!confirm("Importer la feuille « " + sheetName + " » va remplacer tous les actifs et passifs actuels (l'historique de patrimoine net est conservé). Continuer ?")) return;
+
+        state.items = items;
+        renderAll();
+      } catch (err) {
+        alert("Fichier illisible : " + err.message);
+      }
+    };
+    reader.readAsArrayBuffer(file);
   });
 
   document.querySelectorAll(".dash-tab").forEach(function (btn) {
