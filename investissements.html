@@ -1067,14 +1067,76 @@
     downloadBlob(blob, 'ktiso-investissements.json');
   }
 
+  // Reconnaît les libellés "Mois Année" générés par l'outil lui-même (ex.
+  // "Décembre 2024") pour pouvoir trier chronologiquement après une fusion.
+  // Un libellé qui ne suit pas ce format (renommé à la main) n'est pas trié :
+  // il garde sa position d'origine plutôt que de risquer un classement faux.
+  function parseMonthSortKey(label) {
+    var parts = String(label).trim().split(/\s+/);
+    if (parts.length < 2) { return null; }
+    var monthIdx = MOIS_NOMS.findIndex(function (m) { return m.toLowerCase() === parts[0].toLowerCase(); });
+    var year = parseInt(parts[parts.length - 1], 10);
+    if (monthIdx === -1 || isNaN(year)) { return null; }
+    return year * 12 + monthIdx;
+  }
+
+  // Fusionne un état importé avec l'état existant plutôt que de l'écraser :
+  // les mois de même libellé sont combinés (les valeurs importées remplacent
+  // celles existantes pour les actifs en commun ce mois-là, les autres actifs
+  // du mois sont conservés) ; les mois nouveaux sont ajoutés puis tout est
+  // retrié chronologiquement quand tous les libellés le permettent.
+  function mergeStates(existing, incoming) {
+    var assets = existing.assets.slice();
+    incoming.assets.forEach(function (a) { if (assets.indexOf(a) === -1) { assets.push(a); } });
+
+    var monthsByLabel = {}, order = [];
+    existing.months.forEach(function (m) { monthsByLabel[m.label] = m; order.push(m.label); });
+    incoming.months.forEach(function (m) {
+      if (monthsByLabel[m.label]) {
+        Object.keys(m.data).forEach(function (a) { monthsByLabel[m.label].data[a] = m.data[a]; });
+      } else {
+        monthsByLabel[m.label] = m;
+        order.push(m.label);
+      }
+    });
+
+    var allSortable = order.every(function (l) { return parseMonthSortKey(l) !== null; });
+    if (allSortable) { order.sort(function (a, b) { return parseMonthSortKey(a) - parseMonthSortKey(b); }); }
+
+    var months = order.map(function (l) { return monthsByLabel[l]; });
+    months.forEach(function (m) {
+      assets.forEach(function (a) { if (!m.data[a]) { m.data[a] = { anterieur: 0, nouveau: 0, frais: 0, valeurPosition: null }; } });
+    });
+
+    return { assets: assets, months: months };
+  }
+
+  // true = fusionner, false = remplacer, null = annuler l'import entièrement.
+  // S'il n'y a encore aucune donnée, la question ne se pose pas.
+  function resolveImportMode() {
+    var current = loadState();
+    if (!current.months.length) { return false; }
+    if (confirm("Vous avez déjà " + current.months.length + " mois enregistré(s).\n\nOK = FUSIONNER ce fichier avec vos données existantes (les mois/actifs en commun sont mis à jour, le reste est conservé).\nAnnuler = passer à l'autre option (remplacer, ou annuler).")) {
+      return true;
+    }
+    if (confirm("Remplacer entièrement vos données existantes par ce fichier ?\n\nOK = remplacer tout.\nAnnuler = annuler l'import, rien ne change.")) {
+      return false;
+    }
+    return null;
+  }
+
   function importJSONFile(file) {
     var reader = new FileReader();
     reader.onload = function () {
       try {
         var data = JSON.parse(reader.result);
         if (!data || !Array.isArray(data.assets) || !Array.isArray(data.months)) { throw new Error('structure inattendue'); }
-        if (!confirm("Importer ce fichier va remplacer toutes les données actuelles. Continuer ?")) { return; }
-        saveState(data);
+
+        var mode = resolveImportMode();
+        if (mode === null) { return; }
+        var finalState = mode ? mergeStates(loadState(), data) : data;
+
+        saveState(finalState);
         scheduleRender();
       } catch (e) {
         alert('Fichier JSON invalide : ' + e.message);
@@ -1320,14 +1382,16 @@
             return;
           }
 
+          var summary = monthsOrder.length + " mois, " + assetsList.length + " actif(s) détecté(s)" + (skipped ? ", " + skipped + " ligne(s) ignorée(s) (Mois ou Actif manquant)" : "") + ".";
           var newState = { assets: assetsList, months: monthsOrder.map(function (l) { return monthsMap[l]; }) };
           newState.months.forEach(function (m) {
             assetsList.forEach(function (a) { if (!m.data[a]) { m.data[a] = { anterieur: 0, nouveau: 0, frais: 0, valeurPosition: null }; } });
           });
 
-          var summary = monthsOrder.length + " mois, " + assetsList.length + " actif(s) détecté(s)" + (skipped ? ", " + skipped + " ligne(s) ignorée(s) (Mois ou Actif manquant)" : "") + ".";
-          if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les données actuelles.\n\n" + summary + "\n\nContinuer ?")) { return; }
-          saveState(newState);
+          alert("Feuille « " + sheetName + " » lue : " + summary);
+          var mode = resolveImportMode();
+          if (mode === null) { return; }
+          saveState(mode ? mergeStates(loadState(), newState) : newState);
           scheduleRender();
           return;
         }
@@ -1348,9 +1412,11 @@
 
         var summary = agg.months.length + " mois reconstitué(s) à partir de " + agg.totalRows + " ligne(s) de transactions, " + agg.assets.length + " actif(s) détecté(s)." + warn + "\n\nUn carnet d'ordre ne contient pas la valeur actuelle des positions : la colonne « Valeur position » reste à compléter à la main après import.";
 
-        if (!confirm("La feuille « " + sheetName + " » est un carnet d'ordre (achats/ventes), pas un suivi mensuel — conversion automatique en mois.\n\n" + summary + "\n\nImporter et remplacer toutes les données actuelles ?")) { return; }
-
-        saveState({ assets: agg.assets, months: agg.months });
+        alert("La feuille « " + sheetName + " » est un carnet d'ordre (achats/ventes), pas un suivi mensuel — conversion automatique en mois.\n\n" + summary);
+        var mode2 = resolveImportMode();
+        if (mode2 === null) { return; }
+        var newCarnetState = { assets: agg.assets, months: agg.months };
+        saveState(mode2 ? mergeStates(loadState(), newCarnetState) : newCarnetState);
         scheduleRender();
       } catch (e) {
         alert('Fichier illisible : ' + e.message);

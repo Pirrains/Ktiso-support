@@ -333,6 +333,13 @@
     align-items: start;
   }
 
+  /* Colonne centrale de la grille : sans ceci, un outil injecté dont le
+     contenu est large (ex. un grand tableau) élargit toute la page au lieu
+     de simplement défiler à l'intérieur de sa propre colonne — piège classique
+     des grilles CSS où un élément de grille ne rétrécit jamais sous la taille
+     minimale de son contenu par défaut. */
+  .dash-main { min-width: 0; }
+
   #analytics-dock {
     margin-top: 20px;
     border: 1px solid var(--line);
