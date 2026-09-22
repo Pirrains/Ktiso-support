@@ -1370,7 +1370,7 @@
    * Démarrage
    * --------------------------------------------------------------- */
 
-  document.addEventListener('DOMContentLoaded', function () {
+  function initTracker() {
     document.getElementById('btnAddMonth').addEventListener('click', addMonth);
     document.getElementById('btnAddAsset').addEventListener('click', addAsset);
     document.getElementById('btnExportCsv').addEventListener('click', exportCSV);
@@ -1391,7 +1391,18 @@
       if (remoteState) { localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteState)); }
       render();
     });
-  });
+  }
+
+  // "DOMContentLoaded" ne se déclenche qu'une fois pour toute la page. Cette
+  // page est aussi injectée dynamiquement dans le tableau de bord (une fois
+  // que celui-ci a déjà fini de charger), donc attendre cet évènement ne
+  // fonctionne que si le document est encore en train de charger ; sinon on
+  // initialise immédiatement, sans quoi rien ne s'active jamais dans ce cas.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTracker);
+  } else {
+    initTracker();
+  }
 })();
 </script>
 </body>
