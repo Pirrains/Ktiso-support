@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le pétrole vient de faire ce que la Fed n&#x27;a pas réussi à faire — Ktiso Actualités</title>
+<meta name="description" content="après une semaine dominée par la hausse de taux de la Fed, Wall Street a signé sa meilleure séance depuis début août lundi. Le vrai moteur n&#x27;est ni la Fed ni une embellie économique : c&#x27;est la chute du prix du pétrole.">
+<meta property="og:title" content="Le pétrole vient de faire ce que la Fed n&#x27;a pas réussi à faire">
+<meta property="og:description" content="après une semaine dominée par la hausse de taux de la Fed, Wall Street a signé sa meilleure séance depuis début août lundi. Le vrai moteur n&#x27;est ni la Fed ni une embellie économique : c&#x27;est la chute du prix du pétrole.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-alertes.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Bourse<span class="dot-sep">·</span>22 septembre 2026</div>
+      <h1>Le pétrole vient de faire ce que la Fed n'a pas réussi à faire : voici l'effet sur votre épargne</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>En résumé : après une semaine dominée par la hausse de taux de la Fed, Wall Street a signé sa meilleure séance depuis début août lundi. Le vrai moteur n'est ni la Fed ni une embellie économique : c'est la chute du prix du pétrole.</p>
+        <h2>Contexte : les faits, vérifiés et vérifiables</h2>
+        <p>Le lundi 21 septembre 2026, les marchés actions ont connu leur meilleure séance depuis plusieurs semaines des deux côtés de l'Atlantique. Aux États-Unis, le Nasdaq Composite a bondi de 2,26 % à 27 122,09 points, le S&amp;P 500 de 1,49 % à 7 764,70 points, et le Dow Jones de 0,71 % à 52 048,83 points, selon les données de clôture rapportées par TheStreet — une séance décrite par ce média comme la meilleure pour le Nasdaq et le S&amp;P 500 depuis début août 2026. Le rendement des bons du Trésor américain à 10 ans s'est détendu, revenant à 4,951 % contre 5,00 % le vendredi précédent. L'indice VIX, qui mesure la volatilité anticipée et sert de baromètre de la nervosité des investisseurs, est retombé à 14,79 points, un niveau bas signalant un net regain d'appétit pour le risque.</p>
+        <p>Le secteur technologique et les valeurs de communication ont mené la hausse (respectivement +2,83 % et +3,84 %), tandis que l'énergie a été le seul secteur du S&amp;P 500 à reculer (-1,89 %), pénalisée par la chute simultanée du pétrole. Parmi les valeurs individuelles les plus actives : Intel a grimpé de 12,17 % après l'annonce d'un partenariat sur la technologie Micro LED avec le taïwanais AUO Optronics, Meta a progressé de 11,34 %, et AMD a bondi de 9,95 % à la suite d'informations selon lesquelles le fabricant de puces s'apprête à augmenter d'environ 10 % le prix de ses accélérateurs et cartes graphiques destinés à l'intelligence artificielle à partir du quatrième trimestre 2026. Selon TrendForce, cette hausse répercute une augmentation similaire des tarifs de fonderie imposée par son sous-traitant TSMC, elle-même justifiée par la hausse des coûts de matériaux, d'équipements et de construction d'usines ; Intel prévoirait une hausse comparable en octobre. À l'inverse, Novo Nordisk a chuté de 8,01 % sur fond d'inquiétudes concernant la concurrence dans les médicaments amaigrissants, et HP a reculé de 3,39 % après avoir anticipé une baisse des volumes de PC vendus en 2027.</p>
+        <p>Le principal moteur de la séance, selon Yahoo Finance, a été la chute des prix du pétrole : le baril de WTI a reculé de 2,50 % à 97,79 dollars et le Brent de 2,49 % à 101,30 dollars. Cette détente s'explique par deux facteurs distincts. D'abord, l'Arabie saoudite devrait rétablir dans les prochains jours environ la moitié de la capacité de son oléoduc est-ouest, perturbée depuis des incidents survenus en août 2026. Ensuite, un regain d'espoir diplomatique est apparu autour de l'Assemblée générale des Nations unies, le président américain Donald Trump ayant signalé son intention de rencontrer son homologue iranien Masoud Pezeshkian, une perspective susceptible de réduire la prime de risque géopolitique intégrée dans le prix du pétrole depuis le début de l'année. S'y ajoute l'attente d'un sommet entre Donald Trump et le président chinois Xi Jinping à Washington cette semaine, consacré aux droits de douane, aux minerais critiques et à l'intelligence artificielle — une rencontre préparée en amont par le secrétaire au Trésor Scott Bessent et le vice-Premier ministre chinois He Lifeng. Un analyste de marché senior chez Capital.com, cité par Yahoo Finance, a résumé la séance ainsi : les marchés ont démarré la semaine « sur une note plus constructive, la baisse des prix du pétrole contribuant à raviver l'appétit pour le risque » après plusieurs semaines focalisées sur les craintes d'inflation.</p>
+        <p>En Europe, le CAC 40 a suivi le même mouvement, clôturant en hausse de 0,92 % à 8 139 points, selon MoneyVox. Le Brent a reculé d'environ 4 % dans la séance parisienne, offrant selon ce média « une marge de manœuvre supplémentaire » aux marchés. Sur le plan des valeurs individuelles, Société Générale a progressé de 1,76 % à 73,87 euros après avoir dévoilé un nouveau plan stratégique visant un rendement des capitaux propres de 13 à 14 % d'ici 2029, tandis que Soitec a rebondi de 9,8 %, Schneider Electric a gagné 3,2 % et STMicroelectronics 2,9 %, ces deux dernières profitant du même engouement technologique qu'aux États-Unis. À l'inverse, Ipsen a chuté de 5,13 % à 147,90 euros après l'approbation par la FDA américaine d'un concurrent générique à son traitement phare contre le cancer, le Somatuline. Cette séance survient une semaine après la hausse de taux de la Fed du 16 septembre 2026 (la première depuis 2023), qui avait provoqué une chute de Wall Street avant une ouverture en hausse des marchés européens dès le lendemain — un épisode dont les rouages restent distincts de celui de cette semaine.</p>
+        <h2>Analyse fondamentale et technique pour les marchés financiers</h2>
+        <p>Cette séance illustre un mécanisme classique des marchés financiers : le prix du pétrole agit comme un indicateur avancé de l'inflation attendue. Quand il recule fortement, les investisseurs anticipent une pression moindre sur les prix à la consommation, ce qui détend mécaniquement les rendements obligataires à long terme — précisément ce qui s'est produit avec le 10 ans américain, revenu de 5,00 % à 4,951 % en une séance. Des taux obligataires plus bas rendent, par comparaison, les actions plus attractives et allègent le coût du capital pour les entreprises, ce qui explique en bonne partie le rebond simultané des indices actions. Le net repli du VIX, sous le seuil des 15 points, confirme ce basculement vers un régime dit « risk-on », où les investisseurs réduisent leurs couvertures et acceptent davantage de risque.</p>
+        <p>Le cas AMD mérite une lecture plus fine. Une hausse de prix de 10 % sur des composants est, en temps normal, un signal ambigu : elle peut traduire soit un pouvoir de fixation des prix fort, soit une pression sur les coûts que l'entreprise peine à absorber. Ici, le marché a clairement retenu la première lecture — le titre a gagné près de 10 % le jour même de l'annonce — ce qui traduit la conviction des investisseurs que la demande pour les puces d'intelligence artificielle reste suffisamment forte pour qu'AMD répercute sans dommage la hausse des coûts de fonderie de TSMC sur ses clients. C'est une validation, au moins ponctuelle, de la thèse selon laquelle le cycle d'investissement massif dans l'IA n'est pas près de ralentir, plutôt qu'un simple ajustement tarifaire isolé.</p>
+        <p>Il faut toutefois noter la nature des catalyseurs à l'origine de ce rebond : il ne s'agit ni d'une amélioration des données macroéconomiques, ni d'un changement de cap de la Fed, dont le comité restait, une semaine plus tôt, majoritairement favorable à au moins une nouvelle hausse de taux d'ici fin 2026. Le rebond repose sur des facteurs par nature réversibles — une capacité logistique saoudienne encore en cours de rétablissement, des intentions diplomatiques non encore concrétisées avec l'Iran, un sommet commercial avec la Chine qui n'a pas encore eu lieu. Un VIX repassé sous 15 points traduit d'ailleurs un certain optimisme, voire une forme de complaisance des marchés : dans ce contexte, une nouvelle déconvenue sur l'un de ces trois fronts géopolitiques pourrait raviver la volatilité aussi vite qu'elle a reflué.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p>Si vous détenez des unités de compte en assurance-vie, un PEA ou un plan d'épargne retraite exposés aux actions américaines ou européennes — via des fonds ou des trackers répliquant le S&amp;P 500, le Nasdaq ou le CAC 40 —, la valeur de ces supports a mécaniquement progressé lundi, sans qu'aucune décision personnelle de votre part n'y soit pour quelque chose. C'est l'illustration concrète d'un principe souvent répété mais rarement bien compris : la valeur quotidienne d'un portefeuille d'actions dépend de facteurs macroéconomiques et géopolitiques largement indépendants des performances des entreprises elles-mêmes, qui n'ont, elles, pas changé en un jour.</p>
+        <p>La baisse du prix du pétrole a aussi un effet direct, quoique décalé de quelques semaines, sur le porte-monnaie : les cours du WTI et du Brent influencent, avec un délai lié aux stocks et à la fiscalité, le prix à la pompe de l'essence et du gazole en France. Si cette détente se confirme dans la durée plutôt que de n'être qu'un mouvement de quelques jours, elle pourrait alléger, modestement, le budget carburant des ménages.</p>
+        <p>Quant à la hausse de prix annoncée par AMD sur ses puces destinées à l'intelligence artificielle, elle concerne en premier lieu les centres de données et les entreprises clientes, et non directement les processeurs Ryzen grand public, qui seraient pour l'instant épargnés selon plusieurs sources spécialisées. L'effet pour un particulier n'est donc pas immédiat sur le prix d'un ordinateur, mais il alimente, à terme, le coût de revient des services d'intelligence artificielle (assistants, informatique en nuage) que les entreprises pourraient répercuter sur leurs propres tarifs.</p>
+        <h2>Solutions et pistes concrètes</h2>
+        <ul>
+          <li>Ne modifiez pas votre stratégie d'épargne sur la base d'une seule séance, aussi spectaculaire soit-elle : une hausse de 1,5 % à 2,3 % en une journée ne compense ni n'annule à elle seule les inquiétudes exprimées la semaine précédente sur la trajectoire des taux de la Fed.</li>
+          <li>Si votre portefeuille est fortement concentré sur quelques valeurs technologiques ou sur un seul secteur (semi-conducteurs, intelligence artificielle), profitez de ce type d'épisode pour vérifier le niveau de diversification réel de vos unités de compte ou de vos trackers, plutôt que d'ajouter mécaniquement de l'exposition après une hausse.</li>
+          <li>Suivez l'évolution du prix du pétrole (Brent et WTI) comme un indicateur utile à double titre : il éclaire à la fois les mouvements des marchés actions et obligataires, et l'évolution probable de votre budget carburant dans les semaines à venir.</li>
+          <li>Gardez à l'esprit que les catalyseurs de ce rebond — rétablissement logistique saoudien, diplomatie autour de l'Iran, sommet commercial Trump-Xi — restent non aboutis : ce sont des rendez-vous à surveiller dans les prochaines semaines, pas des acquis, avant de conclure à un changement durable de tendance.</li>
+          <li>Un VIX repassé sous 15 points signale un marché plutôt confiant, ce qui n'est ni un signal d'achat ni un signal de vente en soi : c'est avant tout une invitation à ne pas relâcher la vigilance sur la diversification de son épargne, précisément quand tout semble aller bien.</li>
+        </ul>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement personnalisé.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>TheStreet, 21/09/2026 (clôture des indices américains, secteurs, valeurs, rendement du 10 ans) : <a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-21-2026" target="_blank" rel="noopener noreferrer">https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-21-2026</a></li>
+          <li>Yahoo Finance, 21/09/2026 (facteurs de la baisse du pétrole, diplomatie Iran, sommet Trump-Xi, citation Capital.com) : <a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-21-135426827.html" target="_blank" rel="noopener noreferrer">https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-21-135426827.html</a></li>
+          <li>MoneyVox, 21/09/2026 (clôture du CAC 40, Société Générale, Ipsen, pétrole, semi-conducteurs) : <a href="https://www.moneyvox.fr/bourse/actualites/110455/le-cac-40-a-la-hausse-societe-generale-dans-le-vert-le-journal-de-la-bourse-du-21-septembre" target="_blank" rel="noopener noreferrer">https://www.moneyvox.fr/bourse/actualites/110455/le-cac-40-a-la-hausse-societe-generale-dans-le-vert-le-journal-de-la-bourse-du-21-septembre</a></li>
+          <li>TrendForce, 18/09/2026 (hausse de prix de 10 % d&#x27;AMD sur les puces IA, hausse des coûts de fonderie TSMC) : <a href="https://www.trendforce.com/news/2026/09/18/news-amd-reportedly-plans-10-price-hike-for-gpus-ai-chips-chipsets-in-4q26-as-tsmc-costs-rise/" target="_blank" rel="noopener noreferrer">https://www.trendforce.com/news/2026/09/18/news-amd-reportedly-plans-10-price-hike-for-gpus-ai-chips-chipsets-in-4q26-as-tsmc-costs-rise/</a></li>
+          <li>24/7 Wall St., 21/09/2026 (réaction du titre AMD, Nvidia, Taiwan Semiconductor à l&#x27;annonce de hausse de prix) : <a href="https://247wallst.com/investing/2026/09/21/amd-rises-5-as-report-flags-10-chip-price-increase-nvidia-and-taiwan-semiconductor-tick-up/" target="_blank" rel="noopener noreferrer">https://247wallst.com/investing/2026/09/21/amd-rises-5-as-report-flags-10-chip-price-increase-nvidia-and-taiwan-semiconductor-tick-up/</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
