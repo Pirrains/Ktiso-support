@@ -801,6 +801,206 @@
     .dash-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: 1fr; }
   }
+  /* ================================================================
+     ONBOARDING — profil investisseur & objectifs de vie
+     Classes toutes préfixées onb- pour ne jamais entrer en collision
+     avec les styles existants (.btn, .btn-primary, etc. sont réutilisés
+     tels quels pour rester cohérent, jamais redéfinis ici).
+     ================================================================ */
+
+  .onb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background:
+      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    overflow-y: auto;
+    padding: env(safe-area-inset-top, 0px) 20px calc(env(safe-area-inset-bottom, 0px) + 60px);
+  }
+  .onb-overlay.open { display: block; }
+
+  .onb-frame { width: 100%; max-width: 620px; margin: 0 auto; padding-top: 40px; }
+
+  .onb-brandline {
+    text-align: center;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 30px;
+  }
+
+  .onb-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 18px;
+    padding: 34px 28px;
+  }
+
+  .onb-progress { height: 3px; background: var(--line); border-radius: 3px; margin-bottom: 30px; overflow: hidden; }
+  .onb-progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.35s ease; }
+
+  .onb-step { display: none; }
+  .onb-step.active { display: block; animation: onbFadeIn 0.3s ease; }
+  @keyframes onbFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .onb-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
+  .onb-step h2 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 500; font-size: clamp(20px, 4.5vw, 25px); line-height: 1.3; margin-bottom: 14px; color: var(--cream); }
+  .onb-step > p { font-size: 14px; line-height: 1.7; color: rgba(244, 239, 227, 0.7); margin-bottom: 26px; max-width: 460px; }
+  .onb-step > p.onb-hint { font-size: 12.5px; color: rgba(244, 239, 227, 0.45); margin-bottom: 20px; }
+
+  .onb-fact-block { margin-bottom: 24px; }
+  .onb-fact-block:last-of-type { margin-bottom: 28px; }
+  .onb-fact-label { font-size: 13px; color: rgba(244, 239, 227, 0.8); margin-bottom: 10px; }
+
+  .onb-chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .onb-chip {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 12.5px;
+    color: var(--cream);
+    background: rgba(244, 239, 227, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 9px 15px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .onb-chip:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+  .onb-chip.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+
+  .onb-choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+  .onb-choice-card {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--cream);
+    background: rgba(244, 239, 227, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  .onb-choice-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); transform: translateY(-1px); }
+  .onb-choice-card.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+
+  .onb-choice-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .onb-choice-row {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 14px;
+    text-align: left;
+    color: var(--cream);
+    background: rgba(244, 239, 227, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .onb-choice-row strong { font-size: 14.5px; }
+  .onb-choice-row span { font-size: 12.5px; color: rgba(244, 239, 227, 0.5); }
+  .onb-choice-row:hover { border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+  .onb-choice-row.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .onb-choice-row.selected span { color: color-mix(in srgb, var(--accent) 75%, transparent); }
+
+  .onb-step-nav { display: flex; justify-content: space-between; gap: 12px; }
+
+  .onb-btn {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  }
+  .onb-btn-primary { background: var(--accent); color: var(--green-deep); box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .onb-btn-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 85%, white); transform: translateY(-1px); }
+  .onb-btn-primary:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
+  .onb-btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .onb-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .onb-full-width { width: 100%; }
+
+  .onb-skip-link {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(244, 239, 227, 0.4);
+    text-decoration: underline;
+    margin-top: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .onb-skip-link:hover { color: var(--cream); }
+
+  #onbStepResult { text-align: center; }
+  .onb-result-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  #onbStepResult h2 { margin-bottom: 14px; }
+  #onbStepResult > p.onb-result-desc { max-width: 440px; margin: 0 auto 26px; }
+
+  .onb-identity-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.04);
+    border-radius: 12px;
+    padding: 20px 22px;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+  .onb-identity-card .ic-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(244, 239, 227, 0.5); margin-bottom: 14px; }
+  .onb-identity-row { display: flex; justify-content: space-between; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+  .onb-identity-row:last-child { border-bottom: none; }
+  .onb-identity-row .ik { color: rgba(244, 239, 227, 0.55); }
+  .onb-identity-row .iv { color: var(--cream); text-align: right; }
+
+  /* ---- Résumé compact dans le panneau Réglages ---- */
+
+  .profile-settings-summary { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+  .profile-settings-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 0; }
+  .profile-settings-row .psk { font-size: 11px; color: rgba(244, 239, 227, 0.5); }
+  .profile-settings-row .psv { font-size: 12.5px; color: var(--cream); text-align: right; }
+  .profile-settings-edit-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .profile-settings-edit-row button {
+    flex: 1 1 auto;
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--cream);
+    cursor: pointer;
+  }
+  .profile-settings-edit-row button:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .onb-choice-grid { grid-template-columns: 1fr; }
+    .onb-card { padding: 26px 18px; }
+  }
+
 </style>
 </head>
 <body>
@@ -880,6 +1080,8 @@
             </div>
             <div class="settings-section-label" style="margin-top:16px;">Mon objectif patrimonial</div>
             <div id="goalFormSettings"></div>
+            <div class="settings-section-label" style="margin-top:16px;">Mon profil investisseur</div>
+            <div id="profileFormSettings"></div>
           </div>
         </div>
         <button class="logout-link" onclick="logout()">Déconnexion</button>
@@ -1085,6 +1287,171 @@
     </div>
 
     <div id="analytics-dock" style="display:none;"></div>
+  </div>
+
+  <!-- ============ ONBOARDING PROFIL & OBJECTIFS ============ -->
+  <div class="onb-overlay" id="onbOverlay">
+    <div class="onb-frame">
+      <div class="onb-brandline">KTISO</div>
+
+      <div class="onb-card">
+        <div class="onb-progress"><div class="onb-progress-fill" id="onbProgressFill"></div></div>
+
+        <div class="onb-step" data-step="0" id="onbStep0">
+          <div class="onb-eyebrow">Bienvenue</div>
+          <h2>On aimerait vraiment te connaître</h2>
+          <p>Pas juste ton rapport à l'argent : ta situation, ton quotidien, tes projets. C'est tout ça qui nous permet de construire un profil qui te ressemble — pas une case dans un tableau. Ça prend trois minutes, et tu pourras tout modifier plus tard dans tes réglages.</p>
+          <button class="onb-btn onb-btn-primary onb-full-width" data-onb-next>Commencer</button>
+          <button class="onb-skip-link" id="onbSkip">Plus tard, j'y répondrai depuis mes réglages</button>
+        </div>
+
+        <div class="onb-step" data-step="1" id="onbStep1">
+          <div class="onb-eyebrow">Étape 1 sur 6 — Toi</div>
+          <h2>Parlons un peu de toi</h2>
+
+          <div class="onb-fact-block">
+            <div class="onb-fact-label">Ta situation aujourd'hui</div>
+            <div class="onb-chip-row" data-field="situationPro">
+              <button class="onb-chip" data-value="etudiant">Étudiant(e)</button>
+              <button class="onb-chip" data-value="salarie">Salarié(e)</button>
+              <button class="onb-chip" data-value="independant">Indépendant(e)</button>
+              <button class="onb-chip" data-value="fonctionnaire">Fonctionnaire</button>
+              <button class="onb-chip" data-value="recherche">En recherche d'emploi</button>
+              <button class="onb-chip" data-value="autre">Autre</button>
+            </div>
+          </div>
+
+          <div class="onb-fact-block">
+            <div class="onb-fact-label">Ta situation familiale</div>
+            <div class="onb-chip-row" data-field="situationFamiliale">
+              <button class="onb-chip" data-value="seul">Seul(e)</button>
+              <button class="onb-chip" data-value="couple">En couple</button>
+              <button class="onb-chip" data-value="couple_enfants">En couple, avec enfant(s)</button>
+              <button class="onb-chip" data-value="parent_solo">Parent solo</button>
+              <button class="onb-chip" data-value="autre">Autre / je préfère ne pas dire</button>
+            </div>
+          </div>
+
+          <div class="onb-fact-block">
+            <div class="onb-fact-label">Ton logement</div>
+            <div class="onb-chip-row" data-field="logement">
+              <button class="onb-chip" data-value="locataire">Locataire</button>
+              <button class="onb-chip" data-value="proprietaire">Propriétaire</button>
+              <button class="onb-chip" data-value="parents">Chez mes parents</button>
+              <button class="onb-chip" data-value="autre">Autre</button>
+            </div>
+          </div>
+
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" data-onb-next disabled>Suivant</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="2" id="onbStep2">
+          <div class="onb-eyebrow">Étape 2 sur 6 — Ton quotidien</div>
+          <h2>Et niveau argent, au jour le jour ?</h2>
+
+          <div class="onb-fact-block">
+            <div class="onb-fact-label">Comment tu gères ton argent au quotidien</div>
+            <div class="onb-chip-row" data-field="gestionQuotidien">
+              <button class="onb-chip" data-value="organise">Je suis mon budget de près</button>
+              <button class="onb-chip" data-value="instinct">Je gère à l'instinct</button>
+              <button class="onb-chip" data-value="decouverte">J'apprends encore à m'organiser</button>
+              <button class="onb-chip" data-value="delegue">Je préfère déléguer, ça ne m'intéresse pas trop</button>
+            </div>
+          </div>
+
+          <div class="onb-fact-block">
+            <div class="onb-fact-label">As-tu une épargne de côté aujourd'hui</div>
+            <div class="onb-chip-row" data-field="epargne">
+              <button class="onb-chip" data-value="rien">Rien pour l'instant</button>
+              <button class="onb-chip" data-value="un_peu">Un peu, mais pas énorme</button>
+              <button class="onb-chip" data-value="plusieurs_mois">Plusieurs mois de dépenses devant moi</button>
+            </div>
+          </div>
+
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" data-onb-next disabled>Suivant</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="3" id="onbStep3">
+          <div class="onb-eyebrow">Étape 3 sur 6 — Investissement</div>
+          <h2>As-tu déjà investi, sous une forme ou une autre ?</h2>
+          <div class="onb-choice-list" data-field="investissement">
+            <button class="onb-choice-row" data-value="intimide">Jamais, et ça m'intimide un peu</button>
+            <button class="onb-choice-row" data-value="interesse">Jamais, mais ça m'intéresse</button>
+            <button class="onb-choice-row" data-value="un_peu">Un peu, pour essayer</button>
+            <button class="onb-choice-row" data-value="regulier">Oui, régulièrement</button>
+          </div>
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" data-onb-next disabled>Suivant</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="4" id="onbStep4">
+          <div class="onb-eyebrow">Étape 4 sur 6 — Horizon</div>
+          <h2>Sur quel horizon comptes-tu investir ?</h2>
+          <div class="onb-choice-list" data-field="horizon">
+            <button class="onb-choice-row" data-value="court"><strong>Court terme</strong><span>Moins de 3 ans</span></button>
+            <button class="onb-choice-row" data-value="moyen"><strong>Moyen terme</strong><span>3 à 7 ans</span></button>
+            <button class="onb-choice-row" data-value="long"><strong>Long terme</strong><span>Plus de 7 ans</span></button>
+          </div>
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" data-onb-next disabled>Suivant</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="5" id="onbStep5">
+          <div class="onb-eyebrow">Étape 5 sur 6 — Ta façon de répartir</div>
+          <h2>Si tu avais 1&nbsp;000&nbsp;€ à placer aujourd'hui, tu les répartirais comment ?</h2>
+          <p class="onb-hint">Entre un placement sûr mais peu rémunérateur, et un placement plus risqué mais avec plus de potentiel.</p>
+          <div class="onb-choice-list" data-field="risk">
+            <button class="onb-choice-row" data-value="a"><strong>900 € sûr / 100 € risqué</strong><span>Je préfère l'essentiel en sécurité</span></button>
+            <button class="onb-choice-row" data-value="b"><strong>700 € sûr / 300 € risqué</strong><span>Une petite part de risque, pas plus</span></button>
+            <button class="onb-choice-row" data-value="c"><strong>500 € sûr / 500 € risqué</strong><span>Moitié-moitié</span></button>
+            <button class="onb-choice-row" data-value="d"><strong>300 € sûr / 700 € risqué</strong><span>Je vise la croissance, quitte à encaisser des baisses</span></button>
+          </div>
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" data-onb-next disabled>Suivant</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="6" id="onbStep6">
+          <div class="onb-eyebrow">Étape 6 sur 6 — Tes projets</div>
+          <h2>Qu'est-ce qui te tient à cœur, pour les prochaines années ?</h2>
+          <p class="onb-hint">Choisis autant d'options que tu veux — ça reste modifiable à tout moment.</p>
+          <div class="onb-chip-row" data-field="projets" data-multi="true" style="margin-bottom:28px;">
+            <button class="onb-chip" data-value="voyager">Voyager</button>
+            <button class="onb-chip" data-value="logement">Acheter un logement</button>
+            <button class="onb-chip" data-value="famille">Fonder ou agrandir ma famille</button>
+            <button class="onb-chip" data-value="metier">Changer de métier</button>
+            <button class="onb-chip" data-value="independance">Mon indépendance financière</button>
+            <button class="onb-chip" data-value="serenite">Me sentir plus serein(ne) au quotidien</button>
+            <button class="onb-chip" data-value="inconnu">Je ne sais pas encore</button>
+          </div>
+          <div class="onb-step-nav">
+            <button class="onb-btn onb-btn-secondary" data-onb-back>Retour</button>
+            <button class="onb-btn onb-btn-primary" id="onbFinish">Voir mon profil</button>
+          </div>
+        </div>
+
+        <div class="onb-step" data-step="7" id="onbStepResult">
+          <div class="onb-result-badge" id="onbResultBadge">—</div>
+          <h2 id="onbResultTitle">Ton profil</h2>
+          <p class="onb-result-desc" id="onbResultDesc"></p>
+          <div class="onb-identity-card" id="onbIdentityCard"></div>
+          <div class="onb-step-nav" style="justify-content:center;">
+            <button class="onb-btn onb-btn-primary" id="onbClose">C'est parti pour mon tableau de bord →</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <img class="footer-astro" src="astro-assis.png" alt="">
@@ -1332,14 +1699,19 @@
 
     const { data: profile } = await sb
       .from('profiles')
-      .select('goal_amount, goal_label, accent_color, background_theme')
+      .select('goal_amount, goal_label, accent_color, background_theme, situation_pro, situation_familiale, logement, gestion_quotidien, epargne, investissement, horizon, risk_choice, projets, onboarding_completed')
       .eq('id', user.id)
       .maybeSingle();
 
     applyAccent(profile?.accent_color);
     applyBackground(profile?.background_theme || 'default');
     renderGoal(profile);
+    renderProfileSettings(profile);
     await loadFamilyMembers();
+
+    if (!profile || !profile.onboarding_completed) {
+      openOnboarding(0, profile);
+    }
   }
 
   function holdingsTotal() {
@@ -1542,6 +1914,256 @@
 
     renderGoal(profile);
   }
+
+  /* ================================================================
+     ONBOARDING — profil investisseur & objectifs de vie
+     Écrit dans les colonnes profiles.situation_pro, situation_familiale,
+     logement, gestion_quotidien, epargne, investissement, horizon,
+     risk_choice, projets (text[]), onboarding_completed (bool).
+     Ces colonnes doivent exister sur la table "profiles" (voir le
+     script SQL fourni à part) — sans elles, les appels update()
+     échoueront silencieusement côté Supabase (error non bloquante).
+     ================================================================ */
+
+  var ONB_SITUATION_PRO_LABELS = { etudiant: "Étudiant(e)", salarie: "Salarié(e)", independant: "Indépendant(e)", fonctionnaire: "Fonctionnaire", recherche: "En recherche d'emploi", autre: "Autre" };
+  var ONB_SITUATION_FAM_LABELS = { seul: "Seul(e)", couple: "En couple", couple_enfants: "En couple, avec enfant(s)", parent_solo: "Parent solo", autre: "Autre" };
+  var ONB_LOGEMENT_LABELS = { locataire: "Locataire", proprietaire: "Propriétaire", parents: "Chez mes parents", autre: "Autre" };
+  var ONB_GESTION_LABELS = { organise: "Suit son budget de près", instinct: "Gère à l'instinct", decouverte: "Apprend à s'organiser", delegue: "Préfère déléguer" };
+  var ONB_EPARGNE_LABELS = { rien: "Rien pour l'instant", un_peu: "Un peu de côté", plusieurs_mois: "Plusieurs mois de dépenses" };
+  var ONB_INVEST_LABELS = { intimide: "Jamais, ça l'intimide", interesse: "Jamais, mais intéressé(e)", un_peu: "Un peu, pour essayer", regulier: "Régulièrement" };
+  var ONB_HORIZON_LABELS = { court: "Court terme", moyen: "Moyen terme", long: "Long terme" };
+  var ONB_PROJET_LABELS = { voyager: "Voyager", logement: "Acheter un logement", famille: "Fonder/agrandir sa famille", metier: "Changer de métier", independance: "Indépendance financière", serenite: "Plus de sérénité au quotidien", inconnu: "Pas encore su" };
+
+  var ONB_PROFILES = {
+    prudent: { name: "Prudent", color: "var(--blue)", desc: "Tu préfères la stabilité à la performance. On privilégie la protection du capital et des bases solides avant d'aller plus loin." },
+    equilibre: { name: "Équilibré", color: "var(--lime)", desc: "Tu acceptes une part de risque mesurée pour viser une croissance progressive, sans y laisser des nuits blanches." },
+    dynamique: { name: "Dynamique", color: "var(--gold)", desc: "Tu vises la croissance et tu sais que ça implique des hauts et des bas. Le temps joue pour toi." },
+    offensif: { name: "Offensif", color: "var(--terracotta)", desc: "Tu es à l'aise avec la volatilité et tu cherches la performance maximale sur le temps long." }
+  };
+
+  var ONB_STEP_ORDER = [0, 1, 2, 3, 4, 5, 6, 7];
+  var onbStepIndex = 0;
+  var onbState = { situationPro: null, situationFamiliale: null, logement: null, gestionQuotidien: null, epargne: null, investissement: null, horizon: null, risk: null, projets: [] };
+  var onbLastProfile = null;
+
+  function onbComputeProfile(a) {
+    var riskPts = { a: 0, b: 1, c: 2, d: 3 };
+    var epargnePts = { rien: 0, un_peu: 1, plusieurs_mois: 2 };
+    var investPts = { intimide: 0, interesse: 1, un_peu: 2, regulier: 3 };
+    var total = (riskPts[a.risk] || 0) + (epargnePts[a.epargne] || 0) + (investPts[a.investissement] || 0);
+    if (total <= 2) { return 'prudent'; }
+    if (total <= 4) { return 'equilibre'; }
+    if (total <= 6) { return 'dynamique'; }
+    return 'offensif';
+  }
+
+  function onbProjetsText(list) {
+    if (!list || !list.length) { return 'Pas encore précisé'; }
+    return list.map(function (v) { return ONB_PROJET_LABELS[v] || v; }).join(', ');
+  }
+
+  function onbIdentityRow(label, value) {
+    return '<div class="onb-identity-row"><span class="ik">' + escapeHtml(label) + '</span><span class="iv">' + escapeHtml(value) + '</span></div>';
+  }
+
+  function openOnboarding(startStep, profileToPrefill) {
+    if (profileToPrefill) {
+      onbState = {
+        situationPro: profileToPrefill.situation_pro || null,
+        situationFamiliale: profileToPrefill.situation_familiale || null,
+        logement: profileToPrefill.logement || null,
+        gestionQuotidien: profileToPrefill.gestion_quotidien || null,
+        epargne: profileToPrefill.epargne || null,
+        investissement: profileToPrefill.investissement || null,
+        horizon: profileToPrefill.horizon || null,
+        risk: profileToPrefill.risk_choice || null,
+        projets: profileToPrefill.projets || []
+      };
+    }
+    onbStepIndex = startStep || 0;
+    document.getElementById('onbOverlay').classList.add('open');
+    onbRender();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function onbGoToStep(i) {
+    onbStepIndex = i;
+    onbRender();
+    document.querySelector('#onbOverlay .onb-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function onbSelectSingle(field, value, btn) {
+    onbState[field] = value;
+    var group = btn.parentElement;
+    Array.prototype.forEach.call(group.children, function (c) { c.classList.remove('selected'); });
+    btn.classList.add('selected');
+    onbUpdateNextButtons();
+  }
+
+  function onbToggleMulti(field, value, btn) {
+    var arr = onbState[field] || [];
+    var idx = arr.indexOf(value);
+    if (idx === -1) { arr.push(value); } else { arr.splice(idx, 1); }
+    onbState[field] = arr;
+    btn.classList.toggle('selected');
+  }
+
+  function onbSetDisabled(selector, isDisabled) {
+    var el = document.querySelector(selector);
+    if (el) { el.disabled = isDisabled; }
+  }
+
+  function onbUpdateNextButtons() {
+    var a = onbState;
+    onbSetDisabled('#onbStep1 [data-onb-next]', !(a.situationPro && a.situationFamiliale && a.logement));
+    onbSetDisabled('#onbStep2 [data-onb-next]', !(a.gestionQuotidien && a.epargne));
+    onbSetDisabled('#onbStep3 [data-onb-next]', !a.investissement);
+    onbSetDisabled('#onbStep4 [data-onb-next]', !a.horizon);
+    onbSetDisabled('#onbStep5 [data-onb-next]', !a.risk);
+  }
+
+  function onbRenderResult() {
+    var a = onbState;
+    var profileKey = onbComputeProfile(a);
+    var profile = ONB_PROFILES[profileKey];
+
+    var badge = document.getElementById('onbResultBadge');
+    badge.textContent = profile.name.toUpperCase();
+    badge.style.background = 'color-mix(in srgb, ' + profile.color + ' 18%, transparent)';
+    badge.style.color = profile.color;
+    badge.style.border = '1px solid ' + profile.color;
+
+    document.getElementById('onbResultTitle').textContent = 'Ton profil : ' + profile.name;
+    document.getElementById('onbResultDesc').textContent = profile.desc + " Ce profil t'aide à mieux comprendre tes propres réflexes — il ne remplace pas un conseil professionnel personnalisé.";
+
+    var situation = [ONB_SITUATION_PRO_LABELS[a.situationPro], ONB_SITUATION_FAM_LABELS[a.situationFamiliale]].filter(Boolean).join(' · ');
+
+    document.getElementById('onbIdentityCard').innerHTML =
+      '<div class="ic-title">Ce qu\'on retient de toi</div>' +
+      onbIdentityRow('Situation', situation || '—') +
+      onbIdentityRow('Logement', ONB_LOGEMENT_LABELS[a.logement] || '—') +
+      onbIdentityRow('Gestion au quotidien', ONB_GESTION_LABELS[a.gestionQuotidien] || '—') +
+      onbIdentityRow('Épargne', ONB_EPARGNE_LABELS[a.epargne] || '—') +
+      onbIdentityRow('Investissement', ONB_INVEST_LABELS[a.investissement] || '—') +
+      onbIdentityRow('Horizon', ONB_HORIZON_LABELS[a.horizon] || '—') +
+      onbIdentityRow('Ce qui compte pour toi', onbProjetsText(a.projets));
+  }
+
+  function onbRender() {
+    document.querySelectorAll('#onbOverlay .onb-step').forEach(function (el) {
+      el.classList.toggle('active', Number(el.dataset.step) === onbStepIndex);
+    });
+
+    var idx = ONB_STEP_ORDER.indexOf(onbStepIndex);
+    document.getElementById('onbProgressFill').style.width = (idx / (ONB_STEP_ORDER.length - 1)) * 100 + '%';
+
+    document.querySelectorAll('#onbOverlay [data-field]').forEach(function (group) {
+      var field = group.dataset.field;
+      var isMulti = group.dataset.multi === 'true';
+      Array.prototype.forEach.call(group.children, function (btn) {
+        var isSelected = isMulti
+          ? (onbState[field] || []).indexOf(btn.dataset.value) !== -1
+          : onbState[field] === btn.dataset.value;
+        btn.classList.toggle('selected', isSelected);
+      });
+    });
+
+    onbUpdateNextButtons();
+
+    if (onbStepIndex === 7) { onbRenderResult(); }
+  }
+
+  async function onbFinish() {
+    var { data: { user } } = await sb.auth.getUser();
+    if (user) {
+      await sb.from('profiles').update({
+        situation_pro: onbState.situationPro,
+        situation_familiale: onbState.situationFamiliale,
+        logement: onbState.logement,
+        gestion_quotidien: onbState.gestionQuotidien,
+        epargne: onbState.epargne,
+        investissement: onbState.investissement,
+        horizon: onbState.horizon,
+        risk_choice: onbState.risk,
+        projets: onbState.projets,
+        onboarding_completed: true
+      }).eq('id', user.id);
+    }
+    onbGoToStep(7);
+  }
+
+  async function onbSkip() {
+    var { data: { user } } = await sb.auth.getUser();
+    if (user) { await sb.from('profiles').update({ onboarding_completed: true }).eq('id', user.id); }
+    document.getElementById('onbOverlay').classList.remove('open');
+  }
+
+  async function onbCloseToDashboard() {
+    document.getElementById('onbOverlay').classList.remove('open');
+    await loadUserAndHoldings();
+  }
+
+  function renderProfileSettings(profile) {
+    onbLastProfile = profile || null;
+    var box = document.getElementById('profileFormSettings');
+    if (!box) { return; }
+
+    if (!profile || !profile.onboarding_completed) {
+      box.innerHTML =
+        '<div class="profile-settings-summary">' +
+        '<p style="font-size:12.5px; color:rgba(244,239,227,0.6); margin-bottom:10px;">Pas encore rempli.</p>' +
+        '<button class="btn btn-primary" style="width:auto; padding:10px 18px; font-size:12px;" onclick="openOnboarding(0, onbLastProfile)">Compléter mon profil</button>' +
+        '</div>';
+      return;
+    }
+
+    var profileKey = onbComputeProfile({ risk: profile.risk_choice, epargne: profile.epargne, investissement: profile.investissement });
+    var info = ONB_PROFILES[profileKey];
+    var situation = [ONB_SITUATION_PRO_LABELS[profile.situation_pro], ONB_SITUATION_FAM_LABELS[profile.situation_familiale]].filter(Boolean).join(' · ');
+
+    box.innerHTML =
+      '<div class="profile-settings-summary">' +
+      '<div class="profile-settings-row"><span class="psk">Profil</span><span class="psv" style="color:' + info.color + ';">' + escapeHtml(info.name) + '</span></div>' +
+      '<div class="profile-settings-row"><span class="psk">Situation</span><span class="psv">' + escapeHtml(situation || '—') + '</span></div>' +
+      '<div class="profile-settings-row"><span class="psk">Projets</span><span class="psv">' + escapeHtml(onbProjetsText(profile.projets)) + '</span></div>' +
+      '<div class="profile-settings-edit-row">' +
+      '<button onclick="openOnboarding(1, onbLastProfile)">Situation</button>' +
+      '<button onclick="openOnboarding(3, onbLastProfile)">Profil</button>' +
+      '<button onclick="openOnboarding(6, onbLastProfile)">Projets</button>' +
+      '</div></div>';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('#onbOverlay [data-field]').forEach(function (group) {
+      var field = group.dataset.field;
+      var isMulti = group.dataset.multi === 'true';
+      Array.prototype.forEach.call(group.children, function (btn) {
+        btn.addEventListener('click', function () {
+          if (isMulti) { onbToggleMulti(field, btn.dataset.value, btn); }
+          else { onbSelectSingle(field, btn.dataset.value, btn); }
+        });
+      });
+    });
+
+    document.querySelectorAll('#onbOverlay [data-onb-next]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.disabled) { return; }
+        var idx = ONB_STEP_ORDER.indexOf(onbStepIndex);
+        onbGoToStep(ONB_STEP_ORDER[idx + 1]);
+      });
+    });
+
+    document.querySelectorAll('#onbOverlay [data-onb-back]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var idx = ONB_STEP_ORDER.indexOf(onbStepIndex);
+        onbGoToStep(ONB_STEP_ORDER[Math.max(0, idx - 1)]);
+      });
+    });
+
+    document.getElementById('onbFinish').addEventListener('click', onbFinish);
+    document.getElementById('onbSkip').addEventListener('click', onbSkip);
+    document.getElementById('onbClose').addEventListener('click', onbCloseToDashboard);
+  });
 
   async function addHolding() {
     const name = document.getElementById('pf-name').value.trim();
