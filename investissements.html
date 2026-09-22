@@ -245,6 +245,22 @@
     justify-content: center;
   }
 
+  .track-prices-panel {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: -14px 0 28px;
+    background: rgba(244, 239, 227, 0.02);
+  }
+  .track-prices-panel .ppt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(244, 239, 227, 0.5); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .track-prices-panel .ppt button { background: none; border: none; color: rgba(244, 239, 227, 0.4); cursor: pointer; font-size: 11px; text-transform: uppercase; }
+  .track-prices-panel .ppt button:hover { color: var(--gold); }
+  .track-prices-row { display: flex; justify-content: space-between; gap: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .track-prices-row:last-child { border-bottom: none; }
+  .track-prices-row .pv { color: var(--gold); }
+  .track-prices-row .pv.na { color: rgba(244, 239, 227, 0.35); }
+  .track-prices-row .ps { font-size: 10.5px; color: rgba(244, 239, 227, 0.4); margin-left: 6px; }
+
   .track-btn {
     font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 12.5px;
@@ -447,11 +463,14 @@
         <button type="button" class="track-btn" id="btnAddMonth">+ Ajouter un mois</button>
         <button type="button" class="track-btn secondary" id="btnAddAsset">+ Ajouter un actif</button>
         <div class="track-spacer"></div>
+        <button type="button" class="track-btn secondary" id="btnRefreshPrices">🔄 Rafraîchir les cours</button>
         <button type="button" class="track-btn secondary" id="btnExportCsv">Exporter en CSV</button>
         <label class="track-file-label">Importer Excel / CSV<input type="file" accept=".csv,.xlsx,.xls" id="inputImportSheet" hidden></label>
         <button type="button" class="track-btn secondary" id="btnExportJson">Exporter en JSON</button>
         <label class="track-file-label">Importer un JSON<input type="file" accept=".json" id="inputImportJson" hidden></label>
       </div>
+
+      <div class="track-prices-panel" id="pricesPanel" style="display:none;"></div>
 
       <div id="trackMonths"></div>
 
@@ -1433,6 +1452,82 @@
   }
 
   /* ---------------------------------------------------------------
+   * Cours actuels (fonction Edge Supabase "get-asset-prices")
+   * ---------------------------------------------------------------
+   * Donne le prix UNITAIRE actuel de chaque actif connu (crypto via
+   * CoinGecko, actions/ETF via Finnhub), à titre de référence. L'outil ne
+   * suit pas de quantité détenue par actif : impossible d'en déduire
+   * automatiquement une "Valeur position" totale fiable, donc ce panneau
+   * affiche les cours pour que vous mettiez à jour vous-même les cellules
+   * concernées plutôt que de deviner à votre place.
+   * --------------------------------------------------------------- */
+
+  var PRICES_FUNCTION_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co/functions/v1/get-asset-prices';
+
+  function fmtPrice(price, currency) {
+    var symbol = currency === 'USD' ? '$' : (currency === 'EUR' ? '€' : (currency || ''));
+    var n = new Intl.NumberFormat('fr-BE', { maximumFractionDigits: price < 1 ? 6 : 2 }).format(price);
+    return n + ' ' + symbol;
+  }
+
+  function renderPricesPanel(prices, assets) {
+    var panel = document.getElementById('pricesPanel');
+    var rows = assets.map(function (a) {
+      var r = prices[a];
+      var valueHtml;
+      if (r && typeof r.price === 'number') {
+        valueHtml = '<span class="pv">' + fmtPrice(r.price, r.currency) + '</span><span class="ps">' + escapeHtmlLocal(r.source || '') + '</span>';
+      } else {
+        valueHtml = '<span class="pv na">Cours introuvable</span>';
+      }
+      return '<div class="track-prices-row"><span>' + escapeHtmlLocal(a) + '</span>' + valueHtml + '</div>';
+    }).join('');
+
+    panel.innerHTML =
+      '<div class="ppt"><span>Cours unitaires actuels — à reporter vous-même dans « Valeur position »</span><button type="button" id="btnClosePrices">Fermer ✕</button></div>' +
+      rows;
+    panel.style.display = 'block';
+    document.getElementById('btnClosePrices').addEventListener('click', function () { panel.style.display = 'none'; });
+  }
+
+  function escapeHtmlLocal(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function refreshPrices() {
+    var state = loadState();
+    if (!state.assets.length) { alert('Ajoutez au moins un actif avant de rafraîchir les cours.'); return; }
+
+    var btn = document.getElementById('btnRefreshPrices');
+    var originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Récupération en cours…';
+
+    fetch(PRICES_FUNCTION_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ assets: state.assets })
+    })
+      .then(function (res) {
+        if (!res.ok) { throw new Error('HTTP ' + res.status); }
+        return res.json();
+      })
+      .then(function (data) {
+        if (data.error) { throw new Error(data.error); }
+        renderPricesPanel(data.prices || {}, state.assets);
+      })
+      .catch(function (err) {
+        alert("Impossible de récupérer les cours pour le moment (" + err.message + "). Réessayez plus tard, ou vérifiez que la fonction Edge est bien déployée.");
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      });
+  }
+
+  /* ---------------------------------------------------------------
    * Démarrage
    * --------------------------------------------------------------- */
 
@@ -1442,6 +1537,7 @@
     document.getElementById('btnExportCsv').addEventListener('click', exportCSV);
     document.getElementById('btnExportJson').addEventListener('click', exportJSON);
     document.getElementById('btnReset').addEventListener('click', resetAll);
+    document.getElementById('btnRefreshPrices').addEventListener('click', refreshPrices);
     document.getElementById('inputImportSheet').addEventListener('change', function (e) {
       if (e.target.files[0]) { importSheetFile(e.target.files[0]); }
       e.target.value = '';
