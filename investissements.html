@@ -1146,6 +1146,24 @@
     return isNaN(n) ? 0 : n;
   }
 
+  // Les en-têtes sont recherchés par leur texte (insensible à la casse, aux
+  // accents et à la ponctuation), pas par leur position — un fichier avec des
+  // colonnes dans un autre ordre, des colonnes en plus, ou "Antécédents (€)"
+  // au lieu de "Antécédents" fonctionne quand même. Seule une correspondance
+  // EXACTE (après normalisation) est retenue, pour ne jamais confondre
+  // "Frais" avec "Frais totaux".
+  function normalizeKey(k) {
+    return String(k).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+  }
+
+  function findValue(row, normalizedTarget) {
+    var keys = Object.keys(row);
+    for (var i = 0; i < keys.length; i++) {
+      if (normalizeKey(keys[i]) === normalizedTarget) { return row[keys[i]]; }
+    }
+    return undefined;
+  }
+
   function importSheetFile(file) {
     var reader = new FileReader();
     reader.onload = function () {
@@ -1156,18 +1174,30 @@
         var sheetName = detectSheetName(workbook);
         if (!sheetName) { alert("Import annulé : impossible de déterminer quelle feuille contient le suivi des investissements."); return; }
 
-        var rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: '' });
-        rows.shift(); // en-tête
+        var rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { defval: '' });
+        if (!rows.length) { alert("La feuille « " + sheetName + " » est vide."); return; }
 
-        var monthsOrder = [], monthsMap = {}, assetsList = [];
+        // Vérifier tout de suite que les 2 colonnes indispensables existent,
+        // pour donner une erreur claire plutôt qu'un import silencieusement vide.
+        var foundHeaders = Object.keys(rows[0]);
+        var hasMois = foundHeaders.some(function (h) { return normalizeKey(h) === 'mois'; });
+        var hasActif = foundHeaders.some(function (h) { return normalizeKey(h) === 'actif'; });
+        if (!hasMois || !hasActif) {
+          alert("Colonnes introuvables dans la feuille « " + sheetName + " ».\n\nColonnes trouvées : " + foundHeaders.join(', ') + "\n\nIl faut au minimum des colonnes « Mois » et « Actif » (accents/majuscules sans importance).");
+          return;
+        }
 
-        rows.forEach(function (cells) {
-          var moisLabel = String(cells[0] || '').trim(), actif = String(cells[1] || '').trim();
-          if (!moisLabel || !actif) { return; }
-          var anterieur = cellNum(cells[2]);
-          var nouveau = cellNum(cells[3]);
-          var frais = cellNum(cells[4]);
-          var valeurRaw = cells[8];
+        var monthsOrder = [], monthsMap = {}, assetsList = [], skipped = 0;
+
+        rows.forEach(function (row) {
+          var moisLabel = String(findValue(row, 'mois') || '').trim();
+          var actif = String(findValue(row, 'actif') || '').trim();
+          if (!moisLabel || !actif) { skipped++; return; }
+
+          var anterieur = cellNum(findValue(row, 'antecedents'));
+          var nouveau = cellNum(findValue(row, 'nouveau'));
+          var frais = cellNum(findValue(row, 'frais'));
+          var valeurRaw = findValue(row, 'valeurposition');
           var valeurPosition = (valeurRaw === undefined || valeurRaw === '') ? null : cellNum(valeurRaw);
 
           if (!monthsMap[moisLabel]) { monthsMap[moisLabel] = { id: uid(), label: moisLabel, data: {} }; monthsOrder.push(moisLabel); }
@@ -1175,14 +1205,18 @@
           if (assetsList.indexOf(actif) === -1) { assetsList.push(actif); }
         });
 
-        if (!monthsOrder.length) { alert("Aucune ligne exploitable dans la feuille « " + sheetName + " ». Vérifiez les en-têtes de colonnes (Mois, Actif, Antécédents, Nouveau, Frais, ..., Valeur position en 9e colonne)."); return; }
+        if (!monthsOrder.length) {
+          alert("Aucune ligne exploitable dans la feuille « " + sheetName + " » : les colonnes « Mois » et « Actif » existent mais sont vides sur toutes les lignes.");
+          return;
+        }
 
         var newState = { assets: assetsList, months: monthsOrder.map(function (l) { return monthsMap[l]; }) };
         newState.months.forEach(function (m) {
           assetsList.forEach(function (a) { if (!m.data[a]) { m.data[a] = { anterieur: 0, nouveau: 0, frais: 0, valeurPosition: null }; } });
         });
 
-        if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les données actuelles. Continuer ?")) { return; }
+        var summary = monthsOrder.length + " mois, " + assetsList.length + " actif(s) détecté(s)" + (skipped ? ", " + skipped + " ligne(s) ignorée(s) (Mois ou Actif manquant)" : "") + ".";
+        if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les données actuelles.\n\n" + summary + "\n\nContinuer ?")) { return; }
         saveState(newState);
         scheduleRender();
       } catch (e) {
