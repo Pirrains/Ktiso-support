@@ -7,7 +7,7 @@
 <script>if (window.self !== window.top) document.documentElement.classList.add("embedded");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ktiso — Suivi des investissements</title>
-<meta name="description" content="Suivez vos investissements mois par mois : ce que vous avez mis, ce que ça vaut aujourd'hui. Vos données restent sur votre appareil.">
+<meta name="description" content="Suivez vos investissements mois par mois : ce que vous avez mis, ce que ça vaut aujourd'hui. Sauvegardé sur votre compte Ktiso.">
 <meta property="og:title" content="Ktiso — Suivi des investissements">
 <meta property="og:description" content="Ce que vous possédez, à l'euro près.">
 <meta property="og:type" content="website">
@@ -412,6 +412,8 @@
     .track-btn, .track-file-label { text-align: center; }
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -436,7 +438,7 @@
     <div class="tracker">
 
       <div class="track-banner">
-        🔒 <strong>Aucune donnée n'est envoyée à un serveur.</strong> Tout ce que vous saisissez ici reste uniquement dans ce navigateur, sur cet appareil (stockage local). Pensez à exporter une sauvegarde CSV ou JSON régulièrement, et avant de changer d'appareil ou de navigateur.
+        🔒 <strong>Vos données sont liées à votre compte Ktiso.</strong> Connecté·e, tout ce que vous saisissez ici est sauvegardé automatiquement sur votre compte — accessible depuis n'importe quel appareil. Une copie reste aussi sur ce navigateur pour un accès instantané, y compris hors connexion.
       </div>
 
       <div class="track-summary" id="trackSummary"></div>
@@ -446,7 +448,7 @@
         <button type="button" class="track-btn secondary" id="btnAddAsset">+ Ajouter un actif</button>
         <div class="track-spacer"></div>
         <button type="button" class="track-btn secondary" id="btnExportCsv">Exporter en CSV</button>
-        <label class="track-file-label">Importer un CSV<input type="file" accept=".csv" id="inputImportCsv" hidden></label>
+        <label class="track-file-label">Importer Excel / CSV<input type="file" accept=".csv,.xlsx,.xls" id="inputImportSheet" hidden></label>
         <button type="button" class="track-btn secondary" id="btnExportJson">Exporter en JSON</button>
         <label class="track-file-label">Importer un JSON<input type="file" accept=".json" id="inputImportJson" hidden></label>
       </div>
@@ -493,9 +495,13 @@
 /*
  * Suivi des investissements — Ktiso
  * ----------------------------------
- * Outil 100% local : toutes les données sont lues/écrites dans le
- * localStorage du navigateur, sous la clé STORAGE_KEY. Rien n'est
- * envoyé à un serveur.
+ * Les données sont sauvegardées sur le compte de l'utilisateur (colonne
+ * profiles.investissements_data, en JSON) dès qu'il est connecté, avec une
+ * copie locale (localStorage) pour un accès instantané et hors connexion.
+ * Un instantané simplifié du dernier mois est aussi répliqué dans la table
+ * partagée "holdings" (source: "investissements") pour remonter dans le
+ * patrimoine total du tableau de bord — même mécanisme que la page
+ * Suivi du patrimoine.
  *
  * Modèle de données (state) :
  *   {
@@ -521,7 +527,63 @@
   var MOIS_NOMS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
   /* ---------------------------------------------------------------
-   * Stockage
+   * Synchronisation compte (Supabase) — même schéma de connexion que
+   * les autres outils (ex. Suivi du patrimoine) : un client indépendant
+   * dans sa propre variable (jamais "sb"/"const"), pour ne jamais entrer
+   * en collision quand cette page est injectée dans le tableau de bord.
+   * Se dégrade silencieusement en "local uniquement" si non connecté.
+   * --------------------------------------------------------------- */
+
+  var sbSync = (function () {
+    var client = null;
+    try {
+      if (window.supabase && window.supabase.createClient) {
+        client = window.supabase.createClient(
+          "https://ieythynqbzgjpdmuwvxc.supabase.co",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlleXRoeW5xYnpnanBkbXV3dnhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MzExMjksImV4cCI6MjEwNDAwNzEyOX0.KGN8xj-PyuWbe8ytF9jBS6IXgUlyIVLGhNXIX4AsvWQ"
+        );
+      }
+    } catch (e) { client = null; }
+
+    function pushHoldingsSnapshot(userId, state) {
+      var computed = computeAll(state);
+      client.from('holdings').delete().eq('user_id', userId).eq('source', 'investissements').then(function () {
+        if (!computed.length) { return; }
+        var last = computed[computed.length - 1];
+        var rows = last.rows
+          .filter(function (r) { return (r.valeurPosition || 0) > 0; })
+          .map(function (r) { return { user_id: userId, name: r.name, category: 'Investissements', amount: r.valeurPosition, source: 'investissements' }; });
+        if (rows.length) { client.from('holdings').insert(rows); }
+      });
+    }
+
+    function push(state) {
+      if (!client) { return; }
+      client.auth.getUser().then(function (res) {
+        var user = res && res.data && res.data.user;
+        if (!user) { return; }
+        client.from('profiles').update({ investissements_data: state }).eq('id', user.id);
+        pushHoldingsSnapshot(user.id, state);
+      }).catch(function () {});
+    }
+
+    function pull() {
+      if (!client) { return Promise.resolve(null); }
+      return client.auth.getUser().then(function (res) {
+        var user = res && res.data && res.data.user;
+        if (!user) { return null; }
+        return client.from('profiles').select('investissements_data').eq('id', user.id).maybeSingle().then(function (r) {
+          var data = r && r.data && r.data.investissements_data;
+          return (data && Array.isArray(data.assets) && Array.isArray(data.months)) ? data : null;
+        });
+      }).catch(function () { return null; });
+    }
+
+    return { push: push, pull: pull };
+  })();
+
+  /* ---------------------------------------------------------------
+   * Stockage local (copie instantanée / secours hors connexion)
    * --------------------------------------------------------------- */
 
   function defaultState() { return { assets: [], months: [] }; }
@@ -542,8 +604,9 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {
-      alert("Impossible d'enregistrer : le stockage local de ce navigateur est plein ou indisponible.");
+      alert("Impossible d'enregistrer localement : le stockage de ce navigateur est plein ou indisponible.");
     }
+    sbSync.push(state);
   }
 
   function uid() {
@@ -1054,67 +1117,85 @@
     downloadBlob(blob, 'ktiso-investissements.csv');
   }
 
-  function parseCsvLine(line) {
-    var out = [], cur = '', inQuotes = false;
-    for (var i = 0; i < line.length; i++) {
-      var ch = line[i];
-      if (inQuotes) {
-        if (ch === '"') {
-          if (line[i + 1] === '"') { cur += '"'; i++; } else { inQuotes = false; }
-        } else { cur += ch; }
-      } else {
-        if (ch === '"') { inQuotes = true; }
-        else if (ch === ';') { out.push(cur); cur = ''; }
-        else { cur += ch; }
-      }
-    }
-    out.push(cur);
-    return out;
+  // Accepte un classeur à plusieurs feuilles (ex. un seul fichier Excel qui
+  // regroupe plusieurs outils) : on cherche une feuille dont le nom contient
+  // "investi" ; s'il n'y a qu'une seule feuille dans le fichier, elle est
+  // utilisée telle quelle (cas normal d'un export CSV) ; sinon on demande.
+  function detectSheetName(workbook) {
+    var names = workbook.SheetNames || [];
+    if (names.length <= 1) { return names[0] || null; }
+    var normalized = names.map(function (n) {
+      return n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    });
+    var idx = normalized.indexOf('investissements');
+    if (idx === -1) { idx = normalized.findIndex(function (n) { return n.indexOf('investi') !== -1; }); }
+    if (idx !== -1) { return names[idx]; }
+
+    var choice = prompt(
+      "Ce fichier contient plusieurs feuilles : " + names.join(', ') +
+      ".\nQuelle feuille contient le suivi des investissements ? (recopiez le nom exact)",
+      names[0]
+    );
+    return (choice && names.indexOf(choice) !== -1) ? choice : null;
   }
 
-  function importCSVFile(file) {
+  function cellNum(v) {
+    if (v === null || v === undefined || v === '') { return 0; }
+    if (typeof v === 'number') { return v; }
+    var n = parseFloat(String(v).replace(',', '.'));
+    return isNaN(n) ? 0 : n;
+  }
+
+  function importSheetFile(file) {
     var reader = new FileReader();
     reader.onload = function () {
       try {
-        var text = reader.result.replace(/^\uFEFF/, '');
-        var lines = text.split(/\r?\n/).filter(function (l) { return l.trim() !== ''; });
-        lines.shift();
+        var data = new Uint8Array(reader.result);
+        var workbook = XLSX.read(data, { type: 'array' });
+
+        var sheetName = detectSheetName(workbook);
+        if (!sheetName) { alert("Import annulé : impossible de déterminer quelle feuille contient le suivi des investissements."); return; }
+
+        var rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: '' });
+        rows.shift(); // en-tête
 
         var monthsOrder = [], monthsMap = {}, assetsList = [];
 
-        lines.forEach(function (line) {
-          var cells = parseCsvLine(line);
-          var moisLabel = cells[0], actif = cells[1];
+        rows.forEach(function (cells) {
+          var moisLabel = String(cells[0] || '').trim(), actif = String(cells[1] || '').trim();
           if (!moisLabel || !actif) { return; }
-          var anterieur = parseFloat((cells[2] || '0').replace(',', '.')) || 0;
-          var nouveau = parseFloat((cells[3] || '0').replace(',', '.')) || 0;
-          var frais = parseFloat((cells[4] || '0').replace(',', '.')) || 0;
+          var anterieur = cellNum(cells[2]);
+          var nouveau = cellNum(cells[3]);
+          var frais = cellNum(cells[4]);
           var valeurRaw = cells[8];
-          var valeurPosition = (valeurRaw === undefined || valeurRaw === '') ? null : (parseFloat(valeurRaw.replace(',', '.')) || 0);
+          var valeurPosition = (valeurRaw === undefined || valeurRaw === '') ? null : cellNum(valeurRaw);
 
           if (!monthsMap[moisLabel]) { monthsMap[moisLabel] = { id: uid(), label: moisLabel, data: {} }; monthsOrder.push(moisLabel); }
           monthsMap[moisLabel].data[actif] = { anterieur: anterieur, nouveau: nouveau, frais: frais, valeurPosition: valeurPosition };
           if (assetsList.indexOf(actif) === -1) { assetsList.push(actif); }
         });
 
+        if (!monthsOrder.length) { alert("Aucune ligne exploitable dans la feuille « " + sheetName + " ». Vérifiez les en-têtes de colonnes (Mois, Actif, Antécédents, Nouveau, Frais, ..., Valeur position en 9e colonne)."); return; }
+
         var newState = { assets: assetsList, months: monthsOrder.map(function (l) { return monthsMap[l]; }) };
         newState.months.forEach(function (m) {
           assetsList.forEach(function (a) { if (!m.data[a]) { m.data[a] = { anterieur: 0, nouveau: 0, frais: 0, valeurPosition: null }; } });
         });
 
-        if (!confirm("Importer ce fichier va remplacer toutes les données actuelles. Continuer ?")) { return; }
+        if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les données actuelles. Continuer ?")) { return; }
         saveState(newState);
         scheduleRender();
       } catch (e) {
-        alert('Fichier CSV invalide : ' + e.message);
+        alert('Fichier illisible : ' + e.message);
       }
     };
-    reader.readAsText(file);
+    reader.readAsArrayBuffer(file);
   }
 
   function resetAll() {
-    if (!confirm("Réinitialiser va supprimer toutes les données de suivi stockées dans ce navigateur. Cette action est irréversible. Continuer ?")) { return; }
+    if (!confirm("Réinitialiser va supprimer toutes les données de suivi, y compris sur votre compte si vous êtes connecté·e. Cette action est irréversible. Continuer ?")) { return; }
     localStorage.removeItem(STORAGE_KEY);
+    sbSync.push(defaultState());
     scheduleRender();
   }
 
@@ -1128,15 +1209,21 @@
     document.getElementById('btnExportCsv').addEventListener('click', exportCSV);
     document.getElementById('btnExportJson').addEventListener('click', exportJSON);
     document.getElementById('btnReset').addEventListener('click', resetAll);
-    document.getElementById('inputImportCsv').addEventListener('change', function (e) {
-      if (e.target.files[0]) { importCSVFile(e.target.files[0]); }
+    document.getElementById('inputImportSheet').addEventListener('change', function (e) {
+      if (e.target.files[0]) { importSheetFile(e.target.files[0]); }
       e.target.value = '';
     });
     document.getElementById('inputImportJson').addEventListener('change', function (e) {
       if (e.target.files[0]) { importJSONFile(e.target.files[0]); }
       e.target.value = '';
     });
-    render();
+
+    // Au chargement : le compte fait autorité si connecté (et s'il contient
+    // déjà des données) ; sinon on reste sur la copie locale telle quelle.
+    sbSync.pull().then(function (remoteState) {
+      if (remoteState) { localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteState)); }
+      render();
+    });
   });
 })();
 </script>
