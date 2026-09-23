@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La vraie raison pour laquelle votre Livret A va bientôt rapporter plus — Ktiso Actualités</title>
+<meta name="description" content="l&#x27;inflation a accéléré à 2,4 % sur un an en août 2026, tirée par l&#x27;énergie. Mécaniquement, la formule qui fixe le taux du Livret A pointe déjà vers 2 %, contre 1,7 % aujourd&#x27;hui.">
+<meta property="og:title" content="La vraie raison pour laquelle votre Livret A va bientôt rapporter plus">
+<meta property="og:description" content="l&#x27;inflation a accéléré à 2,4 % sur un an en août 2026, tirée par l&#x27;énergie. Mécaniquement, la formule qui fixe le taux du Livret A pointe déjà vers 2 %, contre 1,7 % aujourd&#x27;hui.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-screener.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Économie<span class="dot-sep">·</span>23 septembre 2026</div>
+      <h1>La vraie raison pour laquelle votre Livret A va bientôt rapporter plus</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>En résumé : l'inflation a accéléré à 2,4 % sur un an en août 2026, tirée par l'énergie. Mécaniquement, la formule qui fixe le taux du Livret A pointe déjà vers 2 %, contre 1,7 % aujourd'hui. Une hausse qui ressemble à une bonne nouvelle pour 55 millions de détenteurs, mais qui ne fait en réalité que courir derrière la hausse des prix, sans jamais vraiment la rattraper.</p>
+        <h2>Contexte : les faits, vérifiés et vérifiables</h2>
+        <p>Le 28 août 2026, l'Insee a publié son estimation provisoire de l'indice des prix à la consommation pour le mois d'août : +2,4 % sur un an, contre +2,1 % en juillet (définitif, publié le 12 août). Sur un mois, les prix ont progressé de 0,7 %. Selon l'Insee, cette accélération est « essentiellement » due à la flambée des prix de l'énergie, en hausse de 16,7 % sur un an, portée par les produits pétroliers. Les produits frais ont bondi de 5,8 %, tandis que les prix des services ralentissaient légèrement, à +2,0 %. Ces chiffres définitifs devaient être confirmés le 15 septembre 2026.</p>
+        <p>Cette poussée d'inflation intervient trois semaines seulement après le dernier ajustement du taux du Livret A. Le 29 juillet 2026, le ministère de l'Économie a annoncé le relèvement du taux du Livret A et du LDDS de 1,5 % à 1,7 % à compter du 1er août 2026, tandis que le LEP (Livret d'épargne populaire) était maintenu à 2,5 %. Le ministre Roland Lescure avait justifié cette hausse par « l'inflation contenue mais réelle » et les incertitudes économiques du moment. Cette décision suivait la proposition du gouverneur de la Banque de France, qui applique une formule fixée par décret : le taux du Livret A correspond, au maximum entre 0,5 % (plancher légal) et la moyenne arithmétique entre la moyenne semestrielle du taux interbancaire €STR et la moyenne semestrielle de l'inflation hors tabac, arrondie au dixième de point supérieur.</p>
+        <p>Cette formule n'est officiellement recalculée pour une application ferme que deux fois par an, le 1er février et le 1er août, sur la base de moyennes arrêtées à la mi-janvier et à la mi-juillet. Il existe toutefois deux points de contrôle intermédiaires, à la mi-avril et à la mi-octobre, qui permettent au gouverneur de proposer une révision exceptionnelle applicable le 1er mai ou le 1er novembre si l'inflation ou les taux monétaires le justifient — un mécanisme resté inutilisé depuis 2021. C'est justement ce calcul intermédiaire d'octobre que plusieurs sites spécialisés surveillent de près : selon un calcul de FranceTransactions.com arrêté au 17 septembre 2026, la formule donnerait déjà un taux théorique de 2,00 % si elle était appliquée au 15 octobre. Rien n'indique à ce stade qu'une révision exceptionnelle sera déclenchée à cette date précise, mais la trajectoire est sans ambiguïté : Meilleurtaux Placement, sur la base des données disponibles fin août, projette pour la révision ferme du 1er février 2027 un taux compris entre 2,3 % et 2,4 %, avec un LEP qui grimperait mécaniquement à 2,9 %, voire 3 % en cas d'arrondi favorable aux épargnants les plus modestes.</p>
+        <h2>Analyse fondamentale pour les marchés financiers</h2>
+        <p>Le mécanisme est simple mais ses implications sont larges : le taux du Livret A suit avec retard l'inflation et les taux courts de la zone euro, si bien qu'il agit comme un baromètre différé plutôt que comme un signal avancé pour les marchés. Une remontée programmée du Livret A et du LDDS n'est pas neutre pour le secteur bancaire : une partie de ces dépôts est centralisée à la Caisse des Dépôts et consignations pour financer le logement social et les collectivités, et une hausse de leur rémunération renchérit mécaniquement le coût de cette ressource pour l'ensemble du circuit — sans que cela se traduise nécessairement par une hausse équivalente des taux de crédit immobilier, qui dépendent surtout des taux de marché (OAT, taux interbancaires) et de la politique de la Banque centrale européenne.</p>
+        <p>Le vrai signal à surveiller pour les marchés n'est donc pas le Livret A en tant que tel, mais ce qu'il révèle sur la trajectoire de l'inflation française : une accélération portée par l'énergie, dans un contexte où les prix du pétrole ont pourtant reflué ces derniers jours sur fond d'apaisement géopolitique. Si cette détente pétrolière se confirme dans la durée, elle pourrait freiner la remontée de l'inflation dans les prochains mois et, avec elle, celle du Livret A — un rappel que la formule d'aujourd'hui n'est qu'une photographie provisoire, recalculée à chaque échéance avec des données plus fraîches. Sur le plan macroéconomique, une hausse de la rémunération de l'épargne réglementée peut aussi renforcer la propension des ménages français, déjà connus pour un taux d'épargne élevé, à privilégier l'épargne de précaution plutôt que la consommation — un facteur que les économistes surveillent dans un contexte de croissance déjà jugée fragile par l'Insee.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p><strong>Une hausse du taux affiché n'est pas automatiquement une bonne nouvelle en termes réels.</strong> Avec un Livret A à 1,7 % et une inflation à 2,4 %, le rendement réel actuel est négatif d'environ 0,7 point : pour 10 000 € placés toute l'année, les intérêts perçus (170 €, exonérés d'impôt et de prélèvements sociaux) ne suffisent pas à compenser la perte de pouvoir d'achat liée à la hausse des prix sur cette même somme. Si le taux passait à 2 % sans que l'inflation ne redescende, l'écart se réduirait mais ne s'inverserait pas forcément.</p>
+        <p><strong>Rien ne change dans l'immédiat pour les 55 millions de détenteurs de Livret A.</strong> Le taux de 1,7 % reste en vigueur ; le chiffre de 2 % évoqué pour le 15 octobre est un résultat théorique de la formule à cette date, pas une décision annoncée. La prochaine échéance réellement contraignante est le 1er février 2027, sauf annonce exceptionnelle d'ici là — un cas de figure qui ne s'est plus produit depuis 2021.</p>
+        <p><strong>Le LEP reste, de loin, le placement réglementé le plus avantageux pour les ménages éligibles.</strong> À 2,5 % aujourd'hui, il offre déjà un rendement réel positif face à une inflation à 2,4 %, et son plafond de versement (10 000 €) le rend accessible en priorité aux ménages aux revenus modestes ou moyens, sous conditions de ressources revues chaque année.</p>
+        <p><strong>Le plafond du Livret A (22 950 €, inchangé depuis 2013) limite mécaniquement l'effet de cette hausse pour les épargnants qui l'ont déjà atteint.</strong> Au-delà, les sommes supplémentaires doivent être placées ailleurs — LDDS, assurance-vie en fonds euros, ou produits plus risqués — avec des arbitrages très différents en matière de fiscalité, de disponibilité et de risque de perte en capital.</p>
+        <h2>Solutions et pistes concrètes</h2>
+        <ul>
+          <li>Vérifier son éligibilité au LEP (conditions de revenu fiscal de référence) avant d'ouvrir ou de compléter un Livret A ou un LDDS, tant son rendement réel reste actuellement plus favorable.</li>
+          <li>Ne pas modifier sa stratégie d'épargne sur la seule base d'un taux « théorique » calculé par des sites spécialisés : seule une publication au Journal officiel rend un nouveau taux du Livret A effectif.</li>
+          <li>Pour les sommes dépassant le plafond du Livret A et du LDDS, comparer les fonds euros d'assurance-vie et les autres solutions disponibles en tenant compte de leur fiscalité et de leur horizon de placement, plutôt que de les laisser sur un compte courant non rémunéré.</li>
+          <li>Garder à l'esprit qu'un rendement nominal en hausse ne compense pas toujours une inflation elle-même en hausse : c'est l'écart entre les deux, et non le taux affiché seul, qui détermine le gain ou la perte réelle de pouvoir d'achat.</li>
+          <li>Suivre la publication définitive de l'inflation de septembre par l'Insee et, à la mi-janvier 2027, l'annonce officielle du gouverneur de la Banque de France pour connaître le taux du Livret A réellement applicable au 1er février 2027.</li>
+        </ul>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement personnalisé.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Insee, Informations rapides n° 215, 28 août 2026 (inflation provisoire d&#x27;août 2026, +2,4 % sur un an) : <a href="https://www.insee.fr/fr/statistiques/9039020" target="_blank" rel="noopener noreferrer">https://www.insee.fr/fr/statistiques/9039020</a></li>
+          <li>Insee, Informations rapides n° 194, 12 août 2026 (inflation définitive de juillet 2026, +2,1 % sur un an) : <a href="https://www.insee.fr/fr/statistiques/9036122" target="_blank" rel="noopener noreferrer">https://www.insee.fr/fr/statistiques/9036122</a></li>
+          <li>Ministère de l&#x27;Économie, communiqué de presse, 29 juillet 2026 (taux du Livret A à 1,7 % et du LEP à 2,5 % au 1er août 2026, citation de Roland Lescure) : <a href="https://presse.economie.gouv.fr/?p=181486" target="_blank" rel="noopener noreferrer">https://presse.economie.gouv.fr/?p=181486</a></li>
+          <li>Banque de France, communiqué de presse (proposition du gouverneur de relever le taux du Livret A à 1,7 % et de maintenir celui du LEP à 2,5 %) : <a href="https://www.banque-france.fr/fr/communiques-de-presse/le-gouverneur-de-la-banque-de-france-propose-de-relever-le-taux-du-livret-17-et-de-maintenir-celui" target="_blank" rel="noopener noreferrer">https://www.banque-france.fr/fr/communiques-de-presse/le-gouverneur-de-la-banque-de-france-propose-de-relever-le-taux-du-livret-17-et-de-maintenir-celui</a></li>
+          <li>FranceTransactions.com, calcul du 17 septembre 2026 (taux théorique de la formule du Livret A à 2,00 % au 15 octobre 2026, mécanique et calendrier de révision) : <a href="https://www.francetransactions.com/comparatifs/Livret-A-taux.html" target="_blank" rel="noopener noreferrer">https://www.francetransactions.com/comparatifs/Livret-A-taux.html</a></li>
+          <li>Meilleurtaux Placement, août 2026 (projection de la formule du Livret A pour la révision du 1er février 2027, entre 2,3 % et 2,9-3 % pour le LEP) : <a href="https://placement.meilleurtaux.com/livret-epargne/actualites/2026-aout/livret-a-ce-que-suggere-la-formule-pour-fevrier-2027.html" target="_blank" rel="noopener noreferrer">https://placement.meilleurtaux.com/livret-epargne/actualites/2026-aout/livret-a-ce-que-suggere-la-formule-pour-fevrier-2027.html</a></li>
+          <li>Eco3min.fr (calendrier de calcul et de révision du taux du Livret A, révisions exceptionnelles de mai et novembre non utilisées depuis 2021) : <a href="https://eco3min.fr/taux-livret-a-date-revision/" target="_blank" rel="noopener noreferrer">https://eco3min.fr/taux-livret-a-date-revision/</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
