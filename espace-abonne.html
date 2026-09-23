@@ -262,6 +262,33 @@
 
   .accent-swatches.open { display: flex; }
 
+  /* --- Menu déroulant "Outils" (remplace l'ancienne colonne de gauche) --- */
+
+  .tools-picker { position: relative; }
+
+  .tools-dropdown {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 20;
+    width: 340px;
+    max-width: calc(100vw - 40px);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--green-deep);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    text-align: left;
+  }
+
+  .tools-dropdown.open { display: flex; }
+
+  .tools-category:first-child .settings-section-label { margin-top: 0; }
+
   .settings-section-label {
     font-size: 10.5px;
     letter-spacing: 0.06em;
@@ -302,6 +329,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 36px;
   }
 
@@ -328,7 +357,7 @@
 
   .dash-grid {
     display: grid;
-    grid-template-columns: 250px 1fr 250px;
+    grid-template-columns: 1fr 250px;
     gap: 20px;
     align-items: start;
   }
@@ -807,6 +836,7 @@
   @media (max-width: 900px) {
     .dash-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: 1fr; }
+    .tools-dropdown { position: fixed; top: 130px; left: 20px; right: 20px; width: auto; max-width: none; }
   }
   /* ================================================================
      ONBOARDING — profil investisseur & objectifs de vie
@@ -1058,7 +1088,102 @@
   <div id="view-dashboard">
     <div class="dash-header">
       <button class="tool-back-btn" onclick="closeTool()" style="margin-bottom:0;">← Tableau de bord</button>
-      <div style="display:flex; align-items:center; gap:18px;">
+      <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
+        <div class="tools-picker">
+          <button class="accent-toggle" onclick="toggleToolsMenu()" aria-label="Outils">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+            Outils
+          </button>
+          <div class="tools-dropdown" id="toolsDropdown">
+
+            <div class="tools-category">
+              <div class="settings-section-label">Quotidien</div>
+              <div class="tool-item" onclick="openTool('comptes.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-livre.png" alt=""></div>
+                <div>
+                  <h4>Comptes du quotidien</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tools-category">
+              <div class="settings-section-label" style="margin-top:16px;">Investir</div>
+              <div class="tool-item" onclick="openTool('investissements.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-ordinateur.png" alt=""></div>
+                <div>
+                  <h4>Suivi des investissements</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item" onclick="openTool('screener-actions.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-radio.png" alt=""></div>
+                <div>
+                  <h4>Screener d'actions</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item" onclick="openTool('comparateur-performance.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-loupe.png" alt=""></div>
+                <div>
+                  <h4>Comparateur de performances</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item" onclick="openTool('analyse-portefeuille.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-loupe.png" alt=""></div>
+                <div>
+                  <h4>Analyse de portefeuille</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item" onclick="openTool('interets-composes.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-fusee.png" alt=""></div>
+                <div>
+                  <h4>Intérêts composés</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tools-category">
+              <div class="settings-section-label" style="margin-top:16px;">Patrimoine</div>
+              <div class="tool-item" onclick="openTool('patrimoine.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-labo.png" alt=""></div>
+                <div>
+                  <h4>Suivi du patrimoine</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item" onclick="openTool('simulateur-immobilier.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-marteau.png" alt=""></div>
+                <div>
+                  <h4>Simulateur immobilier</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+              <div class="tool-item locked">
+                <div class="tool-icon"><img src="icon-astronaute.png" alt=""></div>
+                <div>
+                  <h4>Optimisation fiscale</h4>
+                  <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tools-category">
+              <div class="settings-section-label" style="margin-top:16px;">Famille</div>
+              <div class="tool-item" onclick="openTool('espace-famille-avance.html')" style="cursor:pointer;">
+                <div class="tool-icon"><img src="icon-boussole.png" alt=""></div>
+                <div>
+                  <h4>Espace famille avancé</h4>
+                  <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
         <div class="accent-picker">
           <button class="accent-toggle" onclick="toggleAccentPicker()" aria-label="Réglages de l'espace">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -1096,91 +1221,6 @@
     </div>
 
     <div class="dash-grid">
-
-      <!-- OUTILS -->
-      <aside class="dash-col">
-        <div class="col-label">Outils</div>
-
-        <div class="tool-item" onclick="openTool('patrimoine.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-labo.png" alt=""></div>
-          <div>
-            <h4>Suivi du patrimoine</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('investissements.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-ordinateur.png" alt=""></div>
-          <div>
-            <h4>Suivi des investissements</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('interets-composes.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-fusee.png" alt=""></div>
-          <div>
-            <h4>Intérêts composés</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('comptes.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-livre.png" alt=""></div>
-          <div>
-            <h4>Comptes du quotidien</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('screener-actions.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-radio.png" alt=""></div>
-          <div>
-            <h4>Screener d'actions</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('comparateur-performance.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-loupe.png" alt=""></div>
-          <div>
-            <h4>Comparateur de performances</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('analyse-portefeuille.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-loupe.png" alt=""></div>
-          <div>
-            <h4>Analyse de portefeuille</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('simulateur-immobilier.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-marteau.png" alt=""></div>
-          <div>
-            <h4>Simulateur immobilier</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-
-        <div class="tool-item locked">
-          <div class="tool-icon"><img src="icon-astronaute.png" alt=""></div>
-          <div>
-            <h4>Optimisation fiscale</h4>
-            <span class="tool-status locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Non inclus</span>
-          </div>
-        </div>
-
-        <div class="tool-item" onclick="openTool('espace-famille-avance.html')" style="cursor:pointer;">
-          <div class="tool-icon"><img src="icon-boussole.png" alt=""></div>
-          <div>
-            <h4>Espace famille avancé</h4>
-            <span class="tool-status active"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"></circle></svg>Actif</span>
-          </div>
-        </div>
-      </aside>
 
       <!-- PATRIMOINE (main) -->
       <main class="dash-col dash-main">
@@ -1590,6 +1630,7 @@
   var currentToolStyleEl = null;
 
   async function openTool(url) {
+    document.getElementById('toolsDropdown')?.classList.remove('open');
     document.getElementById('dashDefaultView').style.display = 'none';
     document.getElementById('dashToolView').style.display = 'block';
     var container = document.getElementById('toolContent');
@@ -1830,6 +1871,10 @@
     document.getElementById('accentSwatches').classList.toggle('open');
   }
 
+  function toggleToolsMenu() {
+    document.getElementById('toolsDropdown').classList.toggle('open');
+  }
+
   async function setAccent(name) {
     applyAccent(name);
     document.getElementById('accentSwatches').classList.remove('open');
@@ -1842,6 +1887,10 @@
     const picker = document.querySelector('.accent-picker');
     if (picker && !picker.contains(e.target)) {
       document.getElementById('accentSwatches')?.classList.remove('open');
+    }
+    const toolsPicker = document.querySelector('.tools-picker');
+    if (toolsPicker && !toolsPicker.contains(e.target)) {
+      document.getElementById('toolsDropdown')?.classList.remove('open');
     }
   });
 
