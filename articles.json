@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Le rival oublié qui vient de faire trembler les stars de l'IA",
+      "excerpt": "Les investisseurs ont soudain vu naître un concurrent là où ils pariaient sur un duopole protégé. Le marché a-t-il surréagi, ou ce pari sur l'IA était-il devenu trop confortable ?",
+      "auteur": "Ktiso",
+      "date": "4 octobre 2026",
+      "href": "2026-10-04-0935-corporate-toshiba-seagate-western-digital-disques-durs.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "Emploi américain : la mauvaise nouvelle qui a fait monter la Bourse",
       "excerpt": "Un marché de l'emploi qui s'essouffle est une mauvaise nouvelle pour l'économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.",
@@ -63,15 +72,6 @@
       "date": "27 septembre 2026",
       "href": "2026-09-27-0935-bourse-wall-street-record-rendement-obligations.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "La censure du gouvernement n'a pas encore eu lieu : voici ce que ça vous coûte déjà",
-      "excerpt": "Le gouvernement Lecornu n'a pas encore été censuré. Mais depuis qu'il a tendu la main aux socialistes pour éviter la censure, l'écart de taux entre la France et l'Allemagne a atteint un nouveau plus haut, le 24 septembre 2026.",
-      "auteur": "Ktiso",
-      "date": "26 septembre 2026",
-      "href": "2026-09-26-0935-politique-budget-2027-censure-spread-oat-bund.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
