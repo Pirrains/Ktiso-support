@@ -310,6 +310,28 @@
 
   .family-dropdown.open { display: flex; }
 
+  .hanging-astro {
+    display: block;
+    width: 76px;
+    height: auto;
+    margin: 0 auto;
+    flex-shrink: 0;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.45));
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), max-height 0.5s ease, margin 0.5s ease;
+  }
+
+  .hanging-astro.shown {
+    opacity: 1;
+    max-height: 200px;
+    transform: translateY(0);
+    margin: 10px auto 0;
+  }
+
+
   .family-dropdown .member-row:first-child { padding-top: 12px; }
 
   .tools-category:first-child .settings-section-label { margin-top: 0; }
@@ -1195,6 +1217,7 @@
             Famille
           </button>
           <div class="family-dropdown" id="familyDropdown">
+            <img class="hanging-astro" id="hangingAstro" src="astro-suspendu.png" alt="">
             <div class="member-row">
               <div class="member-avatar" id="member-avatar-you">V</div>
               <div>
@@ -1891,8 +1914,17 @@
     document.getElementById('familyDropdown')?.classList.remove('open');
   }
 
+  function showHangingAstro() {
+    const el = document.getElementById('hangingAstro');
+    if (!el) return;
+    el.classList.add('shown');
+    clearTimeout(showHangingAstro._t);
+    showHangingAstro._t = setTimeout(() => el.classList.remove('shown'), 2600);
+  }
+
   function toggleFamilyMenu() {
-    document.getElementById('familyDropdown').classList.toggle('open');
+    const open = document.getElementById('familyDropdown').classList.toggle('open');
+    if (open) showHangingAstro();
     document.getElementById('toolsDropdown')?.classList.remove('open');
   }
 
@@ -2331,6 +2363,7 @@
 
     document.getElementById('family-name-input').value = '';
     document.getElementById('familyForm').classList.remove('open');
+    showHangingAstro();
     await loadFamilyMembers();
   }
 
