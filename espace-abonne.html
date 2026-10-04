@@ -1683,6 +1683,13 @@
       // live in its own row below the three dashboard columns, not squeezed into this one.
       // Pull it out before injecting the rest, so it lands in the dedicated dock instead.
       var analyticsBlock = frame.querySelector('.dash-analytics-block');
+      // Les outils pensés pour la pleine largeur (Comptes du quotidien) gardent leur analyse
+      // à côté de la saisie plutôt que dans le bloc du bas.
+      var WIDE_TOOLS = ['comptes.html'];
+      if (WIDE_TOOLS.includes(url)) {
+        frame.classList.add('in-dashboard');
+        analyticsBlock = null;
+      }
       if (analyticsBlock) {
         dock.appendChild(analyticsBlock);
         dock.style.display = 'block';

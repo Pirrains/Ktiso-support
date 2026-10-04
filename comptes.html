@@ -729,6 +729,24 @@
     .btn-primary:hover { transform: none; }
   }
 
+
+  /* Affichage dans l'espace abonné (pleine largeur) : saisie à gauche, analyse à droite */
+  @media (min-width: 901px) {
+    .frame.in-dashboard {
+      max-width: none;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: 40px;
+      align-items: start;
+    }
+    .frame.in-dashboard > * { grid-column: 1; }
+    .frame.in-dashboard > .sync-warning { grid-column: 1 / -1; }
+    .frame.in-dashboard > .dash-analytics-block { grid-column: 2; grid-row: 1 / span 20; }
+    .frame.in-dashboard > .rule { display: none; }
+    .frame.in-dashboard > .dash-tabs { margin-top: 28px; }
+    .frame.in-dashboard .analytics-grid { grid-template-columns: 1fr; }
+  }
+
   html.embedded nav.topnav,
   html.embedded header,
   html.embedded footer { display: none !important; }
