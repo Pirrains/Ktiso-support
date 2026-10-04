@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L&#x27;Europe a interdit le stablecoin le plus utilisé au monde — Ktiso Actualités</title>
+<meta name="description" content="depuis juillet 2026, l&#x27;USDT est banni des plateformes crypto agréées de l&#x27;UE, à cause d&#x27;une règle imposant 60 % de réserves en dépôts bancaires. Le 22 septembre 2026, la BCE a demandé à Bruxelles de supprimer cette règle.">
+<meta property="og:title" content="L&#x27;Europe a interdit le stablecoin le plus utilisé au monde">
+<meta property="og:description" content="depuis juillet 2026, l&#x27;USDT est banni des plateformes crypto agréées de l&#x27;UE, à cause d&#x27;une règle imposant 60 % de réserves en dépôts bancaires. Le 22 septembre 2026, la BCE a demandé à Bruxelles de supprimer cette règle.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-alertes.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Crypto<span class="dot-sep">·</span>25 septembre 2026</div>
+      <h1>L'Europe a interdit le stablecoin le plus utilisé au monde : la BCE veut faire machine arrière</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <p>Depuis cet été, impossible d'acheter le stablecoin le plus utilisé de la planète sur une plateforme crypto réglementée en France ou ailleurs dans l'Union européenne. La faute à une règle censée protéger les épargnants. Sauf que la semaine dernière, l'institution qui veille sur la stabilité financière de la zone euro a demandé... de la supprimer. En résumé : depuis juillet 2026, l'USDT est banni des plateformes crypto agréées de l'UE, à cause d'une règle imposant 60 % de réserves en dépôts bancaires. Le 22 septembre 2026, la BCE a demandé à Bruxelles de supprimer cette règle.</p>
+        <h2>Contexte : comment l'Europe s'est retrouvée sans son stablecoin le plus utilisé</h2>
+        <p>Le 1er juillet 2026 marquait la fin de la période transitoire du règlement européen MiCA ("Markets in Crypto-Assets"), qui encadre depuis 2024 les prestataires de services sur crypto-actifs dans l'Union. À cette date, l'Autorité des marchés financiers (AMF) a rappelé que toute plateforme continuant à servir des clients français sans agrément MiCA s'exposait à des poursuites pénales pouvant aller jusqu'à deux ans de prison et 30 000 euros d'amende pour les dirigeants. Selon les décomptes cités par la presse spécialisée, une centaine de prestataires opérant en France n'avaient toujours pas cet agrément à l'approche de l'échéance.</p>
+        <p>Ce grand nettoyage réglementaire a eu une victime inattendue : l'USDT, le stablecoin (jeton numérique censé valoir en permanence 1 dollar) émis par la société Tether, de très loin le plus utilisé au monde avec environ 183 milliards de dollars en circulation — soit près de 60 % de tout le marché des stablecoins, devant les 74,5 milliards de dollars de son concurrent USDC (Circle). La raison de son absence : l'article 54 de MiCA impose aux émetteurs de jetons de monnaie électronique jugés "significatifs" de placer au moins 60 % de leurs réserves sous forme de dépôts dans des banques commerciales (30 % pour les émetteurs plus modestes). Tether a choisi de ne jamais déposer de demande de licence pour s'y conformer. Son directeur général, Paolo Ardoino, a de nouveau justifié ce choix le 22 septembre 2026 : selon lui, un dépôt bancaire n'équivaut pas à du cash immédiatement disponible, et forcer une telle proportion des réserves vers les banques créerait un risque de liquidité si de nombreux détenteurs demandaient un remboursement en même temps — Tether préférant loger l'essentiel de ses réserves en bons du Trésor américain à court terme.</p>
+        <p>Conséquence concrète pour les utilisateurs européens : les grandes plateformes actives dans l'UE (Coinbase, Kraken, Crypto.com, l'entité européenne de Binance) ont progressivement restreint puis coupé l'accès à l'USDT pour leurs clients particuliers autour de l'échéance du 1er juillet. Revolut, très utilisée en France, avait donné dès le 3 juillet un calendrier précis à ses utilisateurs : dernier jour d'achat le 6 juillet, arrêt des dépôts le 30 juillet, puis vente ou retrait obligatoire avant le 31 août — au-delà de cette date, tout solde résiduel en USDT était automatiquement converti en euros au cours du marché. À la place, une vingtaine de jetons désormais autorisés ont pris le relais, dont l'USDC et l'EURC de Circle, ainsi qu'une douzaine de stablecoins en euros émis par des acteurs européens.</p>
+        <h2>Analyse : une règle que la banque centrale qui devait la faire respecter juge désormais dangereuse</h2>
+        <p>Le rebondissement est venu le 22 septembre 2026 : le Système européen de banques centrales (SEBC), qui réunit la Banque centrale européenne et les 27 banques centrales nationales de l'UE, a transmis à la Commission européenne sa réponse officielle à la consultation ouverte depuis mai sur la révision de MiCA (dont la date limite a été repoussée au 30 septembre 2026). Sa recommandation : abandonner purement et simplement les quotas fixes de 30 % et 60 % de dépôts bancaires, pour les remplacer par un test de liquidité plus fin — une part minimale des réserves devant pouvoir être mobilisée en un jour ouvré, une autre part en cinq jours ouvrés, le reste restant soumis à des règles de maturité et de diversification, avec des instruments comme les pensions livrées overnight ou la dette souveraine à très court terme jugés éligibles.</p>
+        <p>L'argument des banques centrales est presque un aveu : imposer qu'un stablecoin loge une telle part de ses réserves en dépôts bancaires classiques fragilise justement les banques que la règle était censée protéger. Quand les détenteurs d'un jeton demandent massivement à être remboursés, l'émetteur doit retirer ces dépôts d'un coup, plus vite qu'un dépôt d'épargne classique ne bougerait — et si ces sommes sont concentrées sur un nombre limité d'établissements, un choc sur un seul stablecoin peut se propager au système bancaire dans son ensemble. Pour les marchés, cela révèle une chose simple : la règle qui a poussé le stablecoin le plus liquide du monde hors des plateformes réglementées européennes n'était peut-être pas seulement contraignante pour Tether, elle était structurellement mal calibrée. Mais rien ne changera vite : la Commission doit désormais produire les rapports prévus par les articles 140 et 142 de MiCA, qui pourraient déboucher — ou non — sur une proposition législative, elle-même soumise au vote du Parlement européen et du Conseil. En clair, la règle actuelle reste pleinement en vigueur tant qu'aucun texte ne l'a formellement remplacée, un processus qui se compte en mois, voire en années, pas en semaines.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p>Si vous déteniez de l'USDT sur une plateforme européenne agréée avant l'été 2026, l'opération est déjà derrière vous : votre solde a été converti en euros au moment de la clôture fixée par votre plateforme, sans démarche de votre part. Rien à faire aujourd'hui sur cette partie-là.</p>
+        <p>La vraie question concerne ceux qui, faute d'alternative ou par habitude, continuent d'accéder à l'USDT via des plateformes non agréées en France ou dans l'UE — souvent des acteurs enregistrés hors Union, accessibles via une carte bancaire étrangère ou un compte ouvert avant la bascule réglementaire. Utiliser un tel service ne relève pas seulement d'un risque juridique théorique : une plateforme qui opère en France sans agrément MiCA le fait, par définition, en dehors du cadre qui offre normalement des garanties minimales (séparation des fonds des clients, obligations de transparence sur les réserves, droit de recours en cas de faillite). En cas de problème sur cette plateforme, ces protections ne s'appliquent pas, et l'AMF a explicitement prévenu que ce type d'usage pouvait aussi exposer l'opérateur — pas nécessairement l'utilisateur final — à des poursuites pénales.</p>
+        <p>Pour ceux qui veulent simplement conserver une exposition à un stablecoin adossé au dollar de façon conforme, l'alternative existe déjà et n'a rien d'exotique : l'USDC de Circle et l'EURC, tous deux autorisés au titre de MiCA, sont disponibles sur les plateformes agréées et fonctionnent, pour l'utilisateur final, exactement comme l'USDT. Le renversement annoncé par la BCE le 22 septembre ne change rien à cela dans l'immédiat : même si la règle des 60 % finit par être supprimée, Tether devra encore, à ce jour, déposer une demande de licence MiCA — ce qu'elle n'a toujours pas fait et ne semble pas prévoir de faire prochainement.</p>
+        <h2>Solutions et points de vigilance</h2>
+        <p>Premier réflexe, quel que soit le stablecoin utilisé : vérifier que la plateforme est bien agréée MiCA. L'AMF publie et met à jour la liste des prestataires de services sur crypto-actifs autorisés à opérer en France ; ce simple contrôle suffit à écarter l'essentiel du risque réglementaire.</p>
+        <p>Deuxième réflexe : ne pas confondre "stablecoin" et "placement sans risque". Un jeton adossé au dollar ou à l'euro dépend entièrement de la solidité de son émetteur et de la qualité de ses réserves — qu'elles soient en bons du Trésor, en dépôts bancaires ou en pensions livrées, aucune de ces options n'élimine totalement le risque, elles le déplacent simplement ailleurs (risque souverain, risque bancaire, risque de contrepartie). Un stablecoin n'est garanti par aucun État, à la différence d'un compte bancaire couvert par la garantie des dépôts.</p>
+        <p>Enfin, pas de précipitation à anticiper un retour de l'USDT sur les plateformes françaises : la recommandation de la BCE n'est qu'une étape d'un processus législatif européen qui prendra du temps, et qui ne dépend même pas uniquement de la règle des 60 % — Tether devrait de toute façon franchir l'étape, jamais entamée à ce jour, du dépôt d'un dossier d'agrément. Pour l'instant, la meilleure protection reste la plus simple : rester sur des jetons autorisés, sur des plateformes agréées, et suivre l'issue de la consultation MiCA (rapports attendus de la Commission européenne après le 30 septembre 2026) plutôt que d'anticiper un changement qui n'est pour l'instant qu'une proposition.</p>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement. Tout investissement, y compris via des actifs numériques, comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>AMF, rappel de la fin de la période transitoire MiCA au 1er juillet 2026 : <a href="https://www.amf-france.org/en/news-publications/news/amf-reminds-digital-asset-service-providers-transitional-period-allowing-them-continue-providing" target="_blank" rel="noopener noreferrer">https://www.amf-france.org/en/news-publications/news/amf-reminds-digital-asset-service-providers-transitional-period-allowing-them-continue-providing</a></li>
+          <li>France Épargne, 90 prestataires crypto non conformes avant juillet 2026 : <a href="https://www.france-epargne.fr/news/mica-deadline-amf-90-prestataires-crypto-france-juillet-2026" target="_blank" rel="noopener noreferrer">https://www.france-epargne.fr/news/mica-deadline-amf-90-prestataires-crypto-france-juillet-2026</a></li>
+          <li>Finance Magnates, l&#x27;Europe après le 1er juillet 2026 : <a href="https://www.financemagnates.com/cryptocurrency/regulation/europes-crypto-market-after-july-1-who-stays-who-leaves-and-what-changes-under-mica/" target="_blank" rel="noopener noreferrer">https://www.financemagnates.com/cryptocurrency/regulation/europes-crypto-market-after-july-1-who-stays-who-leaves-and-what-changes-under-mica/</a></li>
+          <li>Yahoo Finance, Revolut délistage USDT, 3 juillet 2026 : <a href="https://finance.yahoo.com/markets/crypto/articles/revolut-delist-usdt-europe-tether-100105588.html" target="_blank" rel="noopener noreferrer">https://finance.yahoo.com/markets/crypto/articles/revolut-delist-usdt-europe-tether-100105588.html</a></li>
+          <li>Cryptonomist, Tether refuse la licence MiCA, 22 septembre 2026 : <a href="https://en.cryptonomist.ch/2026/09/22/eu-stablecoin-regulation-tether/" target="_blank" rel="noopener noreferrer">https://en.cryptonomist.ch/2026/09/22/eu-stablecoin-regulation-tether/</a></li>
+          <li>FinanceFeeds, Paolo Ardoino sur la règle des 60 %, 22 septembre 2026 : <a href="https://financefeeds.com/tether-ceo-says-company-refused-to-apply-for-eu-mica-license-over-stablecoin-reserve-rule/" target="_blank" rel="noopener noreferrer">https://financefeeds.com/tether-ceo-says-company-refused-to-apply-for-eu-mica-license-over-stablecoin-reserve-rule/</a></li>
+          <li>CryptoTimes, la BCE et les banques centrales de l&#x27;UE demandent la suppression de la règle des 60 %, 22 septembre 2026 : <a href="https://www.cryptotimes.io/2026/09/22/ecb-eu-central-banks-urge-brussels-to-scrap-micas-60-stablecoin-deposit-rule/" target="_blank" rel="noopener noreferrer">https://www.cryptotimes.io/2026/09/22/ecb-eu-central-banks-urge-brussels-to-scrap-micas-60-stablecoin-deposit-rule/</a></li>
+          <li>Hokanews, parts de marché USDT/USDC, 10 septembre 2026 : <a href="https://www.hokanews.com/2026/09/usdt-and-usdc-control-258-billion-of.html" target="_blank" rel="noopener noreferrer">https://www.hokanews.com/2026/09/usdt-and-usdc-control-258-billion-of.html</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>

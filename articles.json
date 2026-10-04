@@ -3,66 +3,75 @@
   "articles": [
     {
       "tag": "Économie",
-      "title": "La vraie raison pour laquelle votre Livret A va bientôt rapporter plus",
-      "excerpt": "L'inflation a grimpé à 2,4 % en août 2026, portée par l'énergie. La formule qui fixe le taux du Livret A pointe déjà vers 2 %, contre 1,7 % aujourd'hui — sans que cela ne compense vraiment la hausse des prix.",
+      "title": "Emploi américain : la mauvaise nouvelle qui a fait monter la Bourse",
+      "excerpt": "Un marché de l'emploi qui s'essouffle est une mauvaise nouvelle pour l'économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.",
       "auteur": "Ktiso",
-      "date": "23 septembre 2026",
-      "href": "2026-09-23-0935-economie-livret-a-inflation-taux.html",
-      "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Le pétrole vient de faire ce que la Fed n'a pas réussi à faire : voici l'effet sur votre épargne",
-      "excerpt": "Après une semaine dominée par la hausse de taux de la Fed, Wall Street a signé sa meilleure séance depuis début août lundi. Le vrai moteur n'est ni la Fed ni une embellie économique : c'est la chute du prix du pétrole.",
-      "auteur": "Ktiso",
-      "date": "22 septembre 2026",
-      "href": "2026-09-22-0935-bourse-rebond-wall-street-petrole-ia.html",
+      "date": "3 octobre 2026",
+      "href": "2026-10-03-0935-economie-emploi-us-29000-fed-inflation-france.html",
       "image": "card-alertes.jpg"
     },
     {
-      "tag": "Politique",
-      "title": "Lecornu cible vos retraites pour rassurer les marchés : ils ne l'ont pas récompensé",
-      "excerpt": "Le 17 septembre 2026, Sébastien Lecornu a dévoilé un budget 2027 de 54 milliards d'économies, dont près de 6 milliards ciblant les retraités. Dès le lendemain, l'écart de taux entre la France et l'Allemagne a atteint son plus haut niveau depuis 2012.",
+      "tag": "Bourse",
+      "title": "Les banques françaises dévissent : votre argent est-il concerné ?",
+      "excerpt": "Le 1er octobre, le CAC 40 a perdu 1,62 % et les banques ont chuté jusqu'à 5 %, alors que le taux français à 10 ans frôlait 5 %. Cette fois, la hausse des taux ne profite pas aux banques : elle révèle leur lien avec l'État.",
       "auteur": "Ktiso",
-      "date": "21 septembre 2026",
-      "href": "2026-09-21-0935-politique-budget-2027-retraites-spread-oat-bund.html",
+      "date": "2 octobre 2026",
+      "href": "2026-10-02-0935-bourse-banques-francaises-taux-cac40-chute.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "Pourquoi Lecornu a lâché « le réel nous rattrape » avant son budget",
+      "excerpt": "Le 30 septembre 2026, veille de la présentation du budget 2027, le taux français à 10 ans a dépassé 4,8 %, un sommet depuis 2008. Lecornu y voit la preuve que l'effort de 54 milliards d'euros n'est pas négociable.",
+      "auteur": "Ktiso",
+      "date": "1 octobre 2026",
+      "href": "2026-10-01-0935-politique-budget-2027-taux-record-lecornu-reel.html",
       "image": "actu-politique.jpg"
     },
     {
       "tag": "Crypto",
-      "title": "La Bourse américaine ne fermera bientôt plus jamais : voici ce que ça change pour vous",
-      "excerpt": "Le 17 septembre 2026, la SEC a accordé une exemption de cinq ans permettant à des plateformes crypto d'échanger des actions américaines tokenisées, en dehors des horaires classiques de Wall Street. Coinbase et Robinhood ont bondi en Bourse, les courtiers traditionnels ont reculé, et le bitcoin est repassé au-dessus de 80 000 dollars.",
+      "title": "Les gros fonds achètent du bitcoin à tour de bras : pourquoi le prix ne suit pas ?",
+      "excerpt": "La semaine du 21 au 25 septembre 2026, les ETF bitcoin américains ont attiré environ 2,4 milliards de dollars, leur meilleure semaine depuis octobre 2025. Le prix, lui, stagne autour de 84 000 dollars, et l'enthousiasme s'essouffle déjà.",
       "auteur": "Ktiso",
-      "date": "20 septembre 2026",
-      "href": "2026-09-20-0935-crypto-sec-tokenisation-actions-marche-permanent.html",
-      "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Nike vient d'être exclu d'un club où il siégeait depuis 18 ans : ce que ça change pour votre épargne",
-      "excerpt": "À partir du 21 septembre 2026, Nike sort du S&P 100 après près de 18 ans, conséquence d'une chute de 76 % de son action en cinq ans. Ventes en repli en Chine, dixième trimestre consécutif de baisse du numérique, et analystes très divisés avant les résultats du 1er octobre.",
-      "auteur": "Ktiso",
-      "date": "19 septembre 2026",
-      "href": "2026-09-19-0935-corporate-nike-exclusion-sp100.html",
+      "date": "30 septembre 2026",
+      "href": "2026-09-30-0935-crypto-bitcoin-etf-flux-record-prix-stagne.html",
       "image": "card-screener.jpg"
     },
     {
-      "tag": "Économie",
-      "title": "Le chômage repasse un cap inédit depuis cinq ans : ce que ça change vraiment pour vous",
-      "excerpt": "Au deuxième trimestre 2026, le taux de chômage en France est remonté à 8,3 %, un niveau plus vu depuis cinq ans. L'Insee anticipe désormais 8,6 % fin 2026 et a abaissé sa prévision de croissance de 0,7 % à 0,4 %.",
+      "tag": "Corporate",
+      "title": "Shein a perdu la moitié de ses profits : ce que ça annonce pour vos petits prix",
+      "excerpt": "Le 28 septembre 2026, Shein a annoncé un bénéfice opérationnel ajusté divisé par deux au premier semestre, moins d'un mois après son entrée en Bourse à Hong Kong. Son action a perdu plus de 11 % le lendemain.",
       "auteur": "Ktiso",
-      "date": "18 septembre 2026",
-      "href": "2026-09-18-0935-economie-chomage-croissance-insee.html",
+      "date": "29 septembre 2026",
+      "href": "2026-09-29-0935-corporate-shein-resultats-bourse-hong-kong.html",
       "image": "card-alertes.jpg"
     },
     {
-      "tag": "Bourse",
-      "title": "51 461,90 points, -600 en une séance, le 10 ans américain au plus haut depuis 2007... et l'Europe qui ouvre dans le vert le lendemain : la première hausse de taux de la Fed depuis 2023 a-t-elle vraiment fait peur aux marchés ?",
-      "excerpt": "Le 16 septembre 2026, la Fed a relevé ses taux de 25 points de base à 3,75 %-4,00 %, sa première hausse depuis 2023. Wall Street a chuté (Dow -1,21 %, 10 ans au plus haut depuis 2007) mais l'Europe a ouvert en hausse le lendemain matin.",
+      "tag": "Économie",
+      "title": "Demain, une partie de la France s'arrête : voici ce que Bercy espère y gagner",
+      "excerpt": "Huit syndicats de la fonction publique et les dix syndicats de France Travail appellent à la grève le 29 septembre 2026 contre le gel du point d'indice, un quatrième gel consécutif qui doit rapporter environ 2 milliards d'euros au budget 2027.",
       "auteur": "Ktiso",
-      "date": "17 septembre 2026",
-      "href": "2026-09-17-1929-bourse-fed-hausse-taux-divergence-usa-europe.html",
-      "image": "actu-astronaute-decolle.png"
+      "date": "28 septembre 2026",
+      "href": "2026-09-28-0935-economie-greve-fonctionnaires-point-indice.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Bourse",
+      "title": "Wall Street ignore un signal qu'elle n'avait pas vu depuis 2007 : voici ce que ça change pour votre épargne",
+      "excerpt": "Le 25 septembre 2026, le Dow Jones a bondi de 478 points grâce à Microsoft et à l'IA, tandis que le rendement des obligations américaines à 10 ans grimpait vers 5,2 %, son plus haut niveau depuis 2007, après six semaines de hausse consécutives.",
+      "auteur": "Ktiso",
+      "date": "27 septembre 2026",
+      "href": "2026-09-27-0935-bourse-wall-street-record-rendement-obligations.html",
+      "image": "card-screener.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "La censure du gouvernement n'a pas encore eu lieu : voici ce que ça vous coûte déjà",
+      "excerpt": "Le gouvernement Lecornu n'a pas encore été censuré. Mais depuis qu'il a tendu la main aux socialistes pour éviter la censure, l'écart de taux entre la France et l'Allemagne a atteint un nouveau plus haut, le 24 septembre 2026.",
+      "auteur": "Ktiso",
+      "date": "26 septembre 2026",
+      "href": "2026-09-26-0935-politique-budget-2027-censure-spread-oat-bund.html",
+      "image": "actu-politique.jpg"
     }
   ]
 }

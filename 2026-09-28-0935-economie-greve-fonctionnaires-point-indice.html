@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demain, une partie de la France s&#x27;arrête — Ktiso Actualités</title>
+<meta name="description" content="le 29 septembre 2026, fonction publique et France Travail font grève contre le gel du point d&#x27;indice pour 2027, le quatrième gel consécutif. Bercy en attend environ 2 milliards d&#x27;euros d&#x27;économies, sur les 54 prévus pour tout le budget.">
+<meta property="og:title" content="Demain, une partie de la France s&#x27;arrête">
+<meta property="og:description" content="le 29 septembre 2026, fonction publique et France Travail font grève contre le gel du point d&#x27;indice pour 2027, le quatrième gel consécutif. Bercy en attend environ 2 milliards d&#x27;euros d&#x27;économies, sur les 54 prévus pour tout le budget.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-portefeuille.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Économie<span class="dot-sep">·</span>28 septembre 2026</div>
+      <h1>Demain, une partie de la France s'arrête : voici ce que Bercy espère y gagner</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <p>Demain, mardi 29 septembre, huit syndicats de la fonction publique et, fait rare, les dix syndicats de France Travail appellent ensemble à un mouvement de grève — une unité inédite depuis 2018 pour l'opérateur de l'emploi. Trains perturbés, classes fermées, guichets des impôts et de France Travail à l'arrêt. Le gouvernement, lui, défend une mesure d'économie budgétaire parmi d'autres. Dans le détail, il s'agit surtout du quatrième gel consécutif d'un mécanisme technique mais déterminant pour la fiche de paie de plusieurs millions de personnes : le point d'indice.</p>
+        <p>En résumé : le 29 septembre 2026, fonction publique et France Travail font grève contre le gel du point d'indice pour 2027, le quatrième gel consécutif. Bercy en attend environ 2 milliards d'euros d'économies, sur les 54 prévus pour tout le budget.</p>
+        <h2>Contexte : une mobilisation inédite, un mécanisme salarial gelé pour la quatrième fois</h2>
+        <p>Huit organisations syndicales de la fonction publique — CGT, FO, CFDT, UNSA, FSU, Solidaires, CFE-CGC et FA-FP — ont lancé un appel unitaire à la grève et à la manifestation pour mardi 29 septembre 2026, avec plus de 150 rassemblements prévus dans toute la France, selon les décomptes syndicaux. La CFDT Interco réclame notamment "des mesures salariales générales et immédiates", une revalorisation du point d'indice indexée sur l'inflation, le rétablissement de la Garantie individuelle de pouvoir d'achat (GIPA) et le maintien intégral de la rémunération en cas d'arrêt maladie. En toile de fond, la Cour des comptes avait elle-même recommandé de geler ce point d'indice pour limiter le déficit public.</p>
+        <p>Ce gel n'est pas une première : selon une dépêche AFP reprise par Boursorama le 18 septembre 2026, il s'agirait du quatrième gel consécutif du point d'indice, et du huitième en dix ans. Ce point d'indice, calculé en euros, sert de base : multiplié par l'indice majoré de chaque agent — qui dépend de son grade et de son échelon — il détermine le traitement brut. Le geler ne change rien à la grille des salaires elle-même, mais prive tous les agents d'une revalorisation générale automatique, quelle que soit l'inflation. Selon Bercy, cette seule mesure représenterait environ 2 milliards d'euros d'économies, une part modeste des 54 milliards visés par Sébastien Lecornu pour l'ensemble du budget 2027.</p>
+        <p>Fait notable de cette mobilisation : les dix organisations syndicales de France Travail se sont, elles aussi, toutes mises d'accord pour appeler à la grève — une unité qui n'avait plus été observée depuis 2018, selon les informations relayées par le blog spécialisé de Benjamin Duplaa. Leur communiqué intersyndical porte quatre revendications précises : une augmentation générale des salaires, l'arrêt du "plan d'efficience" et des réorganisations internes jugées permanentes, des recrutements en contrat à durée indéterminée — dont la titularisation des agents en CDD —, et un moratoire sur tout nouveau projet d'intelligence artificielle tant qu'un accord collectif n'en encadre pas l'usage. Le même communiqué cite, à l'appui, près de 960 000 contrôles de recherche d'emploi lancés en 2025, en hausse de 63,9 % par rapport à 2024, ainsi que 515 suppressions de postes déjà actées par la loi de finances 2026.</p>
+        <p>Sur le terrain, l'ampleur des perturbations reste inégale selon les secteurs. La SNCF a reçu un préavis de grève déposé par SUD-Rail, et la CGT-RATP a annoncé une grève reconductible dès le 28 septembre au soir ; en revanche, la CGT-Cheminots n'a pas rejoint ce mouvement, ce qui devrait limiter les perturbations sur les grandes lignes ferroviaires, selon Orange Actu. Hôpitaux, écoles, casernes de pompiers — mobilisés en parallèle sur leurs propres revendications après un été marqué par les feux de forêt — et centres des impôts font partie des secteurs les plus concernés. Pour comparaison, la précédente grande mobilisation de la fonction publique, en décembre 2024, avait rassemblé entre 130 000 et 200 000 personnes selon les estimations basses et hautes de l'époque ; plusieurs syndicats disent attendre une participation au moins équivalente cette fois-ci.</p>
+        <h2>Analyse : ce qu'un jour de grève change (et ne change pas) pour les marchés</h2>
+        <p>Sur les marchés financiers, une grève d'un jour dans la fonction publique française, même très suivie, n'a historiquement aucun effet mesurable sur les indices actions : ce n'est ni un choc de production comparable à une grève dans l'industrie ou les transports internationaux, ni une surprise pour des investisseurs qui suivent le calendrier social français depuis des mois. Il ne faut donc pas s'attendre à une réaction du CAC 40 liée à cette seule journée.</p>
+        <p>Le véritable enjeu, pour les marchés obligataires, n'est pas la grève elle-même mais la trajectoire budgétaire dans laquelle elle s'inscrit. Les 2 milliards d'euros attendus du gel du point d'indice ne représentent qu'une fraction du plan d'économies de 54 milliards que le gouvernement doit encore faire adopter par un Parlement sans majorité claire — un exercice dont l'issue, on l'a vu ces dernières semaines, pèse directement sur le coût auquel la France emprunte. Une mesure d'économie qui déclenche une mobilisation sociale d'ampleur nationale est aussi un indicateur politique : elle mesure la difficulté du gouvernement à faire adopter le reste de son budget sans nouvelles concessions, ce qui peut à son tour peser sur la crédibilité de la trajectoire de déficit annoncée.</p>
+        <p>Il existe enfin un paradoxe économique de fond : un gel des salaires vise, par construction, à réduire la dépense publique à court terme, mais il pèse aussi sur le pouvoir d'achat de plusieurs millions de ménages qui consomment — alimentation, équipement, loisirs, automobile. À l'échelle d'une seule mesure de 2 milliards d'euros sur une économie de plus de 3 000 milliards, l'effet sur la consommation nationale reste marginal et difficile à isoler statistiquement ; mais cumulé à sept gels précédents en dix ans, il illustre un arbitrage récurrent entre discipline budgétaire immédiate et soutien à la demande intérieure, un débat que les prochains chiffres de consommation des ménages publiés par l'Insee permettront de suivre plus finement.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p>Si vous n'êtes pas concerné par la fonction publique, l'effet le plus immédiat sera pratique : perturbations possibles sur certaines lignes SNCF et sur le réseau RATP dès la soirée du 28 septembre, fermetures ou effectifs réduits dans certaines écoles, délais probables aux guichets des impôts ou de France Travail. Rien de tout cela ne modifie votre situation financière directement, mais cela peut demander d'anticiper un déplacement, une garde d'enfant ou un rendez-vous administratif.</p>
+        <p>Si vous êtes agent de la fonction publique, le gel du point d'indice signifie qu'aucune revalorisation générale de votre traitement brut n'interviendra en 2027 au titre de ce mécanisme, pour la quatrième année de suite. Cela ne veut pas dire que votre salaire ne peut pas augmenter du tout : les avancements d'échelon, les promotions de grade et certaines primes, souvent regroupés sous le terme de "glissement vieillesse technicité" (GVT), continuent de s'appliquer indépendamment du point d'indice. Mais pour un agent sans changement de grade ni d'échelon dans l'année, l'écart entre son traitement et l'inflation continue mécaniquement de se creuser. Les agents de catégorie C, aux grilles de salaire les plus basses, sont les plus exposés à cet effritement, certains syndicats évoquant un nombre croissant d'agents publics rémunérés à un niveau proche du Smic.</p>
+        <p>Pour les usagers de France Travail en particulier, les revendications portées par les syndicats (arrêt des réorganisations, recrutements en CDI, encadrement de l'intelligence artificielle) concernent surtout les conditions de travail des conseillers, mais peuvent indirectement affecter la disponibilité et la continuité de l'accompagnement des demandeurs d'emploi si les tensions internes se prolongent au-delà de cette seule journée de mobilisation.</p>
+        <h2>Solutions et points de vigilance</h2>
+        <p>Pour la journée du 29 septembre elle-même, le plus simple reste de vérifier la veille au soir les informations trafic de la SNCF et de la RATP avant de vous déplacer, d'anticiper une solution de garde si l'école de vos enfants annonce une fermeture, et de reporter les démarches non urgentes auprès des impôts, de la préfecture ou de France Travail si un rendez-vous n'est pas confirmé.</p>
+        <p>Si vous êtes agent public et que vous souhaitez évaluer l'effet réel du gel sur votre rémunération, mieux vaut regarder votre situation individuelle — échelon, ancienneté, primes — plutôt que le seul point d'indice : c'est la combinaison de ces éléments, et non un chiffre macroéconomique national, qui détermine votre évolution de salaire d'une année sur l'autre. Votre service des ressources humaines ou votre représentant syndical local peut vous indiquer précisément où vous en êtes dans votre grille.</p>
+        <p>Plus largement, ne surinterprétez pas une journée de mobilisation, aussi suivie soit-elle, comme un signal en soi pour vos placements : ce n'est pas cet événement qui doit retenir votre attention, mais le calendrier du vote du budget 2027 au Parlement dans les prochaines semaines, qui déterminera si de nouvelles mesures d'économies ou de nouvelles concessions viennent s'y ajouter.</p>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Orange Actu, grève du 29 septembre : à quoi doit-on s&#x27;attendre pour cette &quot;journée noire&quot; ?, 26 septembre 2026 : <a href="https://actu.orange.fr/france/greve-du-29-septembre-a-quoi-doit-on-s-attendre-pour-cette-journee-noire-magic-CNT000002s7ZVJ.html" target="_blank" rel="noopener noreferrer">https://actu.orange.fr/france/greve-du-29-septembre-a-quoi-doit-on-s-attendre-pour-cette-journee-noire-magic-CNT000002s7ZVJ.html</a></li>
+          <li>Le Journal de l&#x27;Économie, grève du 29 septembre : qui est mobilisé et pourquoi ?, septembre 2026 : <a href="https://www.journaldeleconomie.fr/greve-du-29-septembre-qui-est-mobilise-et-pourquoi/" target="_blank" rel="noopener noreferrer">https://www.journaldeleconomie.fr/greve-du-29-septembre-qui-est-mobilise-et-pourquoi/</a></li>
+          <li>Benjamin Duplaa, grève à France Travail le 29 septembre : les 4 revendications, septembre 2026 : <a href="https://www.benjaminduplaa.com/blog/greve-france-travail-29-septembre" target="_blank" rel="noopener noreferrer">https://www.benjaminduplaa.com/blog/greve-france-travail-29-septembre</a></li>
+          <li>Boursorama (AFP), budget : les fonctionnaires, à nouveau mis à contribution, dénoncent leur &quot;appauvrissement&quot;, 18 septembre 2026 : <a href="https://www.boursorama.com/actualite-economique/actualites/budget-les-fonctionnaires-a-nouveau-mis-a-contribution-denoncent-leur-appauvrissement-3b480a691183954b67882a7b38857a17" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/budget-les-fonctionnaires-a-nouveau-mis-a-contribution-denoncent-leur-appauvrissement-3b480a691183954b67882a7b38857a17</a></li>
+          <li>UNSA Finances, le gouvernement Lecornu fait 2 milliards d&#x27;économie sur le dos des fonctionnaires, septembre 2026 : <a href="https://www.unsafinances.org/le-gouvernement-lecornu-fait-2-milliards-deconomie-sur-le-dos-des-fonctionnaires/" target="_blank" rel="noopener noreferrer">https://www.unsafinances.org/le-gouvernement-lecornu-fait-2-milliards-deconomie-sur-le-dos-des-fonctionnaires/</a></li>
+          <li>CFDT Interco, mobilisation du 29 septembre 2026 : préavis de grève, septembre 2026 : <a href="https://interco.cfdt.fr/mobilisation-du-29-septembre-2026-preavis-de-greve/" target="_blank" rel="noopener noreferrer">https://interco.cfdt.fr/mobilisation-du-29-septembre-2026-preavis-de-greve/</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>

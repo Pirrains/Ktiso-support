@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wall Street ignore un signal qu&#x27;elle n&#x27;avait pas vu depuis 2007 — Ktiso Actualités</title>
+<meta name="description" content="le 25 septembre 2026, le Dow Jones a bondi de 478 points grâce à Microsoft et à l&#x27;IA, tandis que le rendement des obligations américaines à 10 ans grimpait vers 5,2 %, son plus haut niveau depuis 2007, après six semaines de hausse consécutives.">
+<meta property="og:title" content="Wall Street ignore un signal qu&#x27;elle n&#x27;avait pas vu depuis 2007">
+<meta property="og:description" content="le 25 septembre 2026, le Dow Jones a bondi de 478 points grâce à Microsoft et à l&#x27;IA, tandis que le rendement des obligations américaines à 10 ans grimpait vers 5,2 %, son plus haut niveau depuis 2007, après six semaines de hausse consécutives.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-screener.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Bourse<span class="dot-sep">·</span>27 septembre 2026</div>
+      <h1>Wall Street ignore un signal qu'elle n'avait pas vu depuis 2007 : voici ce que ça change pour votre épargne</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <p>Vendredi 25 septembre 2026, le Dow Jones a signé sa meilleure séance depuis des semaines, porté par Microsoft et l'intelligence artificielle. De quoi célébrer. Sauf qu'au même moment, à quelques mètres de là dans les mêmes salles de marché, le taux d'emprunt à 10 ans des Etats-Unis flirtait avec son plus haut niveau depuis 2007 — l'année qui a précédé la crise financière. Un même vendredi, deux marchés, deux histoires qui se contredisent. Et un seul des deux qui, historiquement, a toujours fini par avoir raison.</p>
+        <p>En résumé : le 25 septembre 2026, le Dow Jones a bondi de 478 points grâce à Microsoft et à l'IA, tandis que le rendement des obligations américaines à 10 ans grimpait vers 5,2 %, son plus haut niveau depuis 2007, après six semaines de hausse consécutives.</p>
+        <h2>Contexte : une séance de records sur des bases qui inquiètent</h2>
+        <p>Vendredi, le Dow Jones a gagné 478,64 points (+0,93 %) pour terminer à 51 828,62 points, mettant fin à trois semaines consécutives de baisse. Le S&amp;P 500 a progressé de 0,51 % à 7 743,41 points et le Nasdaq de 0,48 % à 27 068,72 points. Sur l'ensemble de la semaine, le S&amp;P 500 gagne 1,2 % et le Nasdaq environ 2 %, avec un sommet historique atteint dès mardi.</p>
+        <p>Le moteur de la séance a un nom : Microsoft, qui a bondi de 3,7 % (+7 % depuis le début de l'année) après avoir présenté de nouvelles fonctionnalités pour son assistant Copilot, dont un outil de programmation automatisé et un agent IA capable de fonctionner en continu. Dans son sillage, Qualcomm a gagné 4 %, Dell 5 %, et Akamai Technologies 3,2 % après avoir annoncé un contrat de 11,6 milliards de dollars avec Anthropic. Meta Platforms, à l'inverse, a reculé de 3,3 % vendredi malgré une semaine positive portée par l'accueil favorable de son agent IA Muse — signe que les investisseurs commencent à trier les gagnants et les perdants de la ruée vers l'intelligence artificielle plutôt que d'acheter le secteur en bloc.</p>
+        <p>Autre soutien à la séance : le repli du pétrole. Le chef de la diplomatie iranienne, Abbas Araghchi, a déclaré que le détroit d'Ormuz pourrait rouvrir "sous sept jours" si certaines conditions étaient remplies, ce qui a fait reculer le Brent de novembre de 0,21 % à 106,38 dollars le baril — un repli modeste, le baril restant bien au-dessus de 100 dollars.</p>
+        <p>C'est ailleurs que se trouve le vrai sujet de la semaine : sur le marché obligataire américain. Le rendement du bon du Trésor à 10 ans a atteint 5,223 % vendredi, son plus haut niveau depuis 2007, après six semaines de hausse consécutives. Ce taux avait déjà franchi le seuil symbolique de 5 % le 11 septembre, avant d'atteindre un plus haut depuis 2007 à la mi-septembre, dans l'attente de la hausse des taux de la Fed du 17 septembre. Chez BlackRock, le gérant vedette Rick Rieder a résumé la situation comme n'étant "pas une crise, mais un signal d'alerte", reflet de tensions inflationnistes persistantes. Le même jour, l'enquête de confiance des consommateurs de l'université du Michigan est tombée à 48,1, son plus bas niveau en quatre mois (contre 51,7 en août) : sa directrice, Joanne Hsu, a pointé "des prix de l'essence élevés et une nouvelle escalade des tensions commerciales".</p>
+        <p>En Europe, le CAC 40 a terminé quasiment stable vendredi (8 077,80 points, -0,04 %), mais a signé sa première semaine de hausse depuis début août (+0,16 %). Le DAX allemand a gagné 0,51 % et le FTSE 100 britannique 0,14 %. À Paris, Société Générale (+3,49 %), Stellantis (+1,74 %) et Accor (+1,48 %) ont progressé, tandis que Danone (-0,96 %), Airbus (défauts de qualité détectés sur des A321neo) et TotalEnergies (-1,3 %, pénalisé par le repli du pétrole) ont reculé.</p>
+        <h2>Analyse : pourquoi la Bourse fait comme si le marché obligataire n'existait pas</h2>
+        <p>En théorie, une hausse aussi marquée des taux longs devrait peser sur les actions, et en particulier sur les valeurs technologiques : plus le taux sans risque à 10 ans grimpe, plus les profits futurs que ces entreprises promettent aux investisseurs valent moins cher aujourd'hui, une fois actualisés à ce taux plus élevé. C'est exactement le mécanisme qui a fait chuter les marchés en 2022. Or vendredi, il ne s'est rien passé de tel : les indices américains ont grimpé pendant que le 10 ans grimpait aussi.</p>
+        <p>Trois explications se recoupent. D'abord, une partie de la hausse des taux reflète une économie qui tourne, et pas seulement une inquiétude sur l'inflation : les dépenses d'investissement liées à l'intelligence artificielle ont dopé la demande de biens manufacturés en août, ce que les investisseurs actions lisent comme un signal de croissance plutôt que comme un signal de récession. Ensuite, la hausse de taux de la Fed du 17 septembre est déjà connue et intégrée dans les prix : c'est un événement daté, alors que la dérive du marché obligataire — portée par l'ampleur des émissions de dette américaine et par une inflation qui ne redescend pas aussi vite qu'espéré — est un mouvement de fond, plus lent, qui ne fait pas la une du jour de la même façon qu'une décision de politique monétaire. Enfin, l'engouement pour l'IA s'appuie sur des contrats concrets et chiffrés (le partenariat Akamai-Anthropic, les nouvelles fonctions payantes de Copilot), ce qui donne aux investisseurs l'impression de miser sur des revenus tangibles plutôt que sur une simple promesse.</p>
+        <p>Le problème, c'est que ce découplage ne peut pas durer indéfiniment. La formule qui relie taux longs et valorisation des actions ne disparaît pas parce que le marché choisit de la regarder ailleurs : elle est seulement mise en pause, généralement jusqu'à ce que les taux se stabilisent, ou jusqu'à ce qu'un trimestre de résultats déçoive les attentes très élevées déjà intégrées dans le cours des valeurs IA. Le commentaire de Rick Rieder ("pas une crise, mais un signal d'alerte") et la chute de la confiance des ménages américains vont dans le même sens : le terrain se prépare pour une correction, sans qu'on sache encore ni quand, ni ce qui la déclenchera.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p>Le taux à 10 ans américain n'est pas un simple chiffre technique : c'est la référence mondiale du coût de l'argent sans risque, celle à partir de laquelle se calculent, indirectement, les taux des crédits immobiliers américains, le prix des obligations d'entreprises, et la valorisation de la plupart des grands indices boursiers mondiaux — y compris ceux que vous détenez peut-être sans le savoir. Si vous investissez via un fonds indexé sur les actions mondiales (type MSCI World) dans un PEA, une assurance-vie en unités de compte ou un PER, une part importante — souvent supérieure à 60 % — est composée d'actions américaines, largement concentrées sur une poignée de valeurs technologiques liées à l'IA. Votre portefeuille profite donc directement de la séance de vendredi, mais reste exposé au même risque de correction si la hausse des taux se poursuit.</p>
+        <p>Si vous détenez des fonds obligataires ou des fonds euros d'assurance-vie exposés à de la dette internationale, l'effet est à double tranchant : les nouvelles obligations achetées par votre assureur rapportent davantage, mais la valeur de marché de celles déjà en portefeuille, émises à des taux plus bas, diminue mécaniquement quand les taux montent. Ce n'est pas une perte réalisée tant que l'obligation est conservée jusqu'à son échéance, mais cela peut se refléter temporairement sur la valorisation affichée de votre contrat.</p>
+        <p>Sur le crédit immobilier, l'effet direct concerne surtout les emprunteurs américains, dont les taux de prêt à 30 ans suivent de près le 10 ans du Trésor. En France, les taux immobiliers dépendent davantage de la Banque centrale européenne et du coût de la dette française — déjà sous tension pour des raisons politiques distinctes. Mais un marché obligataire américain sous pression a tendance, avec un peu de délai, à tirer vers le haut l'ensemble des taux longs mondiaux, y compris européens.</p>
+        <h2>Solutions et points de vigilance</h2>
+        <p>Ne cédez pas à l'euphorie d'une seule bonne séance : vérifiez la part de votre portefeuille réellement concentrée sur un petit nombre de valeurs technologiques américaines liées à l'IA, en regardant la composition détaillée de vos fonds indiciels plutôt que leur seule performance récente. Une concentration élevée n'est pas nécessairement un problème, mais elle mérite d'être un choix conscient, pas une conséquence ignorée de la pondération automatique des indices mondiaux.</p>
+        <p>Si vous détenez des fonds obligataires ou des fonds euros, renseignez-vous sur leur duration — c'est-à-dire leur sensibilité aux variations de taux : plus elle est élevée, plus la valorisation de votre contrat réagit fortement, dans un sens comme dans l'autre, à un mouvement comme celui observé depuis six semaines aux Etats-Unis.</p>
+        <p>Suivez le calendrier plutôt que les gros titres quotidiens : la prochaine réunion de la Réserve fédérale américaine est prévue les 8 et 9 décembre 2026, et c'est ce rendez-vous, plus qu'une séance record isolée, qui donnera une meilleure indication de la direction que prendront les taux longs dans les mois à venir.</p>
+        <p>Enfin, gardez une marge de sécurité en liquidités plutôt que de miser une épargne dont vous pourriez avoir besoin à court terme sur la poursuite d'une hausse boursière qui repose, pour une bonne partie, sur l'hypothèse que le marché obligataire continuera d'être ignoré.</p>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Reuters (repris par Lufkin Daily News), Wall Street ends higher as investors buy AI stocks; Microsoft rallies, 25 septembre 2026 : <a href="https://lufkindailynews.com/news_reuters/business/wall-street-climbs-as-investors-buy-ai-stocks-microsoft-rallies/article_ffed0813-a2ba-55fb-b96b-b96d90a3db5a.html" target="_blank" rel="noopener noreferrer">https://lufkindailynews.com/news_reuters/business/wall-street-climbs-as-investors-buy-ai-stocks-microsoft-rallies/article_ffed0813-a2ba-55fb-b96b-b96d90a3db5a.html</a></li>
+          <li>BBN Times, Dow Jones Today: Blue Chips Jump 478.64 Points to 51,828.62, Snapping a Three-Week Losing Streak, 25 septembre 2026 : <a href="https://www.bbntimes.com/financial/dow-jones-today-blue-chips-jump-478-64-points-to-51-828-62-snapping-a-three-week-losing-streak" target="_blank" rel="noopener noreferrer">https://www.bbntimes.com/financial/dow-jones-today-blue-chips-jump-478-64-points-to-51-828-62-snapping-a-three-week-losing-streak</a></li>
+          <li>Yahoo Finance, Stock market today: Dow, S&amp;P 500, Nasdaq notch weekly wins as market shrugs off bond sell-off, oil prices ease, 25 septembre 2026 : <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-september-25-dow-sp-500-nasdaq-081738529.html" target="_blank" rel="noopener noreferrer">https://finance.yahoo.com/markets/live/stock-market-today-friday-september-25-dow-sp-500-nasdaq-081738529.html</a></li>
+          <li>CNN Business, 10-year Treasury yield hits 5.1% for first time in 19 years, 23 septembre 2026 : <a href="https://www.cnn.com/2026/09/23/investing/us-bond-market-fed" target="_blank" rel="noopener noreferrer">https://www.cnn.com/2026/09/23/investing/us-bond-market-fed</a></li>
+          <li>CNBC, 10-year Treasury yield hits highest level since 2007 as traders bet a Fed rate hike is coming, 15 septembre 2026 : <a href="https://www.cnbc.com/2026/09/15/10-year-treasury-yield-rises-to-highest-since-2007.html" target="_blank" rel="noopener noreferrer">https://www.cnbc.com/2026/09/15/10-year-treasury-yield-rises-to-highest-since-2007.html</a></li>
+          <li>TradingSat / BFM Bourse, CAC 40 : malgré une séance terne vendredi, le CAC 40 signe sa première semaine de hausse depuis début août, 25 septembre 2026 : <a href="https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-une-seance-terne-vendredi-le-cac-40-signe-sa-premiere-semaine-de-hausse-depuis-debut-aout-1170808.html" target="_blank" rel="noopener noreferrer">https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-une-seance-terne-vendredi-le-cac-40-signe-sa-premiere-semaine-de-hausse-depuis-debut-aout-1170808.html</a></li>
+          <li>Zonebourse, CAC 40 : la Bourse de Paris finit de manière étale, les yeux toujours rivés vers le Moyen-Orient, 25 septembre 2026 : <a href="https://www.zonebourse.com/actualite-bourse/cac-40-la-bourse-de-paris-finit-de-maniere-etale-les-yeux-toujours-rives-vers-le-moyen-orient-ce785adfde80f522" target="_blank" rel="noopener noreferrer">https://www.zonebourse.com/actualite-bourse/cac-40-la-bourse-de-paris-finit-de-maniere-etale-les-yeux-toujours-rives-vers-le-moyen-orient-ce785adfde80f522</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>

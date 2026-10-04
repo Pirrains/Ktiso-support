@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emploi américain — Ktiso Actualités</title>
+<meta name="description" content="Un marché de l&#x27;emploi qui s&#x27;essouffle est une mauvaise nouvelle pour l&#x27;économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.">
+<meta property="og:title" content="Emploi américain">
+<meta property="og:description" content="Un marché de l&#x27;emploi qui s&#x27;essouffle est une mauvaise nouvelle pour l&#x27;économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961; --gold-deep: #8B6F35; --green: #030C22; --green-deep: #030C22;
+    --terracotta: #C1654A; --lime: #A8C66C; --yellow: #E8B347; --blue: #5B8FA8; --blue-deep: #3F6478;
+    --cream: #F4EFE3; --line: rgba(91, 143, 168, 0.28); --zone: var(--blue);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--green-deep); color: var(--cream); font-family: 'DM Mono', monospace; }
+  body {
+    background: radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%), var(--green-deep);
+    background-attachment: fixed; overflow-x: hidden;
+  }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  nav.topnav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 0; padding-top: 28px; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; }
+  nav.topnav a { color: rgba(244, 239, 227, 0.7); text-decoration: none; padding: 4px 7px; border-bottom: 1px solid transparent; transition: color 0.2s ease, border-color 0.2s ease; white-space: nowrap; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+  .zone-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--zone); margin-right: 8px; vertical-align: middle; }
+  .hero { position: relative; min-height: 56vh; min-height: 56svh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 90px 24px 8vh; overflow: hidden; }
+  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+  .hero-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%); }
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream); opacity: 0.95; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+  .hero-content h1 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: clamp(24px, 5.5vw, 36px); line-height: 1.25; color: var(--cream); text-shadow: 0 2px 14px rgba(0,0,0,0.6); }
+  .rule { width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--zone), transparent); margin: 0 auto; }
+  .article-body { padding: 56px 0 24px; }
+  .article-body h2 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(19px, 4vw, 22px); font-weight: 600; color: var(--zone); margin: 44px 0 16px; }
+  .article-body h2:first-child { margin-top: 0; }
+  .article-body p { font-size: 15px; line-height: 1.85; color: rgba(244, 239, 227, 0.82); margin: 0 0 18px; }
+  .article-body .lead { font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(18px, 3.4vw, 21px); line-height: 1.6; color: rgba(244, 239, 227, 0.92); margin: 0 0 8px; }
+  .article-body ul { margin: 0 0 18px; padding-left: 0; list-style: none; }
+  .article-body ul li { font-size: 14.5px; line-height: 1.7; color: rgba(244, 239, 227, 0.78); padding-left: 22px; position: relative; margin-bottom: 12px; }
+  .article-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--terracotta); }
+  .article-body strong { color: var(--cream); }
+  .article-body em { display: block; font-style: italic; font-size: 12.5px; color: rgba(244, 239, 227, 0.4); margin-top: 32px; line-height: 1.6; }
+  .back-link { display: inline-block; margin: 8px 0 0; font-size: 12px; letter-spacing: 0.03em; color: var(--terracotta); text-decoration: none; }
+  .back-link:hover { text-decoration: underline; }
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,239,227,0.4); margin-bottom: 12px; }
+  .sources ol { padding-left: 18px; }
+  .sources li { font-size: 12px; line-height: 1.7; color: rgba(244, 239, 227, 0.45); margin-bottom: 6px; word-break: break-word; }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+  .social-section { padding: 0 0 90px; }
+  .social-card { border: 1px solid var(--line); background: rgba(201, 169, 97, 0.03); border-radius: 2px; padding: 48px 32px; text-align: center; }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: clamp(21px, 4.5vw, 26px); font-weight: 600; color: var(--cream); margin: 0 auto 16px; max-width: 400px; }
+  .social-card p { font-size: 13.5px; line-height: 1.7; color: rgba(244, 239, 227, 0.65); max-width: 380px; margin: 0 auto 28px; }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: 'DM Mono', monospace; font-weight: 500; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; padding: 15px 28px; border-radius: 2px; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease; }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 0; }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-alertes.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Économie<span class="dot-sep">·</span>3 octobre 2026</div>
+      <h1>Emploi américain : la mauvaise nouvelle qui a fait monter la Bourse</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>Vendredi 2 octobre, l'économie américaine n'a créé que 29 000 emplois en septembre, loin des quelque 90 000 attendus. Pourtant, Wall Street a fini en hausse : les investisseurs y ont lu un argument pour que la Fed arrête de relever ses taux. En résumé : un marché de l'emploi qui s'essouffle est une mauvaise nouvelle pour l'économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.</p>
+        <h2>Contexte</h2>
+        <p>Le rapport mensuel sur l'emploi américain, publié le 2 octobre, fait état de <strong>29 000 créations d'emplois non agricoles</strong> en septembre, contre environ <strong>90 000 attendus</strong> par les économistes (la fourchette du consensus se situait entre 84 000 et 95 000 selon Babypips). Le <strong>taux de chômage</strong> remonte à <strong>4,2 %</strong>, contre 4,1 % en août, alors que les analystes tablaient sur une stabilité.</p>
+        <p>Le chiffre d'août a lui aussi été revu en baisse : <strong>133 000 emplois</strong> au lieu de 162 000 annoncés initialement. Autrement dit, la tendance récente est moins solide qu'on ne le pensait il y a quelques semaines.</p>
+        <p>La réaction des marchés a été immédiate. Selon Boursorama, Wall Street a terminé la séance en hausse (Dow Jones +0,49 %, Nasdaq +1,19 %) et les contrats à terme sur le CAC 40 progressaient d'environ 1 % en soirée. Le rendement des obligations américaines à 10 ans a reculé d'environ 6 points de base, vers 5,18 % (Babypips), et l'euro a gagné du terrain face au dollar, autour de 1,125 à 1,128 dollar.</p>
+        <p>Ce contexte compte : la Fed a relevé ses taux le 16 septembre, une première depuis 2023, dans un environnement où l'inflation est repartie à la hausse. En France, l'Insee a publié le 30 septembre une inflation de <strong>3 % sur un an</strong> en septembre (contre 2,4 % en août), tirée par l'énergie (+21,2 % sur un an) après le blocage du détroit d'Ormuz.</p>
+        <h2>Analyse fondamentale et technique</h2>
+        <p><strong>Pourquoi une mauvaise nouvelle devient une bonne nouvelle.</strong> Depuis plusieurs semaines, la variable qui dicte les marchés est le prix de l'argent : plus les taux montent, plus les obligations rapportent et plus les actions, surtout les valeurs de croissance, sont pénalisées. Un emploi qui ralentit réduit la pression sur les salaires et donc sur l'inflation. Les investisseurs en déduisent que la Fed peut temporiser, d'où le recul du rendement à 10 ans et la hausse du Nasdaq, très sensible aux taux.</p>
+        <p><strong>Le risque derrière le soulagement.</strong> Ce raisonnement a une limite. Un marché de l'emploi qui se grippe annonce aussi une demande plus faible, donc des bénéfices d'entreprises sous pression. Si les créations d'emplois restent faibles alors que l'inflation reste élevée, les États-Unis se retrouveraient face à ce que les économistes appellent la stagflation : une croissance molle avec des prix qui montent. La Fed aurait alors deux objectifs contradictoires, soutenir l'emploi ou freiner les prix.</p>
+        <p><strong>Lecture technique.</strong> Avec un rendement à 10 ans américain autour de 5,2 %, soit près de ses sommets récents (un pic à 5,34 % a été atteint le 1er octobre), le repli de vendredi reste modeste. Tant que ce niveau n'est pas durablement cassé à la baisse, il serait prématuré de parler de retournement. L'indice de volatilité VIX, à 15,31 en clôture selon Boursorama, indique un marché plutôt calme, voire confiant, ce qui laisse peu de marge si les prochaines données déçoivent.</p>
+        <p><strong>Pour l'Europe.</strong> Un dollar plus faible et des taux américains en recul allègent la pression sur la BCE et sur les rendements européens. Mais l'inflation française à 3 % limite la marge de manœuvre : la détente venue des États-Unis ne règle pas le problème énergétique.</p>
+        <h2>Impact concret pour les particuliers</h2>
+        <p><strong>Vos placements.</strong> Si vous détenez des actions, notamment des ETF sur le Nasdaq ou le S&amp;P 500, la hausse de vendredi vous a profité, mais elle repose sur une hypothèse (la Fed ralentit) et non sur de bons résultats d'entreprises. Le <strong>rendement à 10 ans</strong> est ce que rapporte un État qui emprunte à 10 ans : quand il baisse, les obligations déjà émises voient leur prix monter.</p>
+        <p><strong>Votre pouvoir d'achat.</strong> Une inflation à 3 % signifie que 100 € de dépenses en septembre 2025 coûtent environ 103 € aujourd'hui. Un compte courant ou un livret dont le taux est inférieur à 3 % perd donc du pouvoir d'achat réel. L'énergie (+21,2 % sur un an) pèse sur les factures de chauffage et les carburants.</p>
+        <p><strong>Votre crédit.</strong> Si les taux américains cessent de monter, la pression sur les taux de crédit immobilier en Europe peut se stabiliser, mais pas forcément baisser : ils dépendent surtout du rendement de l'État français, aujourd'hui proche de 4,9 % à 10 ans.</p>
+        <p><strong>Le dollar.</strong> Si vous investissez en actifs américains depuis la zone euro, un euro plus fort réduit mécaniquement la valeur de vos placements en dollars une fois convertis.</p>
+        <h2>Solutions</h2>
+        <ul>
+          <li><strong>Ne pas réagir à une seule séance.</strong> Un rapport mensuel est souvent révisé ; attendez la tendance sur plusieurs mois avant de modifier votre allocation.</li>
+          <li><strong>Diversifier entre actions, obligations et liquidités.</strong> Un portefeuille équilibré encaisse mieux un scénario de stagflation qu'un portefeuille concentré sur la technologie.</li>
+          <li><strong>Comparer vos placements à l'inflation.</strong> Si votre épargne de précaution rapporte moins de 3 %, regardez les alternatives sûres (Livret A, fonds euros, obligations d'État courtes) en tenant compte de leurs plafonds et de leur fiscalité.</li>
+          <li><strong>Surveiller les dates clés.</strong> Prochaines décisions de la Fed et de la BCE, ainsi que le prochain rapport sur l'emploi américain, début novembre.</li>
+        </ul>
+        <em>Cet article est fourni à titre informatif et éducatif et ne constitue pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>ABC Bourse, 02/10/2026 (emplois septembre 29 000 vs 90 000 attendus, chômage 4,2 %, révision d&#x27;août) : <a href="https://www.abcbourse.com/marches/newsContent/703634" target="_blank" rel="noopener noreferrer">https://www.abcbourse.com/marches/newsContent/703634</a></li>
+          <li>Boursorama, 02/10/2026 (chute surprise des créations d&#x27;emplois, 29 000) : <a href="https://www.boursorama.com/bourse/actualites/etats-unis-chute-surprise-des-creations-d-emplois-en-septembre-9609cbbd5078f9ee6db16a7b69c1c9f2" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/bourse/actualites/etats-unis-chute-surprise-des-creations-d-emplois-en-septembre-9609cbbd5078f9ee6db16a7b69c1c9f2</a></li>
+          <li>Babypips, 02/10/2026 (consensus 84 000-95 000, rendement 10 ans US ≈ 5,18 %, probabilité de statu quo de la Fed) : <a href="https://www.babypips.com/news/headline-us-jobs-report-september-2026-payrolls-miss-fed-hike-odds" target="_blank" rel="noopener noreferrer">https://www.babypips.com/news/headline-us-jobs-report-september-2026-payrolls-miss-fed-hike-odds</a></li>
+          <li>Boursorama, 02/10/2026 22:33 (Wall Street termine en hausse, l&#x27;emploi plaide pour un statu quo de la Fed) : <a href="https://www.boursorama.com/bourse/actualites/wall-street-termine-en-hausse-l-emploi-plaide-pour-un-statu-quo-de-la-fed-3b772901e8a28a56c32c380a9e973f46" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/bourse/actualites/wall-street-termine-en-hausse-l-emploi-plaide-pour-un-statu-quo-de-la-fed-3b772901e8a28a56c32c380a9e973f46</a></li>
+          <li>Boursedirect / AFP, 30/09/2026 (inflation France 3 % en septembre selon l&#x27;Insee, énergie +21,2 %) : <a href="https://www.boursedirect.fr/fr/actualites/categorie/economie/france-l-inflation-grimpe-a-3-sur-un-an-en-septembre-selon-l-insee-afp-d8d0b340fb58d996b1a6fc3b19d689cd3f56260f" target="_blank" rel="noopener noreferrer">https://www.boursedirect.fr/fr/actualites/categorie/economie/france-l-inflation-grimpe-a-3-sur-un-an-en-septembre-selon-l-insee-afp-d8d0b340fb58d996b1a6fc3b19d689cd3f56260f</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>

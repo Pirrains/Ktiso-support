@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pourquoi Lecornu a lâché « le réel nous rattrape » avant son budget — Ktiso Actualités</title>
+<meta name="description" content="le 30 septembre 2026, veille de la présentation du budget 2027, le taux français à 10 ans a dépassé 4,8 %, un sommet depuis 2008. Lecornu y voit la preuve que l&#x27;effort de 54 milliards d&#x27;euros n&#x27;est pas négociable.">
+<meta property="og:title" content="Pourquoi Lecornu a lâché « le réel nous rattrape » avant son budget">
+<meta property="og:description" content="le 30 septembre 2026, veille de la présentation du budget 2027, le taux français à 10 ans a dépassé 4,8 %, un sommet depuis 2008. Lecornu y voit la preuve que l&#x27;effort de 54 milliards d&#x27;euros n&#x27;est pas négociable.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #030C22;
+    --green-deep: #030C22;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --yellow: #E8B347;
+    --blue: #5B8FA8;
+    --blue-deep: #3F6478;
+    --cream: #F4EFE3;
+    --line: rgba(91, 143, 168, 0.28);
+    --zone: var(--blue);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DM Mono', monospace;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%),
+      var(--green-deep);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav.topnav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.7);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--zone); border-bottom-color: var(--zone); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.35); }
+
+  .zone-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--zone);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 56vh;
+    min-height: 56svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 90px 24px 8vh;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  .hero-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 560px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.95;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  }
+
+  .hero-content .dot-sep { color: rgba(244,239,227,0.4); }
+
+  .hero-content h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 5.5vw, 36px);
+    line-height: 1.25;
+    color: var(--cream);
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--zone), transparent);
+    margin: 0 auto;
+  }
+
+  .article-body { padding: 56px 0 24px; }
+
+  .article-body h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(19px, 4vw, 22px);
+    font-weight: 600;
+    color: var(--zone);
+    margin: 44px 0 16px;
+  }
+
+  .article-body h2:first-child { margin-top: 0; }
+
+  .article-body p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(244, 239, 227, 0.82);
+    margin: 0 0 18px;
+  }
+
+  .article-body .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3.4vw, 21px);
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.92);
+    margin: 0 0 8px;
+  }
+
+  .article-body ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-body ul li {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .article-body ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .article-body strong { color: var(--cream); }
+
+  .article-body em {
+    display: block;
+    font-style: italic;
+    font-size: 12.5px;
+    color: rgba(244, 239, 227, 0.4);
+    margin-top: 32px;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin: 8px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .sources { padding: 24px 0 72px; border-top: 1px solid var(--line); margin-top: 24px; }
+  .sources .section-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,227,0.4);
+    margin-bottom: 12px;
+  }
+  .sources ol { padding-left: 18px; }
+  .sources li {
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.45);
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+  .sources a { color: rgba(244, 239, 227, 0.5); text-decoration: underline; text-decoration-color: rgba(244,239,227,0.2); }
+  .sources a:hover { color: var(--zone); }
+
+  .social-section { padding: 0 0 90px; }
+  .social-card {
+    border: 1px solid var(--line);
+    background: rgba(201, 169, 97, 0.03);
+    border-radius: 2px;
+    padding: 48px 32px;
+    text-align: center;
+  }
+  .social-card .section-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: flex; justify-content: center; margin-bottom: 14px; }
+  .social-card h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 0 auto 16px;
+    max-width: 400px;
+  }
+  .social-card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.65);
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border-radius: 2px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .btn-primary { background: var(--gold); color: var(--green-deep); box-shadow: 0 8px 24px rgba(201, 169, 97, 0.18); }
+  .btn-primary:hover { background: #DCC07E; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201, 169, 97, 0.28); }
+  .btn-secondary { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--zone); color: var(--zone); transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--zone); outline-offset: 3px; }
+
+  footer { text-align: center; padding: 0 24px 56px; }
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
+  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
+  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="actu-politique.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Politique<span class="dot-sep">·</span>1 octobre 2026</div>
+      <h1>Pourquoi Lecornu a lâché « le réel nous rattrape » avant son budget</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+        <h2>Problématique</h2>
+        <p>Le Premier ministre a choisi la veille de la présentation de son budget pour lâcher une phrase inhabituelle dans la bouche d'un chef de gouvernement : « le réel nous rattrape ». Derrière ces quatre mots, un chiffre que les marchés ont fait grimper sous ses yeux : ce que la France paie pour emprunter. Avant même que le texte soit déposé, la facture de la dette est devenue l'argument central du budget 2027.</p>
+        <p>En résumé : le 30 septembre 2026, veille de la présentation du budget 2027, le taux français à 10 ans a dépassé 4,8 %, un sommet depuis 2008. Lecornu y voit la preuve que l'effort de 54 milliards d'euros n'est pas négociable.</p>
+        <h2>Contexte : un taux d'emprunt à son plus haut depuis 2008</h2>
+        <p>Le 30 septembre 2026, le rendement de l'obligation française à 10 ans (l'OAT) a dépassé 4,8 % pour la première fois depuis la crise financière de 2008, contre environ 3,5 % un an plus tôt. L'écart avec le Bund allemand, la référence que les marchés utilisent pour mesurer la confiance accordée à un pays, s'approchait de 1,20 point, son niveau le plus élevé depuis 2012. Plusieurs médias attribuent cette hausse à la fois aux tensions sur l'énergie et à l'incertitude politique à l'approche de la présidentielle.</p>
+        <p>C'est dans ce contexte que Sébastien Lecornu a déclaré : « le réel nous rattrape », en ajoutant que cette réalité « s'impose à tous », y compris aux futurs candidats à l'élection présidentielle. Il a résumé l'enjeu ainsi : plus d'intérêts à payer, c'est moins de ressources pour les priorités du pays. D'après les dépêches reprises par plusieurs médias, la charge annuelle de la dette atteint environ 80 milliards d'euros.</p>
+        <p>Les chiffres du budget qui en découlent sont les suivants. Le déficit public a atteint 5,4 % du PIB en 2026, contre un objectif de 5 %, et le gouvernement vise de nouveau 5 % en 2027, grâce à un effort de 54 milliards d'euros. Le projet de loi de finances et celui de financement de la Sécurité sociale sont présentés en Conseil des ministres ce 1er octobre 2026, avant l'examen par le Parlement à l'automne. Le Premier ministre s'est engagé à ne pas recourir à l'article 49.3, sauf en cas d'obstruction.</p>
+        <p>Plusieurs mesures détaillées dans la presse concernent directement les ménages :</p>
+        <ul>
+          <li><strong>Retraites</strong> : aucune pension ne serait baissée en valeur nominale, mais les pensions supérieures à 1 260 euros bruts par mois ne seraient plus pleinement indexées sur l'inflation. La contribution des retraités resterait, selon le Premier ministre, inférieure à 6 milliards d'euros.</li>
+          <li><strong>Fonction publique</strong> : gel du point d'indice, avec des négociations promises pour protéger les plus bas salaires.</li>
+          <li><strong>Prestations</strong> : la prime d'activité ne serait pas indexée sur l'inflation, une taxe sur les produits sucrés est envisagée (environ 200 millions d'euros attendus) et un gel partiel des aides au logement est à l'étude. Les minima vieillesse, le RSA et les allocations handicap seraient épargnés.</li>
+          <li><strong>Sécurité sociale</strong> : un objectif de réduction du déficit d'environ moitié d'ici 2027, avec 5,5 milliards d'euros d'économies.</li>
+        </ul>
+        <h2>Analyse : pourquoi un taux élevé rend le budget plus difficile à tenir</h2>
+        <p>Pour un État, emprunter plus cher produit un cercle vicieux. Chaque nouvelle dette émise coûte plus que celle qu'elle remplace, ce qui augmente la charge d'intérêts, donc le déficit, donc le besoin d'emprunter. C'est exactement ce que Lecornu a décrit : à 80 milliards d'euros par an environ, les intérêts rivalisent avec des budgets de ministères entiers. Plus le taux monte, plus l'effort d'économies nécessaire pour simplement stabiliser le déficit augmente, avant même de financer la moindre priorité.</p>
+        <p>Du côté des marchés, la lecture se fait en deux temps. Le premier est la crédibilité : un déficit de 5,4 % en 2026 alors que l'objectif était de 5 % donne aux investisseurs une raison de douter de la trajectoire de 2027. Le second est le risque politique : le budget doit passer dans une Assemblée fragmentée, et l'incertitude sur son adoption reste intégrée dans le prix de la dette, comme le montre l'écart avec l'Allemagne, au plus haut depuis 2012. Le message du Premier ministre, en insistant sur les contraintes qui pèsent sur tous les camps, vise précisément à désamorcer un nouvel épisode de censure : si les marchés sanctionnent l'instabilité, le coût se répercute sur tout le monde.</p>
+        <p>Il faut toutefois rester prudent sur l'interprétation. Un taux à 4,8 % reste un niveau que la France a déjà connu avant 2008, et les mêmes sources soulignent que la hausse récente tient aussi à des facteurs extérieurs (énergie, politique monétaire), pas uniquement aux choix budgétaires français. Le budget présenté ce jeudi est un projet, pas une loi : les seuils et les montants peuvent encore changer au cours du débat parlementaire.</p>
+        <h2>Ce que ça change concrètement pour vous</h2>
+        <p><strong>Si vous êtes retraité.</strong> Le mécanisme envisagé s'appelle la désindexation : au lieu d'augmenter la pension du niveau de l'inflation, on l'augmente de moins, voire pas du tout. D'après les informations publiées, les seuils discutés sont de 1 260 euros bruts par mois (en dessous, la pension suivrait l'inflation) et de 2 034 euros bruts (au-dessus, elle serait gelée), avec une revalorisation partielle entre les deux, dont le taux serait fixé par décret. Ces seuils s'appliqueraient à l'ensemble des retraites perçues (base, complémentaire et réversion), et non à une seule caisse. Ils ne sont pas définitifs. Concrètement, votre pension ne baisse pas, mais son pouvoir d'achat peut reculer si les prix augmentent plus vite qu'elle.</p>
+        <p><strong>Si vous empruntez ou comptez emprunter.</strong> Le taux de l'État sert de référence indirecte aux banques pour fixer les taux des crédits à long terme, dont les crédits immobiliers à taux fixe. Une hausse durable des taux publics peut donc se traduire, avec un délai et selon les banques, par des offres de crédit plus chères. Ce n'est pas automatique, mais c'est la direction du risque.</p>
+        <p><strong>Si vous épargnez.</strong> Votre assurance-vie en fonds euros détient en grande partie de la dette d'État. Des taux plus élevés améliorent le rendement des obligations nouvellement achetées par votre assureur, mais peuvent faire baisser temporairement la valeur de celles qu'il détient déjà. Sur la fiscalité de l'épargne, aucune décision définitive n'est actée à ce stade : plusieurs pistes (PEA, assurance-vie, prélèvement forfaitaire) sont évoquées dans le débat public, mais restent des hypothèses tant que le Parlement n'a pas voté.</p>
+        <p><strong>Si vous êtes fonctionnaire ou allocataire.</strong> Le gel du point d'indice et la non-indexation de la prime d'activité reviennent à une perte de pouvoir d'achat si l'inflation se maintient, le principe étant le même que pour les pensions.</p>
+        <h2>Solutions et points de vigilance</h2>
+        <p>Pour suivre l'essentiel, retenez le calendrier : présentation en Conseil des ministres le 1er octobre, débat parlementaire à partir de la mi-octobre, vote définitif attendu en fin d'année. D'ici là, les seuils et les montants cités dans la presse peuvent évoluer.</p>
+        <p>Si vous êtes retraité, vérifiez le montant brut de l'ensemble de vos pensions (il figure sur vos relevés de caisses) et situez-le par rapport aux seuils discutés, sans anticiper une décision qui n'est pas prise. Si vous préparez un crédit, comparer plusieurs offres et faire jouer la concurrence entre banques reste le meilleur moyen de limiter l'effet d'une hausse des taux, et la durée de validité d'une offre de prêt peut permettre de figer un taux pendant quelques semaines. Si vous avez de l'assurance-vie, un rendement de fonds euros plus élevé à terme n'est pas une raison d'arbitrer en urgence : l'important est de connaître la part de dette publique dans vos placements.</p>
+        <p>Enfin, méfiez-vous des titres alarmistes qui annoncent déjà « la crise de la dette » ou « la fin de vos retraites » : les faits établis à ce jour sont un taux au plus haut depuis 2008, un projet de budget en cours de présentation et des mesures qui restent à voter.</p>
+        <em>Cet article a un but informatif et éducatif ; il ne constitue pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+          <li>Investir, record de 4,8 % du taux français à 10 ans, le gouvernement sonne l&#x27;alarme, 30 septembre 2026 : <a href="https://www.investirmag.fr/record-de-48-du-taux-francais-a-10-ans-le-gouvernement-sonne-lalarme/" target="_blank" rel="noopener noreferrer">https://www.investirmag.fr/record-de-48-du-taux-francais-a-10-ans-le-gouvernement-sonne-lalarme/</a></li>
+          <li>Sud Radio, Lecornu agite le chiffon rouge d&#x27;une crise financière avant un budget de redressement, 30 septembre 2026 : <a href="https://www.sudradio.fr/societe/lecornu-agite-le-chiffon-rouge-dune-crise-financiere-avant-un-budget-de-redressement-3" target="_blank" rel="noopener noreferrer">https://www.sudradio.fr/societe/lecornu-agite-le-chiffon-rouge-dune-crise-financiere-avant-un-budget-de-redressement-3</a></li>
+          <li>Yahoo Finance France, Lecornu agite le chiffon rouge d&#x27;une crise financière, 30 septembre 2026 : <a href="https://fr.finance.yahoo.com/actualites/lecornu-agite-chiffon-rouge-dune-111233269.html" target="_blank" rel="noopener noreferrer">https://fr.finance.yahoo.com/actualites/lecornu-agite-chiffon-rouge-dune-111233269.html</a></li>
+          <li>Boursorama, le réel nous rattrape : la France n&#x27;a jamais emprunté pour aussi cher, 30 septembre 2026 : <a href="https://www.boursorama.com/actualite-economique/actualites/le-reel-nous-rattrape-la-france-n-a-jamais-emprunte-pour-aussi-cher-lecornu-sonne-l-alerte-face-a-une-realite-qui-s-impose-a-tous-e884d88d80161afadb643ac0cc3406c1" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/le-reel-nous-rattrape-la-france-n-a-jamais-emprunte-pour-aussi-cher-lecornu-sonne-l-alerte-face-a-une-realite-qui-s-impose-a-tous-e884d88d80161afadb643ac0cc3406c1</a></li>
+          <li>Boursorama, le gouvernement lève le voile sur son budget 2027, sous la pression des marchés, 1er octobre 2026 : <a href="https://www.boursorama.com/actualite-economique/actualites/le-gouvernement-leve-le-voile-sur-son-budget-2027-sous-la-pression-des-marches-dd687555d1c017fb107b5763012cd964" target="_blank" rel="noopener noreferrer">https://www.boursorama.com/actualite-economique/actualites/le-gouvernement-leve-le-voile-sur-son-budget-2027-sous-la-pression-des-marches-dd687555d1c017fb107b5763012cd964</a></li>
+          <li>Investir, Lecornu dévoile les mesures d&#x27;économies pour le budget de l&#x27;État 2027, septembre 2026 : <a href="https://www.investirmag.fr/lecornu-devoile-les-mesures-deconomies-pour-le-budget-de-letat-2027/" target="_blank" rel="noopener noreferrer">https://www.investirmag.fr/lecornu-devoile-les-mesures-deconomies-pour-le-budget-de-letat-2027/</a></li>
+          <li>MoneyVox, retraites désindexées en 2027 : les seuils s&#x27;entendent-ils brut ou net ?, septembre 2026 : <a href="https://www.moneyvox.fr/retraite/actualites/110554/retraites-desindexees-en-2027-les-seuils-s-entendent-brut-ou-net" target="_blank" rel="noopener noreferrer">https://www.moneyvox.fr/retraite/actualites/110554/retraites-desindexees-en-2027-les-seuils-s-entendent-brut-ou-net</a></li>
+          <li>Refrance, budget 2027 : 54 milliards d&#x27;effort, une épargne des Français épargnée mais sous surveillance, septembre 2026 : <a href="https://refrance.fr/budget-2027-54-milliards-deffort-une-epargne-des-francais-epargnee-mais-sous-surveillance/" target="_blank" rel="noopener noreferrer">https://refrance.fr/budget-2027-54-milliards-deffort-une-epargne-des-francais-epargnee-mais-sous-surveillance/</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a>
+      <span class="sep">·</span>
+      <a href="a-propos.html">À propos</a>
+      <span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a>
+      <span class="sep">·</span>
+      <a href="outils.html">Outils</a>
+      <span class="sep">·</span>
+      <a href="application.html">Application</a>
+      <span class="sep">·</span>
+      <a href="contenus.html">Contenus</a>
+      <span class="sep">·</span>
+      <a href="index.html">Support</a>
+      <span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a>
+      <span class="sep">·</span>
+      <a href="cgu.html">CGU</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>
