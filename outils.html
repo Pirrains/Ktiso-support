@@ -298,7 +298,8 @@
 
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: minmax(0, 340px);
+    justify-content: center;
     gap: 18px;
     margin-top: 8px;
   }
@@ -560,8 +561,8 @@
     <section>
       <div class="pricing-card">
         <div class="section-label" style="color: var(--blue);">Tarifs</div>
-        <h2>Un abonnement, à votre rythme</h2>
-        <p>Trois formules, du strict nécessaire à l'accès complet — sans engagement.</p>
+        <h2>Pour commencer</h2>
+        <p>Une formule gratuite, sans engagement.</p>
       </div>
 
       <div class="pricing-grid">
@@ -574,28 +575,6 @@
             <li>Tableau de bord principal</li>
           </ul>
           <a class="btn btn-secondary" href="espace-abonne.html?action=signup">Créer votre compte</a>
-        </div>
-
-        <div class="pricing-tier">
-          <div class="tier-name">Essentiel</div>
-          <div class="tier-price">4,90 €<span>/mois</span></div>
-          <ul class="tier-features">
-            <li>Comparateur de fonds</li>
-            <li>Outil immobilier</li>
-            <li>Suivi des investissements</li>
-            <li>+ 1 nouveau personnage débloqué dans l'application</li>
-          </ul>
-          <a class="btn btn-secondary" href="espace-abonne.html?action=signup">Choisir cette offre</a>
-        </div>
-
-        <div class="pricing-tier featured">
-          <div class="tier-name">Complet</div>
-          <div class="tier-price">12,90 €<span>/mois</span></div>
-          <ul class="tier-features">
-            <li>Tous les outils disponibles</li>
-            <li>+ une zone secrète débloquée dans l'application</li>
-          </ul>
-          <a class="btn btn-primary" href="espace-abonne.html?action=signup">Choisir cette offre</a>
         </div>
       </div>
     </section>
