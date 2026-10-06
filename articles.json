@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Crypto",
+      "title": "Bitget s'est fait voler 388 millions : et si c'était votre plateforme ?",
+      "excerpt": "Le 24 septembre 2026, des pirates ont vidé environ 388 millions de dollars de la plateforme Bitget. Les clients n'ont rien perdu grâce à un fonds de protection, mais l'argent volé a quasiment disparu. Que se passe-t-il quand le filet ne tient pas ?",
+      "auteur": "Ktiso",
+      "date": "5 octobre 2026",
+      "href": "2026-10-05-0935-crypto-bitget-piratage-388-millions-fonds-protection.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Le rival oublié qui vient de faire trembler les stars de l'IA",
       "excerpt": "Les investisseurs ont soudain vu naître un concurrent là où ils pariaient sur un duopole protégé. Le marché a-t-il surréagi, ou ce pari sur l'IA était-il devenu trop confortable ?",
@@ -63,15 +72,6 @@
       "date": "28 septembre 2026",
       "href": "2026-09-28-0935-economie-greve-fonctionnaires-point-indice.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Wall Street ignore un signal qu'elle n'avait pas vu depuis 2007 : voici ce que ça change pour votre épargne",
-      "excerpt": "Le 25 septembre 2026, le Dow Jones a bondi de 478 points grâce à Microsoft et à l'IA, tandis que le rendement des obligations américaines à 10 ans grimpait vers 5,2 %, son plus haut niveau depuis 2007, après six semaines de hausse consécutives.",
-      "auteur": "Ktiso",
-      "date": "27 septembre 2026",
-      "href": "2026-09-27-0935-bourse-wall-street-record-rendement-obligations.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
