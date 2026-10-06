@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Et si la France n'avait pas de budget le 1er janvier ?",
+      "excerpt": "Si aucun budget n'est adopté d'ici fin décembre, la France bascule dans un régime d'exception qui ne bloque pas vos impôts, mais qui peut peser sur le coût de la dette et sur votre pouvoir d'achat.",
+      "auteur": "Ktiso",
+      "date": "6 octobre 2026",
+      "href": "2026-10-06-0935-politique-budget-2027-sans-budget-loi-speciale-ps.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Bitget s'est fait voler 388 millions : et si c'était votre plateforme ?",
       "excerpt": "Le 24 septembre 2026, des pirates ont vidé environ 388 millions de dollars de la plateforme Bitget. Les clients n'ont rien perdu grâce à un fonds de protection, mais l'argent volé a quasiment disparu. Que se passe-t-il quand le filet ne tient pas ?",
@@ -63,15 +72,6 @@
       "date": "29 septembre 2026",
       "href": "2026-09-29-0935-corporate-shein-resultats-bourse-hong-kong.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Demain, une partie de la France s'arrête : voici ce que Bercy espère y gagner",
-      "excerpt": "Huit syndicats de la fonction publique et les dix syndicats de France Travail appellent à la grève le 29 septembre 2026 contre le gel du point d'indice, un quatrième gel consécutif qui doit rapporter environ 2 milliards d'euros au budget 2027.",
-      "auteur": "Ktiso",
-      "date": "28 septembre 2026",
-      "href": "2026-09-28-0935-economie-greve-fonctionnaires-point-indice.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
