@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Le chiffre que Google a gardé secret dans son pari nucléaire",
+      "excerpt": "Wall Street a signé un record le 6 octobre malgré un taux américain à 5,3 %, et Constellation Energy a bondi d'environ 12 % grâce à un contrat nucléaire de 20 ans avec Google. Le prix du contrat, lui, n'a pas été publié.",
+      "auteur": "Ktiso",
+      "date": "7 octobre 2026",
+      "href": "2026-10-07-0935-bourse-wall-street-record-google-nucleaire-constellation.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Politique",
       "title": "Et si la France n'avait pas de budget le 1er janvier ?",
       "excerpt": "Si aucun budget n'est adopté d'ici fin décembre, la France bascule dans un régime d'exception qui ne bloque pas vos impôts, mais qui peut peser sur le coût de la dette et sur votre pouvoir d'achat.",
@@ -63,15 +72,6 @@
       "date": "30 septembre 2026",
       "href": "2026-09-30-0935-crypto-bitcoin-etf-flux-record-prix-stagne.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Shein a perdu la moitié de ses profits : ce que ça annonce pour vos petits prix",
-      "excerpt": "Le 28 septembre 2026, Shein a annoncé un bénéfice opérationnel ajusté divisé par deux au premier semestre, moins d'un mois après son entrée en Bourse à Hong Kong. Son action a perdu plus de 11 % le lendemain.",
-      "auteur": "Ktiso",
-      "date": "29 septembre 2026",
-      "href": "2026-09-29-0935-corporate-shein-resultats-bourse-hong-kong.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
