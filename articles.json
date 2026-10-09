@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Starbucks veut-il racheter l'ancienne entreprise de son patron ?",
+      "excerpt": "Selon le Financial Times, Starbucks a étudié avec des conseillers une offre sur Chipotle, valorisée plus de 41 milliards de dollars. Aucune offre n'est confirmée, mais Chipotle a bondi d'environ 7 % et Starbucks a reculé.",
+      "auteur": "Ktiso",
+      "date": "9 octobre 2026",
+      "href": "2026-10-09-0935-corporate-starbucks-chipotle-rachat-ft.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "La Fed vous prévient : ce n'est pas fini",
       "excerpt": "La banque centrale américaine prévient que son cycle de hausses n'est pas terminé, alors que les marchés n'y croient qu'à moitié et que le taux américain à 10 ans a touché son plus haut depuis 2002.",
@@ -63,15 +72,6 @@
       "date": "2 octobre 2026",
       "href": "2026-10-02-0935-bourse-banques-francaises-taux-cac40-chute.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Pourquoi Lecornu a lâché « le réel nous rattrape » avant son budget",
-      "excerpt": "Le 30 septembre 2026, veille de la présentation du budget 2027, le taux français à 10 ans a dépassé 4,8 %, un sommet depuis 2008. Lecornu y voit la preuve que l'effort de 54 milliards d'euros n'est pas négociable.",
-      "auteur": "Ktiso",
-      "date": "1 octobre 2026",
-      "href": "2026-10-01-0935-politique-budget-2027-taux-record-lecornu-reel.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
