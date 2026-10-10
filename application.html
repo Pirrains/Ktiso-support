@@ -342,6 +342,138 @@
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
   }
+
+  /* ============ CAPTURES DE L'APPLICATION ============ */
+
+  .showcase, .duo, .progress-grid {
+    width: min(980px, calc(100vw - 32px));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .phone {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 7px;
+    border-radius: 36px;
+    background: linear-gradient(145deg, #2d323d, #0a0d13);
+    box-shadow:
+      0 0 0 1px var(--zone-line),
+      0 30px 60px rgba(0, 0, 0, 0.55),
+      0 0 60px rgba(232, 179, 71, 0.10);
+  }
+
+  .phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 29px;
+  }
+
+  .phone-cap {
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.55);
+    text-align: center;
+  }
+
+  /* Trois téléphones en éventail */
+  .showcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 44px;
+    margin-bottom: 20px;
+  }
+  .showcase .phone { width: 200px; }
+  .showcase .phone-main { width: 250px; z-index: 2; box-shadow: 0 0 0 1px rgba(232,179,71,0.5), 0 40px 80px rgba(0,0,0,0.6), 0 0 90px rgba(232,179,71,0.18); }
+  .showcase .phone-left  { transform: translateY(26px) rotate(-5deg); margin-right: -22px; }
+  .showcase .phone-right { transform: translateY(26px) rotate(5deg);  margin-left: -22px; }
+
+  .showcase-caption { margin: 34px auto 0; max-width: 420px; font-size: 14.5px; line-height: 1.7; color: rgba(244, 239, 227, 0.7); }
+
+  /* Deux téléphones côte à côte */
+  .duo {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 40px;
+  }
+  .duo figure { width: 210px; }
+  .duo figure:nth-child(2) { margin-top: 44px; }
+
+  .facts {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    margin: 38px auto 0;
+    flex-wrap: wrap;
+  }
+  .facts div { text-align: center; }
+  .facts strong { display: block; font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 30px; color: var(--yellow); line-height: 1.1; }
+  .facts span { font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(244, 239, 227, 0.5); }
+
+  /* Progression : un téléphone + trois atouts */
+  .progress-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 760px;
+    margin-top: 44px;
+    text-align: left;
+  }
+  .pillars { display: flex; flex-direction: column; gap: 14px; }
+  .pillar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(201, 169, 97, 0.04);
+  }
+  .pillar img { width: 46px; height: 46px; object-fit: contain; flex: 0 0 auto; }
+  .pillar h3 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 17px; color: var(--cream); margin-bottom: 4px; }
+  .pillar p { font-size: 13.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.65); margin: 0; }
+
+  /* Apparition douce au défilement */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .showcase.reveal.in { transform: translateX(-50%); }
+  .showcase.reveal, .duo.reveal, .progress-grid.reveal { transform: translateX(-50%) translateY(18px); }
+  .duo.reveal.in, .progress-grid.reveal.in { transform: translateX(-50%); }
+
+  @media (max-width: 700px) {
+    .showcase {
+      justify-content: flex-start;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 14px 24px 34px;
+      width: 100vw;
+      margin-top: 30px;
+      scrollbar-width: none;
+    }
+    .showcase::-webkit-scrollbar { display: none; }
+    .showcase .phone, .showcase .phone-main { width: 62vw; max-width: 250px; scroll-snap-align: center; transform: none; margin: 0; }
+    .showcase .phone-main { order: -1; }
+    .duo { gap: 14px; }
+    .duo figure { width: calc(50% - 7px); }
+    .duo figure:nth-child(2) { margin-top: 28px; }
+    .progress-grid { grid-template-columns: 1fr; gap: 28px; justify-items: center; }
+    .progress-grid .phone { width: 200px; }
+    .pillars { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transition: none; }
+    .reveal, .showcase.reveal, .duo.reveal, .progress-grid.reveal { transform: translateX(-50%); }
+  }
 </style>
 <link rel="stylesheet" href="mobile.css">
 <script src="mobile.js" defer></script>
@@ -379,6 +511,13 @@
       <div class="steps-inline" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
       </div>
+
+      <div class="showcase reveal">
+        <figure class="phone phone-left"><img src="app-professeur.jpg" width="560" height="1217" loading="lazy" alt="Écran de l'application Ktiso : le Professeur accueille le joueur sur sa planète à faire renaître"></figure>
+        <figure class="phone phone-main"><img src="app-planete.jpg" width="560" height="1217" loading="lazy" alt="Écran principal de l'application Ktiso : une planète avec ses six zones à développer, un bouton Continuer l'apprentissage et un Daily quiz"></figure>
+        <figure class="phone phone-right"><img src="app-missions.jpg" width="560" height="1217" loading="lazy" alt="Écran Missions de l'application Ktiso : six thématiques avec la progression de chacune"></figure>
+      </div>
+      <p class="showcase-caption">Ta planète est vide. Chaque notion comprise la fait renaître, zone après zone.</p>
     </section>
 
     <div class="rule"></div>
@@ -395,6 +534,23 @@
         <li><strong>Cryptoactifs</strong><span class="detail">Ce que c'est, comment ça fonctionne, avec les risques associés</span></li>
         <li><strong>Économie</strong><span class="detail">Inflation, taux directeurs, cycles — pour comprendre l'actualité économique</span></li>
       </ul>
+
+      <div class="duo reveal">
+        <figure>
+          <div class="phone"><img src="app-missions.jpg" width="560" height="1217" loading="lazy" alt="Les six thématiques de missions de l'application Ktiso"></div>
+          <figcaption class="phone-cap">6 thématiques</figcaption>
+        </figure>
+        <figure>
+          <div class="phone"><img src="app-finance-perso.jpg" width="560" height="1217" loading="lazy" alt="Liste des missions Finance perso, niveau Débutant, avec le nombre de questions de chacune"></div>
+          <figcaption class="phone-cap">3 niveaux, du débutant à l'avancé</figcaption>
+        </figure>
+      </div>
+
+      <div class="facts">
+        <div><strong>429</strong><span>missions</span></div>
+        <div><strong>6</strong><span>thématiques</span></div>
+        <div><strong>3</strong><span>niveaux</span></div>
+      </div>
     </section>
 
     <div class="rule"></div>
@@ -403,6 +559,26 @@
       <div class="section-label">Pensé pour progresser</div>
       <h2>Votre progression vous suit, d'une connexion à l'autre</h2>
       <p>Un compte simple garde en mémoire les contenus déjà vus et vos préférences, pour reprendre exactement là où vous en étiez — sur iPhone comme sur iPad.</p>
+
+      <div class="progress-grid reveal">
+        <figure>
+          <div class="phone"><img src="app-avatars.jpg" width="560" height="1217" loading="lazy" alt="Choix de l'astronaute dans l'application Ktiso"></div>
+        </figure>
+        <div class="pillars">
+          <div class="pillar">
+            <img src="icon-livre.png" alt="" loading="lazy">
+            <div><h3>Des quiz courts</h3><p>Chaque mission se termine par quelques questions pour vérifier que c'est compris.</p></div>
+          </div>
+          <div class="pillar">
+            <img src="icon-fusee.png" alt="" loading="lazy">
+            <div><h3>Un rendez-vous par jour</h3><p>Le Daily quiz garde le rythme, sans y passer des heures.</p></div>
+          </div>
+          <div class="pillar">
+            <img src="icon-lune.png" alt="" loading="lazy">
+            <div><h3>Des éclats à gagner</h3><p>Apprendre rapporte des éclats de météorite à investir dans ta planète.</p></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="cta-group">
@@ -443,5 +619,15 @@
       <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
     </footer>
   </div>
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 </body>
 </html>
