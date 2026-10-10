@@ -206,36 +206,97 @@
   ul.module-list {
     list-style: none;
     text-align: left;
-    max-width: 420px;
-    margin: 22px auto 0;
+    max-width: 560px;
+    margin: 30px auto 0;
+    display: grid;
+    gap: 14px;
   }
 
   ul.module-list li {
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: rgba(244, 239, 227, 0.85);
-    padding-left: 22px;
     position: relative;
-    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 18px;
+    align-items: center;
+    padding: 16px 20px 16px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--zone-line);
+    background:
+      radial-gradient(120% 140% at 0% 50%, rgba(232,179,71,.13), transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
+    box-shadow: 0 10px 28px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(244, 239, 227, 0.85);
+    overflow: hidden;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, box-shadow .35s;
   }
 
-  ul.module-list li::before {
-    content: '—';
+  ul.module-list li::after {
+    content: attr(data-n);
     position: absolute;
-    left: 0;
-    color: var(--terracotta);
+    right: 16px; top: 10px;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: rgba(232,179,71,.45);
   }
+
+  ul.module-list li:hover {
+    transform: translateY(-3px);
+    border-color: rgba(232,179,71,.65);
+    box-shadow: 0 16px 36px rgba(0,0,0,.4), 0 0 28px rgba(232,179,71,.14), inset 0 1px 0 rgba(255,255,255,.07);
+  }
+
+  .mod-ico {
+    position: relative;
+    width: 76px; height: 76px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 38%, rgba(232,179,71,.28), rgba(232,179,71,.04) 62%, transparent 72%);
+    border: 1px solid rgba(232,179,71,.25);
+  }
+  .mod-ico::before {
+    content: '';
+    position: absolute; inset: -7px;
+    border-radius: 50%;
+    border: 1px dashed rgba(232,179,71,.22);
+    animation: modSpin 40s linear infinite;
+  }
+  .mod-ico img {
+    width: 52px; height: 52px; object-fit: contain;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,.55)) drop-shadow(0 0 10px rgba(232,179,71,.25));
+    animation: modFloat 5s ease-in-out infinite;
+  }
+  ul.module-list li:nth-child(even) .mod-ico img { animation-delay: -2.5s; }
+  ul.module-list li:hover .mod-ico img { transform: scale(1.12) rotate(-6deg); }
+  @keyframes modFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+  @keyframes modSpin { to { transform: rotate(360deg); } }
 
   ul.module-list li strong {
+    display: block;
     color: var(--cream);
-    font-weight: 500;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: .02em;
   }
 
   ul.module-list li span.detail {
     display: block;
     font-size: 13px;
-    color: rgba(244, 239, 227, 0.55);
-    margin-top: 2px;
+    color: rgba(244, 239, 227, 0.6);
+    margin-top: 3px;
+  }
+
+  @media (max-width: 700px) {
+    ul.module-list li { grid-template-columns: 60px minmax(0,1fr); gap: 14px; padding: 14px 14px 14px 10px; }
+    .mod-ico { width: 60px; height: 60px; }
+    .mod-ico img { width: 40px; height: 40px; }
+    ul.module-list li::after { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mod-ico img, .mod-ico::before { animation: none; }
   }
 
   .cta-group {
@@ -526,13 +587,13 @@
       <div class="section-label">Ce que vous apprenez</div>
       <h2>Les mêmes bases que celles enseignées dans une école de commerce, sans le jargon</h2>
       <ul class="module-list">
-        <li><strong>Budget &amp; épargne</strong><span class="detail">Construire un budget, mettre de côté, poser les bases avant d'investir</span></li>
-        <li><strong>Bourse &amp; actions</strong><span class="detail">Comprendre un marché, lire une entreprise cotée, saisir les grands mécanismes</span></li>
-        <li><strong>ETF &amp; fonds indiciels</strong><span class="detail">Diversifier sans devoir choisir action par action</span></li>
-        <li><strong>Obligations</strong><span class="detail">Le fonctionnement de la dette et des taux, expliqué simplement</span></li>
-        <li><strong>Immobilier</strong><span class="detail">Les bases de l'investissement locatif et du financement</span></li>
-        <li><strong>Cryptoactifs</strong><span class="detail">Ce que c'est, comment ça fonctionne, avec les risques associés</span></li>
-        <li><strong>Économie</strong><span class="detail">Inflation, taux directeurs, cycles — pour comprendre l'actualité économique</span></li>
+        <li data-n="01"><span class="mod-ico"><img src="icon-lune.png" alt="" loading="lazy"></span><div><strong>Budget &amp; épargne</strong><span class="detail">Construire un budget, mettre de côté, poser les bases avant d'investir</span></div></li>
+        <li data-n="02"><span class="mod-ico"><img src="icon-ordinateur.png" alt="" loading="lazy"></span><div><strong>Bourse &amp; actions</strong><span class="detail">Comprendre un marché, lire une entreprise cotée, saisir les grands mécanismes</span></div></li>
+        <li data-n="03"><span class="mod-ico"><img src="icon-saturne.png" alt="" loading="lazy"></span><div><strong>ETF &amp; fonds indiciels</strong><span class="detail">Diversifier sans devoir choisir action par action</span></div></li>
+        <li data-n="04"><span class="mod-ico"><img src="icon-livre.png" alt="" loading="lazy"></span><div><strong>Obligations</strong><span class="detail">Le fonctionnement de la dette et des taux, expliqué simplement</span></div></li>
+        <li data-n="05"><span class="mod-ico"><img src="icon-labo.png" alt="" loading="lazy"></span><div><strong>Immobilier</strong><span class="detail">Les bases de l'investissement locatif et du financement</span></div></li>
+        <li data-n="06"><span class="mod-ico"><img src="icon-radio.png" alt="" loading="lazy"></span><div><strong>Cryptoactifs</strong><span class="detail">Ce que c'est, comment ça fonctionne, avec les risques associés</span></div></li>
+        <li data-n="07"><span class="mod-ico"><img src="icon-boussole.png" alt="" loading="lazy"></span><div><strong>Économie</strong><span class="detail">Inflation, taux directeurs, cycles — pour comprendre l'actualité économique</span></div></li>
       </ul>
 
       <div class="duo reveal">
