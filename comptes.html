@@ -768,6 +768,44 @@
     .frame.in-dashboard .analytics-grid { grid-template-columns: 1fr; }
   }
 
+  /* ---------- Objectifs de répartition ---------- */
+  .goals { margin-top: 40px; text-align: left; }
+  .goals h3 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 22px; font-weight: 600; color: var(--cream); text-align: center; margin: 6px 0 6px; }
+  .goals-sub { font-size: 13px; color: rgba(244,239,227,.55); text-align: center; margin-bottom: 20px; }
+  .goals-card { border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(201,169,97,.025); padding: 22px; }
+  .goals-presets { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
+  .goal-chip { font-family: 'DIN Next LT Pro', sans-serif; font-size: 12px; letter-spacing: .08em; color: rgba(244,239,227,.7); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+  .goal-chip:hover { border-color: var(--gold); color: var(--gold); }
+  .goal-chip[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); background: rgba(201,169,97,.1); }
+  .goals-inputs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 8px; }
+  .goal-input label { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(244,239,227,.5); margin-bottom: 6px; }
+  .goal-input .wrap { position: relative; }
+  .goal-input input { font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--cream); background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 11px 28px 11px 12px; width: 100%; }
+  .goal-input input:focus { outline: none; border-color: var(--gold); background: rgba(201,169,97,.06); }
+  .goal-input .wrap::after { content: '%'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: rgba(244,239,227,.45); font-size: 13px; pointer-events: none; }
+  .goals-sum { font-size: 12px; text-align: center; margin: 4px 0 18px; color: rgba(244,239,227,.5); min-height: 16px; }
+  .goals-sum.bad { color: var(--terracotta); }
+  .goals-sum.ok { color: var(--lime); }
+  .goal-row { border: 1px solid var(--line); border-radius: var(--radius-md); padding: 16px 18px; margin-bottom: 10px; background: rgba(201,169,97,.02); }
+  .goal-top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .goal-name { font-size: 15.5px; color: var(--cream); flex: 1; min-width: 0; }
+  .goal-badge { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; flex-shrink: 0; }
+  .goal-badge.ok { background: rgba(168,198,108,.14); color: var(--lime); }
+  .goal-badge.over { background: rgba(193,101,74,.16); color: var(--terracotta); }
+  .goal-badge.idle { background: rgba(244,239,227,.07); color: rgba(244,239,227,.5); }
+  .goal-figures { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; color: rgba(244,239,227,.65); margin-bottom: 10px; flex-wrap: wrap; }
+  .goal-figures strong { color: var(--cream); font-weight: 500; }
+  .goal-track { position: relative; height: 6px; background: rgba(244,239,227,.08); border-radius: 999px; }
+  .goal-fill { height: 100%; border-radius: 999px; transition: width .5s ease; }
+  .goal-mark { position: absolute; top: -4px; width: 2px; height: 14px; background: var(--cream); border-radius: 2px; opacity: .85; }
+  .goal-gap { font-size: 12.5px; margin-top: 10px; color: rgba(244,239,227,.6); }
+  .goal-gap b { font-weight: 500; }
+  .goal-gap .ok { color: var(--lime); } .goal-gap .over { color: var(--terracotta); }
+  .goals-verdict { text-align: center; font-size: 14px; color: var(--cream); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); line-height: 1.6; }
+  .goals-verdict small { display: block; font-size: 12px; color: rgba(244,239,227,.5); margin-top: 4px; }
+  @media (max-width: 520px) { .goals-card { padding: 16px; } .goals-inputs { gap: 8px; } }
+  @media (prefers-reduced-motion: reduce) { .goal-fill { transition: none; } }
+
   html.embedded nav.topnav,
   html.embedded header,
   html.embedded footer { display: none !important; }
@@ -929,6 +967,27 @@
         <div class="analytics-pie-box">
           <div id="pie-chart"></div>
           <div class="pie-legend" id="pie-legend"></div>
+        </div>
+      </div>
+
+      <div class="goals" id="goals">
+        <div class="section-label" style="text-align:center">Objectifs</div>
+        <h3>Votre répartition idéale</h3>
+        <p class="goals-sub">Fixez vos pourcentages cibles : ils sont comparés à vos revenus du mois affiché.</p>
+        <div class="goals-card">
+          <div class="goals-presets" id="goal-presets">
+            <button type="button" class="goal-chip" data-preset="50,30,20">50 / 30 / 20</button>
+            <button type="button" class="goal-chip" data-preset="60,20,20">60 / 20 / 20</button>
+            <button type="button" class="goal-chip" data-preset="50,25,25">50 / 25 / 25</button>
+            <button type="button" class="goal-chip" data-preset="70,20,10">70 / 20 / 10</button>
+          </div>
+          <div class="goals-inputs">
+            <div class="goal-input"><label for="goal-fixe">Fixes</label><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><label for="goal-variable">Variables</label><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><label for="goal-epargne">Épargne</label><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
+          </div>
+          <div class="goals-sum" id="goals-sum"></div>
+          <div id="goals-results"></div>
         </div>
       </div>
     </section>
@@ -1376,6 +1435,120 @@
     renderPieChart();
   }
 
+  // ---------- Objectifs de répartition (fixes / variables / épargne) ----------
+  var GOALS_KEY = "ktiso-comptes:goals";
+  var goals = { fixe: 50, variable: 30, epargne: 20 };
+  try {
+    var savedGoals = JSON.parse(localStorage.getItem(GOALS_KEY) || "null");
+    if (savedGoals && typeof savedGoals.fixe === "number") goals = savedGoals;
+  } catch (e) {}
+  var goalEls = {
+    fixe: document.getElementById("goal-fixe"),
+    variable: document.getElementById("goal-variable"),
+    epargne: document.getElementById("goal-epargne"),
+    sum: document.getElementById("goals-sum"),
+    results: document.getElementById("goals-results"),
+    presets: document.getElementById("goal-presets")
+  };
+  var GOAL_META = [
+    { key: "fixe", label: "Charges fixes", color: "var(--blue)", mode: "max" },
+    { key: "variable", label: "Charges variables", color: "var(--gold)", mode: "max" },
+    { key: "epargne", label: "Épargne", color: "var(--lime)", mode: "min" }
+  ];
+
+  function saveGoals() { try { localStorage.setItem(GOALS_KEY, JSON.stringify(goals)); } catch (e) {} }
+  function pct(n) { return (Math.round(n * 10) / 10).toString().replace(".", ",") + " %"; }
+
+  function renderGoals() {
+    if (!goalEls.results) return;
+    ["fixe", "variable", "epargne"].forEach(function (k) {
+      if (document.activeElement !== goalEls[k]) goalEls[k].value = goals[k];
+    });
+    var total = goals.fixe + goals.variable + goals.epargne;
+    goalEls.sum.className = "goals-sum " + (total === 100 ? "ok" : "bad");
+    goalEls.sum.textContent = total === 100
+      ? "Total des objectifs : 100 %"
+      : "Total des objectifs : " + total + " % — il devrait faire 100 %";
+    Array.prototype.forEach.call(goalEls.presets.querySelectorAll(".goal-chip"), function (b) {
+      var p = b.getAttribute("data-preset").split(",").map(Number);
+      b.setAttribute("aria-pressed", String(p[0] === goals.fixe && p[1] === goals.variable && p[2] === goals.epargne));
+    });
+
+    var monthTx = monthTransactions();
+    var revenus = monthTx.filter(function (t) { return t.type === "revenu"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    if (revenus <= 0) {
+      goalEls.results.innerHTML = '<div class="empty-state">Ajoutez un revenu pour ce mois afin de comparer votre répartition à vos objectifs.</div>';
+      return;
+    }
+    var sums = { fixe: 0, variable: 0, epargne: 0 };
+    monthTx.filter(function (t) { return t.type === "depense"; }).forEach(function (t) {
+      var c = t.category && sums[t.category] !== undefined ? t.category : "variable";
+      sums[c] += t.amount;
+    });
+
+    var html = "", okCount = 0;
+    GOAL_META.forEach(function (g) {
+      var actual = sums[g.key];
+      var actualPct = actual / revenus * 100;
+      var target = goals[g.key];
+      var targetAmount = revenus * target / 100;
+      var diff = actual - targetAmount;               // > 0 : au-dessus de la cible
+      var diffPts = actualPct - target;
+      var ok = g.mode === "max" ? diff <= 0.005 : diff >= -0.005;
+      if (ok) okCount++;
+      var badge, gap;
+      if (g.mode === "max") {
+        badge = ok ? '<span class="goal-badge ok">Dans l\'objectif</span>' : '<span class="goal-badge over">Dépassé</span>';
+        gap = ok
+          ? 'Il vous reste <b class="ok">' + fmt(Math.abs(diff)) + '</b> de marge (' + pct(Math.abs(diffPts)) + ' sous la cible).'
+          : 'Vous dépassez de <b class="over">' + fmt(diff) + '</b> (' + pct(diffPts) + ' au-dessus de la cible).';
+      } else {
+        badge = ok ? '<span class="goal-badge ok">Objectif atteint</span>' : '<span class="goal-badge over">À renforcer</span>';
+        gap = ok
+          ? 'Vous épargnez <b class="ok">' + fmt(Math.abs(diff)) + '</b> de plus que prévu (' + pct(Math.abs(diffPts)) + ' au-dessus de la cible).'
+          : 'Il manque <b class="over">' + fmt(Math.abs(diff)) + '</b> pour atteindre l\'objectif (' + pct(Math.abs(diffPts)) + ' sous la cible).';
+      }
+      var scaleMax = Math.max(actualPct, target, 1) * 1.15;
+      var fillW = Math.min(100, actualPct / scaleMax * 100);
+      var markL = Math.min(100, target / scaleMax * 100);
+      html += '<div class="goal-row">' +
+        '<div class="goal-top"><span class="goal-name">' + g.label + '</span>' + badge + '</div>' +
+        '<div class="goal-figures"><span>Réel : <strong>' + pct(actualPct) + '</strong> · ' + fmt(actual) + '</span>' +
+        '<span>Cible : <strong>' + pct(target) + '</strong> · ' + fmt(targetAmount) + '</span></div>' +
+        '<div class="goal-track"><div class="goal-fill" style="width:' + fillW + '%;background:' + g.color + '"></div>' +
+        '<div class="goal-mark" style="left:' + markL + '%" title="Cible"></div></div>' +
+        '<div class="goal-gap">' + gap + '</div></div>';
+    });
+
+    var spent = sums.fixe + sums.variable + sums.epargne;
+    var left = revenus - spent;
+    var verdict = okCount === 3 ? "Vous êtes dans vos objectifs sur les 3 postes." :
+      okCount + " objectif" + (okCount > 1 ? "s" : "") + " sur 3 respecté" + (okCount > 1 ? "s" : "") + ".";
+    var leftTxt = left >= 0
+      ? "Non affecté ce mois-ci : " + fmt(left) + " (" + pct(left / revenus * 100) + " de vos revenus)."
+      : "Vous dépensez " + fmt(-left) + " de plus que vos revenus ce mois-ci.";
+    html += '<div class="goals-verdict">' + verdict + '<small>' + leftTxt + '</small></div>';
+    goalEls.results.innerHTML = html;
+  }
+
+  ["fixe", "variable", "epargne"].forEach(function (k) {
+    goalEls[k].addEventListener("input", function () {
+      var v = parseFloat(goalEls[k].value);
+      goals[k] = isFinite(v) ? Math.max(0, Math.min(100, Math.round(v))) : 0;
+      saveGoals();
+      renderGoals();
+    });
+    goalEls[k].addEventListener("blur", renderGoals);
+  });
+  goalEls.presets.addEventListener("click", function (e) {
+    var b = e.target.closest(".goal-chip");
+    if (!b) return;
+    var p = b.getAttribute("data-preset").split(",").map(Number);
+    goals = { fixe: p[0], variable: p[1], epargne: p[2] };
+    saveGoals();
+    renderGoals();
+  });
+
   function renderAll() {
     setMonthLabel();
     renderStats();
@@ -1383,6 +1556,7 @@
     renderLedger();
     renderNatureList();
     renderAnalytics();
+    renderGoals();
   }
 
   // ---------- Events ----------
