@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Les députés rejettent le budget en commission : et vos impôts ?",
+      "excerpt": "La commission des finances a rejeté la partie recettes du budget 2027. Ce vote ne tue pas le texte, qui repart de zéro en séance le 13 octobre, mais il touche déjà les retraités et le déficit.",
+      "auteur": "Ktiso",
+      "date": "11 octobre 2026",
+      "href": "2026-10-11-0935-politique-budget-2027-commission-rejet-recettes-retraites.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Bitcoin à levier x10 sur votre téléphone : qui y gagne vraiment ?",
       "excerpt": "Robinhood prépare des contrats perpétuels à levier jusqu'à x10 pour ses clients américains, alors que plus de 2 milliards de dollars de paris à la hausse ont été liquidés cette semaine. Le levier se démocratise, mais à quel prix ?",
@@ -63,15 +72,6 @@
       "date": "4 octobre 2026",
       "href": "2026-10-04-0935-corporate-toshiba-seagate-western-digital-disques-durs.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Emploi américain : la mauvaise nouvelle qui a fait monter la Bourse",
-      "excerpt": "Un marché de l'emploi qui s'essouffle est une mauvaise nouvelle pour l'économie, mais une bonne pour ceux qui redoutaient de nouvelles hausses de taux. Le piège est que ce soulagement peut ne pas durer.",
-      "auteur": "Ktiso",
-      "date": "3 octobre 2026",
-      "href": "2026-10-03-0935-economie-emploi-us-29000-fed-inflation-france.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
