@@ -512,6 +512,27 @@
   .form-field input:focus { outline: none; border-color: var(--gold); background: rgba(201, 169, 97, 0.06); }
 
   .form-field input[type="date"] { color-scheme: dark; }
+  .form-field select {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 14px;
+    color: var(--cream);
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 12px 38px 12px 14px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23C9A961' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .form-field select:focus { outline: none; border-color: var(--gold); background-color: rgba(201, 169, 97, 0.06); }
+  .form-field select option, .form-field select optgroup { background: #1a130c; color: #F4EFE3; }
+  .form-field select optgroup { color: #C9A961; font-style: normal; }
+  .period-hint { font-size: 12px; color: rgba(244, 239, 227, 0.5); margin-top: 6px; min-height: 16px; }
 
   .entry-form .btn { width: 100%; max-width: none; }
 
@@ -835,6 +856,10 @@
         </div>
         <div class="form-grid">
           <div class="form-field full">
+            <label for="input-categorie">Catégorie</label>
+            <select id="input-categorie" name="categorie"></select>
+          </div>
+          <div class="form-field full">
             <label for="input-nature">Nature</label>
             <input type="text" id="input-nature" name="nature" placeholder="Ex. Loyer, Courses, Salaire…" list="nature-list" autocomplete="off" required>
             <datalist id="nature-list"></datalist>
@@ -844,6 +869,14 @@
             <input type="number" id="input-montant" name="montant" placeholder="0,00" step="0.01" min="0.01" inputmode="decimal" required>
           </div>
           <div class="form-field">
+            <label for="input-periode">Période du montant</label>
+            <select id="input-periode" name="periode">
+              <option value="mois">Par mois</option>
+              <option value="an">Par an</option>
+            </select>
+            <div class="period-hint" id="period-hint"></div>
+          </div>
+          <div class="form-field full">
             <label for="input-date">Date</label>
             <input type="date" id="input-date" name="date" required>
           </div>
@@ -1358,6 +1391,7 @@
     els.btnRevenu.setAttribute("aria-pressed", String(type === "revenu"));
     els.btnDepense.setAttribute("aria-pressed", String(type === "depense"));
     els.categoryToggle.classList.toggle("hidden", type !== "depense");
+    if (typeof buildCategorySelect === "function") buildCategorySelect();
   }
 
   function setCategory(cat) {
@@ -1366,6 +1400,78 @@
     els.btnCatVariable.setAttribute("aria-pressed", String(cat === "variable"));
     els.btnCatEpargne.setAttribute("aria-pressed", String(cat === "epargne"));
   }
+
+  // ---------- Catégories détaillées (inspirées de l'outil budgétaire Wikifin) ----------
+  // [libellé, période par défaut, type de dépense suggéré]
+  var REVENUE_CATS = [
+    ["Salaire", "mois"], ["Pension", "mois"], ["Allocations familiales", "mois"],
+    ["Allocations de chômage", "mois"], ["Autres revenus", "mois"]
+  ];
+  var EXPENSE_CATS = [
+    ["Habitation", [["Loyer","mois","fixe"],["Crédit hypothécaire","mois","fixe"],["Entretien (ascenseur, chaudière, …)","mois","variable"],["Installation et décoration","mois","variable"],["Charges d'énergie (électricité, gaz, …)","mois","fixe"],["Charges pour l'eau","mois","fixe"]]],
+    ["Transport", [["Vélo (équipement, entretien)","mois","variable"],["Transport en commun","mois","fixe"],["Emprunt achat véhicule","mois","fixe"],["Carburant","mois","variable"],["Entretien véhicule","mois","variable"]]],
+    ["Courses", [["Alimentation au quotidien (boisson, viande, légumes, …)","mois","variable"],["Alimentation pour des occasions spéciales","mois","variable"],["Envies (snacks, sodas, collations, …)","mois","variable"],["Hygiène (shampoings, lames de rasoir, …)","mois","variable"],["Produits d'entretien (ménage et lessive)","mois","variable"]]],
+    ["Tabac et alcool", [["Tabac","mois","variable"],["Alcool","mois","variable"]]],
+    ["Look", [["Vêtements et chaussures","mois","variable"],["Coiffeur et salon esthétique","mois","variable"],["Cosmétiques et parfums","mois","variable"]]],
+    ["Soins de santé", [["Médecin et médicaments","mois","variable"],["Mutuelle","mois","fixe"]]],
+    ["Enfants", [["Garderie, crèche","mois","fixe"],["Frais scolaires","mois","variable"],["Activités (stages, scouts, …)","mois","variable"],["Argent de poche","mois","variable"],["Cadeaux","mois","variable"]]],
+    ["Sport, culture et loisirs", [["Sorties (tickets, resto, fast-food, …)","mois","variable"],["Cotisations (club, académie, …)","mois","fixe"],["Fêtes (cadeaux, …)","mois","variable"],["Vacances (déplacement, logement, …)","mois","variable"]]],
+    ["Animaux domestiques", [["Nourriture","mois","variable"],["Vétérinaire","mois","variable"]]],
+    ["Multimédia", [["Appareils (smartphone, ordinateur, …)","mois","variable"],["Abonnements (internet, gsm, …)","mois","fixe"],["Musique, films et jeux","mois","variable"]]],
+    ["Assurances", [["Assurance habitation","an","fixe"],["Assurance solde restant dû","an","fixe"],["Assurance véhicule","an","fixe"],["Assurance hospitalisation","an","fixe"],["Assurance voyages","an","fixe"],["RC familiale","an","fixe"]]],
+    ["Impôts et taxes", [["Précompte immobilier","an","fixe"],["Taxes diverses (déchets, égouts, …)","mois","fixe"],["Taxe de circulation","an","fixe"]]],
+    ["Épargne", [["Épargne pension","an","epargne"],["Épargne automatique (ordre permanent mensuel)","mois","epargne"]]]
+  ];
+
+  var inputCategorie = document.getElementById("input-categorie");
+  var inputPeriode = document.getElementById("input-periode");
+  var periodHint = document.getElementById("period-hint");
+  var catIndex = {};
+
+  function buildCategorySelect() {
+    var html = '<option value="">Choisir une catégorie… (ou saisir librement ci-dessous)</option>';
+    if (currentType === "revenu") {
+      html += '<optgroup label="Revenus">';
+      REVENUE_CATS.forEach(function (c, i) {
+        catIndex["r" + i] = { label: c[0], period: c[1], cat: null };
+        html += '<option value="r' + i + '">' + c[0] + '</option>';
+      });
+      html += '</optgroup>';
+    } else {
+      EXPENSE_CATS.forEach(function (g, gi) {
+        html += '<optgroup label="' + g[0] + '">';
+        g[1].forEach(function (c, ci) {
+          var key = "d" + gi + "_" + ci;
+          catIndex[key] = { label: c[0], period: c[1], cat: c[2], group: g[0] };
+          html += '<option value="' + key + '">' + c[0] + '</option>';
+        });
+        html += '</optgroup>';
+      });
+    }
+    inputCategorie.innerHTML = html;
+  }
+
+  function updatePeriodHint() {
+    var v = parseFloat(els.inputMontant.value);
+    if (inputPeriode.value === "an" && v > 0) {
+      periodHint.textContent = "Enregistré : " + (Math.round(v / 12 * 100) / 100).toFixed(2).replace(".", ",") + " € / mois";
+    } else {
+      periodHint.textContent = "";
+    }
+  }
+
+  inputCategorie.addEventListener("change", function () {
+    var c = catIndex[inputCategorie.value];
+    if (!c) return;
+    els.inputNature.value = c.label;
+    inputPeriode.value = c.period;
+    if (currentType === "depense" && c.cat) setCategory(c.cat);
+    updatePeriodHint();
+    els.inputMontant.focus();
+  });
+  inputPeriode.addEventListener("change", updatePeriodHint);
+  els.inputMontant.addEventListener("input", updatePeriodHint);
+  buildCategorySelect();
 
   els.btnRevenu.addEventListener("click", function () { setType("revenu"); });
   els.btnDepense.addEventListener("click", function () { setType("depense"); });
@@ -1383,6 +1489,12 @@
     if (!nature || !amount || amount <= 0) return;
 
     nature = nature.charAt(0).toUpperCase() + nature.slice(1);
+
+    if (inputPeriode.value === "an") {
+      var annual = Math.round(amount * 100) / 100;
+      description = "Annuel : " + annual.toFixed(2).replace(".", ",") + " € / an" + (description ? " — " + description : "");
+      amount = annual / 12;
+    }
 
     var tx = {
       id: newId(),
@@ -1403,6 +1515,9 @@
     els.inputMontant.value = "";
     els.inputDescription.value = "";
     els.inputDate.value = todayISO();
+    inputCategorie.value = "";
+    inputPeriode.value = "mois";
+    updatePeriodHint();
     els.inputNature.focus();
   });
 
