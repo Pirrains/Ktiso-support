@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Elon Musk vient de faire plonger les géants du mobile : votre portefeuille est-il exposé ?",
+      "excerpt": "Wall Street a rebondi vendredi, mais AT&T, Verizon et T-Mobile ont perdu environ 9 à 13 % après un achat de fréquences par SpaceX. L'indice monte, une rotation brutale se cache dessous, à deux jours de l'inflation américaine.",
+      "auteur": "Ktiso",
+      "date": "12 octobre 2026",
+      "href": "2026-10-12-0935-bourse-telecoms-spacex-spectre-wall-street-cpi.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Politique",
       "title": "Les députés rejettent le budget en commission : et vos impôts ?",
       "excerpt": "La commission des finances a rejeté la partie recettes du budget 2027. Ce vote ne tue pas le texte, qui repart de zéro en séance le 13 octobre, mais il touche déjà les retraités et le déficit.",
@@ -63,15 +72,6 @@
       "date": "5 octobre 2026",
       "href": "2026-10-05-0935-crypto-bitget-piratage-388-millions-fonds-protection.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Le rival oublié qui vient de faire trembler les stars de l'IA",
-      "excerpt": "Les investisseurs ont soudain vu naître un concurrent là où ils pariaient sur un duopole protégé. Le marché a-t-il surréagi, ou ce pari sur l'IA était-il devenu trop confortable ?",
-      "auteur": "Ktiso",
-      "date": "4 octobre 2026",
-      "href": "2026-10-04-0935-corporate-toshiba-seagate-western-digital-disques-durs.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
