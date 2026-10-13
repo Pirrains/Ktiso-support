@@ -532,6 +532,20 @@
   .form-field select:focus { outline: none; border-color: var(--gold); background-color: rgba(201, 169, 97, 0.06); }
   .form-field select option, .form-field select optgroup { background: #1a130c; color: #F4EFE3; }
   .form-field select optgroup { color: #C9A961; font-style: normal; }
+  .detect-hint { font-size: 12.5px; color: rgba(244,239,227,.55); margin: -4px 0 14px; min-height: 18px; text-align: center; }
+  .detect-hint b { font-weight: 500; }
+  .detect-hint .t-fixe { color: var(--blue); } .detect-hint .t-variable { color: var(--gold); } .detect-hint .t-epargne { color: var(--lime); }
+  .advice-card { border: 1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(201,169,97,.07), rgba(201,169,97,.02)); padding: 22px; margin-top: 36px; text-align: left; }
+  .advice-kicker { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; text-align: center; }
+  .advice-main-title { font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 20px; font-weight: 600; color: var(--cream); margin-bottom: 8px; text-align: center; }
+  .advice-main-text { font-size: 14.5px; line-height: 1.65; color: rgba(244,239,227,.82); text-align: center; }
+  .advice-main-text b { color: var(--cream); font-weight: 500; }
+  .advice-more { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .advice-more h4 { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(244,239,227,.5); font-weight: 400; margin-bottom: 10px; }
+  .advice-item { display: flex; gap: 12px; font-size: 13.5px; line-height: 1.6; color: rgba(244,239,227,.72); margin-bottom: 10px; }
+  .advice-item::before { content: ''; flex: 0 0 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 8px; }
+  .advice-item b { color: var(--cream); font-weight: 500; }
+  .advice-note { font-size: 11.5px; color: rgba(244,239,227,.4); margin-top: 14px; text-align: center; }
   .period-hint { font-size: 12px; color: rgba(244, 239, 227, 0.5); margin-top: 6px; min-height: 16px; }
 
   .entry-form .btn { width: 100%; max-width: none; }
@@ -887,11 +901,7 @@
           <button type="button" class="is-revenu" id="btn-type-revenu" aria-pressed="false">Revenu</button>
           <button type="button" class="is-depense" id="btn-type-depense" aria-pressed="true">Dépense</button>
         </div>
-        <div class="category-toggle" role="group" aria-label="Catégorie de dépense" id="category-toggle">
-          <button type="button" class="is-fixe" id="btn-cat-fixe" aria-pressed="false">Fixe</button>
-          <button type="button" class="is-variable" id="btn-cat-variable" aria-pressed="true">Variable</button>
-          <button type="button" class="is-epargne" id="btn-cat-epargne" aria-pressed="false">Épargne</button>
-        </div>
+        <div class="detect-hint" id="detect-hint" aria-live="polite"></div>
         <div class="form-grid">
           <div class="form-field full">
             <label for="input-categorie">Catégorie</label>
@@ -911,6 +921,7 @@
             <select id="input-periode" name="periode">
               <option value="mois">Par mois</option>
               <option value="an">Par an</option>
+              <option value="ponctuel">Ponctuel (une seule fois)</option>
             </select>
             <div class="period-hint" id="period-hint"></div>
           </div>
@@ -989,6 +1000,11 @@
           <div class="goals-sum" id="goals-sum"></div>
           <div id="goals-results"></div>
         </div>
+      </div>
+
+      <div class="advice-card" id="advice-card">
+        <div class="advice-kicker">Conseil du mois</div>
+        <div id="advice-body"></div>
       </div>
     </section>
 
@@ -1107,14 +1123,10 @@
     breakdownList: document.getElementById("breakdown-list"),
     ledgerList: document.getElementById("ledger-list"),
     resetBtn: document.getElementById("reset-data"),
-    categoryToggle: document.getElementById("category-toggle"),
-    btnCatFixe: document.getElementById("btn-cat-fixe"),
-    btnCatVariable: document.getElementById("btn-cat-variable"),
-    btnCatEpargne: document.getElementById("btn-cat-epargne")
+    detectHint: document.getElementById("detect-hint")
   };
 
   var currentType = "depense";
-  var currentCategory = "variable";
 
   function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
   function isSameMonth(dateStr, ref) {
@@ -1549,6 +1561,121 @@
     renderGoals();
   });
 
+  // ---------- Conseil : sur quoi travailler ----------
+  function renderAdvice() {
+    var box = document.getElementById("advice-body");
+    if (!box) return;
+    if (!state.transactions.length) {
+      box.innerHTML = '<div class="advice-main-text">Ajoutez vos premières opérations : l\'outil vous indiquera sur quoi travailler en priorité.</div>';
+      return;
+    }
+    var monthTx = monthTransactions();
+    var rev = monthTx.filter(function (t) { return t.type === "revenu"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    var deps = monthTx.filter(function (t) { return t.type === "depense"; });
+    var dep = deps.reduce(function (s, t) { return s + t.amount; }, 0);
+    var sums = { fixe: 0, variable: 0, epargne: 0 };
+    var byNature = { fixe: {}, variable: {} };
+    var ponctuel = 0;
+    deps.forEach(function (t) {
+      var c = t.category && sums[t.category] !== undefined ? t.category : "variable";
+      sums[c] += t.amount;
+      if (c !== "epargne") {
+        var k = (t.nature || "Autre").toLowerCase();
+        byNature[c][k] = byNature[c][k] || { name: t.nature || "Autre", total: 0 };
+        byNature[c][k].total += t.amount;
+      }
+      if (/^Ponctuel/.test(t.description || "")) ponctuel += t.amount;
+    });
+    function top(cat) {
+      var best = null;
+      Object.keys(byNature[cat]).forEach(function (k) { if (!best || byNature[cat][k].total > best.total) best = byNature[cat][k]; });
+      return best;
+    }
+    function topAll() {
+      var a = top("fixe"), b = top("variable");
+      if (a && b) return a.total >= b.total ? a : b;
+      return a || b;
+    }
+
+    var cands = [];
+    function add(score, title, text) { cands.push({ score: score, title: title, text: text }); }
+
+    if (rev <= 0) {
+      add(100, "Enregistrez vos revenus du mois", "Sans revenus, impossible de mesurer votre équilibre. Ajoutez votre salaire, vos allocations ou vos autres rentrées pour ce mois : vos objectifs et vos conseils se calculeront ensuite automatiquement.");
+    } else {
+      var t = topAll();
+      if (dep > rev) {
+        add(95, "Revenez à l\'équilibre", "Vous dépensez <b>" + fmt(dep - rev) + "</b> de plus que vos revenus ce mois-ci (" + fmt(dep) + " pour " + fmt(rev) + " de revenus)." +
+          (t ? " Votre poste le plus lourd est <b>" + escapeHtml(t.name) + "</b> (" + fmt(t.total) + ", " + pct(t.total / dep * 100) + " de vos dépenses) : c'est là que l'effort aura le plus d'effet." : ""));
+      }
+      var gapEp = rev * goals.epargne / 100 - sums.epargne;
+      if (gapEp > 0.5 && goals.epargne > 0) {
+        add(80 + Math.min(10, gapEp / rev * 100 / 2), "Épargnez en premier",
+          "Il manque <b>" + fmt(gapEp) + "</b> pour atteindre votre objectif d'épargne de " + pct(goals.epargne) + " (" + fmt(rev * goals.epargne / 100) + "). Plutôt que d'épargner ce qui reste en fin de mois, programmez un <b>ordre permanent</b> le jour de réception du revenu : ce que vous ne voyez pas, vous ne le dépensez pas.");
+      }
+      var gapFx = sums.fixe - rev * goals.fixe / 100;
+      if (gapFx > 0.5) {
+        var tf = top("fixe");
+        add(75 + Math.min(10, gapFx / rev * 100), "Allégez vos charges fixes",
+          "Vos charges fixes dépassent la cible de <b>" + fmt(gapFx) + "</b> (" + pct(sums.fixe / rev * 100) + " au lieu de " + pct(goals.fixe) + ")." +
+          (tf ? " Le plus gros poste est <b>" + escapeHtml(tf.name) + "</b> (" + fmt(tf.total) + ")." : "") +
+          " Comparez vos contrats (énergie, assurances, abonnements, télécom) : une charge fixe renégociée fait gagner de l'argent tous les mois sans effort.");
+      }
+      var gapVr = sums.variable - rev * goals.variable / 100;
+      if (gapVr > 0.5) {
+        var tv = top("variable");
+        add(70 + Math.min(10, gapVr / rev * 100), "Maîtrisez vos dépenses variables",
+          "Vos dépenses variables dépassent la cible de <b>" + fmt(gapVr) + "</b> (" + pct(sums.variable / rev * 100) + " au lieu de " + pct(goals.variable) + ")." +
+          (tv ? " Le poste le plus important est <b>" + escapeHtml(tv.name) + "</b> (" + fmt(tv.total) + ") : fixez-lui une enveloppe mensuelle et suivez-la chaque semaine." : ""));
+      }
+      if (dep > 0 && ponctuel / dep > 0.25) {
+        add(50, "Anticipez les dépenses ponctuelles",
+          "Les dépenses ponctuelles représentent <b>" + pct(ponctuel / dep * 100) + "</b> de votre mois (" + fmt(ponctuel) + "). Pour qu'elles ne déséquilibrent plus votre budget, mettez de côté chaque mois une petite provision pour imprévus (par exemple " + fmt(ponctuel / 6) + " / mois) et piochez dedans quand elles arrivent.");
+      }
+      if (dep > 0) {
+        var tt = topAll();
+        if (tt && tt.total / dep > 0.4 && !(dep > rev)) {
+          add(42, "Un poste pèse lourd",
+            "<b>" + escapeHtml(tt.name) + "</b> représente " + pct(tt.total / dep * 100) + " de vos dépenses du mois (" + fmt(tt.total) + "). Si ce choix est volontaire, très bien ; sinon, c'est le premier endroit où chercher une économie.");
+        }
+      }
+    }
+
+    // Évolution par rapport au mois précédent
+    var vd = state.viewDate, prev = new Date(vd.getFullYear(), vd.getMonth() - 1, 1);
+    var pk = prev.getFullYear() + "-" + String(prev.getMonth() + 1).padStart(2, "0");
+    var prevDep = state.transactions.filter(function (t) { return t.type === "depense" && (t.date || "").slice(0, 7) === pk; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    if (prevDep > 0 && dep > prevDep * 1.15) {
+      add(55, "Vos dépenses ont fortement augmenté",
+        "Elles passent de " + fmt(prevDep) + " à <b>" + fmt(dep) + "</b> (+" + pct((dep / prevDep - 1) * 100) + ") par rapport au mois précédent. Parcourez l'onglet « Opérations » pour repérer ce qui a changé : une hausse isolée est normale, une hausse qui se répète devient votre nouveau rythme.");
+    }
+
+    // Matelas de sécurité : 3 mois de charges
+    var needs = sums.fixe + sums.variable;
+    if (needs > 0) {
+      var solde = state.transactions.reduce(function (s, t) { return s + (t.type === "revenu" ? t.amount : -t.amount); }, 0);
+      var savedCum = state.transactions.filter(function (t) { return t.type === "depense" && t.category === "epargne"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+      var cushion = solde + savedCum;
+      var months = cushion / needs;
+      if (months < 3) {
+        add(rev > 0 && sums.epargne >= rev * goals.epargne / 100 ? 62 : 58, "Constituez votre matelas de sécurité",
+          "Vos réserves estimées (solde + épargne cumulée) couvrent environ <b>" + (Math.round(Math.max(months, 0) * 10) / 10).toString().replace(".", ",") + " mois</b> de dépenses courantes. Un repère courant est de viser 3 mois, soit <b>" + fmt(needs * 3) + "</b> ; il vous manque " + fmt(Math.max(needs * 3 - cushion, 0)) + ". Gardez cette somme sur un compte d'épargne immédiatement disponible.");
+      }
+    }
+
+    if (!cands.length || cands.every(function (c) { return c.score < 40; })) {
+      cands.push({ score: 10, title: "Vous tenez le cap", text: "Vos objectifs sont respectés et vos réserves sont solides. La prochaine étape consiste à faire travailler l'argent épargné : explorez les parcours de l'application pour comprendre les placements avant de vous lancer." });
+    }
+    cands.sort(function (a, b) { return b.score - a.score; });
+    var main = cands[0], others = cands.slice(1, 3).filter(function (c) { return c.score >= 40; });
+    var html = '<div class="advice-main-title">' + main.title + '</div><div class="advice-main-text">' + main.text + '</div>';
+    if (others.length) {
+      html += '<div class="advice-more"><h4>Autres pistes</h4>' + others.map(function (c) { return '<div class="advice-item"><div><b>' + c.title + '</b> — ' + c.text + '</div></div>'; }).join("") + '</div>';
+    }
+    html += '<div class="advice-note">Conseil pédagogique calculé à partir de vos chiffres du mois affiché — il ne constitue pas un conseil en investissement.</div>';
+    box.innerHTML = html;
+  }
+
   function renderAll() {
     setMonthLabel();
     renderStats();
@@ -1557,6 +1684,7 @@
     renderNatureList();
     renderAnalytics();
     renderGoals();
+    renderAdvice();
   }
 
   // ---------- Events ----------
@@ -1564,16 +1692,10 @@
     currentType = type;
     els.btnRevenu.setAttribute("aria-pressed", String(type === "revenu"));
     els.btnDepense.setAttribute("aria-pressed", String(type === "depense"));
-    els.categoryToggle.classList.toggle("hidden", type !== "depense");
+    updateDetect();
     if (typeof buildCategorySelect === "function") buildCategorySelect();
   }
 
-  function setCategory(cat) {
-    currentCategory = cat;
-    els.btnCatFixe.setAttribute("aria-pressed", String(cat === "fixe"));
-    els.btnCatVariable.setAttribute("aria-pressed", String(cat === "variable"));
-    els.btnCatEpargne.setAttribute("aria-pressed", String(cat === "epargne"));
-  }
 
   // ---------- Catégories détaillées (inspirées de l'outil budgétaire Wikifin) ----------
   // [libellé, période par défaut, type de dépense suggéré]
@@ -1602,8 +1724,30 @@
   var periodHint = document.getElementById("period-hint");
   var catIndex = {};
 
+  // ---------- Détection automatique : charge fixe, variable ou épargne ----------
+  var RE_EPARGNE = /(épargne|epargne|livret|ordre permanent|placement|investissement|\betfs?\b|compte à terme|pension complémentaire)/i;
+  var RE_FIXE = /(loyer|crédit|credit|hypoth|prêt|pret |leasing|assurance|mutuelle|abonnement|internet|gsm|téléphone|telephone|netflix|spotify|disney|amazon prime|électricité|electricit|gaz|eau\b|chauffage|mazout|syndic|taxe|impôt|impot|précompte|precompte|redevance|crèche|creche|garderie|cotisation|frais scolaires|école|ecole|pension alimentaire|fitness|salle de sport|charges)/i;
+
+  function detectCategory(nature, catKey, period) {
+    var c = catIndex[catKey];
+    if (c && c.cat === "epargne") return "epargne";
+    if (RE_EPARGNE.test(nature)) return "epargne";
+    if (period === "ponctuel") return "variable";           // une dépense unique n'est pas une charge récurrente
+    if (c && c.cat) return c.cat;
+    return RE_FIXE.test(nature) ? "fixe" : "variable";
+  }
+  var DETECT_LABEL = { fixe: "charge fixe", variable: "charge variable", epargne: "épargne" };
+  function updateDetect() {
+    if (!els.detectHint) return;
+    if (currentType !== "depense") { els.detectHint.innerHTML = ""; return; }
+    var nat = els.inputNature.value.trim();
+    if (!nat) { els.detectHint.innerHTML = "Le type de charge (fixe, variable ou épargne) est détecté automatiquement."; return; }
+    var cat = detectCategory(nat, inputCategorie.value, inputPeriode.value);
+    els.detectHint.innerHTML = 'Classée automatiquement : <b class="t-' + cat + '">' + DETECT_LABEL[cat] + '</b>';
+  }
+
   function buildCategorySelect() {
-    var html = '<option value="">Choisir une catégorie… (ou saisir librement ci-dessous)</option>';
+    var html = '<option value="">Choisir une catégorie…</option>';
     if (currentType === "revenu") {
       html += '<optgroup label="Revenus">';
       REVENUE_CATS.forEach(function (c, i) {
@@ -1629,6 +1773,8 @@
     var v = parseFloat(els.inputMontant.value);
     if (inputPeriode.value === "an" && v > 0) {
       periodHint.textContent = "Enregistré : " + (Math.round(v / 12 * 100) / 100).toFixed(2).replace(".", ",") + " € / mois";
+    } else if (inputPeriode.value === "ponctuel") {
+      periodHint.textContent = "Compté en totalité sur le mois de la date choisie.";
     } else {
       periodHint.textContent = "";
     }
@@ -1639,19 +1785,18 @@
     if (!c) return;
     els.inputNature.value = c.label;
     inputPeriode.value = c.period;
-    if (currentType === "depense" && c.cat) setCategory(c.cat);
     updatePeriodHint();
+    updateDetect();
     els.inputMontant.focus();
   });
-  inputPeriode.addEventListener("change", updatePeriodHint);
+  inputPeriode.addEventListener("change", function () { updatePeriodHint(); updateDetect(); });
+  els.inputNature.addEventListener("input", updateDetect);
   els.inputMontant.addEventListener("input", updatePeriodHint);
   buildCategorySelect();
+  updateDetect();
 
   els.btnRevenu.addEventListener("click", function () { setType("revenu"); });
   els.btnDepense.addEventListener("click", function () { setType("depense"); });
-  els.btnCatFixe.addEventListener("click", function () { setCategory("fixe"); });
-  els.btnCatVariable.addEventListener("click", function () { setCategory("variable"); });
-  els.btnCatEpargne.addEventListener("click", function () { setCategory("epargne"); });
 
   els.form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1664,7 +1809,9 @@
 
     nature = nature.charAt(0).toUpperCase() + nature.slice(1);
 
-    if (inputPeriode.value === "an") {
+    if (inputPeriode.value === "ponctuel") {
+      description = "Ponctuel" + (description ? " — " + description : "");
+    } else if (inputPeriode.value === "an") {
       var annual = Math.round(amount * 100) / 100;
       description = "Annuel : " + annual.toFixed(2).replace(".", ",") + " € / an" + (description ? " — " + description : "");
       amount = annual / 12;
@@ -1677,7 +1824,7 @@
       amount: Math.round(amount * 100) / 100,
       date: date,
       description: description,
-      category: currentType === "depense" ? currentCategory : null
+      category: currentType === "depense" ? detectCategory(nature, inputCategorie.value, inputPeriode.value) : null
     };
 
     state.transactions.push(tx);
@@ -1692,6 +1839,7 @@
     inputCategorie.value = "";
     inputPeriode.value = "mois";
     updatePeriodHint();
+    updateDetect();
     els.inputNature.focus();
   });
 
