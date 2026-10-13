@@ -1142,7 +1142,7 @@
 
   function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
   function isSameMonth(dateStr, ref) {
-    var d = new Date(dateStr + "T00:00:00");
+    var d = new Date(String(dateStr).slice(0, 10) + "T00:00:00");
     return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
   }
   function todayISO() {
@@ -1208,12 +1208,28 @@
     return { load: load, save: save };
   })();
 
+  // La base peut renvoyer la date avec l'heure ("2026-09-30T00:00:00+00:00") et le montant
+  // sous forme de texte ("2000.00") : on les remet au format attendu par l'outil.
+  function normalizeTx(t) {
+    var date = String(t.date || "").slice(0, 10);
+    var amount = Number(t.amount);
+    return {
+      id: t.id,
+      type: String(t.type || "").trim().toLowerCase() === "revenu" ? "revenu" : "depense",
+      nature: t.nature || "",
+      description: t.description || "",
+      amount: isFinite(amount) ? amount : 0,
+      date: date,
+      category: t.category || null
+    };
+  }
+
   function loadTransactions() {
     return sbSync.pull().then(function (remote) {
-      if (Array.isArray(remote)) return remote;
+      if (Array.isArray(remote)) return remote.map(normalizeTx);
       return Store.load(STORAGE_KEY).then(function (raw) {
         if (!raw) return [];
-        try { return JSON.parse(raw); } catch (e) { return []; }
+        try { return JSON.parse(raw).map(normalizeTx); } catch (e) { return []; }
       });
     });
   }

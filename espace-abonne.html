@@ -1798,7 +1798,7 @@
       .select('*')
       .order('date', { ascending: false });
 
-    transactions = txError ? [] : txData;
+    transactions = txError ? [] : normalizeTransactions(txData);
     renderRealStats();
 
     const { data: profile } = await sb
@@ -1828,13 +1828,23 @@
   window.addEventListener('ktiso:transactions-changed', async () => {
     try {
       const { data, error } = await sb.from('transactions').select('*').order('date', { ascending: false });
-      if (!error && Array.isArray(data)) { transactions = data; renderRealStats(); }
+      if (!error && Array.isArray(data)) { transactions = normalizeTransactions(data); renderRealStats(); }
     } catch (err) {}
   });
 
+  // La base peut renvoyer la date avec l'heure et le montant en texte : on normalise.
+  function normalizeTransactions(rows) {
+    return (rows || []).map(t => ({
+      ...t,
+      type: String(t.type || '').trim().toLowerCase(),
+      date: String(t.date || '').slice(0, 10),
+      amount: Number(t.amount) || 0
+    }));
+  }
+
   function isSameMonth(dateStr, ref) {
     if (!dateStr) return false;
-    const d = new Date(dateStr + 'T00:00:00');
+    const d = new Date(String(dateStr).slice(0, 10) + 'T00:00:00');
     return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
   }
 
