@@ -1060,20 +1060,32 @@
       }
     } catch (e) { client = null; }
 
+    // Les envois sont mis en file : un seul à la fois, et toujours avec l'état le plus récent.
+    // (Avant, deux ajouts rapprochés lançaient deux « supprimer puis réinsérer » simultanés
+    // qui se marchaient dessus : la dernière ligne ajoutée pouvait ne jamais être enregistrée.)
+    var pushChain = Promise.resolve();
     function push() {
-      if (!client) return;
-      client.auth.getUser().then(function (res) {
+      if (!client) return pushChain;
+      pushChain = pushChain.then(doPush, doPush);
+      return pushChain;
+    }
+    function notifyChanged() {
+      try { window.dispatchEvent(new CustomEvent("ktiso:transactions-changed")); } catch (e) {}
+    }
+    function doPush() {
+      return client.auth.getUser().then(function (res) {
         var user = res && res.data && res.data.user;
         if (!user) return;
-        client.from("transactions").delete().eq("user_id", user.id).then(function (delRes) {
-          if (delRes.error) { showSyncWarning(); return; }
-          if (state.transactions.length === 0) { hideSyncWarning(); return; }
-          var rows = state.transactions.map(function (t) {
-            return { id: t.id, user_id: user.id, type: t.type, nature: t.nature, description: t.description || "", amount: t.amount, date: t.date, category: t.category || null };
-          });
-          client.from("transactions").insert(rows).then(function (insRes) {
-            if (insRes.error) { showSyncWarning(); return; }
+        var rows = state.transactions.map(function (t) {
+          return { id: t.id, user_id: user.id, type: t.type, nature: t.nature, description: t.description || "", amount: t.amount, date: t.date, category: t.category || null };
+        });
+        return client.from("transactions").delete().eq("user_id", user.id).then(function (delRes) {
+          if (delRes && delRes.error) { showSyncWarning(); return; }
+          if (rows.length === 0) { hideSyncWarning(); notifyChanged(); return; }
+          return client.from("transactions").upsert(rows, { onConflict: "id" }).then(function (insRes) {
+            if (insRes && insRes.error) { showSyncWarning(); return; }
             hideSyncWarning();
+            notifyChanged();
           });
         });
       }).catch(function () { showSyncWarning(); });

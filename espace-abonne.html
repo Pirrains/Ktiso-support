@@ -547,6 +547,12 @@
   }
 
   .goal-empty { text-align: center; padding: 8px 0; }
+  .goal-inline { max-width: 340px; margin: 18px auto 0; text-align: left; }
+  .goal-inline[hidden] { display: none; }
+  .goal-inline label { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(244,239,227,.5); margin: 12px 0 6px; }
+  .goal-inline input { width: 100%; font-family: 'DIN Next LT Pro', sans-serif; font-size: 15px; color: var(--cream); background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .goal-inline input:focus { outline: none; border-color: var(--gold); }
+  .goal-inline .btn { margin-top: 14px; }
 
   .goal-empty p {
     font-size: 13px;
@@ -1818,6 +1824,14 @@
 
   let transactions = [];
 
+  // L'outil « Comptes du quotidien » prévient le tableau de bord à chaque enregistrement
+  window.addEventListener('ktiso:transactions-changed', async () => {
+    try {
+      const { data, error } = await sb.from('transactions').select('*').order('date', { ascending: false });
+      if (!error && Array.isArray(data)) { transactions = data; renderRealStats(); }
+    } catch (err) {}
+  });
+
   function isSameMonth(dateStr, ref) {
     if (!dateStr) return false;
     const d = new Date(dateStr + 'T00:00:00');
@@ -1975,7 +1989,15 @@
         <div class="goal-empty">
           <div class="goal-eyebrow">Votre objectif</div>
           <p>Créez votre espace personnalisé : fixez le cap que vous voulez atteindre, et suivez votre progression réelle au fil de vos positions renseignées.</p>
-          <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="toggleAccentPicker()">+ Définir mon objectif</button>
+          <button class="btn btn-primary" id="goalOpenBtn" style="width:auto; padding:12px 24px;" onclick="toggleGoalForm()">+ Définir mon objectif</button>
+          <div class="goal-inline" id="goalInlineForm" hidden>
+            <label for="goal-label-card">Nom de l'objectif</label>
+            <input type="text" id="goal-label-card" placeholder="Ex : Apport immobilier">
+            <label for="goal-amount-card">Montant visé (€)</label>
+            <input type="number" id="goal-amount-card" placeholder="30000" min="0" inputmode="decimal">
+            <div class="field-error" id="goal-error-card">Merci d'indiquer un montant.</div>
+            <button class="btn btn-primary" style="width:auto; padding:12px 24px;" onclick="saveGoal('card')">Enregistrer mon objectif</button>
+          </div>
         </div>
       `;
     } else {
@@ -2011,23 +2033,35 @@
     `;
   }
 
-  async function saveGoal() {
-    const label = document.getElementById('goal-label-input').value.trim();
-    const amount = parseFloat(document.getElementById('goal-amount-input').value);
-    const errorEl = document.getElementById('goal-error');
+  function toggleGoalForm() {
+    const f = document.getElementById('goalInlineForm');
+    if (!f) return;
+    f.hidden = !f.hidden;
+    if (!f.hidden) document.getElementById('goal-label-card').focus();
+  }
+
+  async function saveGoal(scope) {
+    const sfx = scope === 'card' ? '-card' : '-input';
+    const label = document.getElementById('goal-label' + sfx).value.trim();
+    const amount = parseFloat(document.getElementById('goal-amount' + sfx).value);
+    const errorEl = document.getElementById(scope === 'card' ? 'goal-error-card' : 'goal-error');
 
     if (!amount || amount <= 0) {
+      errorEl.textContent = "Merci d'indiquer un montant.";
       errorEl.style.display = 'block';
       return;
     }
     errorEl.style.display = 'none';
 
     const { data: { user } } = await sb.auth.getUser();
-    const { error } = await sb
-      .from('profiles')
-      .update({ goal_amount: amount, goal_label: label || 'Mon objectif patrimonial' })
-      .eq('id', user.id);
+    if (!user) { errorEl.textContent = 'Session expirée — reconnectez-vous.'; errorEl.style.display = 'block'; return; }
+    const values = { goal_amount: amount, goal_label: label || 'Mon objectif patrimonial' };
 
+    // 1) on met à jour la ligne de profil ; 2) si elle n'existe pas encore, on la crée
+    let { data: updated, error } = await sb.from('profiles').update(values).eq('id', user.id).select('id');
+    if (!error && (!updated || updated.length === 0)) {
+      ({ error } = await sb.from('profiles').insert({ id: user.id, ...values }));
+    }
     if (error) {
       errorEl.textContent = "Erreur d'enregistrement — réessayez.";
       errorEl.style.display = 'block';
@@ -2040,7 +2074,7 @@
       .eq('id', user.id)
       .maybeSingle();
 
-    renderGoal(profile);
+    renderGoal(profile || { goal_amount: amount, goal_label: values.goal_label });
   }
 
   /* ================================================================
@@ -2201,10 +2235,19 @@
     if (onbStepIndex === 7) { onbRenderResult(); }
   }
 
+  // Met à jour la ligne de profil ; si elle n'existe pas encore, la crée.
+  async function saveProfileValues(userId, values) {
+    let { data: updated, error } = await sb.from('profiles').update(values).eq('id', userId).select('id');
+    if (!error && (!updated || updated.length === 0)) {
+      ({ error } = await sb.from('profiles').insert({ id: userId, ...values }));
+    }
+    return { error };
+  }
+
   async function onbFinish() {
     var { data: { user } } = await sb.auth.getUser();
     if (user) {
-      await sb.from('profiles').update({
+      await saveProfileValues(user.id, {
         situation_pro: onbState.situationPro,
         situation_familiale: onbState.situationFamiliale,
         logement: onbState.logement,
@@ -2215,14 +2258,14 @@
         risk_choice: onbState.risk,
         projets: onbState.projets,
         onboarding_completed: true
-      }).eq('id', user.id);
+      });
     }
     onbGoToStep(7);
   }
 
   async function onbSkip() {
     var { data: { user } } = await sb.auth.getUser();
-    if (user) { await sb.from('profiles').update({ onboarding_completed: true }).eq('id', user.id); }
+    if (user) { await saveProfileValues(user.id, { onboarding_completed: true }); }
     document.getElementById('onbOverlay').classList.remove('open');
   }
 
