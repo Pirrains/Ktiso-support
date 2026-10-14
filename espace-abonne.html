@@ -1854,7 +1854,9 @@
     const monthTx = transactions.filter(t => isSameMonth(t.date, now));
     const revenus = monthTx.filter(t => t.type === 'revenu').reduce((s, t) => s + Number(t.amount || 0), 0);
     const charges = monthTx.filter(t => t.type === 'depense').reduce((s, t) => s + Number(t.amount || 0), 0);
-    const solde = revenus - charges;
+    // Une épargne compte dans les charges du mois mais ne fait pas baisser le solde : elle reste à vous.
+    const epargne = monthTx.filter(t => t.type === 'depense' && t.category === 'epargne').reduce((s, t) => s + Number(t.amount || 0), 0);
+    const solde = revenus - charges + epargne;
 
     document.getElementById('stat-total').textContent = formatEuro(total);
     const sources = new Set(holdings.map(h => h.source || 'manual'));
@@ -1866,8 +1868,8 @@
     document.getElementById('stat-revenus').textContent = formatEuro(revenus);
     document.getElementById('stat-charges').textContent = formatEuro(charges);
     const soldeEl = document.getElementById('stat-solde');
-    soldeEl.textContent = `Solde : ${solde >= 0 ? '+' : ''}${formatEuro(solde)}`;
-    soldeEl.parentElement.querySelector('.v').className = charges > revenus ? 'v down' : 'v';
+    soldeEl.textContent = `Solde : ${solde >= 0 ? '+' : ''}${formatEuro(solde)}` + (epargne > 0 ? ` · dont épargne ${formatEuro(epargne)}` : '');
+    soldeEl.parentElement.querySelector('.v').className = solde < 0 ? 'v down' : 'v';
 
     renderRepartition(total);
   }

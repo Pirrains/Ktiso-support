@@ -409,6 +409,8 @@
     word-break: break-word;
   }
 
+  .stat-sub { font-size: 11.5px; color: rgba(244,239,227,.5); margin-top: 6px; min-height: 15px; line-height: 1.4; }
+  .stat-sub b { color: var(--lime); font-weight: 500; }
   .stat-value.lime { color: var(--lime); }
   .stat-value.terracotta { color: var(--terracotta); }
   .stat-value.gold { color: var(--gold); }
@@ -865,10 +867,12 @@
         <div class="stat-card">
           <div class="stat-label">Dépenses du mois</div>
           <div class="stat-value terracotta" id="stat-depenses">0,00 €</div>
+          <div class="stat-sub" id="stat-depenses-sub"></div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Solde total</div>
           <div class="stat-value gold" id="ct-stat-solde">0,00 €</div>
+          <div class="stat-sub" id="ct-stat-solde-sub"></div>
         </div>
       </div>
       <div class="month-nav">
@@ -1262,15 +1266,31 @@
     return state.transactions.filter(function (t) { return isSameMonth(t.date, state.viewDate); });
   }
 
+  // Solde total = tout ce qui vous appartient : l'argent disponible + l'épargne mise de côté.
+  // Une épargne est bien comptée dans les dépenses du mois (l'argent sort du compte courant),
+  // mais elle ne fait pas baisser le solde total : elle passe simplement du « disponible » à « épargné ».
+  function isSaving(t) { return t.type === "depense" && t.category === "epargne"; }
+
   function renderStats() {
     var monthTx = monthTransactions();
     var revenus = monthTx.filter(function (t) { return t.type === "revenu"; }).reduce(function (s, t) { return s + t.amount; }, 0);
     var depenses = monthTx.filter(function (t) { return t.type === "depense"; }).reduce(function (s, t) { return s + t.amount; }, 0);
-    var soldeTotal = state.transactions.reduce(function (s, t) { return s + (t.type === "revenu" ? t.amount : -t.amount); }, 0);
+    var epargneMois = monthTx.filter(isSaving).reduce(function (s, t) { return s + t.amount; }, 0);
+
+    var allRev = state.transactions.filter(function (t) { return t.type === "revenu"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    var allDep = state.transactions.filter(function (t) { return t.type === "depense"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    var allSav = state.transactions.filter(isSaving).reduce(function (s, t) { return s + t.amount; }, 0);
+    var disponible = allRev - allDep;          // ce qui reste sur le compte courant
+    var soldeTotal = disponible + allSav;      // disponible + épargne
 
     els.statRevenus.textContent = fmt(revenus);
     els.statDepenses.textContent = fmt(depenses);
     els.statSolde.textContent = fmt(soldeTotal);
+    var subDep = document.getElementById("stat-depenses-sub");
+    var subSol = document.getElementById("ct-stat-solde-sub");
+    if (subDep) subDep.innerHTML = epargneMois > 0 ? "dont épargne : <b>" + fmt(epargneMois) + "</b>" : "";
+    if (subSol) subSol.innerHTML = state.transactions.length
+      ? "Disponible : " + fmt(disponible) + " · Épargné : <b>" + fmt(allSav) + "</b>" : "";
   }
 
   function renderBreakdown() {
@@ -1682,7 +1702,7 @@
     var needs = sums.fixe + sums.variable;
     if (needs > 0) {
       var solde = state.transactions.reduce(function (s, t) { return s + (t.type === "revenu" ? t.amount : -t.amount); }, 0);
-      var savedCum = state.transactions.filter(function (t) { return t.type === "depense" && t.category === "epargne"; }).reduce(function (s, t) { return s + t.amount; }, 0);
+      var savedCum = state.transactions.filter(isSaving).reduce(function (s, t) { return s + t.amount; }, 0);
       var cushion = solde + savedCum;
       var months = cushion / needs;
       if (months < 3) {
