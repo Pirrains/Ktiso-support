@@ -1293,6 +1293,9 @@
             <div id="goalFormSettings"></div>
             <div class="settings-section-label" style="margin-top:16px;">Mon profil investisseur</div>
             <div id="profileFormSettings"></div>
+            <div class="settings-section-label" style="margin-top:16px;">Mes données</div>
+            <p style="font-size:12px;line-height:1.6;color:rgba(244,239,227,0.55);margin-bottom:10px;">Supprimer définitivement votre compte et toutes vos données (opérations, portefeuille, famille, objectifs). Action irréversible.</p>
+            <button class="logout-link" id="deleteAccountBtn" style="color:var(--terracotta);" onclick="deleteAccount()">Supprimer mon compte</button>
           </div>
         </div>
         <button class="logout-link" onclick="logout()">Déconnexion</button>
@@ -1561,6 +1564,8 @@
       <a href="privacy.html">Confidentialité</a><span class="sep">·</span>
       <a href="mentions-legales.html">Mentions légales</a><span class="sep">·</span>
       <a href="cgu.html">CGU</a>
+      <span class="sep">·</span>
+      <a href="cookies.html">Cookies</a>
     </div>
     <div class="copyright">KTISO — Éducation financière</div>
     <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
@@ -1657,6 +1662,35 @@
   }
 
   function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  async function deleteAccount() {
+    if (!confirm("Supprimer définitivement votre compte et toutes vos données ? Cette action est irréversible.")) return;
+    const typed = prompt('Pour confirmer, tapez SUPPRIMER');
+    if (!typed || typed.trim().toUpperCase() !== 'SUPPRIMER') return;
+    const btn = document.getElementById('deleteAccountBtn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Suppression…'; }
+    try {
+      const { data: { user } } = await sb.auth.getUser();
+      // 1) suppression complète (compte + données) via la fonction SQL delete_my_account
+      let { error } = await sb.rpc('delete_my_account');
+      if (error) {
+        // 2) repli : efface toutes les données de l'utilisateur
+        await sb.from('transactions').delete().eq('user_id', user.id);
+        await sb.from('holdings').delete().eq('user_id', user.id);
+        await sb.from('family_members').delete().eq('user_id', user.id);
+        const r = await sb.from('profiles').delete().eq('id', user.id);
+        if (r.error) throw r.error;
+        alert("Vos données ont été supprimées. Pour supprimer aussi votre identifiant de connexion, écrivez à ktiso@outlook.fr.");
+      } else {
+        alert("Votre compte et vos données ont été supprimés.");
+      }
+      try { Object.keys(localStorage).filter(k => k.indexOf('ktiso') === 0).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+      await logout();
+    } catch (e) {
+      alert("La suppression a échoué : " + (e.message || e) + ". Écrivez à ktiso@outlook.fr et nous la ferons pour vous.");
+      if (btn) { btn.disabled = false; btn.textContent = 'Supprimer mon compte'; }
+    }
+  }
 
   async function logout() {
     await sb.auth.signOut();

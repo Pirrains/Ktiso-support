@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Ktiso — CGU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTISO — CGU</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
@@ -21,64 +21,207 @@
 
   :root {
     --gold: #C9A961;
+    --gold-deep: #8B6F35;
     --green: #1A2E22;
     --green-deep: #0F1A14;
     --terracotta: #C1654A;
     --lime: #A8C66C;
     --cream: #F4EFE3;
-    --line: rgba(201, 169, 97, 0.22);
+    --line: rgba(201, 169, 97, 0.2);
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { background: var(--green-deep); color: var(--cream); font-family: 'DIN Next LT Pro', sans-serif; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DIN Next LT Pro', sans-serif;
+  }
+
   body {
     background:
-      radial-gradient(ellipse 80% 45% at 50% -10%, rgba(201, 169, 97, 0.09), transparent),
+      radial-gradient(ellipse 80% 40% at 50% -10%, rgba(201, 169, 97, 0.07), transparent),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
-    display: flex; justify-content: center; padding: 0 24px 72px;
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 96px;
   }
-  a { color: var(--terracotta); }
-  .frame { width: 100%; max-width: 640px; }
+
+  .frame {
+    width: 100%;
+    max-width: 680px;
+  }
 
   nav.topnav {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 0;
-    padding-top: 28px; margin-bottom: 40px;
-    font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 48px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
-  nav.topnav a { color: rgba(244, 239, 227, 0.55); text-decoration: none; padding: 4px 7px; border-bottom: 1px solid transparent; }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
   nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
   nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
 
-  header { text-align: center; margin-bottom: 48px; }
-  .eyebrow { font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
-  h1 {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-    font-weight: 600;
-    font-size: clamp(28px, 6vw, 42px);
-    color: var(--cream);
+  header {
+    text-align: center;
+    margin-bottom: 56px;
   }
 
-  .rule { width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 40px auto; }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+
+  .wordmark {
+    width: clamp(130px, 32vw, 180px);
+    height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  }
+
+  .updated {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.35);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
 
   section { margin-bottom: 40px; }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+
   h2 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
     font-weight: 600;
-    font-size: 17px;
-    color: var(--gold);
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  p, li {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.82);
+  }
+
+  p + p { margin-top: 14px; }
+
+  ul {
+    list-style: none;
+    margin-top: 16px;
+  }
+
+  li {
+    padding-left: 22px;
+    position: relative;
     margin-bottom: 12px;
   }
-  p, li { font-size: 13.5px; line-height: 1.75; color: rgba(244, 239, 227, 0.75); margin-bottom: 10px; }
-  ul { padding-left: 20px; margin-bottom: 10px; }
 
-  footer { text-align: center; margin-top: 56px; }
-  .footer-nav { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 0; }
-  .footer-nav a { color: rgba(244, 239, 227, 0.5); text-decoration: none; border-bottom: 1px solid transparent; }
-  .footer-nav a:hover { color: var(--terracotta); border-bottom-color: var(--terracotta); }
-  .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
-  .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
+  li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .highlight {
+    color: var(--gold);
+  }
+
+  a {
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
+  }
+
+  a:hover { border-bottom-color: var(--terracotta); }
+
+  .border-box {
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  footer {
+    margin-top: 64px;
+    text-align: center;
+  }
+
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer-nav a:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+  }
+
+  .footer-nav .sep {
+    color: rgba(244, 239, 227, 0.2);
+    margin: 0 10px;
+  }
+
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  .legal-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.25);
+    max-width: 480px;
+    margin: 16px auto 0;
+  }
 </style>
-<link rel="stylesheet" href="mobile.css">
-<script src="mobile.js" defer></script>
 </head>
 <body>
   <div class="frame">
@@ -94,72 +237,120 @@
     </nav>
 
     <header>
-      <div class="eyebrow">Conditions générales</div>
-      <h1>CGU</h1>
+      <div class="eyebrow">Éducation financière</div>
+      <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
+      <p class="updated">Dernière mise à jour — 14 octobre 2026</p>
     </header>
 
     <div class="rule"></div>
 
     <section>
-      <h2>Objet</h2>
-      <p>Les présentes conditions générales d'utilisation (CGU) régissent l'accès et l'usage du site Ktiso, de l'application mobile Ktiso et de l'espace abonné. En les utilisant, vous acceptez ces conditions.</p>
+      <div class="section-label">Objet</div>
+      <h2>Conditions générales d'utilisation</h2>
+      <p>Les présentes conditions régissent l'accès et l'usage du site KTISO, de l'application mobile KTISO et de l'espace abonné (le « Service »). En créant un compte ou en utilisant le Service, vous les acceptez.</p>
     </section>
 
     <section>
-      <h2>Nature du service</h2>
-      <p>Ktiso est un outil pédagogique d'éducation financière. Il ne s'agit ni d'un service de conseil en investissement, ni d'un établissement financier, ni d'un intermédiaire. Aucun contenu de Ktiso ne doit être interprété comme une recommandation personnalisée.</p>
+      <div class="section-label">Qui sommes-nous</div>
+      <h2>Un projet personnel et gratuit</h2>
+      <p>KTISO est un projet d'éducation financière porté à titre personnel par deux personnes, en Belgique, sans société ni activité commerciale. Le Service est <span class="highlight">gratuit</span> et ne comporte ni vente, ni publicité, ni paiement. Contact : <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a>.</p>
     </section>
 
     <section>
-      <h2>Compte utilisateur</h2>
-      <p>La création d'un compte dans l'espace abonné nécessite une adresse email et un mot de passe. Vous êtes responsable de la confidentialité de vos identifiants et de toute activité effectuée depuis votre compte.</p>
-      <p>Les données que vous renseignez (par exemple, un portefeuille d'investissement) vous sont strictement personnelles et ne sont visibles que par vous.</p>
+      <div class="section-label">Nature du service</div>
+      <h2>Éducatif, pas du conseil</h2>
+      <p>KTISO est un outil pédagogique. Ce n'est ni un conseil en investissement, fiscal, juridique ou comptable, ni un établissement financier, ni un intermédiaire, et KTISO n'est pas soumis à la supervision de la FSMA. Aucun contenu n'est une recommandation personnalisée.</p>
+      <p>Les simulateurs, calculateurs et indicateurs donnent des résultats <span class="highlight">indicatifs</span>, fondés sur vos saisies et sur des hypothèses simplifiées. Les cours et données de marché peuvent être différés ou inexacts. Tout investissement comporte un risque de perte en capital. Vous décidez seul, sous votre responsabilité.</p>
     </section>
 
     <section>
-      <h2>Usage acceptable</h2>
+      <div class="section-label">Compte</div>
+      <h2>Votre compte</h2>
       <ul>
-        <li>Ne pas tenter d'accéder aux comptes ou données d'autres utilisateurs.</li>
-        <li>Ne pas utiliser le service à des fins frauduleuses ou illégales.</li>
-        <li>Ne pas perturber le fonctionnement technique du site ou de l'application.</li>
+        <li>Le Service est réservé aux personnes de 16 ans et plus</li>
+        <li>La création d'un compte nécessite une adresse email valide et un mot de passe ; les informations fournies doivent être exactes</li>
+        <li>Vous êtes responsable de la confidentialité de vos identifiants et de l'activité de votre compte</li>
+        <li>Les données que vous saisissez vous appartiennent ; elles ne sont visibles que de vous</li>
+        <li>Pour votre sécurité, ne saisissez jamais de coordonnées bancaires ni de mots de passe de comptes réels</li>
       </ul>
     </section>
 
     <section>
-      <h2>Disponibilité</h2>
-      <p>Ktiso s'efforce d'assurer un accès continu au site et à l'application, sans garantie de disponibilité permanente. Certaines fonctionnalités peuvent évoluer, être ajoutées ou retirées sans préavis.</p>
+      <div class="section-label">Usage acceptable</div>
+      <h2>Ce qui est interdit</h2>
+      <ul>
+        <li>Tenter d'accéder aux comptes ou aux données d'autres utilisateurs</li>
+        <li>Utiliser le Service à des fins frauduleuses ou illégales</li>
+        <li>Perturber son fonctionnement technique, l'extraire massivement ou le copier à des fins commerciales</li>
+      </ul>
     </section>
 
     <section>
-      <h2>Outils payants</h2>
-      <p>Certains outils avancés pourront être proposés sous forme d'abonnement. Les tarifs et conditions spécifiques seront communiqués avant toute mise en place d'un paiement.</p>
+      <div class="section-label">Propriété intellectuelle</div>
+      <h2>Contenus de KTISO</h2>
+      <p>Les textes, illustrations, logo, mise en page et code de KTISO sont protégés. Vous pouvez les consulter et en faire un usage personnel ; toute reproduction ou réutilisation sans autorisation écrite est interdite, sauf courte citation avec mention de la source. Les marques et logos tiers appartiennent à leurs propriétaires.</p>
     </section>
 
     <section>
-      <h2>Résiliation</h2>
-      <p>Vous pouvez supprimer votre compte à tout moment en nous contactant à <a href="mailto:ktiso@outlook.fr">ktiso@outlook.fr</a>. Ktiso se réserve le droit de suspendre un compte en cas d'usage contraire aux présentes CGU.</p>
+      <div class="section-label">Disponibilité et responsabilité</div>
+      <h2>Sans garantie permanente</h2>
+      <p>Le Service est fourni « en l'état », par des personnes qui le font bénévolement. Nous nous efforçons de le maintenir disponible, sans garantie d'accès continu ni d'absence d'erreur, et des fonctionnalités peuvent changer ou être retirées.</p>
+      <p>Dans la mesure permise par la loi, nous ne sommes pas responsables des décisions prises à partir des contenus ou des résultats des outils, ni des pertes indirectes. Cette limitation ne s'applique pas en cas de faute intentionnelle, de dol ou lorsque la loi l'interdit, et elle ne prive pas les consommateurs de leurs droits impératifs.</p>
     </section>
 
     <section>
-      <h2>Droit applicable</h2>
-      <p>Les présentes CGU sont soumises au droit belge. Voir également notre <a href="privacy.html">politique de confidentialité</a> et nos <a href="mentions-legales.html">mentions légales</a>.</p>
+      <div class="section-label">Fin du compte</div>
+      <h2>Suppression et suspension</h2>
+      <p>Vous pouvez supprimer votre compte à tout moment, directement dans Mon compte → Réglages → Supprimer mon compte (vos données sont alors effacées), ou en nous écrivant. Nous pouvons suspendre ou supprimer un compte en cas d'usage contraire aux présentes conditions.</p>
     </section>
 
-    <div class="rule"></div>
+    <section>
+      <div class="section-label">Évolution</div>
+      <h2>Fonctionnalités payantes et modifications</h2>
+      <p>Aucune fonctionnalité payante n'existe aujourd'hui. Si une offre payante était un jour proposée, elle serait précédée d'une information claire, de conditions spécifiques (prix, durée, droit de rétractation) et de la mise à jour de ces CGU et des mentions légales. Les CGU peuvent évoluer ; la date de mise à jour figure en haut de page et un changement important vous serait signalé.</p>
+    </section>
+
+    <section>
+      <div class="section-label">Application iOS</div>
+      <h2>Apple</h2>
+      <p>Pour l'application sur l'App Store, Apple n'est pas partie aux présentes conditions et n'est responsable ni du contenu, ni du support, ni de la maintenance de l'application. Les conditions d'Apple s'appliquent à votre usage de l'App Store.</p>
+    </section>
+
+    <section>
+      <div class="section-label">Droit applicable</div>
+      <h2>Litiges</h2>
+      <p>Les présentes CGU sont soumises au droit belge. En cas de litige, nous privilégions une solution amiable (écrivez-nous). À défaut, les tribunaux belges sont compétents, sans préjudice des règles protégeant les consommateurs de leur pays de résidence.</p>
+      <p>Voir aussi la <a href="privacy.html">politique de confidentialité</a>, la page <a href="cookies.html">Cookies</a> et les <a href="mentions-legales.html">mentions légales</a>.</p>
+    </section>
 
     <footer>
       <div class="footer-nav">
-        <a href="a-propos.html">À propos</a><span class="sep">·</span>
-        <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
-        <a href="outils.html">Outils</a><span class="sep">·</span>
-        <a href="application.html">Application</a><span class="sep">·</span>
-        <a href="contenus.html">Contenus</a><span class="sep">·</span>
-        <a href="actualites.html">Actualités</a><span class="sep">·</span>
-        <a href="index.html">Support</a><span class="sep">·</span>
-        <a href="privacy.html">Confidentialité</a><span class="sep">·</span>
+        <a href="home.html">Accueil</a>
+        <span class="sep">·</span>
+        <a href="application.html">Application</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="portefeuille.html">Portefeuille</a>
+        <span class="sep">·</span>
+        <a href="outils.html">Outils</a>
+        <span class="sep">·</span>
+        <a href="contenus.html">Contenus</a>
+        <span class="sep">·</span>
+        <a href="actualites.html">Actualités</a>
+        <span class="sep">·</span>
+        <a href="index.html">Support</a>
+        <span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a>
+        <span class="sep">·</span>
         <a href="mentions-legales.html">Mentions légales</a>
+        <span class="sep">·</span>
+        <a href="cgu.html">CGU</a>
+        <span class="sep">·</span>
+        <a href="cookies.html">Cookies</a>
       </div>
-      <div class="copyright">KTISO — Éducation financière</div>
+      <div class="copyright">KTISO — CGU</div>
+      <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
     </footer>
   </div>
 </body>
