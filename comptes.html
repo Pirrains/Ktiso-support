@@ -1007,9 +1007,9 @@
             <button type="button" class="goal-chip" data-preset="70,20,10">70 / 20 / 10</button>
           </div>
           <div class="goals-inputs">
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-fixe">Fixes</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Fixes" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Dépenses obligatoires qui reviennent chaque mois, à peu près au même montant : loyer, crédit, assurances, abonnements, énergie, internet, gsm…</span></div><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-variable">Variables</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Variables" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Dépenses qui changent d'un mois à l'autre et que vous pouvez ajuster : courses, restaurants, sorties, vêtements, loisirs, achats plaisir…</span></div><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-epargne">Épargne</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Épargne" aria-expanded="false">?</button><span class="tip-bubble tip-right" role="tooltip">Ce que vous mettez de côté au lieu de le dépenser : livret, ordre permanent, ETF, pension complémentaire… C'est un minimum à atteindre, pas un plafond.</span></div><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-fixe">Fixes</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Fixes" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Charges sur lesquelles vous n'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…</span></div><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-variable">Variables</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Variables" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Tout le reste, ce qui dépend de vos habitudes de consommation et que vous pouvez ajuster : assurances, courses, énergie, abonnements, loisirs, divertissements, sorties…</span></div><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-epargne">Épargne</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Épargne" aria-expanded="false">?</button><span class="tip-bubble tip-right" role="tooltip">Ce que vous mettez de côté : épargne de sécurité (livret, ordre permanent), épargne pension et « save to invest » (l'argent que vous investissez : ETF, actions…). C'est un minimum à atteindre, pas un plafond.</span></div><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
           </div>
           <div class="goals-sum" id="goals-sum"></div>
           <div id="goals-results"></div>
@@ -1679,14 +1679,14 @@
         add(75 + Math.min(10, gapFx / rev * 100), "Allégez vos charges fixes",
           "Vos charges fixes dépassent la cible de <b>" + fmt(gapFx) + "</b> (" + pct(sums.fixe / rev * 100) + " au lieu de " + pct(goals.fixe) + ")." +
           (tf ? " Le plus gros poste est <b>" + escapeHtml(tf.name) + "</b> (" + fmt(tf.total) + ")." : "") +
-          " Comparez vos contrats (énergie, assurances, abonnements, télécom) : une charge fixe renégociée fait gagner de l'argent tous les mois sans effort.");
+          " Ces charges sont peu compressibles à court terme : voyez si un crédit peut être renégocié ou refinancé, et pensez à faire progresser vos revenus pour diluer leur poids.");
       }
       var gapVr = sums.variable - rev * goals.variable / 100;
       if (gapVr > 0.5) {
         var tv = top("variable");
         add(70 + Math.min(10, gapVr / rev * 100), "Maîtrisez vos dépenses variables",
           "Vos dépenses variables dépassent la cible de <b>" + fmt(gapVr) + "</b> (" + pct(sums.variable / rev * 100) + " au lieu de " + pct(goals.variable) + ")." +
-          (tv ? " Le poste le plus important est <b>" + escapeHtml(tv.name) + "</b> (" + fmt(tv.total) + ") : fixez-lui une enveloppe mensuelle et suivez-la chaque semaine." : ""));
+          (tv ? " Le poste le plus important est <b>" + escapeHtml(tv.name) + "</b> (" + fmt(tv.total) + ") : fixez-lui une enveloppe mensuelle et suivez-la chaque semaine. Comparez aussi vos contrats (énergie, assurances, abonnements, télécom) : une économie obtenue une fois se répète chaque mois." : ""));
       }
       if (dep > 0 && ponctuel / dep > 0.25) {
         add(50, "Anticipez les dépenses ponctuelles",
@@ -1764,19 +1764,19 @@
     ["Allocations de chômage", "mois"], ["Autres revenus", "mois"]
   ];
   var EXPENSE_CATS = [
-    ["Habitation", [["Loyer","mois","fixe"],["Crédit hypothécaire","mois","fixe"],["Entretien (ascenseur, chaudière, …)","mois","variable"],["Installation et décoration","mois","variable"],["Charges d'énergie (électricité, gaz, …)","mois","fixe"],["Charges pour l'eau","mois","fixe"]]],
-    ["Transport", [["Vélo (équipement, entretien)","mois","variable"],["Transport en commun","mois","fixe"],["Emprunt achat véhicule","mois","fixe"],["Carburant","mois","variable"],["Entretien véhicule","mois","variable"]]],
+    ["Habitation", [["Loyer","mois","fixe"],["Crédit hypothécaire","mois","fixe"],["Entretien (ascenseur, chaudière, …)","mois","variable"],["Installation et décoration","mois","variable"],["Charges d'énergie (électricité, gaz, …)","mois","variable"],["Charges pour l'eau","mois","variable"]]],
+    ["Transport", [["Vélo (équipement, entretien)","mois","variable"],["Transport en commun","mois","variable"],["Emprunt achat véhicule","mois","fixe"],["Carburant","mois","variable"],["Entretien véhicule","mois","variable"]]],
     ["Courses", [["Alimentation au quotidien (boisson, viande, légumes, …)","mois","variable"],["Alimentation pour des occasions spéciales","mois","variable"],["Envies (snacks, sodas, collations, …)","mois","variable"],["Hygiène (shampoings, lames de rasoir, …)","mois","variable"],["Produits d'entretien (ménage et lessive)","mois","variable"]]],
     ["Tabac et alcool", [["Tabac","mois","variable"],["Alcool","mois","variable"]]],
     ["Look", [["Vêtements et chaussures","mois","variable"],["Coiffeur et salon esthétique","mois","variable"],["Cosmétiques et parfums","mois","variable"]]],
-    ["Soins de santé", [["Médecin et médicaments","mois","variable"],["Mutuelle","mois","fixe"]]],
+    ["Soins de santé", [["Médecin et médicaments","mois","variable"],["Mutuelle","mois","variable"]]],
     ["Enfants", [["Garderie, crèche","mois","fixe"],["Frais scolaires","mois","variable"],["Activités (stages, scouts, …)","mois","variable"],["Argent de poche","mois","variable"],["Cadeaux","mois","variable"]]],
-    ["Sport, culture et loisirs", [["Sorties (tickets, resto, fast-food, …)","mois","variable"],["Cotisations (club, académie, …)","mois","fixe"],["Fêtes (cadeaux, …)","mois","variable"],["Vacances (déplacement, logement, …)","mois","variable"]]],
+    ["Sport, culture et loisirs", [["Sorties (tickets, resto, fast-food, …)","mois","variable"],["Cotisations (club, académie, …)","mois","variable"],["Fêtes (cadeaux, …)","mois","variable"],["Vacances (déplacement, logement, …)","mois","variable"]]],
     ["Animaux domestiques", [["Nourriture","mois","variable"],["Vétérinaire","mois","variable"]]],
-    ["Multimédia", [["Appareils (smartphone, ordinateur, …)","mois","variable"],["Abonnements (internet, gsm, …)","mois","fixe"],["Musique, films et jeux","mois","variable"]]],
-    ["Assurances", [["Assurance habitation","an","fixe"],["Assurance solde restant dû","an","fixe"],["Assurance véhicule","an","fixe"],["Assurance hospitalisation","an","fixe"],["Assurance voyages","an","fixe"],["RC familiale","an","fixe"]]],
+    ["Multimédia", [["Appareils (smartphone, ordinateur, …)","mois","variable"],["Abonnements (internet, gsm, …)","mois","variable"],["Musique, films et jeux","mois","variable"]]],
+    ["Assurances", [["Assurance habitation","an","variable"],["Assurance solde restant dû","an","variable"],["Assurance véhicule","an","variable"],["Assurance hospitalisation","an","variable"],["Assurance voyages","an","variable"],["RC familiale","an","variable"]]],
     ["Impôts et taxes", [["Précompte immobilier","an","fixe"],["Taxes diverses (déchets, égouts, …)","mois","fixe"],["Taxe de circulation","an","fixe"]]],
-    ["Épargne", [["Épargne pension","an","epargne"],["Épargne automatique (ordre permanent mensuel)","mois","epargne"]]]
+    ["Épargne et investissement", [["Épargne automatique (ordre permanent mensuel)","mois","epargne"],["Save to invest (investissement mensuel : ETF, actions, …)","mois","epargne"],["Épargne pension","an","epargne"]]]
   ];
 
   var inputCategorie = document.getElementById("input-categorie");
@@ -1785,8 +1785,8 @@
   var catIndex = {};
 
   // ---------- Détection automatique : charge fixe, variable ou épargne ----------
-  var RE_EPARGNE = /(épargne|epargne|livret|ordre permanent|placement|investissement|\betfs?\b|compte à terme|pension complémentaire)/i;
-  var RE_FIXE = /(loyer|crédit|credit|hypoth|prêt|pret |leasing|assurance|mutuelle|abonnement|internet|gsm|téléphone|telephone|netflix|spotify|disney|amazon prime|électricité|electricit|gaz|eau\b|chauffage|mazout|syndic|taxe|impôt|impot|précompte|precompte|redevance|crèche|creche|garderie|cotisation|frais scolaires|école|ecole|pension alimentaire|fitness|salle de sport|charges)/i;
+  var RE_EPARGNE = /(épargne|epargne|livret|ordre permanent|placement|investi|save to invest|save-to-invest|\betfs?\b|compte à terme|pension complémentaire)/i;
+  var RE_FIXE = /(loyer|crédit|credit|hypoth|prêt|pret |emprunt|leasing|syndic|charges de copropri|charges locatives|taxe|impôt|impot|précompte|precompte|redevance|pension alimentaire|crèche|creche|garderie)/i;
 
   function detectCategory(nature, catKey, period) {
     var c = catIndex[catKey];

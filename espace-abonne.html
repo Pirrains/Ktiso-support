@@ -1727,7 +1727,7 @@
     if (currentToolStyleEl) { currentToolStyleEl.remove(); currentToolStyleEl = null; }
 
     try {
-      var res = await fetch(url);
+      var res = await fetch(url, { cache: 'no-cache' });
       if (!res.ok) throw new Error('fetch failed: ' + res.status);
       var html = await res.text();
       var doc = new DOMParser().parseFromString(html, 'text/html');
