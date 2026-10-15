@@ -826,6 +826,16 @@
   html.embedded header,
   html.embedded footer { display: none !important; }
   html.embedded .frame { padding-top: 28px !important; }
+  .goal-labelrow { position: relative; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .goal-labelrow label { margin-bottom: 0 !important; }
+  .tip-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(201,169,97,.55); background: rgba(201,169,97,.08); color: var(--gold); font-family: 'IBM Plex Sans Condensed', sans-serif; font-size: 11px; line-height: 1; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center; transition: background .2s, color .2s; }
+  .tip-btn:hover, .tip-btn:focus-visible, .tip-btn[aria-expanded="true"] { background: var(--gold); color: #1A2E22; outline: none; }
+  .tip-bubble { position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; width: 240px; max-width: 72vw; padding: 12px 14px; background: #16241c; border: 1px solid var(--gold); border-radius: var(--radius-sm); box-shadow: 0 12px 32px rgba(0,0,0,.5); font-size: 12.5px; line-height: 1.55; letter-spacing: 0; text-transform: none; color: var(--cream); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .18s, transform .18s, visibility .18s; pointer-events: none; }
+  .tip-bubble.tip-right { left: auto; right: 0; }
+  .tip-bubble::before { content: ''; position: absolute; top: -6px; left: 14px; width: 10px; height: 10px; background: #16241c; border-left: 1px solid var(--gold); border-top: 1px solid var(--gold); transform: rotate(45deg); }
+  .tip-bubble.tip-right::before { left: auto; right: 14px; }
+  .tip-btn[aria-expanded="true"] ~ .tip-bubble, .tip-btn:hover ~ .tip-bubble, .tip-btn:focus-visible ~ .tip-bubble { opacity: 1; visibility: visible; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .tip-bubble { transition: none; } }
 </style></head>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -997,9 +1007,9 @@
             <button type="button" class="goal-chip" data-preset="70,20,10">70 / 20 / 10</button>
           </div>
           <div class="goals-inputs">
-            <div class="goal-input"><label for="goal-fixe">Fixes</label><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><label for="goal-variable">Variables</label><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><label for="goal-epargne">Épargne</label><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-fixe">Fixes</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Fixes" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Dépenses obligatoires qui reviennent chaque mois, à peu près au même montant : loyer, crédit, assurances, abonnements, énergie, internet, gsm…</span></div><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-variable">Variables</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Variables" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Dépenses qui changent d'un mois à l'autre et que vous pouvez ajuster : courses, restaurants, sorties, vêtements, loisirs, achats plaisir…</span></div><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
+            <div class="goal-input"><div class="goal-labelrow"><label for="goal-epargne">Épargne</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Épargne" aria-expanded="false">?</button><span class="tip-bubble tip-right" role="tooltip">Ce que vous mettez de côté au lieu de le dépenser : livret, ordre permanent, ETF, pension complémentaire… C'est un minimum à atteindre, pas un plafond.</span></div><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
           </div>
           <div class="goals-sum" id="goals-sum"></div>
           <div id="goals-results"></div>
@@ -2045,6 +2055,16 @@
     renderAll();
   });
 })();
+
+  // Bulles d'aide (?) — clic pour ouvrir/fermer (mobile), survol au bureau
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".tip-btn");
+    document.querySelectorAll(".tip-btn[aria-expanded='true']").forEach(function (b) { if (b !== btn) b.setAttribute("aria-expanded", "false"); });
+    if (btn) btn.setAttribute("aria-expanded", btn.getAttribute("aria-expanded") === "true" ? "false" : "true");
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") document.querySelectorAll(".tip-btn[aria-expanded='true']").forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+  });
 </script>
 </body>
 </html>
