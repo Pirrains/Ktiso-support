@@ -1993,10 +1993,7 @@
     holdings = error ? [] : data;
     renderHoldings();
 
-    const { data: txData, error: txError } = await sb
-      .from('transactions')
-      .select('*')
-      .order('date', { ascending: false });
+    const { data: txData, error: txError } = await fetchMyTransactions();
 
     transactions = txError ? [] : normalizeTransactions(txData);
     renderRealStats();
@@ -2025,10 +2022,24 @@
 
   let transactions = [];
 
+  // Mon budget = mes opérations perso + MA part des opérations d'un compte commun partagé (vue my_transactions).
+  // Si le foyer n'est pas installé côté Supabase, on retombe sur la table transactions.
+  async function fetchMyTransactions() {
+    try {
+      const { data: u } = await sb.auth.getUser();
+      const uid = u && u.user && u.user.id;
+      if (uid) {
+        const v = await sb.from('my_transactions').select('*').eq('user_id', uid).order('date', { ascending: false });
+        if (!v.error && Array.isArray(v.data)) return v;
+      }
+    } catch (e) {}
+    return await sb.from('transactions').select('*').order('date', { ascending: false });
+  }
+
   // L'outil « Comptes du quotidien » prévient le tableau de bord à chaque enregistrement
   window.addEventListener('ktiso:transactions-changed', async () => {
     try {
-      const { data, error } = await sb.from('transactions').select('*').order('date', { ascending: false });
+      const { data, error } = await fetchMyTransactions();
       if (!error && Array.isArray(data)) { transactions = normalizeTransactions(data); renderRealStats(); }
     } catch (err) {}
   });

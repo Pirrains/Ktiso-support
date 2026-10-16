@@ -297,6 +297,17 @@
   .share-row input[type=number] { width:96px; }
   .share-hint { font-size:12px; color:rgba(244,239,227,.5); margin-top:6px; min-height:15px; }
   .share-hint b { color:var(--lime); font-weight:500; }
+  .hh-box { margin-top:14px; padding-top:14px; border-top:1px solid var(--line); font-size:13px; line-height:1.55; color:rgba(244,239,227,.75); }
+  .hh-box h4 { margin:0 0 6px; font-family:'IBM Plex Sans Condensed',sans-serif; font-weight:500; font-size:15px; color:var(--cream); letter-spacing:.02em; }
+  .hh-box p { margin:0 0 10px; font-size:13px; max-width:none; text-align:left; }
+  .hh-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+  .hh-row input { flex:1; min-width:120px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:rgba(201,169,97,.04); color:var(--cream); font-family:'DIN Next LT Pro',sans-serif; font-size:14px; }
+  .hh-row .btn { padding:10px 16px; }
+  .hh-code { font-family:'IBM Plex Sans Condensed',sans-serif; font-weight:600; font-size:22px; letter-spacing:.18em; color:var(--gold); padding:8px 14px; border:1px dashed var(--line); border-radius:10px; display:inline-block; }
+  .hh-msg { font-size:12.5px; min-height:16px; color:var(--terracotta); }
+  .hh-msg.ok { color:var(--lime); }
+  .hh-link { background:none; border:none; padding:0; color:rgba(244,239,227,.5); text-decoration:underline; text-underline-offset:3px; cursor:pointer; font-family:'DIN Next LT Pro',sans-serif; font-size:12px; }
+  .hh-link:hover { color:var(--terracotta); }
   .ledger-tag { display:inline-block; font-size:10px; letter-spacing:.06em; text-transform:uppercase; padding:1px 7px; margin-right:6px; border:1px solid var(--line); border-radius:999px; color:rgba(244,239,227,.55); }
   .ledger-tag.commun { color:var(--lime); border-color:rgba(168,198,108,.35); }
   .ledger-part { font-size:11px; color:rgba(244,239,227,.45); text-align:right; }
@@ -929,11 +940,12 @@
         <button type="button" class="acct-manage-btn" id="acct-manage-btn" aria-expanded="false">Gérer mes comptes</button>
         <div class="acct-panel" id="acct-panel">
           <div id="acct-list"></div>
+          <div class="hh-box" id="hh-box"></div>
           <div class="acct-add">
             <input type="text" class="full" id="acct-name" placeholder="Nom du compte (ex. Compte commun, Loisirs Marie)" maxlength="40">
             <select id="acct-kind" aria-label="Type de compte">
               <option value="perso">Compte perso</option>
-              <option value="commun">Compte en commun</option>
+              <option value="commun">Compte en commun (suivi seul)</option>
             </select>
             <input type="text" id="acct-partner" placeholder="Avec qui ? (facultatif)" maxlength="40">
             <button type="button" class="btn btn-primary" id="acct-add-btn">Ajouter ce compte</button>
@@ -1185,7 +1197,7 @@
         if (!user) return;
         var extOK = true;
         try { extOK = window.sessionStorage.getItem("ktiso-no-ext-cols") !== "1"; } catch (e) {}
-        var rows = state.transactions.map(function (t) {
+        var rows = state.transactions.filter(function (t) { return !t.shared; }).map(function (t) {
           var r = { id: t.id, user_id: user.id, type: t.type, nature: t.nature, description: t.description || "", amount: t.amount, date: t.date, category: t.category || null };
           if (extOK) { r.account_id = t.account || "perso"; r.account_name = t.accountName || null; r.account_kind = t.accountKind || null; r.total = t.total; r.share = t.share; }
           return r;
@@ -1236,7 +1248,7 @@
         });
       }).catch(function () { return null; });
     }
-    return { push: push, pull: pull };
+    return { push: push, pull: pull, client: client };
   })();
 
   var els = {
@@ -1374,7 +1386,7 @@
     return state.accounts[0];
   }
   function accountsOfKind(kind) { return state.accounts.filter(function (a) { return a.kind === kind; }); }
-  function saveAccounts() { try { return Store.save(ACC_KEY, JSON.stringify(state.accounts)); } catch (e) {} }
+  function saveAccounts() { try { return Store.save(ACC_KEY, JSON.stringify(state.accounts.filter(function (a) { return !a.shared; }))); } catch (e) {} }
   function mergeAccounts(saved) {
     var list = [{ id: "perso", name: "Compte perso", kind: "perso", partner: "" }];
     (Array.isArray(saved) ? saved : []).forEach(function (a) {
@@ -1388,6 +1400,156 @@
       }
     });
     state.accounts = list;
+  }
+
+  // ---------- Foyer : deux personnes connectées, compte commun partagé ----------
+  var HH = { available: true, session: false, me: null, household: null, members: [], accounts: [], sharedTx: [], msg: "", msgOk: false, code: "" };
+
+  function hhClient() { return sbSync.client; }
+
+  function hhFail(err) {
+    // tables pas encore installées (foyer.sql) -> la fonction est simplement indisponible
+    var m = (err && (err.message || "")) + " " + (err && (err.code || ""));
+    if (/relation|does not exist|schema cache|PGRST20|42P01/i.test(m)) HH.available = false;
+  }
+
+  function hhLoad() {
+    var c = hhClient();
+    if (!c) { HH.session = false; return Promise.resolve(); }
+    return c.auth.getUser().then(function (res) {
+      var user = res && res.data && res.data.user;
+      if (!user) { HH.session = false; HH.household = null; return; }
+      HH.session = true; HH.me = user.id;
+      return c.from("household_members").select("*").then(function (r) {
+        if (r.error) { hhFail(r.error); HH.household = null; return; }
+        var rows = r.data || [], mine = rows.filter(function (m) { return m.user_id === user.id; })[0];
+        if (!mine) { HH.household = null; HH.members = []; HH.accounts = []; HH.sharedTx = []; return; }
+        HH.household = mine.household_id;
+        HH.members = rows.filter(function (m) { return m.household_id === mine.household_id; });
+        return Promise.all([
+          c.from("household_accounts").select("*").eq("household_id", mine.household_id),
+          c.from("shared_transactions").select("*").eq("household_id", mine.household_id).order("date", { ascending: false })
+        ]).then(function (rr) {
+          HH.accounts = (rr[0].data || []);
+          HH.sharedTx = (rr[1].data || []);
+        });
+      });
+    }).catch(function (e) { hhFail(e); });
+  }
+
+  function memberName(uid) {
+    var m = HH.members.filter(function (x) { return x.user_id === uid; })[0];
+    return m ? m.display_name : "";
+  }
+
+  function applyShared() {
+    state.accounts = state.accounts.filter(function (a) { return !a.shared; });
+    state.transactions = state.transactions.filter(function (t) { return !t.shared; });
+    if (HH.household) {
+      var others = HH.members.filter(function (m) { return m.user_id !== HH.me; });
+      var partner = others[0] ? others[0].display_name : "";
+      HH.accounts.forEach(function (a) {
+        state.accounts.push({ id: "h:" + a.id, rawId: a.id, name: a.name, kind: "commun", partner: partner, shared: true });
+      });
+      HH.sharedTx.forEach(function (row) {
+        var split = row.split || {}, pct = Number(split[HH.me]);
+        if (!isFinite(pct)) pct = 0;
+        var total = Number(row.total) || 0;
+        var aid = row.account_id ? "h:" + row.account_id : (HH.accounts[0] ? "h:" + HH.accounts[0].id : "perso");
+        state.transactions.push({
+          id: "s:" + row.id, sharedId: row.id, shared: true,
+          type: row.type === "revenu" ? "revenu" : "depense", nature: row.nature || "", description: row.description || "",
+          amount: Math.round(total * pct) / 100, total: total, share: pct, date: String(row.date).slice(0, 10),
+          category: row.category || null, account: aid, accountName: acctOf(aid).name, accountKind: "commun",
+          by: row.created_by && row.created_by !== HH.me ? memberName(row.created_by) : ""
+        });
+      });
+    }
+    if (state.view.kind === "acct" && !state.accounts.some(function (a) { return a.id === state.view.id; })) state.view = { kind: "all", id: null };
+  }
+
+  function hhRefresh() { return hhLoad().then(function () { applyShared(); renderAll(); if (panelEl.classList.contains("open")) renderHousehold(); }); }
+
+  function hhRpc(name, args, okMsg) {
+    var c = hhClient();
+    if (!c) return Promise.resolve(null);
+    HH.msg = ""; HH.msgOk = false;
+    return c.rpc(name, args).then(function (r) {
+      if (r.error) { hhFail(r.error); HH.msg = r.error.message || "Une erreur est survenue."; renderHousehold(); return null; }
+      if (okMsg) { HH.msg = okMsg; HH.msgOk = true; }
+      return r.data;
+    });
+  }
+
+  function renderHousehold() {
+    var box = document.getElementById("hh-box");
+    if (!box) return;
+    var kindSel = document.getElementById("acct-kind");
+    var html = "";
+    if (!HH.available) {
+      html = '<h4>Partager avec votre conjoint</h4><p>Le partage de compte n\'est pas encore activé pour ce site.</p>';
+    } else if (!HH.session) {
+      html = '<h4>Partager avec votre conjoint</h4><p>Connectez-vous à votre espace abonné pour inviter votre conjoint et partager un compte commun.</p>';
+    } else if (!HH.household) {
+      html = '<h4>Partager un compte commun avec votre conjoint</h4>' +
+        '<p>Chacun garde ses comptes perso privés. Seul le compte commun est visible des deux, et chaque charge se répartit selon la part de chacun.</p>' +
+        '<div class="hh-row"><input type="text" id="hh-name" maxlength="40" placeholder="Votre prénom" value="' + escapeHtml(HH.nameDraft || "") + '"></div>' +
+        '<div class="hh-row"><button type="button" class="btn btn-primary" id="hh-create">Créer un compte commun partagé</button></div>' +
+        '<p style="margin-top:6px">Votre conjoint a déjà un code d\'invitation ?</p>' +
+        '<div class="hh-row"><input type="text" id="hh-code-in" maxlength="12" placeholder="Code (ex. A1B2C3D4)" style="text-transform:uppercase"><button type="button" class="btn" id="hh-join">Rejoindre</button></div>';
+    } else if (HH.members.length < 2) {
+      html = '<h4>Votre compte commun est prêt</h4>' +
+        '<p>Invitez votre conjoint : il/elle ouvre « Gérer mes comptes » dans son propre espace KTISO et entre ce code (valable 7 jours).</p>' +
+        (HH.code ? '<div class="hh-row"><span class="hh-code" id="hh-code-show">' + escapeHtml(HH.code) + '</span><button type="button" class="btn" id="hh-copy">Copier</button></div>' : '') +
+        '<div class="hh-row"><button type="button" class="btn ' + (HH.code ? '' : 'btn-primary') + '" id="hh-invite">' + (HH.code ? 'Nouveau code' : 'Générer un code d\'invitation') + '</button></div>' +
+        '<p><button type="button" class="hh-link" id="hh-leave">Quitter ce foyer</button></p>';
+    } else {
+      var other = HH.members.filter(function (m) { return m.user_id !== HH.me; })[0];
+      html = '<h4>Connecté avec ' + escapeHtml(other ? other.display_name : "votre conjoint") + '</h4>' +
+        '<p>Les opérations ajoutées sur un compte commun partagé apparaissent chez vous deux. Vos comptes perso restent privés.</p>' +
+        '<p><button type="button" class="hh-link" id="hh-leave">Quitter ce foyer</button></p>';
+    }
+    html += '<div class="hh-msg' + (HH.msgOk ? ' ok' : '') + '" id="hh-msg" role="status">' + escapeHtml(HH.msg || "") + '</div>';
+    box.innerHTML = html;
+    if (kindSel) {
+      var sharedOpt = HH.household ? '<option value="shared">Compte commun partagé' + (HH.members.length < 2 ? "" : " avec " + escapeHtml(((HH.members.filter(function (m) { return m.user_id !== HH.me; })[0]) || {}).display_name || "")) + '</option>' : "";
+      kindSel.innerHTML = '<option value="perso">Compte perso</option><option value="commun">Compte en commun (suivi seul)</option>' + sharedOpt;
+    }
+  }
+
+  document.getElementById("hh-box").addEventListener("click", function (e) {
+    var id = e.target && e.target.id;
+    if (id === "hh-create") {
+      var nm = document.getElementById("hh-name").value.trim(); HH.nameDraft = nm;
+      hhRpc("create_household", { p_name: "Compte commun", p_display_name: nm }, "Compte commun créé.").then(function (r) {
+        if (r) hhRpc("create_invite", { p_household: r }).then(function (code) { HH.code = code || ""; return hhRefresh(); }).then(renderHousehold);
+      });
+    } else if (id === "hh-join") {
+      var nm2 = (document.getElementById("hh-name") || {}).value || ""; HH.nameDraft = nm2.trim();
+      var code = document.getElementById("hh-code-in").value.trim();
+      if (!HH.nameDraft) { HH.msg = "Indiquez d'abord votre prénom."; HH.msgOk = false; renderHousehold(); return; }
+      hhRpc("accept_invite", { p_code: code, p_display_name: HH.nameDraft }, "Vous êtes connecté(e) au foyer.").then(function (r) { if (r) hhRefresh().then(renderHousehold); });
+    } else if (id === "hh-invite") {
+      hhRpc("create_invite", { p_household: HH.household }, "Nouveau code généré.").then(function (code) { if (code) { HH.code = code; renderHousehold(); } });
+    } else if (id === "hh-copy") {
+      try { navigator.clipboard.writeText(HH.code); HH.msg = "Code copié."; HH.msgOk = true; } catch (er) { HH.msg = "Copiez le code à la main."; HH.msgOk = false; }
+      renderHousehold();
+    } else if (id === "hh-leave") {
+      if (!confirm("Quitter le foyer ? Vous ne verrez plus le compte commun partagé. Vos comptes perso ne changent pas.")) return;
+      hhRpc("leave_household", { p_household: HH.household }, "Vous avez quitté le foyer.").then(function () { HH.code = ""; hhRefresh().then(renderHousehold); });
+    }
+  });
+
+  // Compte partagé : ajout / suppression côté serveur
+  function addSharedTx(row) {
+    var c = hhClient();
+    return c.from("shared_transactions").insert(row).then(function (r) {
+      if (r && r.error) { var w = document.getElementById("sync-warning"); if (w) w.classList.add("open"); return null; }
+      return hhRefresh();
+    });
+  }
+  function deleteSharedTx(sid) {
+    return hhClient().from("shared_transactions").delete().eq("id", sid).then(function () { return hhRefresh(); });
   }
 
   // Vue courante : filtre par compte, et montants = MA part (Tous / Perso) ou montant complet du compte (Communs).
@@ -1410,7 +1572,7 @@
 
   function saveTransactions() {
     sbSync.push();
-    return Store.save(STORAGE_KEY, JSON.stringify(state.transactions));
+    return Store.save(STORAGE_KEY, JSON.stringify(state.transactions.filter(function (t) { return !t.shared; })));
   }
 
   // ---------- Rendering ----------
@@ -1512,7 +1674,7 @@
           '<span class="ledger-dot" style="background:' + color + '"></span>' +
           '<div class="ledger-mid">' +
             '<div class="ledger-nature">' + (state.accounts.length > 1 ? '<span class="ledger-tag ' + t._acct.kind + '">' + escapeHtml(t._acct.name) + '</span>' : '') + escapeHtml(t.nature) + '</div>' +
-            (t.description ? '<div class="ledger-desc">' + escapeHtml(t.description) + '</div>' : '') +
+            ((t.description || t.by) ? '<div class="ledger-desc">' + (t.by ? 'Ajouté par ' + escapeHtml(t.by) + (t.description ? ' — ' : '') : '') + escapeHtml(t.description || "") + '</div>' : '') +
           '</div>' +
           '<div class="ledger-amount ' + amtClass + '">' + sign + fmt(t.amount) +
             (!t._useTotal && t.share < 100 ? '<div class="ledger-part">votre part (' + Math.round(t.share * 10) / 10 + ' %) sur ' + fmt(t._total) + '</div>' : '') + '</div>' +
@@ -1915,7 +2077,7 @@
     document.getElementById("acct-list").innerHTML = state.accounts.map(function (a) {
       var canDel = a.id !== "perso" && !used[a.id];
       return '<div class="acct-row"><span class="nm">' + escapeHtml(a.name) + (a.partner ? ' <span class="kd">· avec ' + escapeHtml(a.partner) + '</span>' : '') + '</span>' +
-        '<span class="kd">' + (a.kind === "commun" ? "en commun" : "perso") + '</span>' +
+        '<span class="kd">' + (a.shared ? "partagé" : (a.kind === "commun" ? "en commun" : "perso")) + '</span>' +
         (canDel ? '<button type="button" data-del-acct="' + escapeHtml(a.id) + '">Supprimer</button>' : '') + '</div>';
     }).join("");
   }
@@ -1978,7 +2140,7 @@
     panelEl.classList.toggle("open", open);
     manageBtn.setAttribute("aria-expanded", open ? "true" : "false");
     manageBtn.textContent = open ? "Fermer" : "Gérer mes comptes";
-    if (open) { renderAcctList(); var n = document.getElementById("acct-name"); n.focus(); }
+    if (open) { renderAcctList(); renderHousehold(); hhRefresh().then(renderHousehold); var n = document.getElementById("acct-name"); n.focus(); }
   }
   manageBtn.addEventListener("click", function () { openManager(!panelEl.classList.contains("open")); });
 
@@ -1986,7 +2148,14 @@
     var nameEl = document.getElementById("acct-name");
     var name = nameEl.value.trim();
     if (!name) { nameEl.focus(); return; }
-    var kind = document.getElementById("acct-kind").value === "commun" ? "commun" : "perso";
+    var kindVal = document.getElementById("acct-kind").value;
+    if (kindVal === "shared" && HH.household) {
+      hhClient().from("household_accounts").insert({ household_id: HH.household, name: name }).then(function () {
+        nameEl.value = ""; hhRefresh().then(function () { renderAcctList(); renderHousehold(); });
+      });
+      return;
+    }
+    var kind = kindVal === "commun" ? "commun" : "perso";
     var partner = document.getElementById("acct-partner").value.trim();
     state.accounts.push({ id: "a-" + newId().slice(0, 8), name: name, kind: kind, partner: partner });
     nameEl.value = ""; document.getElementById("acct-partner").value = "";
@@ -2173,10 +2342,18 @@
       category: currentType === "depense" ? detectCategory(nature, inputCategorie.value, inputPeriode.value) : null
     };
 
-    state.transactions.push(tx);
     state.viewDate = G.labelDate(date);
-    saveTransactions();
-    renderAll();
+    if (acct.shared) {
+      // Compte commun partagé : enregistré une seule fois côté serveur, visible des deux conjoints.
+      var other = HH.members.filter(function (m) { return m.user_id !== HH.me; })[0];
+      var split = {}; split[HH.me] = sh; if (other && sh < 100) split[other.user_id] = Math.round((100 - sh) * 100) / 100;
+      addSharedTx({ household_id: HH.household, account_id: acct.rawId, created_by: HH.me, type: tx.type, nature: tx.nature,
+        description: tx.description || null, total: total, date: tx.date, category: tx.category, split: split });
+    } else {
+      state.transactions.push(tx);
+      saveTransactions();
+      renderAll();
+    }
 
     els.inputNature.value = "";
     els.inputMontant.value = "";
@@ -2194,6 +2371,8 @@
     var btn = e.target.closest("[data-delete]");
     if (!btn) return;
     var id = btn.getAttribute("data-delete");
+    var victim = state.transactions.filter(function (t) { return t.id === id; })[0];
+    if (victim && victim.shared) { deleteSharedTx(victim.sharedId); return; }
     state.transactions = state.transactions.filter(function (t) { return t.id !== id; });
     saveTransactions();
     renderAll();
@@ -2300,7 +2479,7 @@
         if (!txs.length) { alert("Aucune ligne exploitable dans la feuille « " + sheetName + " ». Colonnes attendues : Type (Revenu/Dépense), Catégorie, Nature, Montant, Date, Description."); return; }
         if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les opérations actuelles. Continuer ?")) return;
 
-        state.transactions = txs;
+        state.transactions = txs; applyShared();
         if (txs.length) { state.viewDate = G.labelDate(txs[txs.length - 1].date); }
         saveTransactions();
         renderAll();
@@ -2342,7 +2521,11 @@
     var saved = null; try { saved = r[1] ? JSON.parse(r[1]) : null; } catch (e) {}
     mergeAccounts(saved);
     renderAll();
+    hhLoad().then(function () { applyShared(); renderAll(); renderHousehold(); });
   });
+  // met à jour le compte partagé quand on revient sur l'onglet (le conjoint a pu ajouter une opération)
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && HH.household) hhRefresh(); });
+  setInterval(function () { if (!document.hidden && HH.household) hhRefresh(); }, 60000);
 })();
 
   // Bulles d'aide (?) — clic pour ouvrir/fermer (mobile), survol au bureau
