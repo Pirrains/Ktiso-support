@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Les députés ont réécrit vos impôts : pourquoi ça ne changera peut-être rien",
+      "excerpt": "Les députés ont supprimé le plafonnement de l'abattement des retraités et doublé le plafond des heures supplémentaires, mais ces votes sont provisoires. Le scrutin du 20 octobre peut tout arrêter.",
+      "auteur": "Ktiso",
+      "date": "16 octobre 2026",
+      "href": "2026-10-16-0935-politique-budget-2027-seance-amendements-vote-20-octobre.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Un ordinateur quantique pourrait-il vider votre bitcoin ?",
       "excerpt": "Coinbase publie un plan pour préparer Bitcoin à l'ère quantique. Aucune machine capable de casser ses signatures n'existe aujourd'hui, mais la migration prendrait des années : mieux vaut comprendre le risque dès maintenant.",
@@ -63,15 +72,6 @@
       "date": "9 octobre 2026",
       "href": "2026-10-09-0935-corporate-starbucks-chipotle-rachat-ft.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "La Fed vous prévient : ce n'est pas fini",
-      "excerpt": "La banque centrale américaine prévient que son cycle de hausses n'est pas terminé, alors que les marchés n'y croient qu'à moitié et que le taux américain à 10 ans a touché son plus haut depuis 2002.",
-      "auteur": "Ktiso",
-      "date": "8 octobre 2026",
-      "href": "2026-10-08-0935-economie-fed-minutes-hausse-taux-rendement-2002.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
