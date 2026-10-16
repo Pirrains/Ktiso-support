@@ -428,6 +428,9 @@
     margin-bottom: 36px;
   }
 
+  .dash-header-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; min-width: 0; }
+  .tool-topbar-slot { position: relative; }
+  .tool-topbar-slot:empty { display: none; }
   .dash-header h1 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 400;
@@ -1169,7 +1172,10 @@
   <!-- ============ DASHBOARD VIEW ============ -->
   <div id="view-dashboard">
     <div class="dash-header">
-      <button class="tool-back-btn" onclick="closeTool()" style="margin-bottom:0;">← Tableau de bord</button>
+      <div class="dash-header-left">
+        <button class="tool-back-btn" onclick="closeTool()" style="margin-bottom:0;">← Tableau de bord</button>
+        <div id="toolTopbarSlot" class="tool-topbar-slot"></div>
+      </div>
       <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
         <div class="tools-picker">
           <button class="accent-toggle" onclick="toggleToolsMenu()" aria-label="Outils">
@@ -1903,6 +1909,7 @@
     var dock = document.getElementById('analytics-dock');
     dock.innerHTML = '';
     dock.style.display = 'none';
+    var tbs0 = document.getElementById('toolTopbarSlot'); if (tbs0) tbs0.innerHTML = '';
 
     if (currentToolStyleEl) { currentToolStyleEl.remove(); currentToolStyleEl = null; }
 
@@ -1927,9 +1934,9 @@
       // becomes local to those same containers so custom properties still resolve.
       var styleTag = doc.querySelector('style');
       if (styleTag && window.CSS && CSS.supports && CSS.supports('selector(:scope)')) {
-        var cssText = styleTag.textContent.replace(':root {', '#toolContent, #analytics-dock {');
+        var cssText = styleTag.textContent.replace(':root {', '#toolContent, #analytics-dock, #toolTopbarSlot {');
         var scoped = document.createElement('style');
-        scoped.textContent = '@scope (#toolContent, #analytics-dock) {\n' + cssText + '\n}';
+        scoped.textContent = '@scope (#toolContent, #analytics-dock, #toolTopbarSlot) {\n' + cssText + '\n}';
         document.head.appendChild(scoped);
         currentToolStyleEl = scoped;
       }
@@ -1982,6 +1989,7 @@
     document.getElementById('dashToolView').style.display = 'none';
     document.getElementById('dashDefaultView').style.display = 'block';
     document.getElementById('toolContent').innerHTML = '';
+    var tbs = document.getElementById('toolTopbarSlot'); if (tbs) tbs.innerHTML = '';
     var dock = document.getElementById('analytics-dock');
     dock.innerHTML = '';
     dock.style.display = 'none';

@@ -264,7 +264,20 @@
   }
 
   /* ============ COMPTES (perso / communs) ============ */
-  .view-bar { display:flex; flex-direction:column; align-items:center; gap:10px; margin: 0 0 18px; }
+  [hidden] { display: none !important; }
+  .view-bar { position:relative; display:flex; flex-direction:column; align-items:center; gap:10px; margin: 0 0 14px; }
+  .acct-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .acct-plus { width:30px; height:30px; border-radius:50%; border:1px dashed var(--gold); background:transparent; color:var(--gold); font-size:18px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .25s ease, background .2s; padding:0; }
+  .acct-plus:hover { background:rgba(201,169,97,.12); }
+  .acct-plus[aria-expanded="true"] { transform:rotate(45deg); background:rgba(201,169,97,.12); }
+  .acct-title { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(244,239,227,.5); margin-bottom:6px; }
+  .target-line { font-size:12.5px; color:rgba(244,239,227,.6); margin:-4px 0 12px; text-align:center; }
+  .target-line b { color:var(--cream); font-weight:400; }
+  .edit-banner { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:0 0 12px; padding:10px 14px; border:1px solid rgba(201,169,97,.4); border-radius:10px; background:rgba(201,169,97,.07); font-size:13px; color:var(--cream); }
+  .ledger-edit { width:26px; height:26px; border-radius:50%; border:none; background:transparent; color:rgba(244,239,227,.3); cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:color .2s, background .2s; }
+  .ledger-edit:hover { color:var(--gold); background:rgba(201,169,97,.12); }
+  .ledger-edit svg { width:13px; height:13px; }
+  .ledger-row.is-editing { border-color:rgba(201,169,97,.5); }
   .view-tabs { display:flex; flex-wrap:wrap; justify-content:center; border:1px solid var(--line); border-radius:999px; overflow:hidden; max-width:100%; }
   .view-tab { padding:9px 16px; background:transparent; border:none; font-family:'DIN Next LT Pro',sans-serif; font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:rgba(244,239,227,.55); cursor:pointer; transition:background .2s,color .2s; }
   .view-tab + .view-tab { border-left:1px solid var(--line); }
@@ -279,7 +292,7 @@
   .view-note:empty { display:none; }
   .acct-manage-btn { background:none; border:none; color:rgba(244,239,227,.5); font-family:'DIN Next LT Pro',sans-serif; font-size:12px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; padding:2px; }
   .acct-manage-btn:hover { color:var(--gold); }
-  .acct-panel { display:none; width:100%; max-width:560px; border:1px solid var(--line); border-radius:var(--radius-lg); padding:16px; background:rgba(201,169,97,.035); text-align:left; }
+  .acct-panel { display:none; position:absolute; top:calc(100% + 8px); left:0; z-index:40; width:min(400px, calc(100vw - 32px)); max-height:75vh; overflow-y:auto; box-shadow:0 14px 34px rgba(0,0,0,.5); background:#0c1520;  border:1px solid var(--line); border-radius:var(--radius-lg); padding:16px;  text-align:left; }
   .acct-panel.open { display:block; }
   .acct-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
   .acct-row:last-of-type { border-bottom:none; }
@@ -930,15 +943,12 @@
         <div class="section-label">Résumé</div>
       </div>
       <div class="view-bar" id="view-bar">
-        <div class="view-tabs" role="group" aria-label="Vue des comptes">
-          <button type="button" class="view-tab" data-view="all" aria-pressed="true">Tous les comptes</button>
-          <button type="button" class="view-tab" data-view="perso" aria-pressed="false">Comptes perso</button>
-          <button type="button" class="view-tab" data-view="commun" aria-pressed="false">Comptes en commun</button>
+        <div class="acct-bar">
+          <div class="acct-chips" id="acct-chips" role="group" aria-label="Comptes"></div>
+          <button type="button" class="acct-plus" id="acct-plus" aria-label="Ajouter un compte" aria-expanded="false" title="Ajouter un compte">+</button>
         </div>
-        <div class="acct-chips" id="acct-chips"></div>
-        <div class="view-note" id="view-note"></div>
-        <button type="button" class="acct-manage-btn" id="acct-manage-btn" aria-expanded="false">Gérer mes comptes</button>
         <div class="acct-panel" id="acct-panel">
+          <div class="acct-title">Mes comptes</div>
           <div id="acct-list"></div>
           <div class="hh-box" id="hh-box"></div>
           <div class="acct-add">
@@ -952,6 +962,7 @@
           </div>
         </div>
       </div>
+      <div class="view-note" id="view-note"></div>
       <div class="stat-grid">
         <div class="stat-card">
           <div class="stat-label">Revenus du mois</div>
@@ -998,23 +1009,12 @@
           <button type="button" class="is-revenu" id="btn-type-revenu" aria-pressed="false">Revenu</button>
           <button type="button" class="is-depense" id="btn-type-depense" aria-pressed="true">Dépense</button>
         </div>
+        <div class="target-line" id="compte-line" hidden></div>
         <div class="detect-hint" id="detect-hint" aria-live="polite"></div>
         <div class="form-grid">
-          <div class="form-field">
+          <div class="form-field full" id="compte-field" hidden>
             <label for="input-compte">Compte</label>
             <select id="input-compte" name="compte"></select>
-          </div>
-          <div class="form-field">
-            <label for="input-part">Qui paie ?</label>
-            <div class="share-row">
-              <select id="input-part" name="part">
-                <option value="100">100 % moi</option>
-                <option value="50">50 / 50</option>
-                <option value="custom">Autre répartition…</option>
-              </select>
-              <input type="number" id="input-part-custom" min="1" max="99" step="1" placeholder="% moi" inputmode="numeric" hidden>
-            </div>
-            <div class="share-hint" id="share-hint"></div>
           </div>
           <div class="form-field full">
             <label for="input-categorie">Catégorie</label>
@@ -1046,8 +1046,24 @@
             <label for="input-description">Détail (facultatif)</label>
             <input type="text" id="input-description" name="description" placeholder="Un détail, si besoin" autocomplete="off">
           </div>
+          <div class="form-field full" id="share-field" hidden>
+            <label for="input-part">Qui paie ? (compte commun)</label>
+            <div class="share-row">
+              <select id="input-part" name="part">
+                <option value="100">100 % moi</option>
+                <option value="50">50 / 50</option>
+                <option value="custom">Autre répartition…</option>
+              </select>
+              <input type="number" id="input-part-custom" min="1" max="99" step="1" placeholder="% moi" inputmode="numeric" hidden>
+            </div>
+            <div class="share-hint" id="share-hint"></div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <div class="edit-banner" id="edit-banner" hidden>
+          <span>Vous modifiez une opération.</span>
+          <button type="button" class="hh-link" id="edit-cancel">Annuler la modification</button>
+        </div>
+        <button type="submit" class="btn btn-primary" id="entry-submit">Ajouter</button>
       </form>
     </section>
 
@@ -1164,6 +1180,7 @@
     transactions: [],
     accounts: [{ id: "perso", name: "Compte perso", kind: "perso", partner: "" }],
     view: { kind: "all", id: null },
+    editId: null,
     viewDate: G.labelDate(todayISO())
   };
 
@@ -1548,6 +1565,12 @@
       return hhRefresh();
     });
   }
+  function updateSharedTx(sid, row) {
+    return hhClient().from("shared_transactions").update(row).eq("id", sid).then(function (r) {
+      if (r && r.error) { var w = document.getElementById("sync-warning"); if (w) w.classList.add("open"); return null; }
+      return hhRefresh();
+    });
+  }
   function deleteSharedTx(sid) {
     return hhClient().from("shared_transactions").delete().eq("id", sid).then(function () { return hhRefresh(); });
   }
@@ -1669,7 +1692,7 @@
       var sign = t.type === "revenu" ? "+ " : "− ";
       var amtClass = t.type === "revenu" ? "lime" : "terracotta";
       return '' +
-        '<div class="ledger-row" data-id="' + t.id + '">' +
+        '<div class="ledger-row' + (state.editId === t.id ? ' is-editing' : '') + '" data-id="' + t.id + '">' +
           '<div class="ledger-date">' + shortDate(t.date) + '</div>' +
           '<span class="ledger-dot" style="background:' + color + '"></span>' +
           '<div class="ledger-mid">' +
@@ -1678,6 +1701,9 @@
           '</div>' +
           '<div class="ledger-amount ' + amtClass + '">' + sign + fmt(t.amount) +
             (!t._useTotal && t.share < 100 ? '<div class="ledger-part">votre part (' + Math.round(t.share * 10) / 10 + ' %) sur ' + fmt(t._total) + '</div>' : '') + '</div>' +
+          '<button type="button" class="ledger-edit" aria-label="Modifier cette opération" data-edit="' + t.id + '">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>' +
+          '</button>' +
           '<button type="button" class="ledger-delete" aria-label="Supprimer cette opération" data-delete="' + t.id + '">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>' +
           '</button>' +
@@ -2039,34 +2065,85 @@
   }
 
 
-  // ---------- Barre de vue + gestion des comptes ----------
+  // ---------- Barre des comptes (en haut) + gestion des comptes ----------
   var viewBar = document.getElementById("view-bar");
   var chipsEl = document.getElementById("acct-chips");
   var noteEl = document.getElementById("view-note");
   var panelEl = document.getElementById("acct-panel");
-  var manageBtn = document.getElementById("acct-manage-btn");
+  var manageBtn = document.getElementById("acct-plus");
   var selCompte = document.getElementById("input-compte");
+  var compteField = document.getElementById("compte-field");
+  var compteLine = document.getElementById("compte-line");
+  var shareField = document.getElementById("share-field");
   var selPart = document.getElementById("input-part");
   var inPartCustom = document.getElementById("input-part-custom");
   var shareHint = document.getElementById("share-hint");
 
-  function setView(kind, id) { state.view = { kind: kind, id: id || null }; syncFormAccount(); renderAll(); }
+  // Dans l'espace abonné, la barre des comptes se place en haut, à côté de « Tableau de bord ».
+  var topSlot = document.getElementById("toolTopbarSlot");
+  if (topSlot) { topSlot.innerHTML = ""; topSlot.appendChild(viewBar); }
+
+  function setView(kind, id) {
+    state.view = { kind: kind, id: id || null };
+    if (panelEl.classList.contains("open") && kind) openManager(false);
+    renderAll();
+  }
+
+  // Comptes proposables dans le formulaire : seulement ceux de la vue en cours
+  // (sur un compte commun, on ne propose donc pas le compte perso).
+  function targetAccounts() {
+    var v = state.view, list;
+    if (v.kind === "acct") list = [acctOf(v.id)];
+    else if (v.kind === "perso" || v.kind === "commun") { list = accountsOfKind(v.kind); if (!list.length) list = state.accounts.slice(); }
+    else list = state.accounts.slice();
+    if (state.editId) {
+      var t = state.transactions.filter(function (x) { return x.id === state.editId; })[0];
+      if (t && !list.some(function (a) { return a.id === t.account; })) list.push(acctOf(t.account));
+    }
+    return list;
+  }
+
+  function renderAcctSelect() {
+    var list = targetAccounts(), cur = selCompte.value;
+    selCompte.innerHTML = list.map(function (a) {
+      return '<option value="' + escapeHtml(a.id) + '">' + escapeHtml(a.name) + (a.kind === "commun" ? " (commun)" : "") + '</option>';
+    }).join("");
+    selCompte.value = list.some(function (a) { return a.id === cur; }) ? cur : list[0].id;
+    var single = list.length === 1;
+    compteField.hidden = single;
+    var a0 = acctOf(selCompte.value);
+    compteLine.hidden = !(single && state.accounts.length > 1);
+    compteLine.innerHTML = 'Ajouté sur <b>' + escapeHtml(a0.name) + '</b>';
+    updateShareField();
+  }
+
+  // La répartition n'a de sens que sur un compte commun ; elle se choisit en fin de formulaire.
+  var wasCommun = false;
+  function updateShareField() {
+    var isCommun = acctOf(selCompte.value).kind === "commun";
+    shareField.hidden = !isCommun;
+    if (!isCommun) { selPart.value = "100"; inPartCustom.value = ""; }
+    else if (!wasCommun && !state.editId && selPart.value === "100") selPart.value = "50";   // un compte commun se partage par défaut
+    wasCommun = isCommun;
+    updateShareHint();
+  }
 
   function renderViewBar() {
-    var v = state.view;
-    var tabKind = v.kind === "acct" ? acctOf(v.id).kind : v.kind;
-    viewBar.querySelectorAll(".view-tab").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-view") === tabKind ? "true" : "false");
+    var v = state.view, html = "";
+    function chip(label, data, pressed, cls) {
+      return '<button type="button" class="acct-chip ' + (cls || "") + '" data-chip="' + escapeHtml(data) + '" aria-pressed="' + pressed + '">' + escapeHtml(label) + '</button>';
+    }
+    if (state.accounts.length > 1) html += chip("Tous les comptes", "all", v.kind === "all");
+    ["perso", "commun"].forEach(function (k) {
+      if (accountsOfKind(k).length > 1) html += chip(k === "perso" ? "Tous les perso" : "Tous les communs", "group:" + k, v.kind === k, k);
     });
-    var list = (tabKind === "perso" || tabKind === "commun") ? accountsOfKind(tabKind) : [];
-    chipsEl.innerHTML = list.length > 1
-      ? '<button type="button" class="acct-chip ' + tabKind + '" data-chip="" aria-pressed="' + (v.kind !== "acct") + '">Tous</button>' +
-        list.map(function (a) { return '<button type="button" class="acct-chip ' + a.kind + '" data-chip="' + escapeHtml(a.id) + '" aria-pressed="' + (v.kind === "acct" && v.id === a.id) + '">' + escapeHtml(a.name) + '</button>'; }).join("")
-      : "";
+    state.accounts.forEach(function (a) {
+      html += chip(a.name, a.id, (v.kind === "acct" && v.id === a.id) || (state.accounts.length === 1 && v.kind === "all"), a.kind);
+    });
+    chipsEl.innerHTML = html;
+    var commonView = v.kind === "commun" || (v.kind === "acct" && acctOf(v.id).kind === "commun");
     var note = "";
-    var commonView = tabKind === "commun";
-    if (commonView && !accountsOfKind("commun").length) note = "Aucun compte en commun pour le moment : ajoutez-en un avec « Gérer mes comptes ».";
-    else if (commonView) note = "Montants complets du compte (100 %). Votre part est comptée dans « Tous les comptes ».";
+    if (commonView) note = "Montants complets du compte (100 %). Votre part est comptée dans « Tous les comptes ».";
     else if (state.transactions.some(function (t) { return t.share < 100; })) note = "Les charges partagées sont comptées pour votre part uniquement.";
     noteEl.textContent = note;
   }
@@ -2075,27 +2152,11 @@
     var used = {};
     state.transactions.forEach(function (t) { used[t.account || "perso"] = true; });
     document.getElementById("acct-list").innerHTML = state.accounts.map(function (a) {
-      var canDel = a.id !== "perso" && !used[a.id];
+      var canDel = a.id !== "perso" && !a.shared && !used[a.id];
       return '<div class="acct-row"><span class="nm">' + escapeHtml(a.name) + (a.partner ? ' <span class="kd">· avec ' + escapeHtml(a.partner) + '</span>' : '') + '</span>' +
         '<span class="kd">' + (a.shared ? "partagé" : (a.kind === "commun" ? "en commun" : "perso")) + '</span>' +
         (canDel ? '<button type="button" data-del-acct="' + escapeHtml(a.id) + '">Supprimer</button>' : '') + '</div>';
     }).join("");
-  }
-
-  function renderAcctSelect() {
-    var cur = selCompte.value;
-    selCompte.innerHTML = state.accounts.map(function (a) {
-      return '<option value="' + escapeHtml(a.id) + '">' + escapeHtml(a.name) + (a.kind === "commun" ? " (commun)" : "") + '</option>';
-    }).join("") + '<option value="__new">＋ Ajouter un compte…</option>';
-    if (cur && state.accounts.some(function (a) { return a.id === cur; })) selCompte.value = cur;
-  }
-
-  function syncFormAccount() {
-    var v = state.view, id = null;
-    if (v.kind === "acct") id = v.id;
-    else if (v.kind === "commun") { var c = accountsOfKind("commun")[0]; id = c ? c.id : null; }
-    else if (v.kind === "perso") { var p = accountsOfKind("perso")[0]; id = p ? p.id : null; }
-    if (id && state.accounts.some(function (a) { return a.id === id; })) selCompte.value = id;
   }
 
   function currentShare() {
@@ -2117,32 +2178,34 @@
     shareHint.innerHTML = sh >= 100 ? "" : "Votre part : <b>" + fmt(mine) + "</b> · " + escapeHtml(partner) + " : " + fmt(Math.round((total - mine) * 100) / 100);
   }
 
-  viewBar.addEventListener("click", function (e) {
-    var tab = e.target.closest(".view-tab");
-    if (tab) { setView(tab.getAttribute("data-view")); return; }
+  chipsEl.addEventListener("click", function (e) {
     var chip = e.target.closest(".acct-chip");
-    if (chip) {
-      var id = chip.getAttribute("data-chip");
-      var tabKind = state.view.kind === "acct" ? acctOf(state.view.id).kind : state.view.kind;
-      if (id) setView("acct", id); else setView(tabKind);
-      return;
-    }
+    if (!chip) return;
+    var d = chip.getAttribute("data-chip");
+    if (d === "all") setView("all");
+    else if (d.indexOf("group:") === 0) setView(d.slice(6));
+    else setView("acct", d);
+  });
+
+  panelEl.addEventListener("click", function (e) {
     var del = e.target.closest("[data-del-acct]");
-    if (del) {
-      var did = del.getAttribute("data-del-acct");
-      state.accounts = state.accounts.filter(function (a) { return a.id !== did; });
-      if (state.view.kind === "acct" && state.view.id === did) state.view = { kind: "all", id: null };
-      saveAccounts(); renderAll();
-    }
+    if (!del) return;
+    var did = del.getAttribute("data-del-acct");
+    state.accounts = state.accounts.filter(function (a) { return a.id !== did; });
+    if (state.view.kind === "acct" && state.view.id === did) state.view = { kind: "all", id: null };
+    saveAccounts(); renderAll(); renderAcctList();
   });
 
   function openManager(open) {
     panelEl.classList.toggle("open", open);
     manageBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    manageBtn.textContent = open ? "Fermer" : "Gérer mes comptes";
     if (open) { renderAcctList(); renderHousehold(); hhRefresh().then(renderHousehold); var n = document.getElementById("acct-name"); n.focus(); }
   }
   manageBtn.addEventListener("click", function () { openManager(!panelEl.classList.contains("open")); });
+  // clic en dehors du panneau : on le referme
+  document.addEventListener("click", function (e) {
+    if (panelEl.classList.contains("open") && !viewBar.contains(e.target)) openManager(false);
+  });
 
   document.getElementById("acct-add-btn").addEventListener("click", function () {
     var nameEl = document.getElementById("acct-name");
@@ -2157,25 +2220,14 @@
     }
     var kind = kindVal === "commun" ? "commun" : "perso";
     var partner = document.getElementById("acct-partner").value.trim();
-    state.accounts.push({ id: "a-" + newId().slice(0, 8), name: name, kind: kind, partner: partner });
+    var acc = { id: "a-" + newId().slice(0, 8), name: name, kind: kind, partner: partner };
+    state.accounts.push(acc);
     nameEl.value = ""; document.getElementById("acct-partner").value = "";
-    saveAccounts(); renderAll(); renderAcctList();
-    selCompte.value = state.accounts[state.accounts.length - 1].id;
-    updateShareHint();
+    saveAccounts();
+    setView("acct", acc.id);   // on se place directement sur le nouveau compte
   });
 
-  selCompte.addEventListener("change", function () {
-    if (selCompte.value === "__new") {
-      selCompte.value = (acctOf(state.view.id || "perso") || state.accounts[0]).id;
-      openManager(true);
-      panelEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      return;
-    }
-    var a = acctOf(selCompte.value);
-    if (a.kind === "commun" && selPart.value === "100") selPart.value = "50"; // un compte commun se partage par défaut
-    else if (a.kind === "perso" && selPart.value === "50") selPart.value = "100";
-    updateShareHint();
-  });
+  selCompte.addEventListener("change", updateShareField);
   selPart.addEventListener("change", updateShareHint);
   inPartCustom.addEventListener("input", updateShareHint);
   els.inputMontant.addEventListener("input", updateShareHint);
@@ -2329,8 +2381,14 @@
     if (sh == null) { inPartCustom.focus(); return; }
     var acct = acctOf(selCompte.value);
     var total = Math.round(amount * 100) / 100;
+    var old = state.editId ? state.transactions.filter(function (t) { return t.id === state.editId; })[0] : null;
+    var category = null;
+    if (currentType === "depense") {
+      category = detectCategory(nature, inputCategorie.value, inputPeriode.value);
+      if (old && !inputCategorie.value && nature === old.nature && old.category) category = old.category;  // on garde le classement d'origine
+    }
     var tx = {
-      id: newId(),
+      id: old ? old.id : newId(),
       type: currentType,
       nature: nature,
       amount: Math.round(total * sh) / 100,   // ma part
@@ -2339,21 +2397,39 @@
       account: acct.id, accountName: acct.name, accountKind: acct.kind,
       date: date,
       description: description,
-      category: currentType === "depense" ? detectCategory(nature, inputCategorie.value, inputPeriode.value) : null
+      category: category
     };
 
     state.viewDate = G.labelDate(date);
-    if (acct.shared) {
-      // Compte commun partagé : enregistré une seule fois côté serveur, visible des deux conjoints.
+    function sharedRow() {
       var other = HH.members.filter(function (m) { return m.user_id !== HH.me; })[0];
       var split = {}; split[HH.me] = sh; if (other && sh < 100) split[other.user_id] = Math.round((100 - sh) * 100) / 100;
-      addSharedTx({ household_id: HH.household, account_id: acct.rawId, created_by: HH.me, type: tx.type, nature: tx.nature,
-        description: tx.description || null, total: total, date: tx.date, category: tx.category, split: split });
+      return { household_id: HH.household, account_id: acct.rawId, type: tx.type, nature: tx.nature,
+        description: tx.description || null, total: total, date: tx.date, category: tx.category, split: split };
+    }
+    if (old && old.shared && acct.shared) {
+      // modification d'une opération partagée : mise à jour de la ligne commune
+      updateSharedTx(old.sharedId, sharedRow());
+    } else if (old && (old.shared || acct.shared)) {
+      // changement de type de compte (perso <-> partagé) : on retire l'ancienne ligne et on crée la nouvelle
+      if (old.shared) deleteSharedTx(old.sharedId); else { state.transactions = state.transactions.filter(function (t) { return t.id !== old.id; }); saveTransactions(); }
+      if (acct.shared) { var r = sharedRow(); r.created_by = HH.me; addSharedTx(r); }
+      else { tx.id = newId(); state.transactions.push(tx); saveTransactions(); renderAll(); }
+    } else if (old) {
+      Object.keys(tx).forEach(function (k) { old[k] = tx[k]; });
+      saveTransactions();
+      renderAll();
+    } else if (acct.shared) {
+      // Compte commun partagé : enregistré une seule fois côté serveur, visible des deux conjoints.
+      var row = sharedRow(); row.created_by = HH.me;
+      addSharedTx(row);
     } else {
       state.transactions.push(tx);
       saveTransactions();
       renderAll();
     }
+    var wasEditing = !!old;
+    exitEdit();
 
     els.inputNature.value = "";
     els.inputMontant.value = "";
@@ -2367,10 +2443,65 @@
     els.inputNature.focus();
   });
 
+  // ---------- Modifier une opération ----------
+  var submitBtn = document.getElementById("entry-submit");
+  var editBanner = document.getElementById("edit-banner");
+
+  function startEdit(id) {
+    var t = state.transactions.filter(function (x) { return x.id === id; })[0];
+    if (!t) return;
+    state.editId = id;
+    setType(t.type);
+    var desc = t.description || "", per = "mois", amt = t.total != null ? t.total : t.amount;
+    var m = desc.match(/^Annuel : ([\d,.]+) € \/ an(?: — )?/);
+    if (m) { per = "an"; amt = parseFloat(m[1].replace(",", ".")) || amt; desc = desc.slice(m[0].length); }
+    else if (/^Ponctuel(?: — )?/.test(desc)) { per = "ponctuel"; desc = desc.replace(/^Ponctuel(?: — )?/, ""); }
+    els.inputNature.value = t.nature;
+    els.inputMontant.value = String(amt);
+    inputPeriode.value = per;
+    els.inputDate.value = t.date;
+    els.inputDescription.value = desc;
+    inputCategorie.value = "";
+    renderAcctSelect();
+    selCompte.value = t.account;
+    wasCommun = acctOf(t.account).kind === "commun";
+    var sh = t.share != null ? t.share : 100;
+    if (sh === 100 || sh === 50) { selPart.value = String(sh); inPartCustom.value = ""; }
+    else { selPart.value = "custom"; inPartCustom.value = String(Math.round(sh * 100) / 100); }
+    shareField.hidden = acctOf(t.account).kind !== "commun";
+    compteField.hidden = false; compteLine.hidden = true;
+    editBanner.hidden = false;
+    submitBtn.textContent = "Enregistrer les modifications";
+    updatePeriodHint(); updateDetect(); updateShareHint();
+    var tab = document.querySelector('.dash-tab[data-tab="ajouter"]');
+    if (tab) tab.click();
+    renderLedger();
+    els.form.scrollIntoView({ behavior: "smooth", block: "center" });
+    els.inputNature.focus();
+  }
+
+  function exitEdit() {
+    var was = !!state.editId;
+    state.editId = null;
+    editBanner.hidden = true;
+    submitBtn.textContent = "Ajouter";
+    if (was) {
+      els.inputNature.value = ""; els.inputMontant.value = ""; els.inputDescription.value = "";
+      els.inputDate.value = todayISO(); inputCategorie.value = ""; inputPeriode.value = "mois";
+      selPart.value = "100"; inPartCustom.value = "";
+      wasCommun = false;
+      renderAcctSelect(); renderLedger(); updatePeriodHint(); updateDetect();
+    }
+  }
+  document.getElementById("edit-cancel").addEventListener("click", exitEdit);
+
   els.ledgerList.addEventListener("click", function (e) {
+    var ed = e.target.closest("[data-edit]");
+    if (ed) { startEdit(ed.getAttribute("data-edit")); return; }
     var btn = e.target.closest("[data-delete]");
     if (!btn) return;
     var id = btn.getAttribute("data-delete");
+    if (state.editId === id) exitEdit();
     var victim = state.transactions.filter(function (t) { return t.id === id; })[0];
     if (victim && victim.shared) { deleteSharedTx(victim.sharedId); return; }
     state.transactions = state.transactions.filter(function (t) { return t.id !== id; });
