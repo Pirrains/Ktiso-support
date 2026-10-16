@@ -250,6 +250,8 @@
   .month-btn:disabled { opacity: 0.25; cursor: default; }
   .month-btn:disabled:hover { border-color: var(--line); color: var(--gold); }
 
+  .month-center { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 150px; }
+  .month-range { font-size: 11px; letter-spacing: .06em; color: rgba(244,239,227,.45); min-height: 14px; }
   .month-label {
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -836,6 +838,12 @@
   .tip-bubble.tip-right::before { left: auto; right: 14px; }
   .tip-btn[aria-expanded="true"] ~ .tip-bubble, .tip-btn:hover ~ .tip-bubble, .tip-btn:focus-visible ~ .tip-bubble { opacity: 1; visibility: visible; transform: none; }
   @media (prefers-reduced-motion: reduce) { .tip-bubble { transition: none; } }
+  .goals-summary { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .goals-summary .goals-sum { margin: 0; text-align: left; min-height: 0; color: rgba(244,239,227,.7); font-size: 13px; letter-spacing: .04em; }
+  .goals-edit { font-family: 'DIN Next LT Pro', sans-serif; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; transition: border-color .2s, background .2s; }
+  .goals-edit:hover { border-color: var(--gold); background: rgba(201,169,97,.08); }
+  .goal-name .goal-labelrow { display: inline-flex; margin-bottom: 0; }
+  @media (max-width: 520px) { .goals-summary { justify-content: center; } .goals-summary .goals-sum { text-align: center; } }
 </style></head>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -889,7 +897,7 @@
         <button type="button" class="month-btn" id="month-prev" aria-label="Mois précédent">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
         </button>
-        <span class="month-label" id="month-label">—</span>
+        <div class="month-center"><span class="month-label" id="month-label">—</span><span class="month-range" id="month-range"></span></div>
         <button type="button" class="month-btn" id="month-next" aria-label="Mois suivant">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
         </button>
@@ -998,20 +1006,12 @@
       <div class="goals" id="goals">
         <div class="section-label" style="text-align:center">Objectifs</div>
         <h3>Votre répartition idéale</h3>
-        <p class="goals-sub">Fixez vos pourcentages cibles : ils sont comparés à vos revenus du mois affiché.</p>
+        <p class="goals-sub">Vos pourcentages cibles sont comparés à vos revenus de la période affichée.</p>
         <div class="goals-card">
-          <div class="goals-presets" id="goal-presets">
-            <button type="button" class="goal-chip" data-preset="50,30,20">50 / 30 / 20</button>
-            <button type="button" class="goal-chip" data-preset="60,20,20">60 / 20 / 20</button>
-            <button type="button" class="goal-chip" data-preset="50,25,25">50 / 25 / 25</button>
-            <button type="button" class="goal-chip" data-preset="70,20,10">70 / 20 / 10</button>
+          <div class="goals-summary">
+            <span class="goals-sum" id="goals-sum"></span>
+            <button type="button" class="goals-edit" id="goals-edit" hidden>Modifier dans Réglages › Ma gestion</button>
           </div>
-          <div class="goals-inputs">
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-fixe">Fixes</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Fixes" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Charges sur lesquelles vous n'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…</span></div><div class="wrap"><input type="number" id="goal-fixe" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-variable">Variables</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Variables" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">Tout le reste, ce qui dépend de vos habitudes de consommation et que vous pouvez ajuster : assurances, courses, énergie, abonnements, loisirs, divertissements, sorties…</span></div><div class="wrap"><input type="number" id="goal-variable" min="0" max="100" step="1" inputmode="numeric"></div></div>
-            <div class="goal-input"><div class="goal-labelrow"><label for="goal-epargne">Épargne</label><button type="button" class="tip-btn" aria-label="Qu'est-ce que c'est ? Épargne" aria-expanded="false">?</button><span class="tip-bubble tip-right" role="tooltip">Ce que vous mettez de côté : épargne de sécurité (livret, ordre permanent), épargne pension et « save to invest » (l'argent que vous investissez : ETF, actions…). C'est un minimum à atteindre, pas un plafond.</span></div><div class="wrap"><input type="number" id="goal-epargne" min="0" max="100" step="1" inputmode="numeric"></div></div>
-          </div>
-          <div class="goals-sum" id="goals-sum"></div>
           <div id="goals-results"></div>
         </div>
       </div>
@@ -1043,9 +1043,18 @@
     </footer>
   </div>
 
+<script src="gestion.js"></script>
 <script>
 (function () {
   "use strict";
+
+  var G = window.KtisoGestion || {
+    get: function () { return { startDay: 1, goals: { fixe: 50, variable: 30, epargne: 20 } }; },
+    labelDate: function (s) { var p = String(s).slice(0, 10).split("-"); return new Date(+p[0], +p[1] - 1, 1); },
+    labelKey: function (s) { return String(s).slice(0, 7); },
+    inPeriod: function (s, r) { var d = this.labelDate(s); return d.getFullYear() === r.getFullYear() && d.getMonth() === r.getMonth(); },
+    rangeText: function () { return ""; }
+  };
 
   var STORAGE_KEY = "ktiso-comptes:transactions";
   var PALETTE = ["var(--gold)", "var(--lime)", "var(--terracotta)", "var(--yellow)", "var(--blue)", "rgba(244,239,227,0.5)"];
@@ -1061,7 +1070,7 @@
 
   var state = {
     transactions: [],
-    viewDate: startOfMonth(new Date())
+    viewDate: G.labelDate(todayISO())
   };
 
   // ---------- Synchronisation Supabase (corrélation inter-outils) ----------
@@ -1146,6 +1155,7 @@
     statDepenses: document.getElementById("stat-depenses"),
     statSolde: document.getElementById("ct-stat-solde"),
     monthLabel: document.getElementById("month-label"),
+    monthRange: document.getElementById("month-range"),
     monthPrev: document.getElementById("month-prev"),
     monthNext: document.getElementById("month-next"),
     breakdownList: document.getElementById("breakdown-list"),
@@ -1158,8 +1168,7 @@
 
   function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
   function isSameMonth(dateStr, ref) {
-    var d = new Date(String(dateStr).slice(0, 10) + "T00:00:00");
-    return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
+    return G.inPeriod(dateStr, ref);
   }
   function todayISO() {
     var d = new Date();
@@ -1259,6 +1268,7 @@
   function setMonthLabel() {
     var label = state.viewDate.toLocaleDateString("fr-BE", { month: "long", year: "numeric" });
     els.monthLabel.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+    if (els.monthRange) els.monthRange.textContent = G.rangeText(state.viewDate);
   }
 
   function renderNatureList() {
@@ -1365,17 +1375,18 @@
 
   // ---------- Analytics (évolution + répartition fixe/variable/épargne) ----------
   function monthKey(dateStr) {
-    return dateStr.slice(0, 7); // "YYYY-MM"
+    return G.labelKey(dateStr); // "AAAA-MM" du mois de gestion
   }
 
   var currentRange = 6;
 
   function monthsForRange(range) {
-    var ref = new Date();
+    var ref = G.labelDate(todayISO());
     if (range === "all") {
       if (state.transactions.length === 0) return monthsForRange(1);
       var earliest = state.transactions.reduce(function (min, t) { return t.date < min ? t.date : min; }, state.transactions[0].date);
-      var cursor = new Date(Number(earliest.slice(0, 4)), Number(earliest.slice(5, 7)) - 1, 1);
+      var ek = G.labelKey(earliest);
+      var cursor = new Date(Number(ek.slice(0, 4)), Number(ek.slice(5, 7)) - 1, 1);
       var end = new Date(ref.getFullYear(), ref.getMonth(), 1);
       var months = [];
       while (cursor <= end) {
@@ -1508,48 +1519,33 @@
   }
 
   // ---------- Objectifs de répartition (fixes / variables / épargne) ----------
-  var GOALS_KEY = "ktiso-comptes:goals";
-  var goals = { fixe: 50, variable: 30, epargne: 20 };
-  try {
-    var savedGoals = JSON.parse(localStorage.getItem(GOALS_KEY) || "null");
-    if (savedGoals && typeof savedGoals.fixe === "number") goals = savedGoals;
-  } catch (e) {}
+  var goals = G.get().goals;
   var goalEls = {
-    fixe: document.getElementById("goal-fixe"),
-    variable: document.getElementById("goal-variable"),
-    epargne: document.getElementById("goal-epargne"),
     sum: document.getElementById("goals-sum"),
     results: document.getElementById("goals-results"),
-    presets: document.getElementById("goal-presets")
+    edit: document.getElementById("goals-edit")
   };
   var GOAL_META = [
-    { key: "fixe", label: "Charges fixes", color: "var(--blue)", mode: "max" },
-    { key: "variable", label: "Charges variables", color: "var(--gold)", mode: "max" },
-    { key: "epargne", label: "Épargne", color: "var(--lime)", mode: "min" }
+    { key: "fixe", label: "Charges fixes", color: "var(--blue)", mode: "max", tip: "Charges sur lesquelles vous n\'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…" },
+    { key: "variable", label: "Charges variables", color: "var(--gold)", mode: "max", tip: "Tout le reste, ce qui dépend de vos habitudes de consommation et que vous pouvez ajuster : assurances, courses, énergie, abonnements, loisirs, divertissements, sorties…" },
+    { key: "epargne", label: "Épargne et investissement", color: "var(--lime)", mode: "min", tip: "Ce que vous mettez de côté : épargne de sécurité (livret, ordre permanent), épargne pension et « save to invest » (l\'argent que vous investissez : ETF, actions…). C\'est un minimum à atteindre, pas un plafond." }
   ];
 
-  function saveGoals() { try { localStorage.setItem(GOALS_KEY, JSON.stringify(goals)); } catch (e) {} }
   function pct(n) { return (Math.round(n * 10) / 10).toString().replace(".", ",") + " %"; }
 
   function renderGoals() {
     if (!goalEls.results) return;
-    ["fixe", "variable", "epargne"].forEach(function (k) {
-      if (document.activeElement !== goalEls[k]) goalEls[k].value = goals[k];
-    });
+    goals = G.get().goals;
     var total = goals.fixe + goals.variable + goals.epargne;
-    goalEls.sum.className = "goals-sum " + (total === 100 ? "ok" : "bad");
-    goalEls.sum.textContent = total === 100
-      ? "Total des objectifs : 100 %"
-      : "Total des objectifs : " + total + " % — il devrait faire 100 %";
-    Array.prototype.forEach.call(goalEls.presets.querySelectorAll(".goal-chip"), function (b) {
-      var p = b.getAttribute("data-preset").split(",").map(Number);
-      b.setAttribute("aria-pressed", String(p[0] === goals.fixe && p[1] === goals.variable && p[2] === goals.epargne));
-    });
+    goalEls.sum.className = "goals-sum " + (total === 100 ? "" : "bad");
+    goalEls.sum.innerHTML = "Objectifs : <b>" + goals.fixe + " / " + goals.variable + " / " + goals.epargne + "</b> (fixes / variables / épargne)" +
+      (total === 100 ? "" : " — total " + total + " %, il devrait faire 100 %");
+    if (goalEls.edit) goalEls.edit.hidden = typeof window.openGestionSettings !== "function";
 
     var monthTx = monthTransactions();
     var revenus = monthTx.filter(function (t) { return t.type === "revenu"; }).reduce(function (s, t) { return s + t.amount; }, 0);
     if (revenus <= 0) {
-      goalEls.results.innerHTML = '<div class="empty-state">Ajoutez un revenu pour ce mois afin de comparer votre répartition à vos objectifs.</div>';
+      goalEls.results.innerHTML = '<div class="empty-state">Ajoutez un revenu pour cette période afin de comparer votre répartition à vos objectifs.</div>';
       return;
     }
     var sums = { fixe: 0, variable: 0, epargne: 0 };
@@ -1584,7 +1580,7 @@
       var fillW = Math.min(100, actualPct / scaleMax * 100);
       var markL = Math.min(100, target / scaleMax * 100);
       html += '<div class="goal-row">' +
-        '<div class="goal-top"><span class="goal-name">' + g.label + '</span>' + badge + '</div>' +
+        '<div class="goal-top"><span class="goal-name"><span class="goal-labelrow">' + g.label + '<button type="button" class="tip-btn" aria-label="Qu\'est-ce que c\'est ? ' + g.label + '" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">' + g.tip + '</span></span></span>' + badge + '</div>' +
         '<div class="goal-figures"><span>Réel : <strong>' + pct(actualPct) + '</strong> · ' + fmt(actual) + '</span>' +
         '<span>Cible : <strong>' + pct(target) + '</strong> · ' + fmt(targetAmount) + '</span></div>' +
         '<div class="goal-track"><div class="goal-fill" style="width:' + fillW + '%;background:' + g.color + '"></div>' +
@@ -1597,28 +1593,22 @@
     var verdict = okCount === 3 ? "Vous êtes dans vos objectifs sur les 3 postes." :
       okCount + " objectif" + (okCount > 1 ? "s" : "") + " sur 3 respecté" + (okCount > 1 ? "s" : "") + ".";
     var leftTxt = left >= 0
-      ? "Non affecté ce mois-ci : " + fmt(left) + " (" + pct(left / revenus * 100) + " de vos revenus)."
-      : "Vous dépensez " + fmt(-left) + " de plus que vos revenus ce mois-ci.";
+      ? "Non affecté sur cette période : " + fmt(left) + " (" + pct(left / revenus * 100) + " de vos revenus)."
+      : "Vous dépensez " + fmt(-left) + " de plus que vos revenus sur cette période.";
     html += '<div class="goals-verdict">' + verdict + '<small>' + leftTxt + '</small></div>';
     goalEls.results.innerHTML = html;
   }
 
-  ["fixe", "variable", "epargne"].forEach(function (k) {
-    goalEls[k].addEventListener("input", function () {
-      var v = parseFloat(goalEls[k].value);
-      goals[k] = isFinite(v) ? Math.max(0, Math.min(100, Math.round(v))) : 0;
-      saveGoals();
-      renderGoals();
+  if (goalEls.edit) {
+    goalEls.edit.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (typeof window.openGestionSettings === "function") window.openGestionSettings();
     });
-    goalEls[k].addEventListener("blur", renderGoals);
-  });
-  goalEls.presets.addEventListener("click", function (e) {
-    var b = e.target.closest(".goal-chip");
-    if (!b) return;
-    var p = b.getAttribute("data-preset").split(",").map(Number);
-    goals = { fixe: p[0], variable: p[1], epargne: p[2] };
-    saveGoals();
-    renderGoals();
+  }
+  // Un changement dans Réglages › Ma gestion (jour du mois ou répartition) recalcule tout l'outil.
+  window.addEventListener("ktiso:gestion-changed", function () {
+    state.viewDate = G.labelDate(todayISO());
+    renderAll();
   });
 
   // ---------- Conseil : sur quoi travailler ----------
@@ -1704,7 +1694,7 @@
     // Évolution par rapport au mois précédent
     var vd = state.viewDate, prev = new Date(vd.getFullYear(), vd.getMonth() - 1, 1);
     var pk = prev.getFullYear() + "-" + String(prev.getMonth() + 1).padStart(2, "0");
-    var prevDep = state.transactions.filter(function (t) { return t.type === "depense" && (t.date || "").slice(0, 7) === pk; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    var prevDep = state.transactions.filter(function (t) { return t.type === "depense" && monthKey(t.date || "") === pk; }).reduce(function (s, t) { return s + t.amount; }, 0);
     if (prevDep > 0 && dep > prevDep * 1.15) {
       add(55, "Vos dépenses ont fortement augmenté",
         "Elles passent de " + fmt(prevDep) + " à <b>" + fmt(dep) + "</b> (+" + pct((dep / prevDep - 1) * 100) + ") par rapport au mois précédent. Parcourez l'onglet « Opérations » pour repérer ce qui a changé : une hausse isolée est normale, une hausse qui se répète devient votre nouveau rythme.");
@@ -1888,7 +1878,7 @@
     };
 
     state.transactions.push(tx);
-    state.viewDate = startOfMonth(new Date(date + "T00:00:00"));
+    state.viewDate = G.labelDate(date);
     saveTransactions();
     renderAll();
 
@@ -2014,7 +2004,7 @@
         if (!confirm("Importer la feuille « " + sheetName + " » va remplacer toutes les opérations actuelles. Continuer ?")) return;
 
         state.transactions = txs;
-        if (txs.length) { state.viewDate = startOfMonth(new Date(txs[txs.length - 1].date + "T00:00:00")); }
+        if (txs.length) { state.viewDate = G.labelDate(txs[txs.length - 1].date); }
         saveTransactions();
         renderAll();
       } catch (err) {

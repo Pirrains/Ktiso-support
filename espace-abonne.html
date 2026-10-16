@@ -260,7 +260,32 @@
     text-align: left;
   }
 
-  .accent-swatches.open { display: flex; }
+  .accent-swatches.open { display: flex; max-height: calc(100vh - 110px); overflow-y: auto; overscroll-behavior: contain; }
+
+  /* --- Réglages › Ma gestion --- */
+  .gest-box { display: flex; flex-direction: column; gap: 8px; }
+  .gest-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,227,.55); margin: 4px 0 0; display: flex; align-items: center; gap: 8px; position: relative; }
+  .gest-box select, .gest-box input { width: 100%; font-family: 'DIN Next LT Pro', sans-serif; font-size: 14px; color: var(--cream); background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; }
+  .gest-box select option { background: #0F1A14; color: var(--cream); }
+  .gest-box select:focus, .gest-box input:focus { outline: none; border-color: var(--gold); }
+  .gest-hint { font-size: 12px; line-height: 1.55; color: rgba(244,239,227,.55); }
+  .gest-hint b { color: var(--gold); font-weight: 400; }
+  .gest-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+  .gest-chip { font-family: 'DIN Next LT Pro', sans-serif; font-size: 11px; letter-spacing: .06em; color: rgba(244,239,227,.7); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; cursor: pointer; }
+  .gest-chip:hover, .gest-chip[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+  .gest-chip[aria-pressed="true"] { background: rgba(201,169,97,.1); }
+  .gest-inputs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .gest-field { position: relative; }
+  .gest-field span.pc { position: absolute; right: 9px; bottom: 9px; font-size: 12px; color: rgba(244,239,227,.4); pointer-events: none; }
+  .gest-field input { padding-right: 22px; }
+  .gest-field .gest-label { letter-spacing: .05em; gap: 5px; font-size: 10.5px; }
+  .gest-sum { font-size: 12px; color: rgba(244,239,227,.55); }
+  .gest-sum.bad { color: var(--terracotta); }
+  .gest-sum.ok { color: var(--lime); }
+  .gest-tip { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(201,169,97,.55); background: rgba(201,169,97,.08); color: var(--gold); font-size: 10px; line-height: 1; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center; }
+  .gest-tip:hover, .gest-tip:focus-visible, .gest-tip[aria-expanded="true"] { background: var(--gold); color: #1A2E22; outline: none; }
+  .gest-tipbubble { display: none; font-size: 12px; line-height: 1.5; letter-spacing: 0; text-transform: none; color: var(--cream); background: #16241c; border: 1px solid var(--gold); border-radius: 10px; padding: 9px 11px; }
+  .gest-tip[aria-expanded="true"] ~ .gest-tipbubble, .gest-tip:hover ~ .gest-tipbubble { display: block; }
 
   /* --- Menu déroulant "Outils" (remplace l'ancienne colonne de gauche) --- */
 
@@ -1289,6 +1314,26 @@
               <button class="bg-swatch" style="background-image:url('hero-application.jpg');" onclick="setBackground('experience')" title="Expérience"></button>
               <button class="bg-swatch" style="background-image:url('nuit-etoilee.jpg');" onclick="setBackground('nuit')" title="Nuit étoilée"></button>
             </div>
+            <div class="settings-section-label" style="margin-top:16px;" id="gestionAnchor">Ma gestion</div>
+            <div class="gest-box" id="gestionSettings">
+              <label class="gest-label" for="gest-startday">Mon mois commence le</label>
+              <select id="gest-startday"></select>
+              <div class="gest-hint" id="gest-hint"></div>
+              <div class="gest-label" style="margin-top:8px;">Ma répartition idéale</div>
+              <div class="gest-presets" id="gest-presets">
+                <button type="button" class="gest-chip" data-preset="50,30,20">50 / 30 / 20</button>
+                <button type="button" class="gest-chip" data-preset="60,20,20">60 / 20 / 20</button>
+                <button type="button" class="gest-chip" data-preset="50,25,25">50 / 25 / 25</button>
+                <button type="button" class="gest-chip" data-preset="70,20,10">70 / 20 / 10</button>
+              </div>
+              <div class="gest-inputs">
+                <div class="gest-field"><label class="gest-label" for="gest-fixe">Fixes <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Fixes">?</button></label><input type="number" id="gest-fixe" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+                <div class="gest-field"><label class="gest-label" for="gest-variable">Variables <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Variables">?</button></label><input type="number" id="gest-variable" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+                <div class="gest-field"><label class="gest-label" for="gest-epargne">Épargne <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Épargne">?</button></label><input type="number" id="gest-epargne" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+              </div>
+              <div class="gest-tipbubble" id="gest-tipbubble" hidden></div>
+              <div class="gest-sum" id="gest-sum"></div>
+            </div>
             <div class="settings-section-label" style="margin-top:16px;">Mon objectif patrimonial</div>
             <div id="goalFormSettings"></div>
             <div class="settings-section-label" style="margin-top:16px;">Mon profil investisseur</div>
@@ -1571,6 +1616,7 @@
     <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
   </footer>
 
+<script src="gestion.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
   const SUPABASE_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co';
@@ -1662,6 +1708,126 @@
   }
 
   function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  // ---------- Réglages › Ma gestion ----------
+  const GEST_TIPS = {
+    fixe: "Charges sur lesquelles vous n'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…",
+    variable: "Tout le reste, ce qui dépend de vos habitudes de consommation : assurances, courses, énergie, abonnements, loisirs, sorties…",
+    epargne: "Ce que vous mettez de côté : épargne, épargne pension et « save to invest » (ETF, actions…). Un minimum à atteindre."
+  };
+  let gestSyncTimer = null;
+
+  function gestFmtDate(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    return d + (d === 1 ? 'er ' : ' ') + new Date(y, m - 1, d).toLocaleDateString('fr-BE', { month: 'long' });
+  }
+
+  function renderGestionSettings() {
+    const G = window.KtisoGestion;
+    if (!G || !document.getElementById('gest-startday')) return;
+    const cfg = G.get();
+    const sel = document.getElementById('gest-startday');
+    if (sel.value !== String(cfg.startDay)) sel.value = String(cfg.startDay);
+    ['fixe', 'variable', 'epargne'].forEach(k => {
+      const inp = document.getElementById('gest-' + k);
+      if (document.activeElement !== inp) inp.value = cfg.goals[k];
+    });
+    const total = cfg.goals.fixe + cfg.goals.variable + cfg.goals.epargne;
+    const sum = document.getElementById('gest-sum');
+    sum.className = 'gest-sum ' + (total === 100 ? 'ok' : 'bad');
+    sum.textContent = total === 100 ? 'Total : 100 %' : 'Total : ' + total + ' % — il devrait faire 100 %';
+    document.querySelectorAll('#gest-presets .gest-chip').forEach(b => {
+      const p = b.dataset.preset.split(',').map(Number);
+      b.setAttribute('aria-pressed', String(p[0] === cfg.goals.fixe && p[1] === cfg.goals.variable && p[2] === cfg.goals.epargne));
+    });
+    const ref = G.labelDate(G.todayISO());
+    const r = G.range(ref);
+    const nom = ref.toLocaleDateString('fr-BE', { month: 'long', year: 'numeric' });
+    document.getElementById('gest-hint').innerHTML = cfg.startDay === 1
+      ? 'Mois calendrier : du 1er au dernier jour de chaque mois. Choisissez un autre jour si votre revenu arrive en cours de mois.'
+      : 'Période en cours : <b>' + gestFmtDate(r.start) + ' → ' + gestFmtDate(r.end) + '</b>, nommée « ' + nom + ' ». Vos opérations ne bougent pas : elles sont simplement regroupées autrement.';
+  }
+
+  function scheduleGestionSync() {
+    clearTimeout(gestSyncTimer);
+    gestSyncTimer = setTimeout(syncGestionToSupabase, 600);
+  }
+
+  async function syncGestionToSupabase() {
+    try {
+      const { data: { user } } = await sb.auth.getUser();
+      if (!user || !window.KtisoGestion) return;
+      const c = window.KtisoGestion.get();
+      // Meilleur effort : si les colonnes n'existent pas encore côté base, le réglage reste sur cet appareil.
+      await sb.from('profiles').update({ budget_start_day: c.startDay, goal_fixe: c.goals.fixe, goal_variable: c.goals.variable, goal_epargne: c.goals.epargne }).eq('id', user.id);
+    } catch (e) {}
+  }
+
+  async function hydrateGestion(userId) {
+    try {
+      const r = await sb.from('profiles').select('budget_start_day, goal_fixe, goal_variable, goal_epargne').eq('id', userId).maybeSingle();
+      if (r.error || !r.data || !window.KtisoGestion) return;
+      const d = r.data, patch = {};
+      if (d.budget_start_day !== null && d.budget_start_day !== undefined) patch.startDay = d.budget_start_day;
+      const goals = {};
+      ['fixe', 'variable', 'epargne'].forEach(k => { const v = d['goal_' + k]; if (v !== null && v !== undefined) goals[k] = v; });
+      if (Object.keys(goals).length) patch.goals = goals;
+      if (Object.keys(patch).length) window.KtisoGestion.set(patch, { source: 'remote' });
+    } catch (e) {}
+  }
+
+  function openGestionSettings() {
+    document.getElementById('accentSwatches').classList.add('open');
+    const a = document.getElementById('gestionAnchor');
+    if (a) a.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  window.openGestionSettings = openGestionSettings;
+
+  (function initGestionSettings() {
+    const G = window.KtisoGestion;
+    const sel = document.getElementById('gest-startday');
+    if (!G || !sel) return;
+    sel.innerHTML = '<option value="1">Le 1er (mois calendrier)</option>' +
+      Array.from({ length: 30 }, (_, i) => i + 2).map(d => '<option value="' + d + '">Le ' + d + '</option>').join('') +
+      '<option value="0">Dernier jour du mois</option>';
+    sel.addEventListener('change', () => G.set({ startDay: Number(sel.value) }));
+    ['fixe', 'variable', 'epargne'].forEach(k => {
+      const inp = document.getElementById('gest-' + k);
+      inp.addEventListener('input', () => {
+        const v = parseFloat(inp.value);
+        G.set({ goals: { [k]: isFinite(v) ? Math.max(0, Math.min(100, Math.round(v))) : 0 } });
+      });
+      inp.addEventListener('blur', renderGestionSettings);
+    });
+    document.getElementById('gest-presets').addEventListener('click', (e) => {
+      const b = e.target.closest('.gest-chip');
+      if (!b) return;
+      const p = b.dataset.preset.split(',').map(Number);
+      G.set({ goals: { fixe: p[0], variable: p[1], epargne: p[2] } });
+    });
+    // Bulles d'aide (?) des trois postes
+    document.querySelectorAll('.gest-tip').forEach((btn, i) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = ['fixe', 'variable', 'epargne'][i];
+        const bub = document.getElementById('gest-tipbubble');
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.gest-tip').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        if (open) { bub.hidden = true; return; }
+        btn.setAttribute('aria-expanded', 'true');
+        bub.textContent = GEST_TIPS[key];
+        bub.className = 'gest-tipbubble';
+        bub.style.display = 'block';
+        bub.hidden = false;
+      });
+    });
+    window.addEventListener('ktiso:gestion-changed', (e) => {
+      renderGestionSettings();
+      renderRealStats();
+      if (!e.detail || e.detail.source !== 'remote') scheduleGestionSync();
+    });
+    renderGestionSettings();
+  })();
 
   async function deleteAccount() {
     if (!confirm("Supprimer définitivement votre compte et toutes vos données ? Cette action est irréversible.")) return;
@@ -1845,6 +2011,7 @@
     applyBackground(profile?.background_theme || 'default');
     renderGoal(profile);
     renderProfileSettings(profile);
+    hydrateGestion(user.id);
     await loadFamilyMembers();
 
     if (!profile || !profile.onboarding_completed) {
@@ -1878,13 +2045,14 @@
 
   function isSameMonth(dateStr, ref) {
     if (!dateStr) return false;
+    if (window.KtisoGestion) return window.KtisoGestion.inPeriod(dateStr, ref);
     const d = new Date(String(dateStr).slice(0, 10) + 'T00:00:00');
     return d.getFullYear() === ref.getFullYear() && d.getMonth() === ref.getMonth();
   }
 
   function renderRealStats() {
     const total = holdingsTotal();
-    const now = new Date();
+    const now = window.KtisoGestion ? window.KtisoGestion.labelDate(window.KtisoGestion.todayISO()) : new Date();
     const monthTx = transactions.filter(t => isSameMonth(t.date, now));
     const revenus = monthTx.filter(t => t.type === 'revenu').reduce((s, t) => s + Number(t.amount || 0), 0);
     const charges = monthTx.filter(t => t.type === 'depense').reduce((s, t) => s + Number(t.amount || 0), 0);
