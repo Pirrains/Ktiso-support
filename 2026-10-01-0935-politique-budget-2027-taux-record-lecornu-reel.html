@@ -12,8 +12,17 @@
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
   :root {
     --gold: #C9A961;
     --gold-deep: #8B6F35;
@@ -34,7 +43,7 @@
   html, body {
     background: var(--green-deep);
     color: var(--cream);
-    font-family: 'DM Mono', monospace;
+    font-family: 'DIN Next LT Pro', sans-serif;
   }
 
   body {
@@ -153,68 +162,90 @@
 
   .article-body h2 {
     font-family: 'IBM Plex Sans Condensed', sans-serif;
-    font-size: clamp(19px, 4vw, 22px);
+    font-size: clamp(20px, 4vw, 24px);
     font-weight: 600;
     color: var(--zone);
-    margin: 44px 0 16px;
+    margin: 48px 0 16px;
   }
 
-  .article-body h2:first-child { margin-top: 0; }
+  .article-body h2:first-of-type { margin-top: 32px; }
 
   .article-body p {
-    font-size: 15px;
-    line-height: 1.85;
-    color: rgba(244, 239, 227, 0.82);
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(244, 239, 227, 0.84);
     margin: 0 0 18px;
   }
 
-  .article-body .lead {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: clamp(18px, 3.4vw, 21px);
-    line-height: 1.6;
-    color: rgba(244, 239, 227, 0.92);
-    margin: 0 0 8px;
+  /* Le résumé qui suit « Problématique » ressort comme un encart */
+  .article-body h2:first-of-type + p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--cream);
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(91, 143, 168, 0.07);
   }
 
   .article-body ul {
-    margin: 0 0 18px;
+    margin: 8px 0 24px;
     padding-left: 0;
     list-style: none;
+    display: grid;
+    gap: 10px;
   }
 
   .article-body ul li {
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: rgba(244, 239, 227, 0.78);
-    padding-left: 22px;
     position: relative;
-    margin-bottom: 12px;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.8);
+    padding: 16px 18px 16px 42px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(91, 143, 168, 0.045);
+    margin: 0;
   }
 
   .article-body ul li::before {
-    content: '—';
+    content: '';
     position: absolute;
-    left: 0;
-    color: var(--terracotta);
+    left: 18px;
+    top: 24px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--zone);
   }
 
-  .article-body strong { color: var(--cream); }
+  .article-body ul li > strong:first-child {
+    display: block;
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 500;
+    font-size: 16.5px;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+
+  .article-body strong { color: var(--cream); font-weight: 400; }
 
   .article-body em {
     display: block;
-    font-style: italic;
+    font-style: normal;
     font-size: 12.5px;
-    color: rgba(244, 239, 227, 0.4);
-    margin-top: 32px;
-    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.42);
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    line-height: 1.65;
   }
 
   .back-link {
     display: inline-block;
     margin: 8px 0 0;
-    font-size: 12px;
-    letter-spacing: 0.03em;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
     color: var(--terracotta);
     text-decoration: none;
   }
@@ -230,7 +261,7 @@
   }
   .sources ol { padding-left: 18px; }
   .sources li {
-    font-size: 12px;
+    font-size: 12.5px;
     line-height: 1.7;
     color: rgba(244, 239, 227, 0.45);
     margin-bottom: 6px;
@@ -243,7 +274,7 @@
   .social-card {
     border: 1px solid var(--line);
     background: rgba(201, 169, 97, 0.03);
-    border-radius: 2px;
+    border-radius: 12px;
     padding: 48px 32px;
     text-align: center;
   }
@@ -257,7 +288,7 @@
     max-width: 400px;
   }
   .social-card p {
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.7;
     color: rgba(244, 239, 227, 0.65);
     max-width: 380px;
@@ -269,10 +300,9 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-family: 'DM Mono', monospace;
-    font-weight: 500;
+    font-family: 'DIN Next LT Pro', sans-serif;
     font-size: 13px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
     padding: 15px 28px;
@@ -303,6 +333,12 @@
   .footer-nav .sep { color: rgba(244, 239, 227, 0.2); margin: 0 10px; }
   .copyright { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 239, 227, 0.3); }
   .legal-note { font-size: 10.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.25); max-width: 480px; margin: 16px auto 0; }
+
+  @media (max-width: 520px) {
+    .article-body ul li { padding: 14px 14px 14px 38px; }
+    .article-body ul li::before { left: 15px; top: 22px; }
+    .social-card { padding: 36px 22px; }
+  }
 </style>
 <link rel="stylesheet" href="mobile.css">
 <script src="mobile.js" defer></script>
@@ -344,10 +380,10 @@
         <p>Les chiffres du budget qui en découlent sont les suivants. Le déficit public a atteint 5,4 % du PIB en 2026, contre un objectif de 5 %, et le gouvernement vise de nouveau 5 % en 2027, grâce à un effort de 54 milliards d'euros. Le projet de loi de finances et celui de financement de la Sécurité sociale sont présentés en Conseil des ministres ce 1er octobre 2026, avant l'examen par le Parlement à l'automne. Le Premier ministre s'est engagé à ne pas recourir à l'article 49.3, sauf en cas d'obstruction.</p>
         <p>Plusieurs mesures détaillées dans la presse concernent directement les ménages :</p>
         <ul>
-          <li><strong>Retraites</strong> : aucune pension ne serait baissée en valeur nominale, mais les pensions supérieures à 1 260 euros bruts par mois ne seraient plus pleinement indexées sur l'inflation. La contribution des retraités resterait, selon le Premier ministre, inférieure à 6 milliards d'euros.</li>
-          <li><strong>Fonction publique</strong> : gel du point d'indice, avec des négociations promises pour protéger les plus bas salaires.</li>
-          <li><strong>Prestations</strong> : la prime d'activité ne serait pas indexée sur l'inflation, une taxe sur les produits sucrés est envisagée (environ 200 millions d'euros attendus) et un gel partiel des aides au logement est à l'étude. Les minima vieillesse, le RSA et les allocations handicap seraient épargnés.</li>
-          <li><strong>Sécurité sociale</strong> : un objectif de réduction du déficit d'environ moitié d'ici 2027, avec 5,5 milliards d'euros d'économies.</li>
+          <li><strong>Retraites</strong> Aucune pension ne serait baissée en valeur nominale, mais les pensions supérieures à 1 260 euros bruts par mois ne seraient plus pleinement indexées sur l'inflation. La contribution des retraités resterait, selon le Premier ministre, inférieure à 6 milliards d'euros.</li>
+          <li><strong>Fonction publique</strong> Gel du point d'indice, avec des négociations promises pour protéger les plus bas salaires.</li>
+          <li><strong>Prestations</strong> La prime d'activité ne serait pas indexée sur l'inflation, une taxe sur les produits sucrés est envisagée (environ 200 millions d'euros attendus) et un gel partiel des aides au logement est à l'étude. Les minima vieillesse, le RSA et les allocations handicap seraient épargnés.</li>
+          <li><strong>Sécurité sociale</strong> Un objectif de réduction du déficit d'environ moitié d'ici 2027, avec 5,5 milliards d'euros d'économies.</li>
         </ul>
         <h2>Analyse : pourquoi un taux élevé rend le budget plus difficile à tenir</h2>
         <p>Pour un État, emprunter plus cher produit un cercle vicieux. Chaque nouvelle dette émise coûte plus que celle qu'elle remplace, ce qui augmente la charge d'intérêts, donc le déficit, donc le besoin d'emprunter. C'est exactement ce que Lecornu a décrit : à 80 milliards d'euros par an environ, les intérêts rivalisent avec des budgets de ministères entiers. Plus le taux monte, plus l'effort d'économies nécessaire pour simplement stabiliser le déficit augmente, avant même de financer la moindre priorité.</p>
@@ -420,7 +456,9 @@
       <span class="sep">·</span>
       <a href="privacy.html">Confidentialité</a>
       <span class="sep">·</span>
-      <a href="cgu.html">CGU</a>
+      <a href="mentions-legales.html">Mentions légales</a><span class="sep">·</span>
+      <a href="cgu.html">CGU</a><span class="sep">·</span>
+      <a href="cookies.html">Cookies</a>
     </div>
     <div class="copyright">KTISO — Éducation financière</div>
     <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
