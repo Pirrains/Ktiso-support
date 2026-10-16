@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Crypto",
+      "title": "Un ordinateur quantique pourrait-il vider votre bitcoin ?",
+      "excerpt": "Coinbase publie un plan pour préparer Bitcoin à l'ère quantique. Aucune machine capable de casser ses signatures n'existe aujourd'hui, mais la migration prendrait des années : mieux vaut comprendre le risque dès maintenant.",
+      "auteur": "Ktiso",
+      "date": "15 octobre 2026",
+      "href": "2026-10-15-0935-crypto-bitcoin-quantique-coinbase-bip360.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Les banques américaines s'enrichissent : alors pourquoi ont-elles peur ?",
       "excerpt": "Goldman Sachs bat largement les attentes, JPMorgan les manque, et Jamie Dimon redoute une hausse des taux. Les résultats des banques américaines disent beaucoup du coût du crédit, jusqu'en Europe.",
@@ -63,15 +72,6 @@
       "date": "8 octobre 2026",
       "href": "2026-10-08-0935-economie-fed-minutes-hausse-taux-rendement-2002.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Le chiffre que Google a gardé secret dans son pari nucléaire",
-      "excerpt": "Wall Street a signé un record le 6 octobre malgré un taux américain à 5,3 %, et Constellation Energy a bondi d'environ 12 % grâce à un contrat nucléaire de 20 ans avec Google. Le prix du contrat, lui, n'a pas été publié.",
-      "auteur": "Ktiso",
-      "date": "7 octobre 2026",
-      "href": "2026-10-07-0935-bourse-wall-street-record-google-nucleaire-constellation.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
