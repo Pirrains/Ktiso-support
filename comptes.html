@@ -1764,7 +1764,7 @@
     ["Allocations de chômage", "mois"], ["Autres revenus", "mois"]
   ];
   var EXPENSE_CATS = [
-    ["Habitation", [["Loyer","mois","fixe"],["Crédit hypothécaire","mois","fixe"],["Entretien (ascenseur, chaudière, …)","mois","variable"],["Installation et décoration","mois","variable"],["Charges d'énergie (électricité, gaz, …)","mois","variable"],["Charges pour l'eau","mois","variable"]]],
+    ["Habitation", [["Loyer","mois","fixe"],["Crédit hypothécaire","mois","fixe"],["Prêt travaux (rénovation, agrandissement, …)","mois","fixe"],["Prêt énergétique (isolation, panneaux solaires, pompe à chaleur, Rénoprêt, …)","mois","fixe"],["Entretien (ascenseur, chaudière, …)","mois","variable"],["Installation et décoration","mois","variable"],["Charges d'énergie (électricité, gaz, …)","mois","variable"],["Charges pour l'eau","mois","variable"]]],
     ["Transport", [["Vélo (équipement, entretien)","mois","variable"],["Transport en commun","mois","variable"],["Emprunt achat véhicule","mois","fixe"],["Carburant","mois","variable"],["Entretien véhicule","mois","variable"]]],
     ["Courses", [["Alimentation au quotidien (boisson, viande, légumes, …)","mois","variable"],["Alimentation pour des occasions spéciales","mois","variable"],["Envies (snacks, sodas, collations, …)","mois","variable"],["Hygiène (shampoings, lames de rasoir, …)","mois","variable"],["Produits d'entretien (ménage et lessive)","mois","variable"]]],
     ["Tabac et alcool", [["Tabac","mois","variable"],["Alcool","mois","variable"]]],
@@ -1786,7 +1786,7 @@
 
   // ---------- Détection automatique : charge fixe, variable ou épargne ----------
   var RE_EPARGNE = /(épargne|epargne|livret|ordre permanent|placement|investi|save to invest|save-to-invest|\betfs?\b|compte à terme|pension complémentaire)/i;
-  var RE_FIXE = /(loyer|crédit|credit|hypoth|prêt|pret |emprunt|leasing|syndic|charges de copropri|charges locatives|taxe|impôt|impot|précompte|precompte|redevance|pension alimentaire|crèche|creche|garderie)/i;
+  var RE_FIXE = /(loyer|crédit|credit|hypoth|prêt|pret |emprunt|leasing|rénoprêt|renoprêt|renopret|rénopack|renopack|éco-prêt|eco-pret|syndic|charges de copropri|charges locatives|taxe|impôt|impot|précompte|precompte|redevance|pension alimentaire|crèche|creche|garderie)/i;
 
   function detectCategory(nature, catKey, period) {
     var c = catIndex[catKey];
