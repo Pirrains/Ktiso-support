@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Le Nasdaq décroche : et si l'IA était financée à crédit ?",
+      "excerpt": "Le Nasdaq a perdu 2,1 % vendredi et signe sa pire semaine depuis juin, entraîné par les puces et par CoreWeave, très endetté. Le doute ne porte plus sur l'IA, mais sur la façon de la financer quand les taux montent.",
+      "auteur": "Ktiso",
+      "date": "17 octobre 2026",
+      "href": "2026-10-17-0935-bourse-nasdaq-ia-dette-coreweave-pire-semaine-depuis-juin.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Politique",
       "title": "Les députés ont réécrit vos impôts : pourquoi ça ne changera peut-être rien",
       "excerpt": "Les députés ont supprimé le plafonnement de l'abattement des retraités et doublé le plafond des heures supplémentaires, mais ces votes sont provisoires. Le scrutin du 20 octobre peut tout arrêter.",
@@ -63,15 +72,6 @@
       "date": "10 octobre 2026",
       "href": "2026-10-10-0935-crypto-robinhood-perpetuels-levier-x10-liquidations.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Starbucks veut-il racheter l'ancienne entreprise de son patron ?",
-      "excerpt": "Selon le Financial Times, Starbucks a étudié avec des conseillers une offre sur Chipotle, valorisée plus de 41 milliards de dollars. Aucune offre n'est confirmée, mais Chipotle a bondi d'environ 7 % et Starbucks a reculé.",
-      "auteur": "Ktiso",
-      "date": "9 octobre 2026",
-      "href": "2026-10-09-0935-corporate-starbucks-chipotle-rachat-ft.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
