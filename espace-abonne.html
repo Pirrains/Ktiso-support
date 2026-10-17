@@ -1347,9 +1347,9 @@
                 <button type="button" class="gest-chip" data-preset="70,20,10">70 / 20 / 10</button>
               </div>
               <div class="gest-inputs">
-                <div class="gest-field"><label class="gest-label" for="gest-fixe">Fixes <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Fixes">?</button></label><input type="number" id="gest-fixe" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
-                <div class="gest-field"><label class="gest-label" for="gest-variable">Variables <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Variables">?</button></label><input type="number" id="gest-variable" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
-                <div class="gest-field"><label class="gest-label" for="gest-epargne">Épargne <button type="button" class="gest-tip" aria-expanded="false" aria-label="Qu'est-ce que c'est ? Épargne">?</button></label><input type="number" id="gest-epargne" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+                <div class="gest-field"><label class="gest-label" for="gest-fixe">Fixes <button type="button" class="gest-tip" aria-expanded="false" aria-label="Définition : Fixes">?</button></label><input type="number" id="gest-fixe" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+                <div class="gest-field"><label class="gest-label" for="gest-variable">Variables <button type="button" class="gest-tip" aria-expanded="false" aria-label="Définition : Variables">?</button></label><input type="number" id="gest-variable" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
+                <div class="gest-field"><label class="gest-label" for="gest-epargne">Épargne <button type="button" class="gest-tip" aria-expanded="false" aria-label="Définition : Épargne">?</button></label><input type="number" id="gest-epargne" min="0" max="100" step="1" inputmode="numeric"><span class="pc">%</span></div>
               </div>
               <div class="gest-tipbubble" id="gest-tipbubble" hidden></div>
               <div class="gest-sum" id="gest-sum"></div>
@@ -1585,7 +1585,7 @@
 
         <div class="onb-step" data-step="6" id="onbStep6">
           <div class="onb-eyebrow">Étape 6 sur 6 — Tes projets</div>
-          <h2>Qu'est-ce qui te tient à cœur, pour les prochaines années ?</h2>
+          <h2>Quels sujets te tiennent à cœur pour les prochaines années ?</h2>
           <p class="onb-hint">Choisis autant d'options que tu veux — ça reste modifiable à tout moment.</p>
           <div class="onb-chip-row" data-field="projets" data-multi="true" style="margin-bottom:28px;">
             <button class="onb-chip" data-value="voyager">Voyager</button>
@@ -1732,8 +1732,8 @@
   // ---------- Réglages › Ma gestion ----------
   const GEST_TIPS = {
     fixe: "Charges sur lesquelles vous n'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…",
-    variable: "Tout le reste, ce qui dépend de vos habitudes de consommation : assurances, courses, énergie, abonnements, loisirs, sorties…",
-    epargne: "Ce que vous mettez de côté : épargne, épargne pension et « save to invest » (ETF, actions…). Un minimum à atteindre."
+    variable: "Tout le reste, selon vos habitudes de consommation : assurances, courses, énergie, abonnements, loisirs, sorties…",
+    epargne: "L'argent mis de côté : épargne, épargne pension et « save to invest » (ETF, actions…). Un minimum à atteindre."
   };
   let gestSyncTimer = null;
 
@@ -2455,7 +2455,7 @@
       onbIdentityRow('Épargne', ONB_EPARGNE_LABELS[a.epargne] || '—') +
       onbIdentityRow('Investissement', ONB_INVEST_LABELS[a.investissement] || '—') +
       onbIdentityRow('Horizon', ONB_HORIZON_LABELS[a.horizon] || '—') +
-      onbIdentityRow('Ce qui compte pour toi', onbProjetsText(a.projets));
+      onbIdentityRow('Tes priorités', onbProjetsText(a.projets));
   }
 
   function onbRender() {

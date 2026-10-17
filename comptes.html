@@ -1865,8 +1865,8 @@
   };
   var GOAL_META = [
     { key: "fixe", label: "Charges fixes", color: "var(--blue)", mode: "max", tip: "Charges sur lesquelles vous n\'avez aucun impact : loyer, crédit, pension alimentaire, taxes et impôts, crèche…" },
-    { key: "variable", label: "Charges variables", color: "var(--gold)", mode: "max", tip: "Tout le reste, ce qui dépend de vos habitudes de consommation et que vous pouvez ajuster : assurances, courses, énergie, abonnements, loisirs, divertissements, sorties…" },
-    { key: "epargne", label: "Épargne et investissement", color: "var(--lime)", mode: "min", tip: "Ce que vous mettez de côté : épargne de sécurité (livret, ordre permanent), épargne pension et « save to invest » (l\'argent que vous investissez : ETF, actions…). C\'est un minimum à atteindre, pas un plafond." }
+    { key: "variable", label: "Charges variables", color: "var(--gold)", mode: "max", tip: "Tout le reste, selon vos habitudes de consommation, que vous pouvez ajuster : assurances, courses, énergie, abonnements, loisirs, divertissements, sorties…" },
+    { key: "epargne", label: "Épargne et investissement", color: "var(--lime)", mode: "min", tip: "L\'argent mis de côté : épargne de sécurité (livret, ordre permanent), épargne pension et « save to invest » (l\'argent que vous investissez : ETF, actions…). C\'est un minimum à atteindre, pas un plafond." }
   ];
 
   function pct(n) { return (Math.round(n * 10) / 10).toString().replace(".", ",") + " %"; }
@@ -1918,7 +1918,7 @@
       var fillW = Math.min(100, actualPct / scaleMax * 100);
       var markL = Math.min(100, target / scaleMax * 100);
       html += '<div class="goal-row">' +
-        '<div class="goal-top"><span class="goal-name"><span class="goal-labelrow">' + g.label + '<button type="button" class="tip-btn" aria-label="Qu\'est-ce que c\'est ? ' + g.label + '" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">' + g.tip + '</span></span></span>' + badge + '</div>' +
+        '<div class="goal-top"><span class="goal-name"><span class="goal-labelrow">' + g.label + '<button type="button" class="tip-btn" aria-label="Définition : ' + g.label + '" aria-expanded="false">?</button><span class="tip-bubble" role="tooltip">' + g.tip + '</span></span></span>' + badge + '</div>' +
         '<div class="goal-figures"><span>Réel : <strong>' + pct(actualPct) + '</strong> · ' + fmt(actual) + '</span>' +
         '<span>Cible : <strong>' + pct(target) + '</strong> · ' + fmt(targetAmount) + '</span></div>' +
         '<div class="goal-track"><div class="goal-fill" style="width:' + fillW + '%;background:' + g.color + '"></div>' +
@@ -1999,7 +1999,7 @@
       var gapEp = rev * goals.epargne / 100 - sums.epargne;
       if (gapEp > 0.5 && goals.epargne > 0) {
         add(80 + Math.min(10, gapEp / rev * 100 / 2), "Épargnez en premier",
-          "Il manque <b>" + fmt(gapEp) + "</b> pour atteindre votre objectif d'épargne de " + pct(goals.epargne) + " (" + fmt(rev * goals.epargne / 100) + "). Plutôt que d'épargner ce qui reste en fin de mois, programmez un <b>ordre permanent</b> le jour de réception du revenu : ce que vous ne voyez pas, vous ne le dépensez pas.");
+          "Il manque <b>" + fmt(gapEp) + "</b> pour atteindre votre objectif d'épargne de " + pct(goals.epargne) + " (" + fmt(rev * goals.epargne / 100) + "). Plutôt que d'épargner le solde de fin de mois, programmez un <b>ordre permanent</b> le jour de réception du revenu : l'argent que vous ne voyez pas, vous ne le dépensez pas.");
       }
       var gapFx = sums.fixe - rev * goals.fixe / 100;
       if (gapFx > 0.5) {
@@ -2035,7 +2035,7 @@
     var prevDep = viewTx().filter(function (t) { return t.type === "depense" && monthKey(t.date || "") === pk; }).reduce(function (s, t) { return s + t.amount; }, 0);
     if (prevDep > 0 && dep > prevDep * 1.15) {
       add(55, "Vos dépenses ont fortement augmenté",
-        "Elles passent de " + fmt(prevDep) + " à <b>" + fmt(dep) + "</b> (+" + pct((dep / prevDep - 1) * 100) + ") par rapport au mois précédent. Parcourez l'onglet « Opérations » pour repérer ce qui a changé : une hausse isolée est normale, une hausse qui se répète devient votre nouveau rythme.");
+        "Elles passent de " + fmt(prevDep) + " à <b>" + fmt(dep) + "</b> (+" + pct((dep / prevDep - 1) * 100) + ") par rapport au mois précédent. Parcourez l'onglet « Opérations » pour repérer les écarts : une hausse isolée est normale, une hausse qui se répète devient votre nouveau rythme.");
     }
 
     // Matelas de sécurité : 3 mois de charges
