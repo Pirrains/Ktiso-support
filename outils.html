@@ -6,9 +6,9 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ktiso — Nos outils</title>
-<meta name="description" content="Les outils d'analyse et de gestion à venir chez Ktiso : portefeuille, simulateur, screener, alertes et budget. Des outils pour agir, pas des conseils.">
+<meta name="description" content="Gestion, l'outil de Ktiso pour suivre vos comptes au quotidien, seul ou à deux : revenus, dépenses, épargne et objectifs de répartition. Un outil pour agir, pas des conseils.">
 <meta property="og:title" content="Ktiso — Nos outils">
-<meta property="og:description" content="Des outils pour aller plus loin dans votre analyse.">
+<meta property="og:description" content="Gestion : suivez vos comptes au quotidien, seul ou à deux.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -472,6 +472,122 @@
     margin: 16px auto 0;
   }
 
+  /* ============ OUTIL UNIQUE : GRANDE VIGNETTE + CAPTURES ============ */
+
+  .tool-feature { margin: 30px auto 0; max-width: 560px; }
+
+  .tool-card-xl {
+    width: 100%;
+    margin: 0 auto;
+    padding: 21% 34% 0 11%;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .tool-card-xl:hover { transform: none; filter: none; }
+
+  .tool-card-xl h3 {
+    font-size: clamp(34px, 9vw, 52px);
+    max-width: 100%;
+    letter-spacing: 0.01em;
+  }
+
+  .tool-sub {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.75);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+  }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .shots {
+    width: min(980px, calc(100vw - 32px));
+    position: relative;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 36px 0 20px;
+  }
+
+  .shots.reveal { transform: translateX(-50%) translateY(18px); }
+  .shots.reveal.in { transform: translateX(-50%); }
+
+  .shot {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 6px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #2d323d, #0a0d13);
+    box-shadow:
+      0 0 0 1px var(--line),
+      0 30px 60px rgba(0, 0, 0, 0.55),
+      0 0 60px rgba(91, 143, 168, 0.12);
+  }
+
+  .shot img { display: block; width: 100%; height: auto; border-radius: 13px; }
+
+  .shots .shot-main {
+    width: 520px;
+    z-index: 2;
+    box-shadow: 0 0 0 1px rgba(91, 143, 168, 0.55), 0 40px 80px rgba(0,0,0,0.6), 0 0 90px rgba(91, 143, 168, 0.2);
+  }
+  .shots .shot-left  { width: 215px; transform: translateY(20px) rotate(-4deg); margin-right: -30px; }
+  .shots .shot-right { width: 215px; transform: translateY(20px) rotate(4deg);  margin-left: -30px; }
+
+  .showcase-caption {
+    margin: 34px auto 0;
+    max-width: 440px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(244, 239, 227, 0.7);
+  }
+
+  .pillars { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; text-align: left; }
+
+  .pillar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(91, 143, 168, 0.05);
+  }
+
+  .pillar img { width: 46px; height: 46px; object-fit: contain; flex: 0 0 auto; }
+  .pillar h3 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: 17px; color: var(--cream); margin-bottom: 4px; }
+  .pillar p { font-size: 13.5px; line-height: 1.6; color: rgba(244, 239, 227, 0.65); margin: 0; max-width: none; }
+
+  @media (max-width: 720px) {
+    .shots, .shots.reveal, .shots.reveal.in {
+      justify-content: flex-start;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 14px 24px 34px;
+      width: 100vw;
+      margin-top: 30px;
+      scrollbar-width: none;
+    }
+    .shots::-webkit-scrollbar { display: none; }
+    .shots .shot, .shots .shot-main, .shots .shot-left, .shots .shot-right {
+      width: 78vw; max-width: 420px; scroll-snap-align: center; transform: none; margin: 0;
+    }
+    .shots .shot-left, .shots .shot-right { width: 56vw; max-width: 250px; }
+    .shots .shot-main { order: -1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal.in, .shots.reveal, .shots.reveal.in { opacity: 1; transition: none; }
+    .reveal { transform: none; }
+    .shots.reveal { transform: translateX(-50%); }
+  }
+
   @media (max-width: 860px) {
     .tool-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -502,7 +618,7 @@
     </nav>
 
     <div class="hero-content">
-      <div class="eyebrow"><span style="color:var(--blue);">●</span> Simulateurs &amp; calculateurs</div>
+      <div class="eyebrow"><span style="color:var(--blue);">●</span> Gestion de comptes</div>
       <img class="wordmark" src="outils-logo.png" alt="Outils">
     </div>
   </header>
@@ -519,44 +635,43 @@
     <div class="rule"></div>
 
     <section>
-      <div class="section-label" style="color: var(--blue);">Nos outils</div>
-      <h2>Des outils pour aller plus loin, en complément de l'application gratuite</h2>
-      <p>L'application reste gratuite pour apprendre. Ces outils, en abonnement, sont pour celles et ceux qui veulent passer à la pratique avec du concret.</p>
+      <div class="section-label" style="color: var(--blue);">Notre outil</div>
+      <h2>Un premier outil pour piloter votre budget au quotidien</h2>
+      <p>Pour commencer, un seul outil, gratuit, pour bien faire les choses. D'autres suivront plus tard.</p>
+
+      <div class="tool-feature reveal">
+        <div class="tool-card tool-card-xl" style="background-image:url('card-objectifs.jpg');">
+          <h3>Gestion</h3>
+          <span class="tool-sub">Vos comptes, au quotidien</span>
+        </div>
+      </div>
+
+      <div class="shots reveal">
+        <figure class="shot shot-left"><img src="gestion-saisie.jpg" width="900" height="1250" loading="lazy" alt="Ajout d'une opération dans Gestion : un loyer de 850 € sur un compte commun, réparti 50 / 50, avec la part de chacun affichée avant de valider"></figure>
+        <figure class="shot shot-main"><img src="gestion-tableau.jpg" width="1500" height="937" loading="lazy" alt="Tableau de bord de Gestion : revenus, dépenses et solde du mois, comptes perso et commun, évolution sur six mois"></figure>
+        <figure class="shot shot-right"><img src="gestion-objectifs.jpg" width="837" height="1101" loading="lazy" alt="Répartition idéale dans Gestion : charges fixes, charges variables et épargne comparées aux objectifs"></figure>
+      </div>
+      <p class="showcase-caption">Chaque opération est classée pour vous : vous voyez où part l'argent et ce qu'il vous reste. Exemple fictif.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <img src="icon-astronaute.png" alt="" loading="lazy">
+          <div><h3>Seul ou à deux</h3><p>Des comptes perso, un compte commun partagé avec votre conjoint, et la part de chacun sur chaque charge.</p></div>
+        </div>
+        <div class="pillar">
+          <img src="icon-saturne.png" alt="" loading="lazy">
+          <div><h3>Fixes, variables, épargne</h3><p>Vos dépenses sont classées automatiquement et comparées à la répartition que vous visez.</p></div>
+        </div>
+        <div class="pillar">
+          <img src="icon-boussole.png" alt="" loading="lazy">
+          <div><h3>Votre mois à vous</h3><p>Votre mois commence le jour de votre paie, pas forcément le 1er. Les objectifs, c'est vous qui les fixez.</p></div>
+        </div>
+      </div>
+
+      <div class="cta-group">
+        <a class="btn btn-primary" href="espace-abonne.html?action=signup">Essayer Gestion</a>
+      </div>
     </section>
-
-    </div>
-
-    <section class="tool-grid-wrap">
-    <section class="tool-grid">
-
-      <div class="tool-card" style="background-image:url('card-portefeuille.jpg');">
-        <h3>K01</h3>
-      </div>
-
-      <div class="tool-card" style="background-image:url('card-investissement.jpg');">
-        <h3>K02</h3>
-      </div>
-
-      <div class="tool-card" style="background-image:url('card-screener.jpg');">
-        <h3>K03</h3>
-      </div>
-
-      <div class="tool-card" style="background-image:url('card-alertes.jpg');">
-        <h3>K04</h3>
-      </div>
-
-      <div class="tool-card" style="background-image:url('card-budget.jpg');">
-        <h3>K05</h3>
-      </div>
-
-      <div class="tool-card" style="background-image:url('card-objectifs.jpg');">
-        <h3>K06</h3>
-      </div>
-
-    </section>
-    </section>
-
-    <div class="frame">
 
     <div class="rule"></div>
 
@@ -609,5 +724,15 @@
       <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
     </footer>
   </div>
+<script>
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 </body>
 </html>
