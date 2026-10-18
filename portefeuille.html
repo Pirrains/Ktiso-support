@@ -105,6 +105,11 @@
     object-position: center 45%;
   }
 
+  /* Fond fusée : titre placé dans la partie haute pour laisser la fusée visible */
+  .hero-photo { justify-content: flex-start; padding-top: 19vh; }
+  .hero-bg-img { object-position: 22% center; }
+  @media (min-width: 900px) { .hero-bg-img { object-position: center center; } }
+
   .hero-veil {
     position: absolute;
     inset: 0;
@@ -447,7 +452,7 @@
 </head>
 <body>
   <header class="hero-photo">
-    <img class="hero-bg-img" src="systeme-planetaire.jpg" alt="">
+    <img class="hero-bg-img" src="portefeuille-fond.jpg" alt="">
     <div class="hero-veil"></div>
 
     <nav class="topnav" aria-label="Navigation principale">
