@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "L'Amérique vit à crédit : ce que ça coûte à votre épargne",
+      "excerpt": "Les États-Unis ont clos leur exercice avec un déficit de près de 2 000 milliards de dollars, en hausse de 12 %. Les intérêts de la dette dépassent 1 000 milliards et pèsent sur les taux, donc sur votre crédit et votre épargne.",
+      "auteur": "Ktiso",
+      "date": "18 octobre 2026",
+      "href": "2026-10-18-0935-economie-deficit-us-2026-interets-dette-taux.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "Le Nasdaq décroche : et si l'IA était financée à crédit ?",
       "excerpt": "Le Nasdaq a perdu 2,1 % vendredi et signe sa pire semaine depuis juin, entraîné par les puces et par CoreWeave, très endetté. Le doute ne porte plus sur l'IA, mais sur la façon de la financer quand les taux montent.",
@@ -63,15 +72,6 @@
       "date": "11 octobre 2026",
       "href": "2026-10-11-0935-politique-budget-2027-commission-rejet-recettes-retraites.html",
       "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Bitcoin à levier x10 sur votre téléphone : qui y gagne vraiment ?",
-      "excerpt": "Robinhood prépare des contrats perpétuels à levier jusqu'à x10 pour ses clients américains, alors que plus de 2 milliards de dollars de paris à la hausse ont été liquidés cette semaine. Le levier se démocratise, mais à quel prix ?",
-      "auteur": "Ktiso",
-      "date": "10 octobre 2026",
-      "href": "2026-10-10-0935-crypto-robinhood-perpetuels-levier-x10-liquidations.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
