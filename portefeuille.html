@@ -308,16 +308,17 @@
   .pf-logo { width: 52%; height: 52%; object-fit: contain; display: block; filter: drop-shadow(0 4px 14px rgba(0,0,0,.5)); }
   .pf-sigle { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: calc(var(--pf-size, 240px) * .17); letter-spacing: .04em; color: var(--cream); text-align: center; line-height: 1; }
   .pf-ring { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
-  .pf-info { text-align: center; margin-top: 26px; min-height: 150px; }
+  .pf-info { text-align: center; margin-top: 26px; min-height: 200px; }
   .pf-horizon { display: inline-block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; }
   .pf-info h3 { font-family: 'IBM Plex Sans Condensed', sans-serif; font-weight: 600; font-size: clamp(26px, 6vw, 34px); color: var(--cream); margin: 14px 0 8px; }
   .pf-info p { font-size: 14px; line-height: 1.65; color: rgba(244,239,227,.7); max-width: 460px; margin: 0 auto 16px; }
   .pf-link { display: inline-block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
   .pf-link:hover { border-bottom-color: var(--gold); }
-  .pf-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 14px; }
-  .pf-nav { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(10,16,26,.7); color: var(--gold); font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
-  .pf-nav:hover { border-color: var(--gold); background: rgba(201,169,97,.12); }
-  .pf-count { min-width: 64px; text-align: center; font-size: 12px; letter-spacing: .18em; color: rgba(244,239,227,.5); }
+  .pf-nav { position: absolute; top: calc(var(--pf-size, 240px) / 2 - 22px + 6px); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(10,16,26,.8); color: var(--gold); font-size: 22px; line-height: 1; cursor: pointer; z-index: 30; display: flex; align-items: center; justify-content: center; transition: border-color .2s, background .2s; }
+  .pf-nav:hover { border-color: var(--gold); background: rgba(201,169,97,.14); }
+  .pf-prev { left: 0; } .pf-next { right: 0; }
+  .pf-count { text-align: center; font-size: 12px; letter-spacing: .18em; color: rgba(244,239,227,.45); margin-top: 4px; }
+  @media (max-width: 560px) { .pf-nav { width: 38px; height: 38px; top: calc(var(--pf-size, 240px) / 2 - 19px + 6px); } .pf-prev { left: -4px; } .pf-next { right: -4px; } }
   @media (prefers-reduced-motion: reduce) { .pf-slide { transition: none; } }
 
   .placeholder-note {
@@ -469,12 +470,10 @@
 
       <div class="pf-carousel" id="pfCarousel" aria-roledescription="carrousel" aria-label="Les lignes de notre portefeuille" style="display:none;">
         <div class="pf-stage" id="pfStage"></div>
+        <button type="button" class="pf-nav pf-prev" id="pfPrev" aria-label="Actif précédent">&#8249;</button>
+        <button type="button" class="pf-nav pf-next" id="pfNext" aria-label="Actif suivant">&#8250;</button>
         <div class="pf-info" id="pfInfo" aria-live="polite"></div>
-        <div class="pf-controls">
-          <button type="button" class="pf-nav" id="pfPrev" aria-label="Actif précédent">&#8249;</button>
-          <div class="pf-count" id="pfCount"></div>
-          <button type="button" class="pf-nav" id="pfNext" aria-label="Actif suivant">&#8250;</button>
-        </div>
+        <div class="pf-count" id="pfCount"></div>
       </div>
       <p class="placeholder-note" id="actifsFallback" style="display:none;">La liste des actifs n'a pas pu être chargée. Réessayez dans un instant.</p>
     </section>
@@ -590,7 +589,7 @@
         var x = d * sz * 0.62;
         var sc = ad === 0 ? 1 : (ad === 1 ? 0.62 : 0.42);
         el.style.transform = 'translateX(' + x + 'px) scale(' + sc + ')';
-        el.style.opacity = ad > 2 ? 0 : (ad === 0 ? 1 : (ad === 1 ? 0.6 : 0.3));
+        el.style.opacity = ad > 2 ? 0 : (ad === 0 ? 1 : (ad === 1 ? 0.6 : 0.18));
         el.style.filter = ad === 0 ? 'none' : 'grayscale(.7) brightness(.8)';
         el.style.zIndex = String(10 - ad);
         el.style.pointerEvents = ad > 2 ? 'none' : 'auto';
