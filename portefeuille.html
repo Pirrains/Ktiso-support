@@ -105,10 +105,8 @@
     object-position: center 45%;
   }
 
-  /* Fond fusée : titre placé dans la partie haute pour laisser la fusée visible */
-  .hero-photo { justify-content: flex-start; padding-top: 19vh; }
-  .hero-bg-img { object-position: 22% center; }
-  @media (min-width: 900px) { .hero-bg-img { object-position: center center; } }
+  .hero-bg-img { object-position: 24% center; transform: scale(1.15); transform-origin: 50% 0; }
+  @media (min-width: 900px) { .hero-bg-img { object-position: center 60%; transform: scale(1.12); transform-origin: 50% 0; } }
 
   .hero-veil {
     position: absolute;
@@ -452,7 +450,7 @@
 </head>
 <body>
   <header class="hero-photo">
-    <img class="hero-bg-img" src="portefeuille-fond.jpg" alt="">
+    <img class="hero-bg-img" src="portefeuille-fond2.jpg" alt="">
     <div class="hero-veil"></div>
 
     <nav class="topnav" aria-label="Navigation principale">
