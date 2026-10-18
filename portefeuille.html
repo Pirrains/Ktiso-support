@@ -556,7 +556,7 @@
     var stage = document.getElementById('pfStage');
     var info = document.getElementById('pfInfo');
     var fallback = document.getElementById('actifsFallback');
-    var actifs = [], cur = 0, slides = [], perf = null;
+    var actifs = [], cur = 0, slides = [], perf = null, perfFailed = false;
     var SVG_LOGOS = ['bitcoin','ethereum','solana','or','argent','cuivre','immobilier','aqua','obligation1an','sp500','emergents'];
 
     function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -617,7 +617,7 @@
       var sub = document.getElementById('pfPerfSub');
       box.style.display = '';
       if (!perf) {
-        chart.innerHTML = '<p class="pf-nodata">Le graphique de performance sur trois ans arrive bientôt.</p>';
+        chart.innerHTML = '<p class="pf-nodata">' + (perfFailed ? 'L\'historique de performance n\'est pas disponible pour le moment.' : 'Chargement de l\'historique…') + '</p>';
         val.textContent = ''; sub.textContent = ''; val.className = 'pf-perf-val';
         return;
       }
@@ -652,6 +652,29 @@
       sub.textContent = '100 → ' + last.toFixed(1).replace('.', ',') + ' depuis ' + fmtD(ser[0][0]);
     }
 
+    var PERF_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co/functions/v1/get-asset-history';
+    var CACHE_KEY = 'ktiso-pf-perf:v1', CACHE_MS = 12 * 3600 * 1000;
+
+    function loadPerf() {
+      try {
+        var c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (c && c.t && Date.now() - c.t < CACHE_MS && c.d && c.d.series && Object.keys(c.d.series).length) { return Promise.resolve(c.d); }
+      } catch (e) { /* stockage indisponible */ }
+      var ctl = window.AbortController ? new AbortController() : null;
+      var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
+      return fetch(PERF_URL, ctl ? { signal: ctl.signal } : {})
+        .then(function (r) { if (!r.ok) { throw new Error('HTTP ' + r.status); } return r.json(); })
+        .then(function (d) {
+          if (!d || !d.series || !Object.keys(d.series).length) { throw new Error('vide'); }
+          try { localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), d: d })); } catch (e) { /* ignore */ }
+          return d;
+        })
+        .catch(function () {
+          return fetch('performance.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        })
+        .then(function (d) { if (timer) { clearTimeout(timer); } return d; });
+    }
+
     function go(i) { cur = Math.max(0, Math.min(actifs.length - 1, i)); layout(); }
 
     document.getElementById('pfPrev').addEventListener('click', function () { go(cur - 1 < 0 ? actifs.length - 1 : cur - 1); });
@@ -675,9 +698,9 @@
         if (!actifs.length) { throw new Error('Aucun actif'); }
         car.style.display = '';
         build(); layout();
-        return fetch('performance.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        return loadPerf();
       })
-      .then(function (p) { if (p && p.series) { perf = p; layout(); } })
+      .then(function (p) { if (p && p.series) { perf = p; } else { perfFailed = true; } layout(); })
       .catch(function () { if (fallback) { fallback.style.display = ''; } });
   })();
 </script>
