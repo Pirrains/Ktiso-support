@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Pourquoi Netflix remplace sa patronne des contenus avant ses résultats",
+      "excerpt": "Netflix a supprimé environ 1 000 postes et remplacé sa patronne des contenus juste avant ses résultats du 20 octobre. L'action vaut autour de 72 $, très loin de son sommet : le marché attend surtout un plan pour relancer l'audience.",
+      "auteur": "Ktiso",
+      "date": "19 octobre 2026",
+      "href": "2026-10-19-0935-corporate-netflix-licenciements-contenus-resultats-20-octobre.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "L'Amérique vit à crédit : ce que ça coûte à votre épargne",
       "excerpt": "Les États-Unis ont clos leur exercice avec un déficit de près de 2 000 milliards de dollars, en hausse de 12 %. Les intérêts de la dette dépassent 1 000 milliards et pèsent sur les taux, donc sur votre crédit et votre épargne.",
@@ -63,15 +72,6 @@
       "date": "12 octobre 2026",
       "href": "2026-10-12-0935-bourse-telecoms-spacex-spectre-wall-street-cpi.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Les députés rejettent le budget en commission : et vos impôts ?",
-      "excerpt": "La commission des finances a rejeté la partie recettes du budget 2027. Ce vote ne tue pas le texte, qui repart de zéro en séance le 13 octobre, mais il touche déjà les retraités et le déficit.",
-      "auteur": "Ktiso",
-      "date": "11 octobre 2026",
-      "href": "2026-10-11-0935-politique-budget-2027-commission-rejet-recettes-retraites.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
