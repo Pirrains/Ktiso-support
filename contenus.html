@@ -322,6 +322,8 @@
     background: var(--brown-deep);
   }
 
+  .vignette-thumb { background: linear-gradient(135deg, #1b2a1f 0%, #0d1510 100%); }
+
   .vignette-thumb img {
     width: 100%;
     height: 100%;
@@ -622,7 +624,7 @@
       return (
         '<a class="vignette-card" href="' + escapeHtml(post.lien || '#') + '">' +
           '<div class="vignette-frame">' +
-            '<div class="vignette-thumb"><img src="' + escapeHtml(post.image || '') + '" alt=""></div>' +
+            '<div class="vignette-thumb">' + (post.image ? '<img src="' + escapeHtml(post.image) + '" alt="" loading="lazy">' : '') + '</div>' +
             '<img class="vignette-frame-overlay" src="vignette-cadre.png" alt="">' +
           '</div>' +
           '<div class="vignette-caption">' + escapeHtml(post.titre || '') + '</div>' +
@@ -660,6 +662,11 @@
         }).join('');
 
         vignettesSection.innerHTML = html;
+
+        // Image absente ou introuvable : on affiche un fond neutre plutôt qu'une icône cassée.
+        vignettesSection.querySelectorAll('.vignette-thumb img').forEach(function (img) {
+          img.addEventListener('error', function () { img.remove(); });
+        });
 
         if (data.showPlaceholderNote) {
           vignettesSection.insertAdjacentHTML('beforeend',

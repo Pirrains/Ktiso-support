@@ -468,6 +468,9 @@
     font-size: 13.5px;
   }
 
+  .newsletter-error { max-width: 420px; margin: 14px auto 0; font-size: 12.5px; line-height: 1.6; color: #E49A82; }
+  .newsletter-error[hidden] { display: none; }
+  .newsletter-success { border-radius: 18px; text-align: left; line-height: 1.55; }
   .newsletter-success svg { width: 18px; height: 18px; flex-shrink: 0; }
 
   .social-card.is-subscribed .newsletter-form,
@@ -583,13 +586,15 @@
             <label for="newsletterEmail" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Adresse email</label>
             <input class="newsletter-input" type="email" id="newsletterEmail" name="email" placeholder="Votre adresse email" required autocomplete="email">
           </div>
-          <button class="newsletter-submit" type="submit">S'inscrire</button>
+          <input type="text" name="website" id="newsletterWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <button class="newsletter-submit" type="submit" id="newsletterSubmit">S'inscrire</button>
         </form>
-        <p class="newsletter-note">En vous inscrivant, vous acceptez de recevoir les emails de Ktiso. Voir notre <a href="privacy.html" style="text-decoration:underline;">politique de confidentialité</a>.</p>
+        <p class="newsletter-error" id="newsletterError" role="alert" hidden></p>
+        <p class="newsletter-note">En vous inscrivant, vous acceptez de recevoir la newsletter de Ktiso. Un email de confirmation vous sera envoyé, et vous pourrez vous désinscrire à tout moment. Voir notre <a href="privacy.html" style="text-decoration:underline;">politique de confidentialité</a>.</p>
 
         <div class="newsletter-success" id="newsletterSuccess" role="status">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-          <span>Merci, vous êtes inscrit·e ! Surveillez votre boîte mail.</span>
+          <span>Presque fini : un email de confirmation vient de vous être envoyé. Cliquez sur le lien qu'il contient pour valider votre inscription (pensez à vérifier vos courriers indésirables).</span>
         </div>
       </div>
     </section>
@@ -742,23 +747,56 @@
         // la grille reste vide et la note d'origine visible, rien ne casse visuellement.
       });
 
-    // ---- Newsletter : formulaire visuel, pas encore branché à un service d'emailing.
-    // Pour le connecter plus tard : remplacer le bloc ci-dessous par un vrai envoi
-    // (fetch vers l'API du service choisi, ou action="..." + method="POST" sur le <form>).
+    // ---- Newsletter : inscription avec confirmation par email (double opt-in) via Brevo,
+    // à travers la fonction Supabase "newsletter-subscribe" (la clé Brevo reste côté serveur).
+    var NEWSLETTER_URL = 'https://ieythynqbzgjpdmuwvxc.supabase.co/functions/v1/newsletter-subscribe';
     var newsletterForm = document.getElementById('newsletterForm');
     var newsletterCard = document.getElementById('newsletterCard');
     var newsletterEmail = document.getElementById('newsletterEmail');
+    var newsletterSubmit = document.getElementById('newsletterSubmit');
+    var newsletterError = document.getElementById('newsletterError');
+    var newsletterHoney = document.getElementById('newsletterWebsite');
+
+    function showNewsletterError(msg) {
+      newsletterError.textContent = msg;
+      newsletterError.hidden = false;
+    }
 
     if (newsletterForm) {
       newsletterForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        newsletterError.hidden = true;
         if (!newsletterEmail.checkValidity()) {
           newsletterEmail.reportValidity();
           return;
         }
-        // TODO: brancher ici l'appel réel au service d'emailing (Mailchimp, Brevo, etc.)
-        // quand le compte sera prêt.
-        newsletterCard.classList.add('is-subscribed');
+        var label = newsletterSubmit.textContent;
+        newsletterSubmit.disabled = true;
+        newsletterSubmit.textContent = 'Envoi…';
+        fetch(NEWSLETTER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: newsletterEmail.value, website: newsletterHoney ? newsletterHoney.value : '' })
+        })
+          .then(function (r) {
+            return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, data: d }; });
+          })
+          .then(function (res) {
+            if (res.ok && res.data && res.data.ok) {
+              newsletterCard.classList.add('is-subscribed');
+            } else if (res.data && res.data.error === 'Adresse email invalide') {
+              showNewsletterError('Cette adresse email semble invalide. Vérifiez-la et réessayez.');
+            } else {
+              showNewsletterError('L\'inscription n\'a pas pu aboutir pour le moment. Réessayez dans quelques minutes.');
+            }
+          })
+          .catch(function () {
+            showNewsletterError('Connexion impossible pour le moment. Réessayez dans quelques minutes.');
+          })
+          .finally(function () {
+            newsletterSubmit.disabled = false;
+            newsletterSubmit.textContent = label;
+          });
       });
     }
   })();

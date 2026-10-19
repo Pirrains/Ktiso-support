@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTISO — Inscription confirmée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'DIN Next LT Pro';
+    src: url('dinnextltpro-light.woff2') format('woff2'),
+         url('dinnextltpro-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --gold: #C9A961;
+    --gold-deep: #8B6F35;
+    --green: #1A2E22;
+    --green-deep: #0F1A14;
+    --terracotta: #C1654A;
+    --lime: #A8C66C;
+    --cream: #F4EFE3;
+    --line: rgba(201, 169, 97, 0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'DIN Next LT Pro', sans-serif;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 40% at 50% -10%, rgba(201, 169, 97, 0.07), transparent),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 96px;
+  }
+
+  .frame {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  nav.topnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    padding-top: 28px;
+    margin-bottom: 48px;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav.topnav a {
+    color: rgba(244, 239, 227, 0.55);
+    text-decoration: none;
+    padding: 4px 7px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav.topnav a:hover { color: var(--terracotta); }
+  nav.topnav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topnav .sep { color: rgba(244, 239, 227, 0.18); }
+
+  header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+
+  .wordmark {
+    width: clamp(130px, 32vw, 180px);
+    height: auto;
+    margin: 0 auto 14px;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  }
+
+  .updated {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.35);
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+  }
+
+  section { margin-bottom: 40px; }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-size: clamp(21px, 4.5vw, 26px);
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  p, li {
+    font-family: 'DIN Next LT Pro', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(244, 239, 227, 0.82);
+  }
+
+  p + p { margin-top: 14px; }
+
+  ul {
+    list-style: none;
+    margin-top: 16px;
+  }
+
+  li {
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+  }
+
+  .highlight {
+    color: var(--gold);
+  }
+
+  a {
+    color: var(--terracotta);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
+  }
+
+  a:hover { border-bottom-color: var(--terracotta); }
+
+  .border-box {
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 20px;
+  }
+
+  footer {
+    margin-top: 64px;
+    text-align: center;
+  }
+
+  .footer-nav {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 0;
+  }
+
+  .footer-nav a {
+    color: rgba(244, 239, 227, 0.5);
+    border-bottom: 1px solid transparent;
+  }
+
+  .footer-nav a:hover {
+    color: var(--terracotta);
+    border-bottom-color: var(--terracotta);
+  }
+
+  .footer-nav .sep {
+    color: rgba(244, 239, 227, 0.2);
+    margin: 0 10px;
+  }
+
+  .copyright {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 227, 0.3);
+  }
+
+  .legal-note {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: rgba(244, 239, 227, 0.25);
+    max-width: 480px;
+    margin: 16px auto 0;
+  }
+</style>
+<meta name="robots" content="noindex">
+</head>
+<body>
+  <div class="frame">
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <header>
+      <div class="eyebrow">Éducation financière</div>
+      <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
+    </header>
+
+    <div class="rule"></div>
+
+    <section>
+      <div class="section-label">Newsletter</div>
+      <h2>Inscription confirmée</h2>
+      <p>Merci, votre adresse est bien enregistrée. Vous recevrez désormais la newsletter Ktiso. Un lien de désinscription figure en bas de chaque envoi : vous pouvez l'utiliser à tout moment.</p>
+      <p><a href="actualites.html">Lire les dernières actualités →</a></p>
+    </section>
+
+    <footer>
+      <div class="footer-nav">
+        <a href="home.html">Accueil</a>
+        <span class="sep">·</span>
+        <a href="application.html">Application</a>
+        <span class="sep">·</span>
+        <a href="a-propos.html">À propos</a>
+        <span class="sep">·</span>
+        <a href="portefeuille.html">Portefeuille</a>
+        <span class="sep">·</span>
+        <a href="outils.html">Outils</a>
+        <span class="sep">·</span>
+        <a href="contenus.html">Contenus</a>
+        <span class="sep">·</span>
+        <a href="actualites.html">Actualités</a>
+        <span class="sep">·</span>
+        <a href="index.html">Support</a>
+        <span class="sep">·</span>
+        <a href="privacy.html">Confidentialité</a>
+        <span class="sep">·</span>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <span class="sep">·</span>
+        <a href="cgu.html">CGU</a>
+        <span class="sep">·</span>
+        <a href="cookies.html">Cookies</a>
+      </div>
+      <div class="copyright">KTISO — Éducation financière</div>
+      <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+    </footer>
+  </div>
+</body>
+</html>
