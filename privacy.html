@@ -5,7 +5,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KTISO — Politique de confidentialité</title>
+<title>Politique de confidentialité KTISO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
@@ -152,10 +152,15 @@
   }
 
   li::before {
-    content: '—';
+    content: '';
     position: absolute;
-    left: 0;
-    color: var(--terracotta);
+    left: 4px;
+    top: 0.82em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.7;
   }
 
   .highlight {
@@ -163,12 +168,13 @@
   }
 
   a {
-    color: var(--terracotta);
+    color: var(--gold);
     text-decoration: none;
-    border-bottom: 1px solid rgba(193, 101, 74, 0.35);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  a:hover { border-bottom-color: var(--terracotta); }
+  a:hover { color: #DCC07E; border-bottom-color: rgba(201, 169, 97, 0.5); }
 
   .border-box {
     border: 1px solid var(--line);
@@ -222,6 +228,8 @@
     margin: 16px auto 0;
   }
 </style>
+<link rel="stylesheet" href="mobile.css">
+<script src="mobile.js" defer></script>
 </head>
 <body>
   <div class="frame">
@@ -239,7 +247,7 @@
     <header>
       <div class="eyebrow">Éducation financière</div>
       <img class="wordmark" src="ktiso-logo.png" alt="KTISO">
-      <p class="updated">Dernière mise à jour — 14 octobre 2026</p>
+      <p class="updated">Dernière mise à jour : 14 octobre 2026</p>
     </header>
 
     <div class="rule"></div>
@@ -248,7 +256,7 @@
       <div class="section-label">Pourquoi cette page</div>
       <h2>Les données collectées, et pourquoi</h2>
       <p>KTISO est un projet d'éducation financière porté à titre personnel par deux personnes, sans but lucratif. Pour fonctionner, le site et l'application permettent de créer un compte et de conserver vos saisies, afin de le retrouver à chaque connexion.</p>
-      <p>Cette page explique, en langage simple, quelles données sont traitées, pourquoi, où elles sont stockées, combien de temps, et comment exercer vos droits (Règlement général sur la protection des données — RGPD).</p>
+      <p>Cette page explique, en langage simple, quelles données sont traitées, pourquoi, où elles sont stockées, combien de temps, et comment exercer vos droits (RGPD, Règlement général sur la protection des données).</p>
     </section>
 
     <section>
@@ -284,10 +292,10 @@
       <div class="section-label">Finalités et bases légales</div>
       <h2>Pourquoi nous les traitons</h2>
       <ul>
-        <li><span class="highlight">Fournir le service</span> (créer votre compte, vous connecter, afficher et enregistrer vos données dans les outils) — base légale : l'exécution du service que vous demandez</li>
-        <li><span class="highlight">Sécurité</span> du site et prévention des abus — base légale : notre intérêt légitime</li>
-        <li><span class="highlight">Répondre à vos messages</span> — base légale : votre demande</li>
-        <li><span class="highlight">Vous envoyer la newsletter</span>, si vous vous y inscrivez — base légale : votre consentement, que vous pouvez retirer à tout moment</li>
+        <li><span class="highlight">Fournir le service</span> (créer votre compte, vous connecter, afficher et enregistrer vos données dans les outils). Base légale : l'exécution du service que vous demandez</li>
+        <li><span class="highlight">Sécurité</span> du site et prévention des abus. Base légale : notre intérêt légitime</li>
+        <li><span class="highlight">Répondre à vos messages</span>. Base légale : votre demande</li>
+        <li><span class="highlight">Vous envoyer la newsletter</span>, si vous vous y inscrivez. Base légale : votre consentement, que vous pouvez retirer à tout moment</li>
       </ul>
       <p>Vos données ne servent à rien d'autre. Aucune décision automatisée ni profilage à effet juridique n'est réalisé.</p>
     </section>
@@ -306,7 +314,7 @@
       <div class="border-box">
         <p>Nous ne vendons pas vos données et ne les partageons avec aucun tiers à des fins publicitaires ou commerciales.</p>
       </div>
-      <p>Certains de ces prestataires (GitHub, Google) sont situés aux États-Unis. Les transferts s'appuient sur les garanties prévues par le RGPD (notamment le cadre de protection des données UE–États-Unis et les clauses contractuelles types).</p>
+      <p>Certains de ces prestataires (GitHub, Google) sont situés aux États-Unis. Les transferts s'appuient sur les garanties prévues par le RGPD (notamment le cadre de protection des données UE-États-Unis et les clauses contractuelles types).</p>
     </section>
 
     <section>
@@ -331,7 +339,7 @@
     <section>
       <div class="section-label">Réclamation</div>
       <h2>Si vous n'êtes pas satisfait</h2>
-      <p>Vous pouvez introduire une plainte auprès de l'Autorité de protection des données (APD), Rue de la Presse 35, 1000 Bruxelles — <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">autoriteprotectiondonnees.be</a>.</p>
+      <p>Vous pouvez introduire une plainte auprès de l'Autorité de protection des données (APD), Rue de la Presse 35, 1000 Bruxelles, <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">autoriteprotectiondonnees.be</a>.</p>
     </section>
 
     <section>
@@ -367,7 +375,7 @@
         <span class="sep">·</span>
         <a href="cookies.html">Cookies</a>
       </div>
-      <div class="copyright">KTISO — Politique de confidentialité</div>
+      <div class="copyright">KTISO · Politique de confidentialité</div>
       <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
     </footer>
   </div>
