@@ -320,10 +320,10 @@
   }
 
   .hero-photo.plain { min-height: 0; padding: 120px 24px 8px; }
-  .themes { list-style:none; max-width:520px; margin:26px auto 0; border-top:1px solid var(--line); text-align:left; }
+  .themes { list-style:none; width:100vw; position:relative; left:50%; margin:26px 0 0 -50vw; border-top:1px solid var(--line); text-align:left; }
   .themes a {
     display:flex; align-items:center; justify-content:space-between; width:100%;
-    padding:18px 4px; border-bottom:1px solid var(--line); color:var(--cream); text-decoration:none;
+    padding:20px clamp(24px,6vw,96px); border-bottom:1px solid var(--line); color:var(--cream); text-decoration:none;
     font-size:15px; letter-spacing:0.03em; transition:color .2s ease, padding .25s ease;
   }
   .themes a::after { content:"\2192"; color:var(--gold); transition:transform .25s ease; }
