@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Le vote sur vos impôts a sauté : et maintenant ?",
+      "excerpt": "Le vote sur les recettes du budget 2027, prévu le 20 octobre, n'a pas eu lieu : il restait plus de 2 800 amendements. Rien de ce qui a été voté n'est une loi, et vos impôts 2027 restent ouverts.",
+      "auteur": "Ktiso",
+      "date": "21 octobre 2026",
+      "href": "2026-10-21-0935-politique-budget-2027-vote-reporte-27-octobre.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Et si votre ETF devait vendre du bitcoin sans que vous le sachiez ?",
       "excerpt": "MSCI a validé des règles qui pourraient exclure Strategy, plus gros détenteur de bitcoin coté, de ses indices mondiaux le 30 novembre. Les fonds indiciels devraient vendre l'action, pas le bitcoin : le risque touche surtout les actionnaires.",
@@ -63,15 +72,6 @@
       "date": "14 octobre 2026",
       "href": "2026-10-14-0935-corporate-banques-us-resultats-t3-dimon-taux.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Un chiffre américain tombe mercredi : votre épargne est concernée",
-      "excerpt": "Les États-Unis publient mercredi leur inflation de septembre, attendue autour de 3,6 à 3,7 % avec une essence en forte hausse. Un chiffre plus chaud peut relancer les taux longs, donc le prix du crédit et le rendement de l'épargne.",
-      "auteur": "Ktiso",
-      "date": "13 octobre 2026",
-      "href": "2026-10-13-0935-economie-cpi-septembre-inflation-essence-taux.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
