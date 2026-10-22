@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Fusion Tesla-SpaceX : le détail que personne ne regarde",
+      "excerpt": "Elon Musk laisse entrevoir une fusion entre Tesla et SpaceX, deux groupes qui pèsent ensemble environ 3 500 milliards de dollars. Aucun accord n'existe, et les actionnaires de Tesla auraient le dernier mot.",
+      "auteur": "Ktiso",
+      "date": "22 octobre 2026",
+      "href": "2026-10-22-0935-bourse-tesla-spacex-fusion-comites-resultats.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Politique",
       "title": "Le vote sur vos impôts a sauté : et maintenant ?",
       "excerpt": "Le vote sur les recettes du budget 2027, prévu le 20 octobre, n'a pas eu lieu : il restait plus de 2 800 amendements. Rien de ce qui a été voté n'est une loi, et vos impôts 2027 restent ouverts.",
@@ -63,15 +72,6 @@
       "date": "15 octobre 2026",
       "href": "2026-10-15-0935-crypto-bitcoin-quantique-coinbase-bip360.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Les banques américaines s'enrichissent : alors pourquoi ont-elles peur ?",
-      "excerpt": "Goldman Sachs bat largement les attentes, JPMorgan les manque, et Jamie Dimon redoute une hausse des taux. Les résultats des banques américaines disent beaucoup du coût du crédit, jusqu'en Europe.",
-      "auteur": "Ktiso",
-      "date": "14 octobre 2026",
-      "href": "2026-10-14-0935-corporate-banques-us-resultats-t3-dimon-taux.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
