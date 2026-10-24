@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "Le pétrole repart : votre plein n'est que le début de la facture",
+      "excerpt": "Le Brent a clôturé à 113,17 $ jeudi, son plus haut niveau depuis début mai, après de nouvelles attaques contre l'Arabie saoudite. Au-delà du plein, le pétrole alimente l'inflation, donc les taux, à quelques jours de la réunion de la Fed.",
+      "auteur": "Ktiso",
+      "date": "23 octobre 2026",
+      "href": "2026-10-23-0935-economie-petrole-brent-113-dollars-inflation-taux.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "Fusion Tesla-SpaceX : le détail que personne ne regarde",
       "excerpt": "Elon Musk laisse entrevoir une fusion entre Tesla et SpaceX, deux groupes qui pèsent ensemble environ 3 500 milliards de dollars. Aucun accord n'existe, et les actionnaires de Tesla auraient le dernier mot.",
@@ -63,15 +72,6 @@
       "date": "16 octobre 2026",
       "href": "2026-10-16-0935-politique-budget-2027-seance-amendements-vote-20-octobre.html",
       "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Un ordinateur quantique pourrait-il vider votre bitcoin ?",
-      "excerpt": "Coinbase publie un plan pour préparer Bitcoin à l'ère quantique. Aucune machine capable de casser ses signatures n'existe aujourd'hui, mais la migration prendrait des années : mieux vaut comprendre le risque dès maintenant.",
-      "auteur": "Ktiso",
-      "date": "15 octobre 2026",
-      "href": "2026-10-15-0935-crypto-bitcoin-quantique-coinbase-bip360.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
