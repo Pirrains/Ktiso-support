@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Record de ventes, pourtant en perte : le piège d'American Airlines",
+      "excerpt": "American Airlines bat son record de ventes mais publie une perte au troisième trimestre et prévoit de finir 2026 dans le rouge. En cause, un carburant bien plus cher, qui pèse aussi sur Delta et United.",
+      "auteur": "Ktiso",
+      "date": "24 octobre 2026",
+      "href": "2026-10-24-0935-corporate-american-airlines-perte-carburant-record-ventes.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "Le pétrole repart : votre plein n'est que le début de la facture",
       "excerpt": "Le Brent a clôturé à 113,17 $ jeudi, son plus haut niveau depuis début mai, après de nouvelles attaques contre l'Arabie saoudite. Au-delà du plein, le pétrole alimente l'inflation, donc les taux, à quelques jours de la réunion de la Fed.",
@@ -63,15 +72,6 @@
       "date": "17 octobre 2026",
       "href": "2026-10-17-0935-bourse-nasdaq-ia-dette-coreweave-pire-semaine-depuis-juin.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Les députés ont réécrit vos impôts : pourquoi ça ne changera peut-être rien",
-      "excerpt": "Les députés ont supprimé le plafonnement de l'abattement des retraités et doublé le plafond des heures supplémentaires, mais ces votes sont provisoires. Le scrutin du 20 octobre peut tout arrêter.",
-      "auteur": "Ktiso",
-      "date": "16 octobre 2026",
-      "href": "2026-10-16-0935-politique-budget-2027-seance-amendements-vote-20-octobre.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
