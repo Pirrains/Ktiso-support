@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Le budget de la Sécu vient d'être rejeté : et votre retraite ?",
+      "excerpt": "Vendredi 23 octobre, l'Assemblée a rejeté la partie recettes du budget de la Sécurité sociale 2027 par 115 voix contre 1. Le texte part au Sénat dans sa version d'origine, avec ses mesures sur les retraites que les députés n'ont pas examinées.",
+      "auteur": "Ktiso",
+      "date": "26 octobre 2026",
+      "href": "2026-10-26-0935-politique-plfss-2027-rejet-assemblee-retraites.html",
+      "image": "actu-politique.jpg"
+    },
+    {
+      "tag": "Crypto",
+      "title": "Bitcoin repasse sous 80 000 $ : qui a vraiment payé la note ?",
+      "excerpt": "Le bitcoin est brièvement passé sous 80 000 $ samedi, et 404 millions de dollars de paris à la hausse ont été liquidés en quatre heures. Les ETF ont aussi vu sortir environ 770 millions de dollars en deux jours.",
+      "auteur": "Ktiso",
+      "date": "25 octobre 2026",
+      "href": "2026-10-25-0935-crypto-bitcoin-80000-liquidations-etf-fed.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Record de ventes, pourtant en perte : le piège d'American Airlines",
       "excerpt": "American Airlines bat son record de ventes mais publie une perte au troisième trimestre et prévoit de finir 2026 dans le rouge. En cause, un carburant bien plus cher, qui pèse aussi sur Delta et United.",
@@ -54,24 +72,6 @@
       "date": "19 octobre 2026",
       "href": "2026-10-19-0935-corporate-netflix-licenciements-contenus-resultats-20-octobre.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "L'Amérique vit à crédit : ce que ça coûte à votre épargne",
-      "excerpt": "Les États-Unis ont clos leur exercice avec un déficit de près de 2 000 milliards de dollars, en hausse de 12 %. Les intérêts de la dette dépassent 1 000 milliards et pèsent sur les taux, donc sur votre crédit et votre épargne.",
-      "auteur": "Ktiso",
-      "date": "18 octobre 2026",
-      "href": "2026-10-18-0935-economie-deficit-us-2026-interets-dette-taux.html",
-      "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Le Nasdaq décroche : et si l'IA était financée à crédit ?",
-      "excerpt": "Le Nasdaq a perdu 2,1 % vendredi et signe sa pire semaine depuis juin, entraîné par les puces et par CoreWeave, très endetté. Le doute ne porte plus sur l'IA, mais sur la façon de la financer quand les taux montent.",
-      "auteur": "Ktiso",
-      "date": "17 octobre 2026",
-      "href": "2026-10-17-0935-bourse-nasdaq-ia-dette-coreweave-pire-semaine-depuis-juin.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
