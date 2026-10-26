@@ -1,7 +1,13 @@
 {
   "analyses": [
     {
-      "ticker": "TTE · Euronext Paris · Version provisoire",
+      "ticker": "CAP · Euronext Paris",
+      "entreprise": "Capgemini",
+      "resume": "Un groupe solide, à la marge et au cash-flow très réguliers, dont le cours dépend désormais surtout du regard du marché sur l'intelligence artificielle. Comptes sur 10 ans, ratios, analyse technique, contexte et deux scénarios. Données au 23/10/2026.",
+      "lien": "analyse-capgemini-2026-10.pdf"
+    },
+    {
+      "ticker": "TTE · Euronext Paris",
       "entreprise": "TotalEnergies",
       "resume": "Une major solide et parmi les plus rentables du secteur, dont le cours intègre déjà une large part des bénéfices exceptionnels liés à la crise d'Ormuz. Comptes 2021-2025, ratios, analyse technique, contexte et deux scénarios. Données au 21/10/2026.",
       "lien": "analyse-totalenergies-2026-10.pdf"
