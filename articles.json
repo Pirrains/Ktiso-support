@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "La Fed ne touchera à rien ce soir : le vrai danger est ailleurs",
+      "excerpt": "Ce mercredi soir, la Fed devrait laisser son taux à 3,75–4,00 %, après sa hausse de septembre. Le risque tient au ton de Kevin Warsh : une nouvelle hausse est attendue en décembre, ce qui pèserait sur vos crédits et vos placements.",
+      "auteur": "Ktiso",
+      "date": "28 octobre 2026",
+      "href": "2026-10-28-0935-economie-fed-statu-quo-warsh-confiance-menages.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "L'IA a besoin de votre argent : Wall Street va-t-elle suivre ?",
       "excerpt": "Lundi 26 octobre, Wall Street a monté sur l'introduction en Bourse d'Anthropic, malgré les 95 milliards de dollars d'actions que Meta veut émettre. La Fed se réunit mardi et mercredi : l'IA se finance désormais en sollicitant les investisseurs.",
@@ -63,15 +72,6 @@
       "date": "21 octobre 2026",
       "href": "2026-10-21-0935-politique-budget-2027-vote-reporte-27-octobre.html",
       "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Et si votre ETF devait vendre du bitcoin sans que vous le sachiez ?",
-      "excerpt": "MSCI a validé des règles qui pourraient exclure Strategy, plus gros détenteur de bitcoin coté, de ses indices mondiaux le 30 novembre. Les fonds indiciels devraient vendre l'action, pas le bitcoin : le risque touche surtout les actionnaires.",
-      "auteur": "Ktiso",
-      "date": "20 octobre 2026",
-      "href": "2026-10-20-0935-crypto-msci-strategy-indice-bitcoin-30-novembre.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
