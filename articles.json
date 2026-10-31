@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Crypto",
+      "title": "Binance vient d'être piratée : vos cryptos sont-elles en sécurité ?",
+      "excerpt": "Binance dit avoir subi un piratage d'environ 6,3 milliards de dollars, le plus gros de l'histoire de la crypto. La plateforme assure que les fonds des clients sont protégés. Le bitcoin a perdu environ 3 % et s'est approché de 76 000 $.",
+      "auteur": "Ktiso",
+      "date": "30 octobre 2026",
+      "href": "2026-10-30-0935-crypto-binance-piratage-6-milliards-bitcoin.html",
+      "image": "card-screener.jpg"
+    },
+    {
+      "tag": "Corporate",
+      "title": "Google a doublé son cloud : pourquoi la Bourse le punit quand même",
+      "excerpt": "Mercredi soir, Alphabet a publié un cloud en hausse de 103 %, mais un cash-flow libre négatif de 9,1 milliards de dollars. L'action reculait d'environ 8 à 10 % après la clôture, tandis que Microsoft, plus mesuré sur ses dépenses, progressait.",
+      "auteur": "Ktiso",
+      "date": "29 octobre 2026",
+      "href": "2026-10-29-0935-corporate-alphabet-cloud-cash-flow-capex-microsoft.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "La Fed ne touchera à rien ce soir : le vrai danger est ailleurs",
       "excerpt": "Ce mercredi soir, la Fed devrait laisser son taux à 3,75–4,00 %, après sa hausse de septembre. Le risque tient au ton de Kevin Warsh : une nouvelle hausse est attendue en décembre, ce qui pèserait sur vos crédits et vos placements.",
@@ -54,24 +72,6 @@
       "date": "23 octobre 2026",
       "href": "2026-10-23-0935-economie-petrole-brent-113-dollars-inflation-taux.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Fusion Tesla-SpaceX : le détail que personne ne regarde",
-      "excerpt": "Elon Musk laisse entrevoir une fusion entre Tesla et SpaceX, deux groupes qui pèsent ensemble environ 3 500 milliards de dollars. Aucun accord n'existe, et les actionnaires de Tesla auraient le dernier mot.",
-      "auteur": "Ktiso",
-      "date": "22 octobre 2026",
-      "href": "2026-10-22-0935-bourse-tesla-spacex-fusion-comites-resultats.html",
-      "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Le vote sur vos impôts a sauté : et maintenant ?",
-      "excerpt": "Le vote sur les recettes du budget 2027, prévu le 20 octobre, n'a pas eu lieu : il restait plus de 2 800 amendements. Rien de ce qui a été voté n'est une loi, et vos impôts 2027 restent ouverts.",
-      "auteur": "Ktiso",
-      "date": "21 octobre 2026",
-      "href": "2026-10-21-0935-politique-budget-2027-vote-reporte-27-octobre.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
