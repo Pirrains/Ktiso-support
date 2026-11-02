@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "L'Amérique cartonne, mais ses ménages vident leur épargne : et vous ?",
+      "excerpt": "Le PIB américain a progressé de 3,4 % au troisième trimestre, mais le taux d'épargne des ménages tombe à 3,8 %, son plus bas depuis octobre 2022, avec un revenu réel en recul. Une croissance fragile, alors que la Fed pourrait relever ses taux en décembre.",
+      "auteur": "Ktiso",
+      "date": "2 novembre 2026",
+      "href": "2026-11-02-0935-economie-epargne-menages-us-pib-pce-fed-bce.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "Wall Street vient de perdre patience avec l'IA : et votre ETF ?",
       "excerpt": "Vendredi 30 octobre, le Nasdaq a perdu environ 2,9 % et Intel près de 29 %, après des résultats décevants d'Amazon, d'Intel et de Reddit. Les investisseurs sanctionnent désormais les dépenses d'IA qui ne rapportent pas encore assez.",
@@ -63,15 +72,6 @@
       "date": "26 octobre 2026",
       "href": "2026-10-26-0935-politique-plfss-2027-rejet-assemblee-retraites.html",
       "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Bitcoin repasse sous 80 000 $ : qui a vraiment payé la note ?",
-      "excerpt": "Le bitcoin est brièvement passé sous 80 000 $ samedi, et 404 millions de dollars de paris à la hausse ont été liquidés en quatre heures. Les ETF ont aussi vu sortir environ 770 millions de dollars en deux jours.",
-      "auteur": "Ktiso",
-      "date": "25 octobre 2026",
-      "href": "2026-10-25-0935-crypto-bitcoin-80000-liquidations-etf-fed.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
