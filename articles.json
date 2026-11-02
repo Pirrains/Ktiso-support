@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Wall Street vient de perdre patience avec l'IA : et votre ETF ?",
+      "excerpt": "Vendredi 30 octobre, le Nasdaq a perdu environ 2,9 % et Intel près de 29 %, après des résultats décevants d'Amazon, d'Intel et de Reddit. Les investisseurs sanctionnent désormais les dépenses d'IA qui ne rapportent pas encore assez.",
+      "auteur": "Ktiso",
+      "date": "1 novembre 2026",
+      "href": "2026-11-01-0935-bourse-nasdaq-ia-intel-amazon-pire-mois-depuis-mars-2025.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "La France est « à l'arrêt » : ce que ça change vraiment pour vous",
+      "excerpt": "Le ministre de l'Économie juge l'économie française « à l'arrêt » : le PIB a reculé de 0,1 % au troisième trimestre. Il réclame un budget 2027 que les députés peinent à voter, avec le risque d'ordonnances ou de 49.3.",
+      "auteur": "Ktiso",
+      "date": "31 octobre 2026",
+      "href": "2026-10-31-0935-politique-france-a-l-arret-lescure-budget-2027.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Binance vient d'être piratée : vos cryptos sont-elles en sécurité ?",
       "excerpt": "Binance dit avoir subi un piratage d'environ 6,3 milliards de dollars, le plus gros de l'histoire de la crypto. La plateforme assure que les fonds des clients sont protégés. Le bitcoin a perdu environ 3 % et s'est approché de 76 000 $.",
@@ -54,24 +72,6 @@
       "date": "25 octobre 2026",
       "href": "2026-10-25-0935-crypto-bitcoin-80000-liquidations-etf-fed.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Record de ventes, pourtant en perte : le piège d'American Airlines",
-      "excerpt": "American Airlines bat son record de ventes mais publie une perte au troisième trimestre et prévoit de finir 2026 dans le rouge. En cause, un carburant bien plus cher, qui pèse aussi sur Delta et United.",
-      "auteur": "Ktiso",
-      "date": "24 octobre 2026",
-      "href": "2026-10-24-0935-corporate-american-airlines-perte-carburant-record-ventes.html",
-      "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Le pétrole repart : votre plein n'est que le début de la facture",
-      "excerpt": "Le Brent a clôturé à 113,17 $ jeudi, son plus haut niveau depuis début mai, après de nouvelles attaques contre l'Arabie saoudite. Au-delà du plein, le pétrole alimente l'inflation, donc les taux, à quelques jours de la réunion de la Fed.",
-      "auteur": "Ktiso",
-      "date": "23 octobre 2026",
-      "href": "2026-10-23-0935-economie-petrole-brent-113-dollars-inflation-taux.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
