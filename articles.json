@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Votre prochain PC sera plus cher : la faute à l'IA ?",
+      "excerpt": "Intel prévient que le marché des PC reculera de 12 % en 2026, la mémoire étant devenue rare et chère à cause de l'IA. Intel a perdu près de 29 % le 30 octobre, Dell environ 11 % : des ordinateurs plus chers et des stocks sous tension.",
+      "auteur": "Ktiso",
+      "date": "3 novembre 2026",
+      "href": "2026-11-03-0935-corporate-intel-dell-memoire-prix-pc-ia.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "L'Amérique cartonne, mais ses ménages vident leur épargne : et vous ?",
       "excerpt": "Le PIB américain a progressé de 3,4 % au troisième trimestre, mais le taux d'épargne des ménages tombe à 3,8 %, son plus bas depuis octobre 2022, avec un revenu réel en recul. Une croissance fragile, alors que la Fed pourrait relever ses taux en décembre.",
@@ -63,15 +72,6 @@
       "date": "27 octobre 2026",
       "href": "2026-10-27-0935-bourse-ia-levees-fonds-meta-anthropic-fed.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Le budget de la Sécu vient d'être rejeté : et votre retraite ?",
-      "excerpt": "Vendredi 23 octobre, l'Assemblée a rejeté la partie recettes du budget de la Sécurité sociale 2027 par 115 voix contre 1. Le texte part au Sénat dans sa version d'origine, avec ses mesures sur les retraites que les députés n'ont pas examinées.",
-      "auteur": "Ktiso",
-      "date": "26 octobre 2026",
-      "href": "2026-10-26-0935-politique-plfss-2027-rejet-assemblee-retraites.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
