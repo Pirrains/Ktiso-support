@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Crypto",
+      "title": "La caisse de secours de Binance est à moitié vide : et votre plateforme ?",
+      "excerpt": "Après son piratage à 6,3 milliards de dollars, Binance a puisé dans la moitié de son fonds SAFU (15 000 à 7 500 bitcoins). Les ETF bitcoin ont perdu 1 Md$ en deux jours : que vaut vraiment la protection de vos cryptos ?",
+      "auteur": "Ktiso",
+      "date": "4 novembre 2026",
+      "href": "2026-11-04-0935-crypto-binance-safu-preuve-reserves-etf-bitcoin.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Votre prochain PC sera plus cher : la faute à l'IA ?",
       "excerpt": "Intel prévient que le marché des PC reculera de 12 % en 2026, la mémoire étant devenue rare et chère à cause de l'IA. Intel a perdu près de 29 % le 30 octobre, Dell environ 11 % : des ordinateurs plus chers et des stocks sous tension.",
@@ -63,15 +72,6 @@
       "date": "28 octobre 2026",
       "href": "2026-10-28-0935-economie-fed-statu-quo-warsh-confiance-menages.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "L'IA a besoin de votre argent : Wall Street va-t-elle suivre ?",
-      "excerpt": "Lundi 26 octobre, Wall Street a monté sur l'introduction en Bourse d'Anthropic, malgré les 95 milliards de dollars d'actions que Meta veut émettre. La Fed se réunit mardi et mercredi : l'IA se finance désormais en sollicitant les investisseurs.",
-      "auteur": "Ktiso",
-      "date": "27 octobre 2026",
-      "href": "2026-10-27-0935-bourse-ia-levees-fonds-meta-anthropic-fed.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
