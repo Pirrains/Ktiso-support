@@ -1,6 +1,12 @@
 {
   "analyses": [
     {
+      "ticker": "PLNT · New York Stock Exchange",
+      "entreprise": "Planet Fitness",
+      "resume": "Un franchiseur très rentable mais très endetté, dont l'action a perdu près de la moitié de sa valeur en 2026 quand ses inscriptions ont cessé de grandir. Rachats d'actions et capitaux propres négatifs expliqués, comptes sur 10 ans, ratios, analyse technique et scénarios. Données au 02/11/2026.",
+      "lien": "analyse-planet-fitness-2026-11.pdf"
+    },
+    {
       "ticker": "CAP · Euronext Paris",
       "entreprise": "Capgemini",
       "resume": "Un groupe solide, à la marge et au cash-flow très réguliers, dont le cours dépend désormais surtout du regard du marché sur l'intelligence artificielle. Comptes sur 10 ans, ratios, analyse technique, contexte et deux scénarios. Données au 23/10/2026.",

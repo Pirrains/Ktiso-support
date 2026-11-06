@@ -1,12 +1,13 @@
 {
   "actifs": [
     {
-      "slug": "planetfitness",
-      "nom": "Planet Fitness",
-      "sigle": "PF",
+      "slug": "capgemini",
+      "nom": "Capgemini",
+      "sigle": "CAP",
       "horizon": "Court terme",
-      "quoi": "Chaîne américaine de salles de sport à bas coût, cotée au NYSE.",
-      "pourquoi": "Un modèle d'abonnement à bas coût, avec des revenus récurrents et une résilience historique même en période de ralentissement économique — le type de profil défensif que nous aimons inclure dans notre poche court terme."
+      "quoi": "Société française de conseil, technologie et services numériques, cotée sur Euronext Paris (indice CAC 40).",
+      "pourquoi": "Une valeur européenne qui nous expose à la demande croissante en conseil technologique et en intégration de l'intelligence artificielle, sans nous positionner sur un unique acteur pur player IA. Un choix plus tactique, sur notre poche à horizon court terme.",
+      "analyse": "analyse-capgemini-2026-10.pdf"
     },
     {
       "slug": "neptune",
