@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "Une élection américaine vient de faire plonger l'IA : et votre PEA ?",
+      "excerpt": "Jeudi, le Nasdaq a lâché 5,5 % et le S&P 500 4,4 %, la pire séance depuis des mois, sur la peur que la victoire démocrate aux élections de mi-mandat freine les centres de données d'IA. Voici ce que cela change pour votre PEA, votre ETF et votre épargne.",
+      "auteur": "Ktiso",
+      "date": "6 novembre 2026",
+      "href": "2026-11-06-0935-bourse-nasdaq-correction-midterms-puces-ia-centres-de-donnees.html",
+      "image": "card-alertes.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "Zéro voix pour le budget : que devient votre impôt en 2027 ?",
+      "excerpt": "Mercredi soir, l'Assemblée a rejeté à 458 voix contre 0 la partie recettes du budget 2027. Le texte part au Sénat, et 49.3, ordonnances ou loi spéciale se profilent : voici ce que cela change pour vos impôts, vos pensions et votre épargne.",
+      "auteur": "Ktiso",
+      "date": "5 novembre 2026",
+      "href": "2026-11-05-0935-politique-budget-2027-recettes-rejetees-458-senat.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "La caisse de secours de Binance est à moitié vide : et votre plateforme ?",
       "excerpt": "Après son piratage à 6,3 milliards de dollars, Binance a puisé dans la moitié de son fonds SAFU (15 000 à 7 500 bitcoins). Les ETF bitcoin ont perdu 1 Md$ en deux jours : que vaut vraiment la protection de vos cryptos ?",
@@ -54,24 +72,6 @@
       "date": "30 octobre 2026",
       "href": "2026-10-30-0935-crypto-binance-piratage-6-milliards-bitcoin.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Google a doublé son cloud : pourquoi la Bourse le punit quand même",
-      "excerpt": "Mercredi soir, Alphabet a publié un cloud en hausse de 103 %, mais un cash-flow libre négatif de 9,1 milliards de dollars. L'action reculait d'environ 8 à 10 % après la clôture, tandis que Microsoft, plus mesuré sur ses dépenses, progressait.",
-      "auteur": "Ktiso",
-      "date": "29 octobre 2026",
-      "href": "2026-10-29-0935-corporate-alphabet-cloud-cash-flow-capex-microsoft.html",
-      "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "La Fed ne touchera à rien ce soir : le vrai danger est ailleurs",
-      "excerpt": "Ce mercredi soir, la Fed devrait laisser son taux à 3,75–4,00 %, après sa hausse de septembre. Le risque tient au ton de Kevin Warsh : une nouvelle hausse est attendue en décembre, ce qui pèserait sur vos crédits et vos placements.",
-      "auteur": "Ktiso",
-      "date": "28 octobre 2026",
-      "href": "2026-10-28-0935-economie-fed-statu-quo-warsh-confiance-menages.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
