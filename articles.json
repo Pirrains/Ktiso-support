@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Votre téléphone est devenu trop cher : même Qualcomm trinque",
+      "excerpt": "Qualcomm a vu ses ventes de puces pour smartphones chuter de 26 % et son action reculer d'environ 10 % le 5 novembre. En cause : la mémoire, devenue rare et chère à cause de l'IA. Voici ce que cela change pour le prix de votre prochain téléphone.",
+      "auteur": "Ktiso",
+      "date": "8 novembre 2026",
+      "href": "2026-11-08-0935-corporate-qualcomm-smartphones-memoire-prix-telephones.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Économie",
+      "title": "Une bonne nouvelle américaine, une mauvaise pour votre crédit ?",
+      "excerpt": "L'économie américaine a créé 165 000 emplois en octobre, plus du double des attentes, et le chômage a reculé à 4,1 %. Cela relance les paris sur une hausse de taux de la Fed en décembre : voici ce que cela change pour votre crédit et votre épargne.",
+      "auteur": "Ktiso",
+      "date": "7 novembre 2026",
+      "href": "2026-11-07-0935-economie-emploi-us-165000-fed-hausse-decembre-taux.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "Une élection américaine vient de faire plonger l'IA : et votre PEA ?",
       "excerpt": "Jeudi, le Nasdaq a lâché 5,5 % et le S&P 500 4,4 %, la pire séance depuis des mois, sur la peur que la victoire démocrate aux élections de mi-mandat freine les centres de données d'IA. Voici ce que cela change pour votre PEA, votre ETF et votre épargne.",
@@ -54,24 +72,6 @@
       "date": "1 novembre 2026",
       "href": "2026-11-01-0935-bourse-nasdaq-ia-intel-amazon-pire-mois-depuis-mars-2025.html",
       "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "La France est « à l'arrêt » : ce que ça change vraiment pour vous",
-      "excerpt": "Le ministre de l'Économie juge l'économie française « à l'arrêt » : le PIB a reculé de 0,1 % au troisième trimestre. Il réclame un budget 2027 que les députés peinent à voter, avec le risque d'ordonnances ou de 49.3.",
-      "auteur": "Ktiso",
-      "date": "31 octobre 2026",
-      "href": "2026-10-31-0935-politique-france-a-l-arret-lescure-budget-2027.html",
-      "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Binance vient d'être piratée : vos cryptos sont-elles en sécurité ?",
-      "excerpt": "Binance dit avoir subi un piratage d'environ 6,3 milliards de dollars, le plus gros de l'histoire de la crypto. La plateforme assure que les fonds des clients sont protégés. Le bitcoin a perdu environ 3 % et s'est approché de 76 000 $.",
-      "auteur": "Ktiso",
-      "date": "30 octobre 2026",
-      "href": "2026-10-30-0935-crypto-binance-piratage-6-milliards-bitcoin.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
