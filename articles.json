@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Crypto",
+      "title": "Votre bitcoin dépend désormais de la Fed : êtes-vous prêt ?",
+      "excerpt": "Le bitcoin recule vers 74 500 $ : les ETF ont perdu 1,28 Md$ en une semaine et plus d'1 Md$ de positions ont été liquidées dimanche. Avec l'inflation américaine attendue mardi, voici ce que cela change pour vos cryptos.",
+      "auteur": "Ktiso",
+      "date": "9 novembre 2026",
+      "href": "2026-11-09-0935-crypto-bitcoin-fed-etf-sorties-cpi-liquidations.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Votre téléphone est devenu trop cher : même Qualcomm trinque",
       "excerpt": "Qualcomm a vu ses ventes de puces pour smartphones chuter de 26 % et son action reculer d'environ 10 % le 5 novembre. En cause : la mémoire, devenue rare et chère à cause de l'IA. Voici ce que cela change pour le prix de votre prochain téléphone.",
@@ -63,15 +72,6 @@
       "date": "2 novembre 2026",
       "href": "2026-11-02-0935-economie-epargne-menages-us-pib-pce-fed-bce.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Wall Street vient de perdre patience avec l'IA : et votre ETF ?",
-      "excerpt": "Vendredi 30 octobre, le Nasdaq a perdu environ 2,9 % et Intel près de 29 %, après des résultats décevants d'Amazon, d'Intel et de Reddit. Les investisseurs sanctionnent désormais les dépenses d'IA qui ne rapportent pas encore assez.",
-      "auteur": "Ktiso",
-      "date": "1 novembre 2026",
-      "href": "2026-11-01-0935-bourse-nasdaq-ia-intel-amazon-pire-mois-depuis-mars-2025.html",
-      "image": "card-portefeuille.jpg"
     }
   ]
 }
