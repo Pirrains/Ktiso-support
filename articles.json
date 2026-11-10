@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Politique",
+      "title": "Votre pension peut-elle être gelée ? Le Sénat s'en mêle",
+      "excerpt": "Depuis lundi, le Sénat examine le budget de la Sécu 2027, rejeté par les députés. Au menu : gel des pensions au-delà de 1 260 €, que les sénateurs veulent relever à 1 500 €, et retour de la réforme des retraites. Voici ce que cela change pour vous.",
+      "auteur": "Ktiso",
+      "date": "10 novembre 2026",
+      "href": "2026-11-10-0935-politique-gel-pensions-senat-budget-secu-2027.html",
+      "image": "actu-politique.jpg"
+    },
+    {
       "tag": "Crypto",
       "title": "Votre bitcoin dépend désormais de la Fed : êtes-vous prêt ?",
       "excerpt": "Le bitcoin recule vers 74 500 $ : les ETF ont perdu 1,28 Md$ en une semaine et plus d'1 Md$ de positions ont été liquidées dimanche. Avec l'inflation américaine attendue mardi, voici ce que cela change pour vos cryptos.",
@@ -63,15 +72,6 @@
       "date": "3 novembre 2026",
       "href": "2026-11-03-0935-corporate-intel-dell-memoire-prix-pc-ia.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "L'Amérique cartonne, mais ses ménages vident leur épargne : et vous ?",
-      "excerpt": "Le PIB américain a progressé de 3,4 % au troisième trimestre, mais le taux d'épargne des ménages tombe à 3,8 %, son plus bas depuis octobre 2022, avec un revenu réel en recul. Une croissance fragile, alors que la Fed pourrait relever ses taux en décembre.",
-      "auteur": "Ktiso",
-      "date": "2 novembre 2026",
-      "href": "2026-11-02-0935-economie-epargne-menages-us-pib-pce-fed-bce.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
