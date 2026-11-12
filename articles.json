@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Économie",
+      "title": "Les 4 % sont de retour sur le crédit immobilier : faut-il encore acheter ?",
+      "excerpt": "Les taux de crédit immobilier ont pris environ 0,1 point en un mois : 3,76 % sur 20 ans en moyenne chez Pretto, et certaines banques dépassent 4 %. L'OAT a pourtant reflué : voici ce que cela change pour votre projet d'achat.",
+      "auteur": "Ktiso",
+      "date": "12 novembre 2026",
+      "href": "2026-11-12-0935-economie-credit-immobilier-taux-4-pourcent-oat.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Bourse",
+      "title": "Wall Street tousse, Paris sourit : faut-il rapatrier votre épargne ?",
+      "excerpt": "Mardi, le CAC 40 a gagné 0,55 % pendant que le Nasdaq reculait de 0,74 % après une inflation américaine plus forte que prévu. Pétrole en baisse d'un côté, hausse de taux de la Fed attendue de l'autre : voici ce que ce grand écart change pour votre épargne.",
+      "auteur": "Ktiso",
+      "date": "11 novembre 2026",
+      "href": "2026-11-11-0935-bourse-cac40-wall-street-divergence-inflation-us-petrole.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Politique",
       "title": "Votre pension peut-elle être gelée ? Le Sénat s'en mêle",
       "excerpt": "Depuis lundi, le Sénat examine le budget de la Sécu 2027, rejeté par les députés. Au menu : gel des pensions au-delà de 1 260 €, que les sénateurs veulent relever à 1 500 €, et retour de la réforme des retraites. Voici ce que cela change pour vous.",
@@ -54,24 +72,6 @@
       "date": "5 novembre 2026",
       "href": "2026-11-05-0935-politique-budget-2027-recettes-rejetees-458-senat.html",
       "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "La caisse de secours de Binance est à moitié vide : et votre plateforme ?",
-      "excerpt": "Après son piratage à 6,3 milliards de dollars, Binance a puisé dans la moitié de son fonds SAFU (15 000 à 7 500 bitcoins). Les ETF bitcoin ont perdu 1 Md$ en deux jours : que vaut vraiment la protection de vos cryptos ?",
-      "auteur": "Ktiso",
-      "date": "4 novembre 2026",
-      "href": "2026-11-04-0935-crypto-binance-safu-preuve-reserves-etf-bitcoin.html",
-      "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Votre prochain PC sera plus cher : la faute à l'IA ?",
-      "excerpt": "Intel prévient que le marché des PC reculera de 12 % en 2026, la mémoire étant devenue rare et chère à cause de l'IA. Intel a perdu près de 29 % le 30 octobre, Dell environ 11 % : des ordinateurs plus chers et des stocks sous tension.",
-      "auteur": "Ktiso",
-      "date": "3 novembre 2026",
-      "href": "2026-11-03-0935-corporate-intel-dell-memoire-prix-pc-ia.html",
-      "image": "card-screener.jpg"
     }
   ]
 }
