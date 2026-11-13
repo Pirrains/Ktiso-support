@@ -2,6 +2,15 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Nvidia perd son patron du jour au lendemain : votre ETF est-il en danger ?",
+      "excerpt": "Jensen Huang a quitté Nvidia avec effet immédiat après une semaine de révélations sur sa vie privée. L'action a perdu près de 11 % depuis le 6 novembre, et Nvidia pèse plus de 5 % d'un ETF World : voici ce que cela change pour votre épargne.",
+      "auteur": "Ktiso",
+      "date": "13 novembre 2026",
+      "href": "2026-11-13-0935-corporate-nvidia-jensen-huang-demission-etf.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Économie",
       "title": "Les 4 % sont de retour sur le crédit immobilier : faut-il encore acheter ?",
       "excerpt": "Les taux de crédit immobilier ont pris environ 0,1 point en un mois : 3,76 % sur 20 ans en moyenne chez Pretto, et certaines banques dépassent 4 %. L'OAT a pourtant reflué : voici ce que cela change pour votre projet d'achat.",
@@ -63,15 +72,6 @@
       "date": "6 novembre 2026",
       "href": "2026-11-06-0935-bourse-nasdaq-correction-midterms-puces-ia-centres-de-donnees.html",
       "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Zéro voix pour le budget : que devient votre impôt en 2027 ?",
-      "excerpt": "Mercredi soir, l'Assemblée a rejeté à 458 voix contre 0 la partie recettes du budget 2027. Le texte part au Sénat, et 49.3, ordonnances ou loi spéciale se profilent : voici ce que cela change pour vos impôts, vos pensions et votre épargne.",
-      "auteur": "Ktiso",
-      "date": "5 novembre 2026",
-      "href": "2026-11-05-0935-politique-budget-2027-recettes-rejetees-458-senat.html",
-      "image": "actu-politique.jpg"
     }
   ]
 }
