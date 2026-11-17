@@ -460,8 +460,7 @@
       <a href="outils.html">Outils</a><span class="sep">·</span>
       <a href="application.html">Application</a><span class="sep">·</span>
       <a href="contenus.html">Contenus</a><span class="sep">·</span>
-      <a href="actualites.html">Actualités</a><span class="sep">·</span>
-      <a href="espace-abonne.html">Mon compte</a>
+      <a href="actualites.html">Actualités</a>
     </nav>
 
     <div class="hero-content">
@@ -517,9 +516,6 @@
     <div class="rule"></div>
 
     <div class="cta-group">
-      <a class="btn btn-primary" href="espace-abonne.html?action=signup">
-        Créer votre compte
-      </a>
       <a class="btn btn-secondary" href="a-propos.html">
         Notre mission
       </a>
@@ -584,7 +580,7 @@
           if (img.src.slice(-4) === '.svg' && !img.dataset.tried) { img.dataset.tried = 1; img.src = 'logos/' + a.slug + '.png'; return; }
           img.style.display = 'none'; sig.hidden = false;
         };
-        b.addEventListener('click', function () { if (i === cur) { location.href = a.analyse ? a.analyse : 'actif.html?id=' + encodeURIComponent(a.slug); } else { go(i); } });
+        b.addEventListener('click', function () { if (i === cur) { location.href = 'actif.html?id=' + encodeURIComponent(a.slug); } else { go(i); } });
         stage.appendChild(b);
         return b;
       });
@@ -606,7 +602,7 @@
         el.tabIndex = ad === 0 ? 0 : -1;
       });
       var a = actifs[cur];
-      info.innerHTML = '<span class="pf-horizon">' + esc(a.horizon || 'Portefeuille') + '</span><h3>' + esc(a.nom) + '</h3><p>' + esc(a.quoi || '') + '</p>' + (a.analyse ? '<a class="pf-link" href="' + esc(a.analyse) + '">Lire l\'analyse →</a><span style="display:inline-block;width:22px"></span>' : '') + '<a class="pf-link" href="actif.html?id=' + encodeURIComponent(a.slug) + '">Voir la fiche →</a>';
+      info.innerHTML = '<span class="pf-horizon">' + esc(a.horizon || 'Portefeuille') + '</span><h3>' + esc(a.nom) + '</h3><p>' + esc(a.quoi || '') + '</p><a class="pf-link" href="actif.html?id=' + encodeURIComponent(a.slug) + '">Voir la fiche →</a>';
       renderPerf(a);
     }
 
