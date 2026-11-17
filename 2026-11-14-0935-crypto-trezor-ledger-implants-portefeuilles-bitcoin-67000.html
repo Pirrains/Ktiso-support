@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le coffre-fort de votre bitcoin peut cacher un mouchard : êtes-vous concerné ? — Ktiso Actualités</title>
+<meta name="description" content="Trezor a confirmé que des portefeuilles physiques vendus par un revendeur d'Asie du Sud-Est cachaient un mouchard capable de voler les mots de récupération. Au même moment, le bitcoin est tombé vers 67 000 $ : voici comment protéger vos cryptos.">
+<meta property="og:title" content="Le coffre-fort de votre bitcoin peut cacher un mouchard : êtes-vous concerné ?">
+<meta property="og:description" content="Trezor a confirmé que des portefeuilles physiques vendus par un revendeur d'Asie du Sud-Est cachaient un mouchard capable de voler les mots de récupération. Au même moment, le bitcoin est tombé vers 67 000 $ : voici comment protéger vos cryptos.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'DIN Next LT Pro'; src:url('dinnextltpro-light.woff2') format('woff2'), url('dinnextltpro-light.woff') format('woff'); font-weight:300; font-style:normal; font-display:swap; }
+  :root { --gold:#C9A961; --gold-deep:#8B6F35; --green:#030C22; --green-deep:#030C22; --terracotta:#C1654A; --lime:#A8C66C; --yellow:#E8B347; --blue:#5B8FA8; --blue-deep:#3F6478; --cream:#F4EFE3; --line:rgba(91,143,168,0.28); --zone:var(--blue); }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { background:var(--green-deep); color:var(--cream); font-family:'DIN Next LT Pro', sans-serif; }
+  body { background: radial-gradient(ellipse 75% 65% at 50% 50%, transparent 35%, rgba(1,4,11,0.65) 100%), var(--green-deep); background-attachment:fixed; overflow-x:hidden; }
+  a { color:inherit; }
+  .wrap { width:100%; max-width:680px; margin:0 auto; padding:0 24px; }
+  nav.topnav { position:absolute; top:0; left:0; right:0; z-index:10; display:flex; justify-content:center; flex-wrap:wrap; gap:4px 0; padding-top:28px; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; }
+  nav.topnav a { color:rgba(244,239,227,0.7); text-decoration:none; padding:4px 7px; border-bottom:1px solid transparent; transition:color .2s ease, border-color .2s ease; white-space:nowrap; text-shadow:0 1px 4px rgba(0,0,0,0.6); }
+  nav.topnav a:hover { color:var(--terracotta); }
+  nav.topnav a.active { color:var(--zone); border-bottom-color:var(--zone); }
+  nav.topnav .sep { color:rgba(244,239,227,0.35); }
+  .zone-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--zone); margin-right:8px; vertical-align:middle; }
+  .hero { position:relative; min-height:56vh; min-height:56svh; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:90px 24px 8vh; overflow:hidden; }
+  .hero-bg-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 42%; }
+  .hero-veil { position:absolute; inset:0; background: linear-gradient(180deg, rgba(3,12,34,0.6) 0%, rgba(3,12,34,0.35) 35%, rgba(3,12,34,0.55) 65%, rgba(3,12,34,0.92) 100%); }
+  .hero-content { position:relative; z-index:2; max-width:560px; }
+  .eyebrow { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream); opacity:.95; margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:10px; text-shadow:0 2px 10px rgba(0,0,0,0.6); }
+  .hero-content .dot-sep { color:rgba(244,239,227,0.4); }
+  .hero-content h1 { font-family:'IBM Plex Sans Condensed', sans-serif; font-weight:600; font-size:clamp(24px,5.5vw,36px); line-height:1.25; color:var(--cream); text-shadow:0 2px 14px rgba(0,0,0,0.6); }
+  .rule { width:64px; height:1px; background:linear-gradient(90deg, transparent, var(--zone), transparent); margin:0 auto; }
+  .article-body { padding:56px 0 24px; }
+  .article-body h2 { font-family:'IBM Plex Sans Condensed', sans-serif; font-size:clamp(20px,4vw,24px); font-weight:600; color:var(--zone); margin:48px 0 16px; }
+  .article-body h2:first-of-type { margin-top:32px; }
+  .article-body p { font-size:16px; line-height:1.8; color:rgba(244,239,227,0.84); margin:0 0 18px; }
+  .article-body h2:first-of-type + p { font-size:17px; line-height:1.7; color:var(--cream); padding:20px 22px; border:1px solid var(--line); border-radius:12px; background:rgba(91,143,168,0.07); }
+  .article-body ul { margin:8px 0 24px; padding-left:0; list-style:none; display:grid; gap:10px; }
+  .article-body ul li { position:relative; font-size:15.5px; line-height:1.7; color:rgba(244,239,227,0.8); padding:16px 18px 16px 42px; border:1px solid var(--line); border-radius:12px; background:rgba(91,143,168,0.045); margin:0; }
+  .article-body ul li::before { content:''; position:absolute; left:18px; top:24px; width:7px; height:7px; border-radius:50%; background:var(--zone); }
+  .article-body ul li > strong:first-child { display:block; font-family:'IBM Plex Sans Condensed', sans-serif; font-weight:500; font-size:16.5px; color:var(--cream); margin-bottom:3px; }
+  .article-body strong { color:var(--cream); font-weight:400; }
+  .article-body em { display:block; font-style:normal; font-size:12.5px; color:rgba(244,239,227,0.42); margin-top:36px; padding-top:18px; border-top:1px solid var(--line); line-height:1.65; }
+  .back-link { display:inline-block; margin:8px 0 0; font-size:12.5px; letter-spacing:0.04em; color:var(--terracotta); text-decoration:none; }
+  .back-link:hover { text-decoration:underline; }
+  .sources { padding:24px 0 72px; border-top:1px solid var(--line); margin-top:24px; }
+  .sources .section-label { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(244,239,227,0.4); margin-bottom:12px; }
+  .sources ol { padding-left:18px; }
+  .sources li { font-size:12.5px; line-height:1.7; color:rgba(244,239,227,0.45); margin-bottom:6px; word-break:break-word; }
+  .sources a { color:rgba(244,239,227,0.5); text-decoration:underline; text-decoration-color:rgba(244,239,227,0.2); }
+  .sources a:hover { color:var(--zone); }
+  .social-section { padding:0 0 90px; }
+  .social-card { border:1px solid var(--line); background:rgba(201,169,97,0.03); border-radius:12px; padding:48px 32px; text-align:center; }
+  .social-card .section-label { font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); display:flex; justify-content:center; margin-bottom:14px; }
+  .social-card h2 { font-family:'IBM Plex Sans Condensed', sans-serif; font-size:clamp(21px,4.5vw,26px); font-weight:600; color:var(--cream); margin:0 auto 16px; max-width:400px; }
+  .social-card p { font-size:14.5px; line-height:1.7; color:rgba(244,239,227,0.65); max-width:380px; margin:0 auto 28px; }
+  .cta-row { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:'DIN Next LT Pro', sans-serif; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:15px 28px; border-radius:2px; transition:transform .25s cubic-bezier(0.16,1,0.3,1), box-shadow .25s ease, background .25s ease; }
+  .btn svg { width:15px; height:15px; flex-shrink:0; }
+  .btn-primary { background:var(--gold); color:var(--green-deep); box-shadow:0 8px 24px rgba(201,169,97,0.18); }
+  .btn-primary:hover { background:#DCC07E; transform:translateY(-2px); box-shadow:0 12px 32px rgba(201,169,97,0.28); }
+  .btn-secondary { background:transparent; color:var(--cream); border:1px solid var(--line); }
+  .btn-secondary:hover { border-color:var(--zone); color:var(--zone); transform:translateY(-2px); }
+  .btn:active { transform:translateY(0); }
+  .btn:focus-visible { outline:2px solid var(--zone); outline-offset:3px; }
+  footer { text-align:center; padding:0 24px 56px; }
+  .footer-nav { font-size:11px; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:16px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 0; }
+  .footer-nav a { color:rgba(244,239,227,0.5); text-decoration:none; border-bottom:1px solid transparent; }
+  .footer-nav a:hover { color:var(--terracotta); border-bottom-color:var(--terracotta); }
+  .footer-nav .sep { color:rgba(244,239,227,0.2); margin:0 10px; }
+  .copyright { font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(244,239,227,0.3); }
+  .legal-note { font-size:10.5px; line-height:1.6; color:rgba(244,239,227,0.25); max-width:480px; margin:16px auto 0; }
+  @media (max-width:520px) { .article-body ul li { padding:14px 14px 14px 38px; } .article-body ul li::before { left:15px; top:22px; } .social-card { padding:36px 22px; } }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="hero-bg-img" src="card-screener.jpg" alt="">
+    <div class="hero-veil"></div>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="actualites.html" class="active">Actualités</a><span class="sep">·</span>
+      <a href="espace-abonne.html">Mon compte</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="eyebrow"><span class="zone-dot"></span>Crypto<span class="dot-sep">·</span>14 novembre 2026</div>
+      <h1>Le coffre-fort de votre bitcoin peut cacher un mouchard : êtes-vous concerné ?</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="rule"></div>
+      <div class="article-body">
+        <a class="back-link" href="actualites.html">← Retour aux actualités</a>
+<h2>Problématique</h2>
+<p>En résumé : Trezor a confirmé que des portefeuilles physiques vendus par un revendeur d'Asie du Sud-Est cachaient un mouchard capable de voler les mots de récupération. Au même moment, le bitcoin est tombé vers 67 000 $ : voici comment protéger vos cryptos.</p>
+<h2>Contexte</h2>
+<p>Le 13 novembre, le fabricant tchèque de portefeuilles matériels Trezor a confirmé la présence d'un implant électronique dans trois exemplaires de son modèle Safe 5 vendus par CryptoBilis, un revendeur indonésien. Les trois appareils ont été achetés entre le 20 août et le 23 septembre 2026. Tout est parti d'un client indonésien qui a découvert, fin octobre, une petite carte électronique ajoutée entre la carte mère et l'écran de son appareil, avec un module cellulaire et une antenne. Trezor a lancé une première alerte publique le 2 novembre, puis a identifié deux autres appareils piégés grâce aux photos envoyées par des acheteurs (BleepingComputer, The Hacker News, Help Net Security).</p>
+<p>Le fonctionnement est simple et redoutable. L'implant ne modifie ni le logiciel de l'appareil ni sa puce sécurisée : il lit ce qui s'affiche à l'écran. Il capte les mots de récupération au moment où l'utilisateur crée son portefeuille ou le restaure, ainsi que la phrase secrète supplémentaire si elle apparaît, puis chiffre ces données et les envoie par le réseau mobile vers un serveur contrôlé par les attaquants. Sans réseau, il les stocke et réessaie plus tard (BleepingComputer, The Hacker News).</p>
+<p>Trezor n'est pas le premier touché. Le 9 octobre, des utilisateurs de Ledger, le concurrent français, ont commencé à signaler des portefeuilles vidés en Asie du Sud-Est. Ledger a confirmé un implant dans un appareil vendu par le même revendeur et assure que ses propres systèmes et ses ventes directes n'ont pas été compromis. Les chercheurs de Bitquery estiment les pertes suspectées à plus de 93 millions de dollars (Help Net Security, BleepingComputer).</p>
+<p>Trezor a publié le 11 novembre une mise à jour logicielle (version 2.13.1) qui empêche les implants connus de capter les données. Elle ne protège pas une phrase de récupération déjà volée. Le fabricant a réduit d'environ 80 % son réseau de revendeurs et propose un appareil de remplacement à tous les acheteurs de CryptoBilis depuis mars 2026. Selon Trezor, aucun des trois propriétaires concernés n'a signalé de perte, et 48 clients du revendeur se sont manifestés (The Hacker News, BleepingComputer).</p>
+<p>Ces révélations tombent dans un marché déjà fébrile. Le bitcoin a glissé vers 66 900 dollars samedi matin, environ 60 600 euros, son plus bas depuis le 19 août. Il a perdu près de 12 % en une semaine et environ 47 % depuis son record d'octobre 2025 (126 080 dollars). Entre 1,3 et 1,6 milliard de dollars de positions à effet de levier ont été liquidées en 24 heures, essentiellement des paris à la hausse, touchant plus de 164 000 traders (CryptoTicker, KuCoin).</p>
+<h2>Analyse fondamentale et technique</h2>
+<p><strong>Le maillon faible n'est plus la plateforme, c'est la livraison.</strong> Depuis des années, le conseil de base est de sortir ses cryptos des plateformes pour les garder sur un portefeuille matériel. Les piratages répétés de plateformes, comme celui de Binance fin octobre, ont renforcé ce réflexe. L'affaire CryptoBilis montre que les attaquants s'adaptent : plutôt que de casser la puce sécurisée, ils piègent l'appareil avant qu'il n'arrive chez l'acheteur. C'est une attaque dite de la chaîne d'approvisionnement, coûteuse à monter mais très rentable, comme le montrent les quelque 93 millions de dollars en jeu côté Ledger.</p>
+<p><strong>Un coup de plus pour la confiance.</strong> L'incident reste géographiquement limité et ne concerne, à ce stade, qu'un revendeur. Il n'a donc pas d'effet direct mesurable sur le cours du bitcoin. Mais il s'ajoute à un climat déjà dégradé : les ETF bitcoin américains ont perdu environ 1,6 milliard de dollars de capitaux nets sur les 20 séances précédant le 9 novembre, et l'offre de stablecoins a reculé de 14,2 milliards de dollars sur 30 jours selon Glassnode. Moins de stablecoins en circulation, c'est moins de liquidités prêtes à acheter. Le prix de revient moyen des ETF est estimé autour de 81 000 dollars par HashKey : la plupart de ces investisseurs sont aujourd'hui en perte (CryptoTicker, The Crypto Desk).</p>
+<p><strong>La pression vient aussi des taux.</strong> Le rendement du Trésor américain à 10 ans a dépassé 5,1 % jeudi, et les marchés anticipent désormais une hausse de taux de la Fed en décembre. Des taux élevés rendent les placements sans risque plus attractifs et pèsent sur les actifs spéculatifs comme les cryptos. La démission de Jensen Huang chez Nvidia a ajouté à la nervosité sur les valeurs technologiques (The Crypto Desk).</p>
+<p><strong>Lecture technique.</strong> Le bitcoin a cassé vendredi sa moyenne mobile 200 semaines, vers 68 000 dollars, un niveau très suivi qui avait servi de plancher. Les prochains supports sont la clôture du 19 août à 64 686 dollars, puis le plus bas annuel du 1er juillet à 58 566 dollars. À la hausse, il faudrait reprendre 70 000 dollars, puis la moyenne 200 jours vers 73 000 dollars, pour calmer le jeu. L'indice de peur et d'avidité est tombé à 13 samedi, en « peur extrême ». Ce niveau accompagne parfois des points bas, mais il ne garantit pas un rebond. Il s'agit d'une lecture d'analyste, pas d'une prévision (CryptoTicker).</p>
+<h2>Impact concret pour les particuliers</h2>
+<p><strong>Êtes-vous concerné par les implants ?</strong> Les cas confirmés portent uniquement sur des appareils vendus par CryptoBilis, en direct ou sur les places de marché indonésiennes Tokopedia et Shopee. Trezor dit n'avoir trouvé aucune trace de manipulation chez ses autres revendeurs. Si vous avez acheté votre appareil sur le site du fabricant ou chez un revendeur officiel en Europe, le risque est très faible. Si vous l'avez acheté d'occasion, sur une place de marché sans connaître le vendeur, ou à l'étranger, vérifiez son origine.</p>
+<p><strong>Pourquoi la mise à jour ne suffit pas.</strong> Si vos mots de récupération ont été captés lors de la configuration, les attaquants peuvent recréer votre portefeuille sur n'importe quel appareil et le vider à tout moment, même des mois plus tard. Changer d'appareil sans changer de phrase ne sert donc à rien.</p>
+<p><strong>Un marché en baisse multiplie les risques.</strong> Quand les prix chutent, beaucoup d'épargnants déplacent leurs cryptos, changent de plateforme ou achètent un portefeuille pour se protéger. C'est précisément le moment où les arnaques, les faux supports techniques et les appareils douteux font le plus de victimes.</p>
+<p><strong>Définition : portefeuille matériel.</strong> C'est un petit appareil, de type clé USB avec écran, qui conserve hors ligne les clés donnant accès à vos cryptos. Contrairement à une plateforme, personne d'autre que vous ne peut bouger les fonds, à condition que les clés restent secrètes.</p>
+<p><strong>Définition : phrase de récupération.</strong> C'est une liste de 12 à 24 mots générée à la création du portefeuille. Elle permet de le reconstituer en cas de perte de l'appareil. Quiconque la connaît contrôle vos cryptos.</p>
+<h2>Solutions</h2>
+<ul>
+  <li><strong>Acheter uniquement à la source.</strong> Commandez votre portefeuille matériel sur le site officiel du fabricant ou chez un revendeur listé comme autorisé sur ce site. Évitez l'occasion et les vendeurs tiers des places de marché.</li>
+  <li><strong>Refuser toute phrase déjà fournie.</strong> Un appareil neuf doit générer lui-même vos mots de récupération. Une phrase imprimée dans la boîte, ou un appareil déjà configuré, est un signal d'arnaque.</li>
+  <li><strong>Si vous avez un doute, changez de phrase.</strong> Créez un nouveau portefeuille sur un appareil sûr, avec une nouvelle phrase, et transférez-y vos fonds. C'est la seule protection si la phrase a pu être captée.</li>
+  <li><strong>Mettre à jour le logiciel de l'appareil.</strong> Les propriétaires de Trezor doivent installer la version 2.13.1 ou suivante, qui bloque les implants connus. Faites-le uniquement depuis l'application officielle.</li>
+  <li><strong>Ne jamais communiquer vos mots.</strong> Ni Trezor ni Ledger ne vous demanderont votre phrase de récupération, par téléphone, message ou formulaire. Les escrocs profitent de ce type d'actualité pour se faire passer pour le support.</li>
+  <li><strong>Ne pas réagir à la baisse avec du levier.</strong> Plus de 164 000 traders ont été liquidés en 24 heures. Pour un particulier, des achats réguliers et limités à une petite part de l'épargne restent bien moins risqués que des paris amplifiés.</li>
+  <li><strong>Penser à la fiscalité avant de vendre.</strong> En France, les plus-values sur cryptos sont imposées lors de la conversion en euros, et les moins-values ne se compensent qu'avec les gains de la même année. Vendre dans la panique peut figer une perte sans avantage fiscal durable.</li>
+</ul>
+<em>Cet article est fourni à titre informatif et éducatif et ne constitue pas un conseil en investissement. Les informations sur les implants reposent sur les communications de Trezor et de Ledger et sur la presse spécialisée ; les enquêtes sont en cours. Les cryptoactifs sont très volatils et peuvent entraîner une perte totale du capital investi. Situation au 14 novembre 2026 au matin.</em>
+      </div>
+
+      <div class="sources">
+        <div class="section-label">Sources</div>
+        <ol>
+<li>BleepingComputer, Trezor confirms crypto-stealing implants in three wallets, releases fix (13/11/2026) : <a href="https://www.bleepingcomputer.com/news/cryptocurrency/trezor-confirms-crypto-stealing-implants-in-three-wallets-releases-fix/" target="_blank" rel="noopener noreferrer">https://www.bleepingcomputer.com/news/cryptocurrency/trezor-confirms-crypto-stealing-implants-in-three-wallets-releases-fix/</a></li>
+<li>The Hacker News, Trezor Confirms Hidden Implants in CryptoBilis-Sold Wallets That Can Steal Recovery Phrases (13/11/2026) : <a href="https://thehackernews.com/2026/11/trezor-confirms-hidden-hardware.html" target="_blank" rel="noopener noreferrer">https://thehackernews.com/2026/11/trezor-confirms-hidden-hardware.html</a></li>
+<li>Help Net Security, Trezor warns some of its wallets may hide a seed-stealing implant (02/11/2026) : <a href="https://www.helpnetsecurity.com/2026/11/02/trezor-hardware-wallet-implant-cryptobilis/" target="_blank" rel="noopener noreferrer">https://www.helpnetsecurity.com/2026/11/02/trezor-hardware-wallet-implant-cryptobilis/</a></li>
+<li>Help Net Security, Hidden implant in Ledger hardware wallets linked to $93M theft (12/10/2026) : <a href="https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/" target="_blank" rel="noopener noreferrer">https://www.helpnetsecurity.com/2026/10/12/ledger-wallets-compromised-via-hardware-implant/</a></li>
+<li>CryptoTicker, Bitcoin price at lowest since August: levels to watch (14/11/2026) : <a href="https://cryptoticker.io/en/bitcoin-price-below-67000-lowest-since-august/" target="_blank" rel="noopener noreferrer">https://cryptoticker.io/en/bitcoin-price-below-67000-lowest-since-august/</a></li>
+<li>KuCoin News, Bitcoin Falls Below $68,000 as $1.29 Billion in Liquidations Occur in 24 Hours (14/11/2026) : <a href="https://www.kucoin.com/news/flash/bitcoin-drops-below-68-000-1-29-billion-in-liquidations-in-24-hours" target="_blank" rel="noopener noreferrer">https://www.kucoin.com/news/flash/bitcoin-drops-below-68-000-1-29-billion-in-liquidations-in-24-hours</a></li>
+<li>The Crypto Desk, Friday, 13 November 2026 : <a href="https://thecryptodesk.substack.com/p/the-crypto-desk-friday-13-november" target="_blank" rel="noopener noreferrer">https://thecryptodesk.substack.com/p/the-crypto-desk-friday-13-november</a></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="social-section wrap">
+      <div class="social-card">
+        <div class="section-label">Rester informé</div>
+        <h2>Recevez les analyses dès leur publication</h2>
+        <p>Les nouveaux articles sont annoncés en priorité sur Instagram, et disponibles dans l'application.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/be/app/ktiso/id6781376056?l=fr-FR" target="_blank" rel="noopener noreferrer">
+            Ouvrir l'application
+          </a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/ktiso_off/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+            </svg>
+            @ktiso_off
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="home.html">Accueil</a><span class="sep">·</span>
+      <a href="a-propos.html">À propos</a><span class="sep">·</span>
+      <a href="portefeuille.html">Portefeuille</a><span class="sep">·</span>
+      <a href="outils.html">Outils</a><span class="sep">·</span>
+      <a href="application.html">Application</a><span class="sep">·</span>
+      <a href="contenus.html">Contenus</a><span class="sep">·</span>
+      <a href="index.html">Support</a><span class="sep">·</span>
+      <a href="privacy.html">Confidentialité</a><span class="sep">·</span>
+      <a href="mentions-legales.html">Mentions légales</a><span class="sep">·</span>
+      <a href="cgu.html">CGU</a><span class="sep">·</span>
+      <a href="cookies.html">Cookies</a>
+    </div>
+    <div class="copyright">KTISO — Éducation financière</div>
+    <p class="legal-note">© 2026 Ktiso. Tous droits réservés. Les contenus de cette plateforme sont fournis à titre informatif et éducatif uniquement et ne constituent pas un conseil en investissement. Tout investissement comporte un risque de perte en capital.</p>
+  </footer>
+
+</body>
+</html>

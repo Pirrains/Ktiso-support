@@ -2,6 +2,33 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "La plus grosse IPO de l'histoire vous ouvre ses portes : piège ou aubaine ?",
+      "excerpt": "Anthropic, créateur de l'assistant Claude, entre au Nasdaq jeudi et veut lever jusqu'à 64 Md$, un record mondial. Les particuliers français peuvent souscrire jusqu'à mercredi. Valorisation, pertes, gouvernance : ce qu'il faut savoir avant de passer un ordre.",
+      "auteur": "Ktiso",
+      "date": "16 novembre 2026",
+      "href": "2026-11-16-0935-bourse-ipo-anthropic-nasdaq-particuliers-europe.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "Le Sénat vient d'effacer une taxe sur votre mutuelle : ce qui vous attend en 2027",
+      "excerpt": "Vendredi, le Sénat a supprimé presque à l'unanimité la taxe de 2,05 % sur les mutuelles, qui devait rapporter 1,1 Md€. Mais rien n'est joué : le gouvernement peut la rétablir, et les cotisations pourraient grimper de 7 à 8 % en 2027. Voici ce qui vous attend.",
+      "auteur": "Ktiso",
+      "date": "15 novembre 2026",
+      "href": "2026-11-15-0935-politique-senat-taxe-mutuelles-2027-cotisations.html",
+      "image": "actu-politique.jpg"
+    },
+    {
+      "tag": "Crypto",
+      "title": "Le coffre-fort de votre bitcoin peut cacher un mouchard : êtes-vous concerné ?",
+      "excerpt": "Trezor a confirmé que des portefeuilles physiques vendus par un revendeur d'Asie du Sud-Est cachaient un mouchard capable de voler les mots de récupération. Au même moment, le bitcoin est tombé vers 67 000 $ : voici comment protéger vos cryptos.",
+      "auteur": "Ktiso",
+      "date": "14 novembre 2026",
+      "href": "2026-11-14-0935-crypto-trezor-ledger-implants-portefeuilles-bitcoin-67000.html",
+      "image": "card-screener.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Nvidia perd son patron du jour au lendemain : votre ETF est-il en danger ?",
       "excerpt": "Jensen Huang a quitté Nvidia avec effet immédiat après une semaine de révélations sur sa vie privée. L'action a perdu près de 11 % depuis le 6 novembre, et Nvidia pèse plus de 5 % d'un ETF World : voici ce que cela change pour votre épargne.",
@@ -44,33 +71,6 @@
       "auteur": "Ktiso",
       "date": "9 novembre 2026",
       "href": "2026-11-09-0935-crypto-bitcoin-fed-etf-sorties-cpi-liquidations.html",
-      "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Votre téléphone est devenu trop cher : même Qualcomm trinque",
-      "excerpt": "Qualcomm a vu ses ventes de puces pour smartphones chuter de 26 % et son action reculer d'environ 10 % le 5 novembre. En cause : la mémoire, devenue rare et chère à cause de l'IA. Voici ce que cela change pour le prix de votre prochain téléphone.",
-      "auteur": "Ktiso",
-      "date": "8 novembre 2026",
-      "href": "2026-11-08-0935-corporate-qualcomm-smartphones-memoire-prix-telephones.html",
-      "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Une bonne nouvelle américaine, une mauvaise pour votre crédit ?",
-      "excerpt": "L'économie américaine a créé 165 000 emplois en octobre, plus du double des attentes, et le chômage a reculé à 4,1 %. Cela relance les paris sur une hausse de taux de la Fed en décembre : voici ce que cela change pour votre crédit et votre épargne.",
-      "auteur": "Ktiso",
-      "date": "7 novembre 2026",
-      "href": "2026-11-07-0935-economie-emploi-us-165000-fed-hausse-decembre-taux.html",
-      "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Une élection américaine vient de faire plonger l'IA : et votre PEA ?",
-      "excerpt": "Jeudi, le Nasdaq a lâché 5,5 % et le S&P 500 4,4 %, la pire séance depuis des mois, sur la peur que la victoire démocrate aux élections de mi-mandat freine les centres de données d'IA. Voici ce que cela change pour votre PEA, votre ETF et votre épargne.",
-      "auteur": "Ktiso",
-      "date": "6 novembre 2026",
-      "href": "2026-11-06-0935-bourse-nasdaq-correction-midterms-puces-ia-centres-de-donnees.html",
       "image": "card-alertes.jpg"
     }
   ]
