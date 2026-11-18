@@ -2,6 +2,24 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Corporate",
+      "title": "Nvidia pulvérise ses records, son action reste 35 % sous son sommet : que faire ?",
+      "excerpt": "Nvidia a publié mardi le meilleur trimestre de son histoire, avec 115,8 Md$ de ventes, bien au-dessus des attentes. Mais sans patron attitré, l'action reste 35 % sous son record d'octobre : voici ce que cela change pour votre épargne.",
+      "auteur": "Ktiso",
+      "date": "18 novembre 2026",
+      "href": "2026-11-18-0935-corporate-nvidia-resultats-record-action-35-pourcent-sous-sommet.html",
+      "image": "card-screener.jpg"
+    },
+    {
+      "tag": "Économie",
+      "title": "L'inflation européenne a doublé l'objectif : votre épargne paie l'addition",
+      "excerpt": "L'inflation a atteint 4 % en zone euro en octobre, deux fois l'objectif de la BCE, et 3,4 % en France. Le Livret A, à 1,7 %, ne suit plus : voici ce que la hausse de taux attendue en décembre change pour votre épargne.",
+      "auteur": "Ktiso",
+      "date": "17 novembre 2026",
+      "href": "2026-11-17-0935-economie-inflation-zone-euro-4-pourcent-bce-livret-a.html",
+      "image": "card-alertes.jpg"
+    },
+    {
       "tag": "Bourse",
       "title": "La plus grosse IPO de l'histoire vous ouvre ses portes : piège ou aubaine ?",
       "excerpt": "Anthropic, créateur de l'assistant Claude, entre au Nasdaq jeudi et veut lever jusqu'à 64 Md$, un record mondial. Les particuliers français peuvent souscrire jusqu'à mercredi. Valorisation, pertes, gouvernance : ce qu'il faut savoir avant de passer un ordre.",
@@ -54,24 +72,6 @@
       "date": "11 novembre 2026",
       "href": "2026-11-11-0935-bourse-cac40-wall-street-divergence-inflation-us-petrole.html",
       "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Politique",
-      "title": "Votre pension peut-elle être gelée ? Le Sénat s'en mêle",
-      "excerpt": "Depuis lundi, le Sénat examine le budget de la Sécu 2027, rejeté par les députés. Au menu : gel des pensions au-delà de 1 260 €, que les sénateurs veulent relever à 1 500 €, et retour de la réforme des retraites. Voici ce que cela change pour vous.",
-      "auteur": "Ktiso",
-      "date": "10 novembre 2026",
-      "href": "2026-11-10-0935-politique-gel-pensions-senat-budget-secu-2027.html",
-      "image": "actu-politique.jpg"
-    },
-    {
-      "tag": "Crypto",
-      "title": "Votre bitcoin dépend désormais de la Fed : êtes-vous prêt ?",
-      "excerpt": "Le bitcoin recule vers 74 500 $ : les ETF ont perdu 1,28 Md$ en une semaine et plus d'1 Md$ de positions ont été liquidées dimanche. Avec l'inflation américaine attendue mardi, voici ce que cela change pour vos cryptos.",
-      "auteur": "Ktiso",
-      "date": "9 novembre 2026",
-      "href": "2026-11-09-0935-crypto-bitcoin-fed-etf-sorties-cpi-liquidations.html",
-      "image": "card-alertes.jpg"
     }
   ]
 }
