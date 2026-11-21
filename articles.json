@@ -2,6 +2,33 @@
   "showPlaceholderNote": false,
   "articles": [
     {
+      "tag": "Bourse",
+      "title": "L'IA fait plonger Wall Street : combien pèse-t-elle dans votre épargne ?",
+      "excerpt": "Le Nasdaq a chuté de 5,3 % vendredi, Nvidia de 14 %, et le S&P 500 est entré en correction au lendemain de l'entrée en Bourse d'Anthropic. Ce que cette semaine noire change pour votre ETF, votre PEA et votre assurance-vie.",
+      "auteur": "Ktiso",
+      "date": "21 novembre 2026",
+      "href": "2026-11-21-0935-bourse-krach-ia-nasdaq-correction-anthropic-nvidia.html",
+      "image": "card-alertes.jpg"
+    },
+    {
+      "tag": "Politique",
+      "title": "Le Sénat sauve votre pension… et vous envoie la note fiscale",
+      "excerpt": "Le Sénat a voté la revalorisation complète des pensions en 2027. Pour la financer, il veut supprimer l'abattement fiscal de 10 % des retraités, soit 4,7 Md€. Le budget de l'État arrive au Sénat ce vendredi : ce que cela peut changer pour votre impôt.",
+      "auteur": "Ktiso",
+      "date": "20 novembre 2026",
+      "href": "2026-11-20-0935-politique-abattement-10-retraites-senat-plf-2027.html",
+      "image": "actu-politique.jpg"
+    },
+    {
+      "tag": "Crypto",
+      "title": "Le roi du bitcoin perd 10 milliards sur le papier : ce que vous risquez",
+      "excerpt": "Strategy, plus gros détenteur de bitcoin coté, a payé ses 850 849 BTC 75 452 $ en moyenne. Le bitcoin est tombé vers 62 500 $ après le ton dur de la Fed : vente forcée, action en chute, voici ce que vous risquez.",
+      "auteur": "Ktiso",
+      "date": "19 novembre 2026",
+      "href": "2026-11-19-0935-crypto-strategy-saylor-bitcoin-sous-prix-de-revient.html",
+      "image": "card-portefeuille.jpg"
+    },
+    {
       "tag": "Corporate",
       "title": "Nvidia pulvérise ses records, son action reste 35 % sous son sommet : que faire ?",
       "excerpt": "Nvidia a publié mardi le meilleur trimestre de son histoire, avec 115,8 Md$ de ventes, bien au-dessus des attentes. Mais sans patron attitré, l'action reste 35 % sous son record d'octobre : voici ce que cela change pour votre épargne.",
@@ -44,33 +71,6 @@
       "auteur": "Ktiso",
       "date": "14 novembre 2026",
       "href": "2026-11-14-0935-crypto-trezor-ledger-implants-portefeuilles-bitcoin-67000.html",
-      "image": "card-screener.jpg"
-    },
-    {
-      "tag": "Corporate",
-      "title": "Nvidia perd son patron du jour au lendemain : votre ETF est-il en danger ?",
-      "excerpt": "Jensen Huang a quitté Nvidia avec effet immédiat après une semaine de révélations sur sa vie privée. L'action a perdu près de 11 % depuis le 6 novembre, et Nvidia pèse plus de 5 % d'un ETF World : voici ce que cela change pour votre épargne.",
-      "auteur": "Ktiso",
-      "date": "13 novembre 2026",
-      "href": "2026-11-13-0935-corporate-nvidia-jensen-huang-demission-etf.html",
-      "image": "card-alertes.jpg"
-    },
-    {
-      "tag": "Économie",
-      "title": "Les 4 % sont de retour sur le crédit immobilier : faut-il encore acheter ?",
-      "excerpt": "Les taux de crédit immobilier ont pris environ 0,1 point en un mois : 3,76 % sur 20 ans en moyenne chez Pretto, et certaines banques dépassent 4 %. L'OAT a pourtant reflué : voici ce que cela change pour votre projet d'achat.",
-      "auteur": "Ktiso",
-      "date": "12 novembre 2026",
-      "href": "2026-11-12-0935-economie-credit-immobilier-taux-4-pourcent-oat.html",
-      "image": "card-portefeuille.jpg"
-    },
-    {
-      "tag": "Bourse",
-      "title": "Wall Street tousse, Paris sourit : faut-il rapatrier votre épargne ?",
-      "excerpt": "Mardi, le CAC 40 a gagné 0,55 % pendant que le Nasdaq reculait de 0,74 % après une inflation américaine plus forte que prévu. Pétrole en baisse d'un côté, hausse de taux de la Fed attendue de l'autre : voici ce que ce grand écart change pour votre épargne.",
-      "auteur": "Ktiso",
-      "date": "11 novembre 2026",
-      "href": "2026-11-11-0935-bourse-cac40-wall-street-divergence-inflation-us-petrole.html",
       "image": "card-screener.jpg"
     }
   ]
